@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-24T11:21:12Z",
- "source_commit": "9fbee50",
+ "generated": "2026-10-24T11:31:20Z",
+ "source_commit": "a6b79fd",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -61,6 +61,33 @@
    "verified": {
     "date": "2026-10-24",
     "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+   }
+  },
+  {
+   "id": "webhtv-leanback-armv7",
+   "name": "WebHomeTV（影视壳，TV 版）",
+   "package": "com.fongmi.android.tv",
+   "category": "影视壳",
+   "source_url": "https://github.com/webhtv/webhtv/releases/tag/v5.6.0-202609241253",
+   "source_repo": "https://github.com/webhtv/webhtv",
+   "source_commit": "d187f6a",
+   "version": "5.6.0",
+   "version_code": 560,
+   "apk_url": "https://github.com/webhtv/webhtv/releases/download/v5.6.0-202609241253/leanback-armeabi_v7a.apk",
+   "mirrors": [
+    "https://github.com/rvinauto/tv-debloat-rules-dist/releases/download/apps-20261024/webhtv-leanback-armeabi_v7a-5.6.0-202609241253.apk",
+    "https://github.com/webhtv/webhtv/releases/download/v5.6.0-202609241253/leanback-armeabi_v7a.apk"
+   ],
+   "sha256": "7cf89babdf4e8765b4c2cbb400198021a7c3000b7798fd4e8081beda1ca4a523",
+   "size": 115232614,
+   "abi": "armeabi-v7a",
+   "min_sdk": 24,
+   "license": "GPL-3.0",
+   "signer_sha256": "dafec6763f52df367b8b211ed0f0073f2a3ae7061173df4ebdc68996c56a7670",
+   "notes": "FongMi/TV 二次开发（GPL-3.0），leanback 遥控器版。不含任何影视源，源需用户自备并自负合法性。包名与 FongMi 官方相同但签名不同：已装其他签名的 com.fongmi.android.tv 需先卸载。支持本地接口 9978 /action?do=setting",
+   "verified": {
+    "date": "2026-10-24",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest + v2 signer parsed; source Action.java/Server.java checked"
    }
   }
  ]
