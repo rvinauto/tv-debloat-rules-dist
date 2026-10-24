@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "philips-r8g-google-tv",
+  "brand": "philips",
+  "title": "Philips R8G Google TV (built by MOKA/TPV, device whitefield, Realtek RTD2851F), US",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "r8g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Philips R8G Google TV (built by MOKA/TPV, device whitefield, Realtek RTD2851F), US\nGoogle TV 14 (API 34), build UKRE.260524.058, security patch 2026-09-01. About 1.8 GB RAM, armeabi-v7a.\nro.product.manufacturer=MOKA, ro.product.brand=PHILIPS, ro.product.model=R8G.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-r8g-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-r8g-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\nStandby light off (optional): see docs/devices/philips-r8g.md\n\nApplied in small batches on 2026-10-19 with a screenshot after each, then a custom launcher\ninstalled and Home, Inputs (HDMI and Live TV) and YouTube playback checked the same day. Not yet\nlived with for days; if something breaks, re-enable it with `pm enable <package>` and please report it.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh / as STOCK_LAUNCHER).\nHome claimants: launcherx (priority 2), setupwraith RecoveryActivity (1), com.realtek.systemservice\nFallbackHome (-999), com.android.tv.settings FallbackHome (-1000).\nLive TV app: com.realtek.tv (TvActivity; set it as live_tv_package). HDMI and AV inputs are\ncom.realtek.tv.passthrough, played by com.google.android.tv.inputplayer; ATSC tuner com.realtek.tv.atsc.\nDisabled from the factory, so not listed (restore.sh would turn them ON): com.android.tv,\ncom.google.android.play.games.\n\nQuirks on this firmware, all checked on the TV:\n- Port 5555 was open after turning on USB debugging and Wireless debugging (service.adb.tcp.port=5555);\nno pairing code needed. tools/tv.py works directly.\n- Screenshots of HDMI and Live TV fail (protected layer, screencap exits 1); check\n`dumpsys activity activities | grep topResumedActivity` instead.\n- tv.anoki.acr.anokiacroptin is Anoki ACR (automatic content recognition of what is on screen).\n- com.seraphic.hbbtv.app is European HbbTV; US broadcasts are ATSC. Live TV and HDMI 1 still opened\nafter disabling it.\n- The Wi-Fi network had been saved during first setup, so disabling setupwraith deleted it (see the\nwarning at the bottom). The TV dropped off Wi-Fi, which also kills the Google Home phone remote;\nit took a USB keyboard to rejoin from Settings.\n\nKept on purpose: com.realtek.tv, com.realtek.tv.passthrough, com.realtek.tv.atsc, com.realtek.tv.atv\n(Live TV and inputs), com.realtek.dtmb and com.realtek.tv.isdb (unused tuner inputs, left alone),\ncom.realtek.systemservice, com.realtek.menu (input/source menu), com.google.android.tv.remote.service\nand com.google.android.tv.dfuservice (phone remote, remote firmware and find-my-remote),\ncom.realtek.rtkvirtualkeyboard and com.google.android.inputmethod.latin (keyboards), Play Store, Play Services.\nLeft alone because their purpose is unclear from their components: com.apps.factory.ui (factory/hotel\nmenu with boot-time services), com.realtek.display.monitor, com.realtek.slices.\nKept by owner's choice: com.google.android.apps.mediashell (Chromecast), com.realsil.ota (firmware\nupdates), com.rtk.mediabrowser (USB media player), all streaming apps.\nTelemetry",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki ACR: fingerprints what is on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.esticker3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store-demo sticker overlay (ShopModeReceiver, boot receiver)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Manufacturer content",
+      "reason": "partner config that injects apps and rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.seraphic.hbbtv.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content",
+      "reason": "HbbTV red-button overlays, unused with US ATSC",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "Assistant / Gemini; the mic button does nothing without it",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "ambient screensaver; point screensaver_components elsewhere or turn it off",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-r8g-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

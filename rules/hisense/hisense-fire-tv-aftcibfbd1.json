@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "id": "hisense-fire-tv-aftcibfbd1",
+  "brand": "hisense",
+  "title": "Hisense Fire TV (Fire TV Edition, AFTCIBFBD1, codename coyote, MediaTek), Fire OS 8.0 / Android 11 (SDK 30),",
+  "android": "Fire OS 8.0",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "aftcibfbd1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Hisense Fire TV (Fire TV Edition, AFTCIBFBD1, codename coyote, MediaTek), Fire OS 8.0 / Android 11 (SDK 30),\nfirmware RS8180.3734N, US. The first Fire OS 8 TV (Fire TV Edition) here. amazon-fire-tv-stick-4k-2023/ (Fire OS 8.1)\ngoes further on packages and its notes apply here too; this list adds what is TV-specific: Alexa voice coming back at\nevery boot, and HDMI input switching being reserved to Amazon.\n\nFIRE OS: DEBLOAT ONLY. As on Fire OS 7, com.amazon.tv.launcher and com.amazon.firehomestarter are protected\n(pm disable-user and am force-stop are refused) and keep Home. Live TV app: com.amazon.tv.livetv.\n\nApply:  TV_HOST=<tv ip> tools/disable.sh examples/hisense-fire-tv-aftcibfbd1/debloat.txt\nUndo:   TV_HOST=<tv ip> tools/restore.sh examples/hisense-fire-tv-aftcibfbd1/debloat.txt com.amazon.tv.launcher\nEverything is DISABLED for user 0, not uninstalled. Comment out any line you want to keep.\n\nLived with since 2026-10-19, through several reboots: Netflix, YouTube, Prime Video, Spotify, Settings, the Network\npage, Live TV settings and HDMI inputs (via the remote's Input button) all work.\n\nFire OS 8 notes:\n- com.amazon.vizzini (Alexa voice) comes back ENABLED AT EVERY BOOT. Neither pm disable-user, pm suspend,\n`appops set ... RECORD_AUDIO ignore` (not even applied) nor pm uninstall -k --user 0\n(DELETE_FAILED_INTERNAL_ERROR) survives a reboot; re-run this list after one. Everything else stays off.\n- Two packages are protected (pm disable-user is refused), so they are commented out below:\ncom.amazon.ftvads.deeplinking and com.amazon.device.crashmanager.\n- AdGuard Private DNS works (mads.amazon-adsystem.com stops resolving) and removes the third-party ad\nin the hero banner; Amazon's own promotions stay, they come from the protected launcher.\n- Input switching is Amazon-only: its player needs com.amazon.tv.permission.TUNE_INPUT (signature|amazon) and\nits picker com.amazon.tv.inputpreference.permission.LAUNCH_INPUTS (signature|privileged). The standard\npassthrough URI opens Live TV's settings instead of the input, so a launcher's Inputs button can't switch here.\n- Leave the animation scales at 1.0, as on amazon-fire-tv-stick-4k-2023/: at 0.5 every entry in the ☰ side menu\n(Inputs, Settings, profile) closes the menu and opens nothing. Confirmed on a second set (65U68QF, Canada) by\ntoggling 1.0 / 0.5 with the list applied.\n- Screensavers: Amazon's AmbientManagerService (in system_server) replaces any DreamService with Ambient\nExperience (\"Stopping Ambient, reason=starting new dream\", then \"Starting Ambient\"), and with\ncom.amazon.tv.ftvambient disabled it ends the dream at once (\"No AmbientService implementations found\"). A\nthird-party screensaver set through screensaver_components never shows. With ambient_turn_off_in_darkroom=1\nthe light sensor sends the set straight to sleep from Ambient in a dark room.\n- Live TV screens and a sleeping panel both screenshot as plain black; check `dumpsys power | grep mWakefulness`.\nAmazon's screens expose no text to uiautomator, so verify the UI with screenshots.\n- Owners who use Alexa voice, casting and Ambient: comment out the Alexa and Casting groups and ftvambient. The\n65U68QF set ran that way (vizzini, Alexa extras, cast.sink, AirPlay, Photos and Ambient kept) with the rest of\nthis list plus kso.blackbird, client.metrics.api and hedwig, and with Amazon Kids (tahoe) off as well, which\nthis list keeps on purpose: free memory after a cold boot went from about 1.0 GB to 1.6 GB and swap from\n98 % full to empty.\n\nKept on purpose: Amazon Kids (com.amazon.tahoe), OTA updates, Live TV, settings, Silk, Appstore, the stock launcher.\nPersonal choices are marked below: Alexa, AirPlay, Miracast and the preloaded apps.\nAds, shopping and content recognition",
+  "packages": [
+    {
+      "package": "com.amazon.shoptv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Shop on Fire TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.acr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Automatic Content Recognition (what's on screen, HDMI included)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.democontent.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail demo content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.media.recommendations",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "sponsored and recommendation rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.sneakpeek",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "autoplaying previews on Home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.hybridadidservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "advertising ID",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.kso.blackbird",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "launcher ad sync / bidding (sponsored banner and rows); tested on 65U68QF",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.client.metrics.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "metrics client API; tested on 65U68QF",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.wirelessmetrics.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Wi-Fi metrics upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.perfcollection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "performance telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.perfc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "performance telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.dp.logger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "device log upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.device.telemetry.emitter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "telemetry emitter",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.storm.lightning.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials",
+      "reason": "Tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tmm.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials",
+      "reason": "Tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.vizzini",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "reason": "Alexa voice on Fire TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.alexaalerts",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "reason": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.alexanotifications",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "reason": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.alexamediaplayer.runtime.ftv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "reason": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.alexa.externalmediaplayer.fireos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "reason": "Alexa (personal choice; vizzini comes back at every boot, see the header)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apple.airplay.amazon.airplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting (personal choice)",
+      "reason": "AirPlay receiver: keep if you cast from an iPhone or Mac",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.cast.sink",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Casting (personal choice)",
+      "reason": "Miracast screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.tubitv.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Tubi",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.bueller.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Amazon Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.bueller.photos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Amazon Photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.minitv.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "miniTV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.naatyam",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Naatyam",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.gamehub",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "games hub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.hedwig",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Fire TV Channels (free ad-supported channels row); tested on 65U68QF",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.ftvambient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (personal choice)",
+      "reason": "Ambient Experience screensaver",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-fire-tv-aftcibfbd1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

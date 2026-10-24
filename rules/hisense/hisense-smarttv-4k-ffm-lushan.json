@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "hisense-smarttv-4k-ffm-lushan",
+  "brand": "hisense",
+  "title": "Hisense SmartTV 4K FFM (device lushan, board his9603, platform merak, MediaTek MT9676 / mt5896),",
+  "android": "Google TV 12",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Hisense SmartTV 4K FFM (device lushan, board his9603, platform merak, MediaTek MT9676 / mt5896),\nGoogle TV 12 (Android 12), firmware STT2.230929.001.092, security patch 2025-05-01. The Android model\nstring is \"SmartTV 4K FFM\", the same as examples/hisense-smarttv-4k-ffm/ (huangshan, Android TV 10) and\nexamples/hisense-smarttv-4k-ffm-android11/ (songshan); this is a third board with its own package set.\nMongolia, en-US locale.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-smarttv-4k-ffm-lushan/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-smarttv-4k-ffm-lushan/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED with pm disable-user, never uninstalled.\n\nApplied on 2026-10-22 in four batches, with a reboot and a screenshot after each: normal boot, no\ncrashes, the HDMI input, Wi-Fi and the remote's buttons kept working. In use since, with the Clean\nYour TV launcher as Home.\n\nStock launcher: com.google.android.apps.tv.launcherx (the Google TV home). It is disabled by the\nlauncher install, not by this list; pass it to tools/restore.sh as the stock launcher.\nLeft ON by choice here (deliberately not in this list): Google Assistant (katniss), casting and\nmirroring (Chromecast, AirPlay, Miracast, DLNA), the OTA updaters, Netflix, YouTube, Spotify, Twitch.\nNever disabled: com.hisense.tv.smartsense, com.vt.tv.smartsense.ui, com.vt.tv.aiot. The huangshan FFM\nlist notes that disabling them sent that set to Android Recovery.\nHisense telemetry",
+  "packages": [
+    {
+      "package": "com.vt.tv.evservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "viewing-data (ACR) service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and feedback",
+      "reason": "partner referral tracking",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and feedback",
+      "reason": "crash/feedback uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google tracking and feedback",
+      "reason": "calendar sync, unused on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.hisense.odinbrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Hisense browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.hishow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "\"Family Moment\" screensaver and photo content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Store/hotel demo mode and the first-time setup flow (setup already complete)",
+      "reason": "Store/hotel demo mode and the first-time setup flow (setup already complete)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Store/hotel demo mode and the first-time setup flow (setup already complete)",
+      "reason": "Store/hotel demo mode and the first-time setup flow (setup already complete)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.iqiyi.i18n.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "iQIYI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mercadolibre.android.mplay_tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "Mercado Play",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.wbd.stream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "HBO Max",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.alexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "Hisense Alexa (Google Assistant is kept)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.tv.protector",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "Streaming apps and voice, off by choice (comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps and voice, off by choice (comment out any you use)",
+      "reason": "Streaming apps and voice, off by choice (comment out any you use)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-smarttv-4k-ffm-lushan/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

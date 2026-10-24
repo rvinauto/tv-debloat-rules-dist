@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "id": "tcl-43c645",
+  "brand": "tcl",
+  "title": "TCL G03 / BeyondTV4 firmware V8-R51MT05-LF1V652 (AR11), reports as \"Smart TV Pro\", Android TV 11 (SDK 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "43c645"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL G03 / BeyondTV4 firmware V8-R51MT05-LF1V652 (AR11), reports as \"Smart TV Pro\", Android TV 11 (SDK 30),\nGoogle TV launcher (com.google.android.apps.tv.launcherx). Same firmware as docs/devices/tcl-75c63b.md.\nTested models:\nTCL 43C645, Realtek RTD2851 / R51MT05, Ethernet. Groups 1-3, tested 2026-10-19.\nTCL 60C635 (product G03_4K_GB, device BeyondTV4), Realtek rtd288o, 2 GB, security patch 2024-12-05,\nSpain, Wi-Fi. Every group except 3, com.tcl.android.webview and com.tcl.keyhelp, plus launcherx,\ntested 2026-10-20.\nList derived from examples/tcl-65c725 (same Android 11 TCL platform), checked against both units' packages.\n\n43C645: applied in three batches with a screenshot after each: Ethernet stayed up, Home and the D-pad, the\nlauncher's Sources menu (HDMI via TvInputManager), Netflix, and Home from Netflix all worked, also after a\nreboot. Private DNS (AdGuard) kept working. tools/b64push.py failed its md5 check here, plain `adb push` +\n`pm install -r` worked.\n60C635: batch by batch with a screenshot after each: Home, the Input key (Quick panel), Live TV, HDMI and\nYouTube kept working, also after a cold reboot with launcherx off. The remote's app buttons need the\nlauncher's key services: see README.md, config.json and build-and-install.sh.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-43c645/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-43c645/debloat.txt com.google.android.apps.tv.launcherx\n(or examples/tcl-43c645/restore.sh, which also gives Home back to launcherx)\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. HOME fallback com.google.android.tungsten.setupwraith\ntakes over once it is disabled, so it is disabled too (group 1b). Home then resolves to the new launcher.\nbuild-and-install.sh disables launcherx itself once the new launcher is Home.\nLive TV / HDMI: com.tcl.tv (TVActivity) + com.tcl.tvinput (tuner and passthrough input services).\nNever disable: com.tcl.providers.config com.tcl.initsetup com.tcl.factory.view com.tcl.system.server\ncom.tcl.tcl_bt_rcu_service com.tcl.autopair com.tcl.tvinput com.tcl.tv com.tcl.tvpassthrough com.tcl.settings\ncom.tcl.inputmethod.international com.tcl.sourcemananger com.tcl.keycustomfunctionservice\ncom.tcl.suspension (Input key / Quick panel) com.google.android.inputmethod.latin com.google.android.gms\ncom.google.android.gsf com.android.vending\nKept by choice on both: Cast receiver (mediashell), Live TV (com.tcl.tv), screensaver (dreamx).\n1. Telemetry, promos, content rows",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.keyhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Off by choice (the 60C635 kept both)",
+      "reason": "firmware updater",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "3. Off by choice (the 60C635 kept both)",
+      "reason": "screen mirroring (Cast receiver kept)",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "TCL identifier/awareness services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "log collection, remote diagnosis",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "TCL content recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "TCL account",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "TCL Live: FAST IPTV channels with ads (its own TV input)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "Alexa integration",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "USB media player, re-enable for USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. More telemetry, TCL content and unused preloads (tested on the 60C635)",
+      "reason": "assistant LED service",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-43c645/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

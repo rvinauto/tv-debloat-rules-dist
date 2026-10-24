@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "id": "dialog-viu-sei103dl",
+  "brand": "dialog",
+  "title": "Dialog ViU (SEI Robotics SEI103DL, device SEI103, Amlogic, NES operator middleware), Sri Lanka",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "dialog"
+    ],
+    "model_patterns": [
+      "sei103dl"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.dialog.tv",
+  "notes": "Dialog ViU (SEI Robotics SEI103DL, device SEI103, Amlogic, NES operator middleware), Sri Lanka\nAndroid TV 9 (SDK 28), build PI.4348, security patch 2023-09-05. 1 GB RAM, 720p. HDMI out only, no inputs.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/dialog-viu-sei103dl/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/dialog-viu-sei103dl/debloat.txt com.dialog.tv\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\nTested on one box the same day, including a reboot; not a multi-day soak.\n\nStock launcher: com.dialog.tv, which is also Dialog's IPTV and Catch-up app; disabling it removes Dialog's channels.\nThe installer does not know it, so install the launcher first with STOCK_LAUNCHER=none HOME_KEY_SERVICE=1, then apply\nthe last line. Dialog Play from Play Store (com.dialog.app.atv) is marked incompatible with this box and cannot replace it.\nHome claimants: com.dialog.tv and FallbackHome only; setupwraith and leanbacklauncher do not claim Home here, and the saved\nWi-Fi network belongs to the system uid, so both are left alone.\nYouTube, Prime Video or the preloads below may already be disabled on a box; `pm enable <package>` brings one back.\n\nNotes from this firmware:\n- USB debugging alone opens port 5555; ro.adb.secure=1, so each computer is accepted on screen. Sideloading works.\n- The Bluetooth remote's shortcut buttons are NES global keys from com.nes.tvglobalkeyhandler: Apps 5116, Prime Video 5119,\nCatch-up 5122 (it opens com.dialog.tv, so it does nothing once that is disabled). They reach the launcher's\nHomeKeyService, so `app_keys` can remap them, e.g. \"app_keys\": [\"5122:<package>\"]. Home is a normal HOME key.\n- Disabling the boot advertisement group restarts com.dialog.tv once; it comes back on its own.\n- AdGuard Private DNS (dns.adguard-dns.com) works.\n\nKept on purpose: com.nes.blerc (Bluetooth remote and pairing), com.nes.tvglobalkeyhandler (remote shortcut keys),\ncom.nes.daemonservice, com.nes.leanbacklauncher.partnercustomizer, com.droidlogic.* (Amlogic settings and overlays),\ncom.google.android.tungsten.setupwraith, com.google.android.inputmethod.latin (keyboard), Play Store, Play Services, Bluetooth.\nTelemetry and operator remote management",
+  "packages": [
+    {
+      "package": "com.nes.tvbugtracker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "NES bug tracker, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.tr069",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Dialog TR-069 remote management and statistics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nes.skywayclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Boot advertisements, silent installs, recommendation services",
+      "reason": "NES Skyway: boot ads, silent installs; likely OTA too, re-enable for updates",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sei",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Boot advertisements, silent installs, recommendation services",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Boot advertisements, silent installs, recommendation services",
+      "reason": "Boot advertisements, silent installs, recommendation services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Boot advertisements, silent installs, recommendation services",
+      "reason": "Boot advertisements, silent installs, recommendation services",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.utsmta.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and phone leftovers",
+      "reason": "NES factory test app (USB receiver)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.smspush",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and phone leftovers",
+      "reason": "WAP push manager, no SMS on a TV box",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.camera2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Camera, no camera on this box",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Gallery",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.dialog.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Dialog home, IPTV and Catch-up; keep it if you watch Dialog's channels",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/dialog-viu-sei103dl/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

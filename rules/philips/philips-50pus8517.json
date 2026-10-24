@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "id": "philips-50pus8517",
+  "brand": "philips",
+  "title": "Philips 50PUS8517/12 (50\" 4K UHD LED, 3-sided Ambilight, P5 Picture Engine, 2022 model)",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "50pus8517"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Philips 50PUS8517/12 (50\" 4K UHD LED, 3-sided Ambilight, P5 Picture Engine, 2022 model)\nAndroid TV 11 (ro.build.version.release=11), firmware RTT2.211108.001, board PH1M_EA_9970A\nro.product.model=2021_22_Philips_UHD_Android_TV  ro.product.device=PH1M_EA_9970A\nFingerprint: Philips/PH1M_EA_9970A/PH1M_EA_9970A:11/RTT2.211108.001/21029:user/release-keys\nTP Vision build: MediaTek MT5895, 2.67 GB RAM, armeabi-v7a userspace. Vendor packages use the\norg.droidtv prefix.\n\nMatch on the BOARD and firmware, not on the model number. Philips/TP Vision ships one\norg.droidtv layer across a whole generation, so the x PUS85xx / PUS88xx sets of 2021-2022 on\nboard PH1M_EA_9970A should carry the same package set; a different board or a Google TV\n(Android 12+) Philips will not. Check your own `pm list packages` against this file first —\n`tools/tv.py --probe` prints model, Android version and build.\n\nNOT the same platform as examples/philips-smart-4k-google-tv, which is a Skyworth-built\nIndia-market set on Google TV 14 with com.smartdevice/com.sky/com.tianci packages and no\norg.droidtv at all. Nothing from that file applies here and nothing here applies there.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-50pus8517/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-50pus8517/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (pass it to restore.sh, as above).\nLive TV app:    org.droidtv.playtv\nApp labels below were resolved by pulling each APK and reading it with `aapt dump badging`,\nnot guessed from the package name. That matters on this firmware: org.droidtv.nettvapp4546 is\nMEGOGO, nettvapp4655 is Deezer, nettvapp5512 is Fishing TV, and org.droidtv.candeebug is\nlabelled \"DAC\" and is the analytics uploader, not a debug tool.\n\nQUIRKS ON THIS FIRMWARE, in the order they will bite you:\n\n1. pm disable-user persists to /data/system/users/0/package-restrictions.xml with a delay\n(~10 s on AOSP). If you run disable.sh and power-cycle the TV straight away, the changes\nare silently lost: packages come back as enabled=0 (DEFAULT). Wait, or run\n`pm list packages -d` and confirm your packages are listed before pulling the plug.\n2. `adb reboot` over TCP hangs holding the dropped connection. Kill the adb server right\nafter sending it and wait on port 5555 coming back instead of on the adb command.\n3. The Android 11 shell cannot disable individual components of another app\n(\"SecurityException: Shell cannot change component state\") and cannot `pm hide`\n(\"Neither user 2000 nor current process has android.permission.MANAGE_USERS\"). So if a\npackage refuses to stay disabled, the shell has no second lever. `pm suspend` does work\nand survives a reboot, but it does not stop services: an app that starts itself from its\nown boot receiver keeps running with suspended=true.\n4. com.google.android.apps.mediashell (Chromecast built-in) could NOT be kept disabled on this\nfirmware and is deliberately absent from the list below. It returns to enabled=1 about 35 s\nafter every boot, reproducibly. pm disable-user, pm suspend, per-component disable and\npm hide were all tried; the first is undone, the second does not stop it, the last two are\nrefused by the platform. Left enabled, at a cost of about 37 MB.\n5. A DISABLED PACKAGE CAN LEAVE A PERSISTENT PROCESS RETRYING FOREVER, AND pidof WILL NOT\nSHOW IT. org.droidtv.xtv is the persistent TV engine and has five outbound service\nbindings. Two of them, eum and aurora, were on the first version of this list, and\nBOTH leave xtv in a permanent retry loop when disabled. Neither is in the list above now;\nboth are in the DO NOT DISABLE block below.\n\norg.droidtv.eum -- bound via CONTEXTUALHELP. About five retries per second, logged as\nxtvContextInterface ... connectCotextService - Service failed to connec i is null\n51 of them in 10 seconds of an idle TV. This one also BREAKS A VISIBLE FUNCTION, and ",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"DAC\" analytics uploader: channel watched, resolution, HDMI-CEC devices, viewing times, Ambilight config; uploads to AWS Firehose/S3 and geolocates the public IP via ipinfo.io",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "metrics collector sharing candeebug's process; no INTERNET permission of its own",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.usagelogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot stats, remote keypress counts, panel/eMMC telemetry forwarded to the above",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvrecommender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "\"Top Picks\" content promotion row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "its headless backend; disable the row above first or you get a live tile with no data source",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettv.market",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "\"Smart TV Collection\" app storefront",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp1814",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "ARTE",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4546",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "MEGOGO",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4633",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "alacarta RTVE",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4655",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Deezer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4932",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Free Games by PlayWorks",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp5326",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Toon Goggles",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp5512",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Fishing TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp20004410",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Couchplay Games",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.android.fitness",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips content promos and the app gallery",
+      "reason": "Fitness Buddy",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.amazonalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "Alexa bridge; live TV holds a binding into it, so test channel zapping and the EPG after disabling -- NOT exercised on this unit",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "DLNA/UPnP server and renderer; persistent + coreApp, yet disables cleanly and contentexplorer (\"Media\") still starts and keeps its PID. Its DLNA init is gated behind a broadcast dlna itself sends, so the USB source should be unaffected -- reasoned from the code, not tested here",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.ipcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "LAN control of volume, audio output, Ambilight on/off and ShopMode. NOTE: this is NOT the JointSpace API on ports 1925/1926 — that is served by org.droidtv.xtv, which must stay. Keep this if you drive the TV from Home Assistant",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.demome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"Demo me\" retail demo mode, e-sticker and shop loop; bound at boot by org.droidtv.settings to clear demo clips before a firmware update, null-guarded",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.m7opapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "M7 satellite operator promo (Canal Digitaal, TV Vlaanderen, Skylink, HD Austria); keep if you use one of those",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry and first-setup leftovers",
+      "reason": "Market Feedback Agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry and first-setup leftovers",
+      "reason": "partner referrer / attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry and first-setup leftovers",
+      "reason": "runs once at first setup, nothing afterwards",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.sss.authbridge",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry and first-setup leftovers",
+      "reason": "Second Screen Setup Auth Bridge (set-up-from-phone helper)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry and first-setup leftovers",
+      "reason": "Google Calendar sync; no calendar app is installed on this TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google apps this owner does not use",
+      "reason": "Assistant and voice search, ~101 MB across two processes. Kills the remote's mic button, \"Hey Google\", on-screen voice search and the mic icon inside YouTube and Play Store search. Settings and tvsystemui guard their calls into it, so nothing crashes",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Google apps this owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Google apps this owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.apple.atve.androidtv.appletv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Google apps this owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Google apps this owner does not use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.zeasn.whalelive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "WhaleLive (Zeasn) ad-supported FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.boosteroidtv.streaming",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Boosteroid cloud gaming",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.witsoftware.ir.vodafonetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Vodafone TV; runs headless, no icon",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.sweet.tvplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Sweet TV (Ukrainian IPTV)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google apps this owner does not use",
+      "reason": "Rakuten TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "stock home screen. That is a conscious trade, not a side effect.",
+      "reason": "\"Android TV Core Services\" despite the name: recommendation rows, channels, notification panel",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "that was not a factor here -- check your own before you decide this matters.",
+      "reason": "that was not a factor here -- check your own before you decide this matters.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader; keep if anyone needs it"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-50pus8517/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

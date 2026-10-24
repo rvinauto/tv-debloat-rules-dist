@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "id": "mtc-uk-2k-android-tv",
+  "brand": "mtc",
+  "title": "MTC UK 2K Android TV (codename tabata), Android TV 11, firmware RTO8.250807.002, MediaTek m5621",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "mtc"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "MTC UK 2K Android TV (codename tabata), Android TV 11, firmware RTO8.250807.002, MediaTek m5621\nShares its firmware family with JVC UK sets (android.autoinstalls.config.JVC is present).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/mtc-uk-2k-android-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/mtc-uk-2k-android-tv/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nQuirks: dumpsys is crippled on this firmware (\"Service dumps disabled due to hung\nsystem process\") - verify with pm list packages -d and screenshots, not dumpsys.\nThe stock launcher is com.google.android.tvlauncher (Android TV leanback, not Google TV\nlauncherx), so restore.sh needs no launcher argument.\nGoogle launcher ad/recommendation services (launcher itself is disabled by build-and-install.sh)",
+  "packages": [
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry and ambient ads",
+      "reason": "Google telemetry and ambient ads",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry and ambient ads",
+      "reason": "Google telemetry and ambient ads",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry and ambient ads",
+      "reason": "Google telemetry and ambient ads",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded junk",
+      "reason": "Preloaded junk",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded junk",
+      "reason": "Preloaded junk",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Calendar on a TV",
+      "reason": "Calendar on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Calendar on a TV",
+      "reason": "Calendar on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.twentyfouri.tvbridge.rte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "uk.co.freeview.* suite was already disabled out of the box; disabling again",
+      "reason": "uk.co.freeview.* suite was already disabled out of the box; disabling again",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/mtc-uk-2k-android-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

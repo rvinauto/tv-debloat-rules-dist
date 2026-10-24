@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "id": "hisense-hismarttv-a4-android11",
+  "brand": "hisense",
+  "title": "Hisense HiSmartTV A4 (device xiaoyushan, MStar/MediaTek m7322), Android TV 11, firmware RTT2.221108.001",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "android11"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Hisense HiSmartTV A4 (device xiaoyushan, MStar/MediaTek m7322), Android TV 11, firmware RTT2.221108.001\n(build 00.00.00.18), security patch 2023-12-05. 1.8 GB RAM, 32-bit userspace (armeabi-v7a only:\nsideload armeabi-v7a or universal APKs). Same set as hisense-hismarttv-a4 after its Android 11 update.\nSecond unit: 75A53FUA, US market, same build and security patch, incremental 00.00.01.18. Groups 1, 2\nand 4 applied there with Netflix and Prime Video kept; its differences are noted below where they apply.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-hismarttv-a4-android11/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-hismarttv-a4-android11/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nADB: turning USB debugging on opens network ADB on port 5555 directly (service.adb.tcp.port=5555,\nadb_wifi_enabled=0); no Wireless debugging pairing needed. ro.adb.secure=1, so the TV asks\n\"Allow USB debugging?\" on first connect.\nApplied in three batches (group 1, group 2, then groups 3 and 4 together), ~15 s wait and a reboot\nafter each: normal boot every time, all 7 TV inputs still registered (HDMI 1-4, composite, two\ntuners), and switching to HDMI 1 from the launcher's Inputs menu works. The wait is not optional: on\nthe second unit a reboot sent straight after a batch came before Android wrote the package state, and\nevery package in that batch was enabled again at boot.\n\nThis firmware mixes the package namespaces of the Android 9 A4 list (com.mstar.*, the xiaoyushan\nautoinstalls) and of hisense-smarttv-4k-ffm (com.hisense.evservice, service.message, b2b, alexa,\nVIDAA). Most of the Android 9 list is gone here: com.hisense.app.logreport, com.hisense.storemode,\nfusion.android.tv.demo, com.seraphic.browser, com.google.android.leanbacklauncher(.recommendations),\ncom.google.android.music, com.hisense.myapplication, com.google.android.apps.nbu.smartconnect.tv.\n\nStock launcher: com.google.android.tvlauncher (the default in restore.sh), with Shop and Discover\ntabs and a full-width sponsored hero banner that only the launcher swap removes. setupwraith is\ninstalled but does not claim HOME on this firmware, and the Wi-Fi saved at setup belongs to\nandroid.uid.system, so it is not in this list. On the second unit `dumpsys wifi` names setupwraith as\nthe network's owner instead; setupwraith still does not claim HOME there, so it stays enabled and the\nnetwork is never at risk. launcher/build-and-install.sh worked unchanged and Home survives a reboot.\nInput key: the remote's Input button sends KEYCODE_TV_INPUT (scancode 184). The framework routes it\nas a global key to com.mediatek.wwtv.tvcenter, which starts com.android.tv.action.VIEW_INPUTS, and\nthe only handler of that action is tvlauncher's InputsPanelActivity. With the stock launcher\ndisabled the key does nothing (ActivityNotFoundException in logcat); use the launcher's Inputs pill.\nOr set \"handle_view_inputs\": true (config.xml or a theme): the launcher then answers VIEW_INPUTS and\nthe Input button opens its Inputs menu, with no key helper. Checked on the real remote, second unit.\n\nDo NOT disable: com.hisense.tv.smartsense, com.vt.tv.smartsense.ui (the smartsense family sent the\nHisense FFM set to Android Recovery), com.mediatek.* (wwtv.tvcenter is Live TV and HDMI; autopair,\nhotkey.dispatcher, tv.agent), com.hisense.tv.hitvinput (HDMI/AV/tuner inputs), com.hisense.kpad and\ncom.hisense.favkey (remote keys), com.mstar.netflixobserver (Netflix key), com.vidaa.persistent.service,\ncom.hisense.tv.smartservice, com.hisense.tv.customerlauncher, com.hisense.uifac,\ncom.hisense.audio_update_service, com.vt.eula. Left alone as well: com.hisense.tv.protector\n(\"Device Assistant\" cleaner) and com.hisense.mixbar.\nKept here and optional: firmware updates (com.hisense.tv.ota, com.hisense.remoteupgrade), YouTube,\nChromecast (mediashell), Assistant (katniss), Screen Sharing / Miracast (com.mediatek.androidbox),\nRemoteNOW (hisremotenow, hisre",
+  "packages": [
+    {
+      "package": "com.hisense.evservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "codePath /system/app/acr: automatic content recognition",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "/system/app/HiMsgService: Hisense push messages",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner referral tracking",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.hisense.xiaoyushan",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silent partner-app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash/feedback uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: promo content, retail and commercial modes, Hisense preloads",
+      "reason": "recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: promo content, retail and commercial modes, Hisense preloads",
+      "reason": "/system/product/app/VendorDisclaimer: store disclaimer",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.b2b",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: promo content, retail and commercial modes, Hisense preloads",
+      "reason": "/system/app/HisenseB2B: hotel/commercial mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "net.vidaatv.hisense.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: promo content, retail and commercial modes, Hisense preloads",
+      "reason": "\"Hisense Channels\", VIDAA free ad-supported channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.alexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: promo content, retail and commercial modes, Hisense preloads",
+      "reason": "/system/app/HiAlexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded streaming apps, optional. Comment out the ones you use.",
+      "reason": "the remote's Netflix key does nothing while this is off",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded streaming apps, optional. Comment out the ones you use.",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.pandora.android.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded streaming apps, optional. Comment out the ones you use.",
+      "reason": "Group 3: preloaded streaming apps, optional. Comment out the ones you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 4: unused on a television",
+      "reason": "Group 4: unused on a television",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 4: unused on a television",
+      "reason": "Group 4: unused on a television",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-hismarttv-a4-android11/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

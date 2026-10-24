@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "id": "philips-google-tv-ta7",
+  "brand": "philips",
+  "title": "Philips Google TV TA7 (TPV, PH3M_LT_T32 / device PH3M_AL_T32, MediaTek), Brazil",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "ta7"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Philips Google TV TA7 (TPV, PH3M_LT_T32 / device PH3M_AL_T32, MediaTek), Brazil\nGoogle TV 14 (API 34), build UTT1.250308.001. About 1.9 GB RAM, armeabi-v7a, UI 1920x1080 on a 4K panel.\nFingerprint: Philips/PH3M_LT_T32/PH3M_AL_T32:14/UTT1.250308.001/101000072000:user/release-keys\nVendor packages: TP Vision org.droidtv.* on a MediaTek base (com.mediatek.*, mediatek.factorymenu.ui).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-google-tv-ta7/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-google-tv-ta7/debloat.txt com.google.android.apps.tv.launcherx\nLauncher: TV_HOST=<tv ip> STOCK_LAUNCHER=com.google.android.apps.tv.launcherx HOME_KEY_SERVICE=1 launcher/build-and-install.sh\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nApplied in batches on 2026-10-20 with a screenshot after each, then the custom launcher installed;\nHome, HDMI 1 and Live TV, YouTube playback, HBO Max, Settings and every remote button were checked,\nand everything survived a reboot. Not yet lived with for days.\n\nStock launcher: com.google.android.apps.tv.launcherx. Home claimants: launcherx (priority 2),\nsetupwraith RecoveryActivity (1), com.android.tv.settings FallbackHome (-1000). While launcherx is\nenabled, set-home-activity to another launcher does not stick.\nLive TV app and HDMI player: com.mediatek.wwtv.tvcenter (TurnkeyUiMainActivity); the launcher's\ndefault live_tv_package already matches. HDMI 1-4 are listed by com.mediatek.tvinput.\n\nQuirks on this firmware, all checked on the TV:\n- Port 5555 was already open and the PC already authorised; ro.adb.secure=1.\n- `screencap -p` prints \"Init wrapper sys mutex successful. Pid:...\" before the PNG on stdout:\nstrip everything before the \\x89PNG signature.\n- The remote's Settings (gear) button is scancode 357 (KEY_OPTION) -> KEYCODE_SETTINGS (176), a\nglobal key routed to com.mediatek.tv.service's HotKey GlobalKeyReceiver, which forwarded it to the\nstock dashboard. With launcherx disabled it does nothing until HomeKeyService is on\n(HOME_KEY_SERVICE=1, no config needed for KEYCODE_SETTINGS). Input and app buttons keep working.\n- KEYCODE_GUIDE and KEYCODE_NOTIFICATION are global keys of launcherx; this remote does not send them.\n- setupwraith owned one old saved network (not the one in use), and only that entry was deleted.\n\nKept on purpose: org.droidtv (TPVTvService, sees every key press), org.droidtv.icp (persistent\nsign-on service, purpose unclear), org.droidtv.ambisvc (Ambilight/Lounge), org.droidtv.eum (user\nmanual; hidden in the launcher instead), com.mediatek.tv.service (hot keys, Netflix key, TV agent),\ncom.mediatek.tvinput, com.mediatek.wwtv.tvcenter, com.mediatek.wwtv.setupwizard (channel scan),\ncom.mediatek.wwtv.mediaplayer (USB media), com.mediatek.autopair (remote pairing), com.mediatek.tv.factory\nand mediatek.factorymenu.ui (factory menus), com.mediatek.android.leanbacklauncher.partnercustomizer\n(crash-loops tv.service on another MediaTek set), com.android.tv.ota and com.easy.oad (firmware\nupdates), com.google.android.katniss (Assistant), Play Store, Play Services, both keyboards.\nDisabled by the owner before this list and therefore not in it: cm.aptoide.pt, com.vscine.tv,\ncom.viki.android, fusion.android.tv.demo, com.google.android.apps.tv.dreamx (ambient mode),\ncom.android.adservices.api, com.android.ondevicepersonalization.services,\ncom.android.federatedcompute.services, com.android.tv.feedbackconsent, com.google.android.feedback\nand the two Health Connect packages.\nBatch 1: telemetry and attribution",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TP Vision \"DAC\" analytics: CollectionService, boot receiver, ~55 MB resident",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TP Vision metrics GatheringService, shares candeebug's cache provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner referrer / RLZ ping",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tpv.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-install of TPV partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.opapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: manufacturer content and popups",
+      "reason": "European satellite operator apps (Canal Digitaal, HD+, Skylink...), unused in Brazil",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.consentcmpapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: manufacturer content and popups",
+      "reason": "TP Vision ad-consent (CMP) screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: manufacturer content and popups",
+      "reason": "disclaimer popup",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: background extras",
+      "reason": "Batch 3: background extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: background extras",
+      "reason": "runs once at first setup",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: background extras",
+      "reason": "no calendar app on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: background extras",
+      "reason": "Batch 3: background extras",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Batch 4: by owner's choice (not used)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Google TV films/shop app",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Chromecast built-in, ~75 MB resident",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Batch 4: by owner's choice (not used)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: by owner's choice (not used)",
+      "reason": "Batch 4: by owner's choice (not used)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-google-tv-ta7/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

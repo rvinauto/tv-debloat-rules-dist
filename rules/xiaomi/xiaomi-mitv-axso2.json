@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-axso2",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-AXSO2 (codename dangalUHD, Amlogic/droidlogic, 2 GB RAM), Android TV 9 (SDK 28), firmware PI.6432.",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "axso2"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-AXSO2 (codename dangalUHD, Amlogic/droidlogic, 2 GB RAM), Android TV 9 (SDK 28), firmware PI.6432.\nSame \"dangal\" board family as examples/xiaomi-mitv-axso0. India unit.\nLive TV app: com.android.tv (set it as live_tv_package and hide it in launcher config.xml).\nStock launcher: com.google.android.tvlauncher (the default, disabled by build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-axso2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-axso2/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- USB debugging alone opens network ADB on port 5555; the stock adb binary worked from macOS here.\n- Default IME is already Gboard, so the Mi TV 4A missing-keyboard quirk doesn't apply.\n- Everything below stays disabled after `adb reboot`.\n- The remote's PatchWall button does nothing once com.mitv.tvhome.atv is disabled.\n- Google sign-in: tvlauncher's notification panel gets its list from com.google.android.tvrecommendations.\nWith both disabled, Play Services' \"Sign-in required\" notice has nowhere to show, and Play Store only says\n\"Authentication is required\". To sign in again: `pm enable` both, open\ncom.google.android.tvlauncher/.notifications.NotificationsSidePanelActivity, select the notice, enter the\npassword, then disable both again. If the password page comes back after OK, press Back: the sign-in has\nusually worked already.\n- Storage is tight: 4.4 GB /data with about 600 MB free. A Play Services update took about 300 MB right after\nsign-in and Play installs then failed with error 1008; `pm trim-caches 64G` freed about 400 MB.\n- com.xiaomitv.sonyliv and com.zee5.xiaomiTV are old partner copies (2021-2023) with no launcher entry;\nthe Play Store apps com.sonyliv and com.graymatrix.did stay.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "also feeds the notification panel, see the sign-in note",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.amelie",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.dangal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "Play auto-install of partner apps (sic, \"xioami\")",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "Mi TV+ sponsored live channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "co.sensara.tv.mitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows, partner auto-installs",
+      "reason": "Sensara partner TV guide (sponsored show recommendations)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.handbook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable to check for one",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.xiaomo.tv.milegal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "static legal / privacy text screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Mi Gallery; Media Player still opens USB photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google Play Music, service shut down",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomitv.sonyliv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: old partner copies of streaming apps (see notes)",
+      "reason": "Personal choice: old partner copies of streaming apps (see notes)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.zee5.xiaomiTV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: old partner copies of streaming apps (see notes)",
+      "reason": "Personal choice: old partner copies of streaming apps (see notes)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.camera2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android extras a TV without camera, printer or SIM doesn't use",
+      "reason": "Android extras a TV without camera, printer or SIM doesn't use",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android extras a TV without camera, printer or SIM doesn't use",
+      "reason": "Android extras a TV without camera, printer or SIM doesn't use",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Android extras a TV without camera, printer or SIM doesn't use",
+      "reason": "Android extras a TV without camera, printer or SIM doesn't use",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.smspush",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android extras a TV without camera, printer or SIM doesn't use",
+      "reason": "Android extras a TV without camera, printer or SIM doesn't use",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android extras a TV without camera, printer or SIM doesn't use",
+      "reason": "basic screensaver; Ambient mode (backdrop) stays",
+      "uad": "Advanced",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "screen reader: keep it if anyone in the house uses it"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-axso2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55p7k",
+  "brand": "tcl",
+  "title": "TCL 55P7K, Middle East (device G10, product G10_4K_GB, model \"Smart TV Pro\", Realtek RTD2875P, 1.8 GB)",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55p7k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 55P7K, Middle East (device G10, product G10_4K_GB, model \"Smart TV Pro\", Realtek RTD2875P, 1.8 GB)\nAndroid 12 (Google TV), firmware STT2.230203.001 AS16\nSame G10 platform and build as tcl-g10-google-tv/, but with Middle East preloads (OSN+, Disney+ MEA,\niQIYI, Shahid) and nothing disabled at the factory: logkit, Samba TV ACR and ttvs all ship ENABLED.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55p7k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55p7k/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\nLived with for a day and a reboot so far, with a custom launcher as Home; nothing broke.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.tcl.tv.\nKeep: com.tcl.tv, com.tcl.tvinput, com.tcl.suspension (the Input picker, VIEW_INPUTS), com.tcl.dashboard,\ncom.tcl.autopair, com.tcl.systemserver, com.android.tv.settings (also runs TCL's quick panels).\ncom.tcl.browser is kept here because the remote's Web key opens it.\n\nKnown quirks on this firmware:\n- Same as the other G10 sets: setupwraith claims Home once launcherx is disabled, so it goes too.\n- The remote sends Settings as KEYCODE_NOTIFICATION (83), Netflix and YouTube as KEYCODE_TCL_NETFLIX and\nKEYCODE_TCL_YOUTUBE, and the Web key as raw code 4159. Keys injected with `input keyevent` never reach\nan accessibility service; test remaps with the real remote.\n- Android's screen_brightness does nothing (TCL drives the backlight). TCL's own Audio Only mode turns\nthe panel off with sound playing: `am startservice -a com.tcl.settings.SHOW_WINDOW -p\ncom.android.tv.settings --es Type AudioOnly`.\n- App log lines rarely show up in logcat (64K buffer); write diagnostics to a file instead.\nTCL tracking and analytics",
+  "packages": [
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV ACR viewing tracking (enabled at the factory here)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL analytics service; re-enable if firmware updates stop arriving",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL Channel / content feed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL push messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and services",
+      "reason": "TGuard memory \"cleaner\"",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "T-Solo \"listen alone\" (Bluetooth headphones while the speakers stay off)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.disneyplus.mea",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Disney+ (Middle East)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.osn.go",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "OSN+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iqiyi.i18n.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "iQIYI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Needed for a custom launcher. Disable only AFTER the new launcher is installed.",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55p7k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

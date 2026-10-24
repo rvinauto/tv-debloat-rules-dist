@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "id": "rca-ai-pont",
+  "brand": "rca",
+  "title": "RCA AI PONT SA (Changhong, device redwood, product ISDB92RC)",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "rca"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "RCA AI PONT SA (Changhong, device redwood, product ISDB92RC)\nAndroid 14, firmware UKNV.260504.001, security patch 2026-05-01\nAlso sold as the realme 100 cm (40-inch) Full HD Smart Android TV: same redwood board, firmware UKNV.260514.001\n(pranabsarma18, PR #38; confirmed by Sahil Shefeek).\nAlso sold as the AIWA AW32B4SMG 32-inch, Colombia: same redwood board (JUC7.820.0029.7270), product ISDB92AW,\nsame firmware UKNV.260504.001; see the AIWA variant notes below (escontreras, PR #815).\n1 GB RAM (MemTotal about 935 MB). Stock launcher: com.google.android.tvlauncher\nLive TV / tuner: com.mediatek.wwtv.tvcenter (leave it; the Inputs menu uses it)\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/rca-ai-pont/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/rca-ai-pont/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nLeave com.homwee.factory (factory menu, see the CHiQ notes), com.mediatek.wwtv.setupwizard (the Live TV\nchannel-scan wizard) and com.homwee.synckey enabled. The last one is a privileged system app (android.uid.system)\nthat starts at boot and talks to the factory. The physical remote and HDMI path\ngo through com.mediatek.tv.service and com.mediatek.tvinput, not through this list.\n\nKEEP com.google.android.leanbacklauncher.partnercustomizer: provides the tvlauncher.widget\ncontent provider. Disabling it causes com.mediatek.tv.service to crash-loop after the next\nreboot (\"Failed to find provider tvlauncher.widget\") and remote hotkeys stop working.\n\nTested on both sets: Home opens, Netflix / Flow / Max / YouTube still\nresolve, Chromecast (mediashell) comes back after re-enable, HDMI stays in Inputs.\n\nKnown quirks on this firmware:\n- USB debugging alone opens network ADB on port 5555. On realme firmware UKNV.260514.001,\nDeveloper options also offers Wireless debugging with pairing.\n- After a reboot the TV may take a new DHCP address.\n- com.cltv.fast is automatically re-enabled by the Changhong vendor firmware at every boot.\n- com.homwee.chtvmanager (\"TV Manager\") can be safely disabled with pm disable-user --user 0\nwithout uninstallation.\n- The default IME is already Gboard. No Baidu-keyboard quirk.\n- Disabling com.google.android.tvrecommendations does not clear the stock\nlauncher's poster rows. Those go away only after launcher/ replaces Home.\nDisable com.google.android.tvlauncher only once the new home is the default,\nor Home can land on a factory activity.\n\nAIWA AW32B4SMG variant (two sets, tested the same day, three batches with screenshots, one reboot each):\n- Differences in the list: keep com.homwee.upgrade and com.homwee.dmt.upgrade (comment them out) to keep\nfirmware updates. com.homwee.alexacontrol is not installed. com.homwee.chtvmanager was disabled instead of\nuninstalled. Chromecast (mediashell), voice (katniss), com.homwee.multiscreenshare (\"Midiacast\"),\ncom.homwee.mmp.screenshare, Netflix, YouTube Music and Play Games were also disabled, by the owner's choice.\n- setupwraith was left enabled on both AIWA sets (comment it out to match) and the new launcher still owns\nHome. The saved Wi-Fi belonged to com.google.uid.shared on one set and android.uid.system on the other.\n- com.cltv.fast (\"Live TVx\", FAST channels) is re-enabled by the firmware at every boot. config.json hides it,\nwith Settings (the top-bar pill covers it) and the Live TV app.\n- A cold boot came up in com.mediatek.wwtv.tvcenter instead of Home; waking from standby goes to Home.\nSettings has no \"Power on behavior\" entry.\n- Besides 5555, Wireless debugging offers a random port (37683); the stock adb binary got \"No route to host\" on it.\n- Play Movies & TV shows as a stock-launcher tile but com.google.android.videos is not installed.\n- Private DNS dns.adguard-dns.com validates and survives a reboot.\n- config.json: the AIWA test set's dock (YouTube, Prime Video, Play Store), applied by rebuilding with the\nsame values in config.xml, not with theme.sh.\nHomwee store, ads, i",
+  "packages": [
+    {
+      "package": "com.homwee.aipont",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "brand portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.chinstallapk",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silent installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.chtvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV Manager cleaner / memory optimizer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable to check for RCA firmware",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.dmt.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "second factory updater",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.homwee",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.mmp.screenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable to mirror a screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.multiscreenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.mmp.fileexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable to browse USB storage",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.imageplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable to view photos from USB",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "automatic content recognition",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cltv.fast",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "FAST channel app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "Content recognition, FAST channels and Google TV promo rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "Content recognition, FAST channels and Google TV promo rows",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "Content recognition, FAST channels and Google TV promo rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content recognition, FAST channels and Google TV promo rows",
+      "reason": "Content recognition, FAST channels and Google TV promo rows",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "first-run wizard; on this tvlauncher firmware Home works without touching it",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "re-enable for the microphone button",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.homwee.alexacontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "Alexa integration; re-enable if you use Alexa (#38)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "ambient screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "reason": "Setup wizards, assistant and accessibility. Re-enable the ones you use.",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable for TalkBack"
+    },
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Android phone remote; Chromecast is mediashell"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/rca-ai-pont/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-ae2",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K AE2 (BRAVIA_AE2, MediaTek MT5897 \"merak\"), North American firmware",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "ae2"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA 4K AE2 (BRAVIA_AE2, MediaTek MT5897 \"merak\"), North American firmware\nGoogle TV 14 (API 34), build BRAVIA_AE2_NA-user 14 UKN4.250422.001 603100\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-ae2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-ae2/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it as STOCK_LAUNCHER / to restore.sh).\nNo separate Live TV app on this set: HDMI inputs come from TvInputManager, so leave live_tv_package empty.\nKeep the com.sony.dtv.tvinput.* HDMI services, com.sony.dtv.tvapi, com.sony.dtv.sonysystemservice\nand the Sony settings apps: they drive HDMI, picture settings and the remote.\n\nQuirks on this firmware, all checked on the TV:\n- Network ADB: pair once with Wireless debugging (`adb pair <ip>:<port> <code>`, then\n`adb connect` to the port `adb mdns services` shows), then `adb tcpip 5555` for tools/tv.py.\nPort 5555 closes again after a reboot.\n- com.google.android.tungsten.setupwraith claims HOME with priority 1 (RecoveryActivity); disable it\nbefore launcherx or Home can land on it.\n- The default screensaver is com.sony.dtv.livingfit; with it disabled the TV has none until you\npick another (the launcher's Clock: `settings put secure screensaver_components\ncom.gathin.tvhome/.ClockDream`).\n- YouTube Music for TV (com.google.android.youtube.tvmusic) ends its media session when you leave it,\nso music stops on Home; SoundCloud keeps playing.\n\nMost of this list was disabled by the owner before the launcher went on and has been lived with;\nthe Sony agents, help and Play extras marked (new) were added on 19 October 2026. If something\nbreaks, re-enable it with `pm enable <package>` and please report it.\ntracking / ads / recommendations",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV (ACR viewing data)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV's opt-in and settings screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new) Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new) Sony usage data",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "viewing context for recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonytab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony tab on the Google TV home; unused once launcherx is off",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new) bug-report uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new) broadcasts model/MAC/IP over SDDP",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "(new) Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help",
+      "reason": "(new) Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help",
+      "reason": "(new)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.calibrationmonitor",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.gestureapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.livingfit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "also the default screensaver, see the header",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.music.toast",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.dtv.tvinput.atsctuner",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*tvinput*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.atscbrowserservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.broadcastclock.broadcastrequirementcontrol",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.broadcastclock.clocksyncservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.broadcastsettings",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.servicemode.tuner",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony extras, disabled by choice",
+      "reason": "Sony extras, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.crunchyroll.crunchyroid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonypicturescore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "Sony Pictures Core",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "came back enabled once on its own; check after Play updates",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "(new)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.sony.dtv.tvinput.atsc3tuner",
+      "why": "critical package (policy match 'com.sony.dtv.tvinput*')",
+      "source_comment": ""
+    },
+    {
+      "package": "com.sony.dtv.tvinput.atsc3tuner.drmlicenseinstaller",
+      "why": "critical package (policy match 'com.sony.dtv.tvinput*')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-ae2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

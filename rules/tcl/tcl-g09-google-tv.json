@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g09-google-tv",
+  "brand": "tcl",
+  "title": "TCL Smart TV Pro, UK firmware (device G09, product G09_4K_GB, Amlogic T5M), used in Brazil",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g09"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL Smart TV Pro, UK firmware (device G09, product G09_4K_GB, Amlogic T5M), used in Brazil\nAndroid 12 (Google TV), firmware STT2.230203.001 AS24, 2 GB RAM\nSame firmware family as examples/tcl-g10-google-tv.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g09-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g09-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV app: com.tcl.tv (also owns HDMI playback).\nKeep com.tcl.tvinput, com.tcl.suspension (Input/source menu), com.tcl.dashboard, com.tcl.autopair,\ncom.tcl.systemserver (mic hotkeys) and com.tcl.providers.config. com.tcl.initsetup is in the list\nbelow (it also owns channel installation) - comment it out if you still need to scan channels.\nFirmware updates come through Play Services (gms SystemUpdatePanoActivity); there is no TCL OTA package.\nTCL telemetry and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL BI/awareness/identifier services; see the README on TvSettings without it",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.graymatrix.did",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "device analytics (data app; on the AS23 unit)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mirakulo.astrotv.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Ginga (ISDB-Tb broadcast apps), not analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL Live FAST channels, also removes them from Live TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL content \"waterfall\" recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL pushed messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "partner auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartlink.core",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "bundles a silent app installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services",
+      "reason": "TGuard: device-use tracking, memory cleaner",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "Alexa client (AS23 unit; keep it if you use Alexa)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "EULA/privacy screens (AS23 unit)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.initsetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "TCL first-run setup incl. SambaTV ACR hooks; re-enable before rescanning channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "TCL account sign-in",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "store demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "store demo stickers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "hotel mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "re-enable for the console game-mode overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "re-enable to update a TCL soundbar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "hearing test / volume adaptation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google TV / Play Movies storefront",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "ambient screensaver; use the launcher's Clock screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice",
+      "reason": "USB media player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice",
+      "reason": "setup wizard, claims HOME after launcherx is disabled",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "phone remote apps and the mic too; pm enable restores it"
+    },
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g09-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

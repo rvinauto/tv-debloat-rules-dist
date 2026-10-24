@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "id": "jvc-android-tv-menlo",
+  "brand": "jvc",
+  "title": "JVC Android TV (Vestel-built, product BARTU_Jvc, device menlo, board BARTU, MediaTek mt5867), Android TV 11 (API 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "jvc"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "JVC Android TV (Vestel-built, product BARTU_Jvc, device menlo, board BARTU, MediaTek mt5867), Android TV 11 (API 30),\nfirmware RTM7.230903.063. Fingerprint Jvc/BARTU_Jvc/menlo:11/RTM7.230903.063/11026774.\nro.product.manufacturer = My, ro.product.brand = Jvc, ro.product.model = \"Android TV\". Spain.\nSame Vestel platform as examples/cecotec-shandao (com.vestel.* services); Google part follows\nexamples/panasonic-4ktv-0su.\n\nStock launcher:  com.google.android.tvlauncher (classic Android TV, not Google TV)\nLive TV app:     com.mediatek.wwtv.tvcenter\nUpdates:         no separate firmware-update package on this firmware; updates live in Settings.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/jvc-android-tv-menlo/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/jvc-android-tv-menlo/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKEEP, even though the names look like bloat (checked on this TV):\n- fusion.android.tv.demo: unlike the Cecotec list, it must stay. On this firmware it receives\ncom.mstar.android.intent.action.TV_INPUT_BUTTON (the remote's Input key), as on\nexamples/hitachi-65qledsm20 and examples/eko-2k-google-tv-tennoji.\n- com.mediatek.android.leanbacklauncher.partnercustomizer: crash-loops com.mediatek.tv.service\nafter a reboot on MediaTek sets (see examples/chiq-ai-pont).\n- com.google.android.tungsten.setupwraith: may own the saved Wi-Fi network.\n- every com.mediatek.*, mediatek.factorymenu.ui, com.vestel.tv.service / keycontroller / backlight /\neib / rcupdater / websocketservice, com.vestel.overlay.*, com.dolby.android.audio.service.\n- Chromecast built-in (mediashell), Play Store, Play Services, Gboard, TTS.\n\nStatus: disabled in two batches on one TV on 2026-10-20 (the last two lines after launcher/ took Home),\nthen checked on the remote by the owner: new launcher as Home, Input key, HDMI input switching and\nLive TV all work. Hours of real use, not days: treat it as a starting point.\n\nQuirks on this firmware:\n- USB debugging alone opened port 5555 (no separate network-debugging switch, no restart needed).\n- screencap fails (prints its usage) to /sdcard and /data/local/tmp alike: no screenshots over ADB.\n- TalkBack (com.google.android.marvin.talkback) ships disabled; not listed, so restore leaves it off.\n- ro.adb.secure = 1: port 5555 still shows the \"Allow\" prompt.\nVestel telemetry and \"cleaner\"",
+  "packages": [
+    {
+      "package": "com.vestel.vestelreporter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vestel reporter: INTERNET + BOOT_COMPLETED, no UI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vestel.tv.speedup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"speed up\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vestel.smartcenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "no UI, holds GET_TASKS (sees which apps you run) + INTERNET",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "reason": "partner/OEM attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "reason": "Google feedback reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "reason": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.vestel.coma",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "reason": "Vestel auto-install stub (preloads apps at setup)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google/partner attribution, feedback, auto-installs, setup leftovers",
+      "reason": "disclaimer screen used only by first-run setup",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "Google Assistant / voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.android.mgstv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "Mango TV, preinstalled as a user app (Taobao ACCS push + Firebase)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (off by choice, per the owner; Prime Video and Disney+ kept)",
+      "reason": "TCL Browser, preinstalled as a user app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.backupconfirm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*backup*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dynsystem",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Dynamic System Updates",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Android test shim",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Android test shim",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "launcher recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services nobody needs on a TV",
+      "reason": "ambient-mode screensaver; the launcher's Clock screensaver replaces it",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/jvc-android-tv-menlo/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

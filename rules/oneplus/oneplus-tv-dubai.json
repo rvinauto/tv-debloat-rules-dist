@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "id": "oneplus-tv-dubai",
+  "brand": "oneplus",
+  "title": "OnePlus TV (model D00, codename Dubai), Google TV / Android 14, firmware UTT1.240928.001",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "oneplus"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "OnePlus TV (model D00, codename Dubai), Google TV / Android 14, firmware UTT1.240928.001\nLive TV app: com.heytap.tv.livetv. Stock launcher: com.google.android.tvlauncher.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/oneplus-tv-dubai/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/oneplus-tv-dubai/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKept on purpose: Google Assistant (com.google.android.katniss), Chromecast\n(com.google.android.apps.mediashell) and the streaming apps. Left alone: the factory apps\n(com.heytap.optvfactory, com.oneplus.tv.factory) and com.heytap.oprcupgradeservice (remote updates).\nWith the stock launcher disabled and no other home installed, Home falls back to Settings.\nFor the launcher's Inputs menu set live_tv_package to com.heytap.tv.livetv in config.xml.\nSeen on this unit: Developer options -> \"Don't keep activities\" was switched on, which makes every\napp restart when you leave it. Check it is off.\nGoogle telemetry",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.heytap.olink",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "OnePlus Connect (phone link)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "oneplus.smarthome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "OnePlus smart home control",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.assistant.oneplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "OnePlus TV Assistant",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.btspeaker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "Bluetooth speaker mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.filebrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "File Browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.oneplus.tv.launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OnePlus / HeyTap extras",
+      "reason": "OnePlus content launcher page",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "\"BrowseHere\" web browser (not a system app: can also be uninstalled)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Google TV launcher and its recommendation service, replaced by launcher/",
+      "reason": "Stock Google TV launcher and its recommendation service, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Google TV launcher and its recommendation service, replaced by launcher/",
+      "reason": "Stock Google TV launcher and its recommendation service, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/oneplus-tv-dubai/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "benq-e55-735",
+  "brand": "benq",
+  "title": "BenQ E55-735 (55\" 4K, Taiwan), Google TV 14, firmware UKNV.260506.001",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "benq"
+    ],
+    "model_patterns": [
+      "e55[-_ ]?735"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "BenQ E55-735 (55\" 4K, Taiwan), Google TV 14, firmware UKNV.260506.001\nBuilt by Changhong (ro.product.manufacturer=Changhong, ro.product.model=\"AI PONT\", product DVB96BQ),\nMediaTek SoC, about 1.8 GB RAM. Changhong's own packages use the com.homwee prefix; the same\n\"AI PONT\" platform is sold as CHiQ (see the CHiQ DVB93CQ example in PR #10).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/benq-e55-735/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/benq-e55-735/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it as STOCK_LAUNCHER).\nAlready disabled from the factory: com.mediatek.wwtv.tvcenter, com.google.android.marvin.talkback.\n\nQuirks on this firmware, all checked on the TV:\n- USB debugging alone does NOT open port 5555 until the first reboot. Pair once with Wireless\ndebugging instead: `adb mdns services` shows the random pairing and connect ports, then\n`adb pair <ip>:<pairing port> <code>` and `adb connect <ip>:<connect port>`. After a reboot,\nwith USB debugging still on, plain port 5555 answers.\n- Home keeps going to com.google.android.tungsten.setupwraith/.RecoveryActivity after the stock\nlauncher is disabled: setupwraith must be disabled too (listed below).\n- Standby is MediaTek suspend-to-RAM: once the CPU suspends (seconds after the screen goes off,\nwhen no wakelock is held), Bluetooth and Wi-Fi stop. A Chromecast voice remote (Bluetooth only)\nthen cannot turn the TV on; the BenQ IR remote and the power button can. Holding a wakelock\nto prevent it confuses the vendor standby (panel off, system awake, ARC broken). Wake-on-LAN\ndoes work from deep standby: a magic packet to the Wi-Fi MAC brings the TV up in about 5 s.\n- The Chromecast remote's Input button sends KEYCODE_TV, which the stock launcher handled. Its\nYouTube and Netflix buttons have no key layout on this TV (HID usages 0x0c0077 / 0x0c0078\nboth arrive as KEYCODE_UNKNOWN), so they do nothing once the stock launcher is gone.\nChanghong / Homwee store and help",
+  "packages": [
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Automatic content recognition (reports what is on screen)",
+      "reason": "Automatic content recognition (reports what is on screen)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV recommendations and screensaver (set another screensaver first)",
+      "reason": "Google TV app, the home screen's recommendation source",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV recommendations and screensaver (set another screensaver first)",
+      "reason": "ambient mode; mixes recommendations into the screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV recommendations and screensaver (set another screensaver first)",
+      "reason": "Google TV recommendations and screensaver (set another screensaver first)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "reason": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.taiwanmobile.myVideotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "reason": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "reason": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/benq-e55-735/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

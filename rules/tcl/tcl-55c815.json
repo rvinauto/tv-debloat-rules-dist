@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55c815",
+  "brand": "tcl",
+  "title": "TCL 55C815 (EU/Denmark, 2020), `ro.product.model` BeyondTV2, device BeyondTV, board `rtd285o`",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55c815"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 55C815 (EU/Denmark, 2020), `ro.product.model` BeyondTV2, device BeyondTV, board `rtd285o`\n(Realtek), Android TV 11 (API 30), build PPR1.180610.011 / incremental AR05, dated 2023-04-07,\nsecurity patch 2021-12-05, 32-bit (`armeabi-v7a`), locale da-DK. ro.adb.secure=1.\nFingerprint: TCL/BeyondTV2/BeyondTV:11/PPR1.180610.011/AR05:user/release-keys\nSame firmware family as examples/tcl-50ep680 and the same product name as\nexamples/tcl-beyondtv2-latin-america (that one is Android 9).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55c815/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55c815/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (Android TV, not Google TV). Other HOME claimants:\ncom.tcl.keycustomfunctionservice/.FallbackHome and com.android.tv.settings/.system.FallbackHome.\nLive TV app: com.tcl.tv, with com.tcl.tvinput for the tuner and HDMI.\n\nAlready disabled at the factory: the 14 uk.co.freeview.* catch-up apps, au.com.stan.and,\ntv.wuaki.apptv, com.tcl.smartalexa, com.tcl.notereminder, com.tcl.tv.tclhome_master,\ncom.google.android.music, com.google.android.apps.nbu.smartconnect.tv.\n\nDeliberately NOT disabled:\ncom.tcl.guard                  # PERSISTENT system app, also runs a package installer service\ncom.tcl.partnercustomizer      # owns the remote's TKey activities (load-bearing per BeyondTV2 profile)\ncom.tcl.useragreement          # setup screens + shop-reset receiver\ncom.google.android.tungsten.setupwraith  # owns a saved Wi-Fi network on this unit: disabling it\n# would delete that network and drop the TV off Wi-Fi\ncom.tcl.tv com.tcl.tvinput com.tcl.autopair com.tcl.keycustomfunctionservice com.tcl.settings\ncom.tcl.inputmethod.international com.tcl.initsetup com.tcl.factory.view com.tcl.providers.config\ncom.tcl.systemserver com.tcl.micmanager com.tcl.usercenter com.tcl.xian.StartandroidService\nKept by the owner's choice: voice (katniss, tv.assistant, tcl.assistant), Chromecast (mediashell),\nmirroring (tcl.miracast, MultiScreenInteraction_TV), firmware updates (versionUpdateApp),\nYouTube Music, and every streaming app (Netflix, Max, YouTube, TV 2 Play, DR TV, Prime Video,\nSpotify, Viaplay, Apple TV).\n\nTesting: applied on a real unit on 2026-10-20 in four batches with a screenshot after each. The\nstock source menu, a YouTube video (through AdGuard Private DNS), the launcher's Inputs menu\n(HDMI 1-3, AV, Live TV; HDMI 1 switched via com.tcl.tvinput passthrough), a dock launch, and the\nreal remote's Home, mic and Source buttons all worked. After a reboot all 18 stayed disabled\n(esticker included), Home stayed on the launcher and Wi-Fi came back. Not lived with for days yet.\nLauncher quirk: the Wi-Fi pill shows \"Wi-Fi\", not the network name, while Location is off\n(location_mode 0 here); that's Android hiding the SSID, not the launcher's permission.\nBatch 1: telemetry and attribution",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL analytics (BIService, ParamProvider)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-install stub (dummy receiver)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"send feedback\"",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content/promo feeds and recommendation rows",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content/promo feeds and recommendation rows",
+      "reason": "\"TCL Channel\" content feed. TCL's updater re-enabled it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "launcher's hidden_apps as well.",
+      "reason": "\"recommended apps\" showcase (boot/network receivers)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "launcher's hidden_apps as well.",
+      "reason": "TCL message/promo box",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "launcher's hidden_apps as well.",
+      "reason": "shop-mode energy-label sticker (re-check: the BeyondTV2",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "profile saw it come back enabled overnight)",
+      "reason": "home-screen recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "one-time setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "\"copy your phone's data to the TV\" setup helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hbo_android_tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "old HBO app, superseded by Max (com.wbd.stream, kept)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hbo.hbonow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: unused Google extras, superseded apps, setup leftovers",
+      "reason": "old HBO Now app, same",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 (after the launcher is installed): Google ambient screensaver",
+      "reason": "the screensaver was already off on this unit. If you turn it",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55c815/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

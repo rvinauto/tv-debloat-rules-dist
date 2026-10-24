@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "artel-cvte-mt5863",
+  "brand": "artel",
+  "title": "Artel smart TV (CVTE board TP.MT5510S.PB782, product cvt_mt5863_eu, model SMART_TV, MediaTek MT5863),",
+  "android": "Android 7.0",
+  "match": {
+    "brand_patterns": [
+      "artel"
+    ],
+    "model_patterns": [
+      "mt5863"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.cvte.tv.launcher",
+  "notes": "Artel smart TV (CVTE board TP.MT5510S.PB782, product cvt_mt5863_eu, model SMART_TV, MediaTek MT5863),\nAndroid 7.0 (API 24), firmware 20190423_144224, Uzbekistan. More properties: ro.build.fingerprint\nAndroid/cvt_mt5863_eu:7.0/NRD90M/builde04231459:userdebug/release-keys, about 800 MB RAM, 1920x1080.\nStock launcher: com.cvte.tv.launcher. Live TV: com.cvte.tv.androidsetting/.TvSettingActivity (the tuner has\nno leanback entry; set live_tv_package to that component, see launcher/app/src/main/res/values/config.xml).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/artel-cvte-mt5863/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/artel-cvte-mt5863/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nGetting ADB on this firmware:\n- There are no Developer options and no stock Android Settings app.\n- ADB is \"Debug > ADB Enable\" in the full CVTE factory menu. Contrast + 9735 on the remote opens only a\nshort factory menu without it. The full menu opens by starting the exported service\ncom.cvte.fac.menu/.app.TvMenuWindowManagerService with the extra\ncom.cvte.fac.menu.commmand=com.cvte.fac.menu.commmand.factory_menu (three m's, as shipped).\n- The \"Allow USB debugging\" prompt appears only after a reboot.\n- ADB comes back on at every boot (persist.sys.usb.config=mtp,adb).\n\nDO NOT DISABLE com.talents.huanclientauth. With it disabled the boot never completes. It was recovered\nby re-enabling the package over ADB.\n\nThe firmware re-enables these on every boot, so disabling them has no effect and they are not listed:\ncom.cvte.tv.systemupgrade, com.tcl.update, cn.tcl.odm.android.vstoresubclient (Zeasn store),\ncom.tcl.sticker, com.example.user.myapplication (FallbackHome). Hide them in the launcher's hidden_apps instead.\n\nThe channel list was lost once during a boot that hung; Auto search in the TV's own menu restored it.\nPreinstalled streaming and video apps",
+  "packages": [
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "net.megogo.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Megogo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "uz.allplay.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Allplay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "uz.i_tv.player",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "i-TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ag.kinom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Kinom",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.fgl27.twitch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled games and clients",
+      "reason": "Twitch client",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.fgol.HungrySharkEvolution",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled games and clients",
+      "reason": "Preinstalled games and clients",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.svox.pico",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Accessibility and voice services that are not used",
+      "reason": "Pico text-to-speech",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.voicesearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Accessibility and voice services that are not used",
+      "reason": "Accessibility and voice services that are not used",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack, re-enable if you need a screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/artel-cvte-mt5863/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

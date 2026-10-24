@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "id": "google-tv-streamer-4k-kirkwood",
+  "brand": "google",
+  "title": "Google TV Streamer (2024, device kirkwood, model \"Google TV Streamer\" / GZRNL), 4 GB RAM",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "google"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "Google TV Streamer (2024, device kirkwood, model \"Google TV Streamer\" / GZRNL), 4 GB RAM\nGoogle TV 14 (SDK 34), build UTTK.260317.003\n\nApply:   TV_HOST=<ip> tools/disable.sh examples/google-tv-streamer-4k-kirkwood/debloat.txt\nUndo:    TV_HOST=<ip> tools/restore.sh examples/google-tv-streamer-4k-kirkwood/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nThis is a dongle: no Live TV app and no HDMI inputs, so leave live_tv_package empty in config.xml.\n\nKnown quirks on this firmware:\n- ADB on port 5555 is closed (connection refused) until you pair once through Wireless debugging with\nthe stock adb: Developer options > Wireless debugging > Pair device with pairing code, `adb pair\n<ip:pairport> <code>`, `adb connect <ip:connectport>` (`adb mdns services` lists both ports), then\n`adb tcpip 5555`. After that tools/tv.py works on 5555 (README, Troubleshooting).\n- The Cast receiver (com.google.android.apps.mediashell) reads its factory device credentials from a\nprovider hosted INSIDE the setup wizard package:\nProvider{com.google.android.tungsten.setupwraith/com.google.android.libraries.tv.setupwraith.libs.castinfo.CastInfoProvider}\nThere is no separate com.google.android.tvsetup package; the com.google.android.tvsetup.* classes\nship inside the setupwraith APK. Disabling setupwraith therefore takes the credentials out of\nscope and casting dies with \"No private key, hence empty signature\" (docs/TROUBLESHOOTING.md,\n\"Casting fails with Untrusted device\"). This is NOT limited to Google's own Chromecast hardware:\nit reproduces on the Google TV Streamer too (#361).\n- The credentials only live in the receiver PROCESS. Re-enabling setupwraith and waiting for\n\"Created singleton instance of ClientAuthSigner\" in logcat (about 7 s here) brings them back, but\n`am force-stop com.google.android.apps.mediashell` loses them again (\"Retry loading factory\ncredentials\"), so the ritual has to be redone whenever the receiver is restarted.\n- The manifest android:priority does NOT work on this build. Giving the replacement launcher\nandroid:priority=\"3\" on its HOME intent-filter was tried, the attribute IS in the installed APK\n(aapt2 shows android:priority=3) and the PackageManager still reports priority 0, even after a\nreboot. `cmd package set-home-activity` returns Success and does not change the dispatch either,\nand the HOME role holder is ignored. The HOME can only be taken by DISABLING setupwraith\n(package level).\n- pm hide is not an alternative: `pm hide com.google.android.tungsten.setupwraith` fails with\n\"SecurityException: Neither user 2000 nor current process has android.permission.MANAGE_USERS\".\n- Consequence for the Cast: with setupwraith disabled the receiver keeps the credentials in MEMORY\nonly, so after every reboot (or every receiver restart) the Cast has to be restored by briefly\nre-enabling setupwraith and waiting for the signer:\nlogcat -c\npm enable --user 0 com.google.android.tungsten.setupwraith\n# wait ~30 s, then check logcat -d -s cast_shell for \"Created singleton instance of ClientAuthSigner\"\npm disable-user --user 0 com.google.android.tungsten.setupwraith\nDo not press HOME while setupwraith is enabled: RecoveryActivity may claim it (see below).\n- If setupwraith is enabled and it wins HOME, RecoveryActivity runs as a DETACHED root task and\nthe first home transition kills the system, roughly every 47 s:\nFATAL EXCEPTION IN SYSTEM PROCESS: android.display\njava.lang.IllegalArgumentException: positionChildAt:\ncontainer=Task=20383 is not a child of container=Task=1 current parent=null\nat com.android.server.wm.WindowContainer.positionChildAt(WindowContainer.java:903)\nat com.android.server.wm.Task.moveToBack(Task.java:4768)\nat com.android.server.wm.TransitionController.tryStartCollectFromQueue\nfollowed by DeadSystemException in setupwraith and com.android.systemui. The way out is to\ndisable the whole package, not the component:\npm disable-user --user 0 com.google.andro",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.remotecontrol.logging",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "remote usage logging",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.federatedcompute",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.ext.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "disabling it, restore casting with the enable/wait/disable ritual.",
+      "reason": "disabling it, restore casting with the enable/wait/disable ritual.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable if you need the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/google-tv-streamer-4k-kirkwood/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

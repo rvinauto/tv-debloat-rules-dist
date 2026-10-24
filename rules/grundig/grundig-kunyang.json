@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "id": "grundig-kunyang",
+  "brand": "grundig",
+  "title": "Grundig Android UHD TV (Arcelik-built, codename \"kunyang\", product GxGrNM), Turkey",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "grundig"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Grundig Android UHD TV (Arcelik-built, codename \"kunyang\", product GxGrNM), Turkey\nAndroid TV 14 (API 34), build UKNV.260115.001, MediaTek, 1.8 GB RAM, UI 1920x1080 on a 4K panel.\nro.product.manufacturer = ARCELIK, ro.adb.secure = 1. USB debugging alone opens port 5555.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/grundig-kunyang/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/grundig-kunyang/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (classic Android TV home, not Google TV launcherx).\nsetupwraith does NOT claim HOME on this build, so it stays enabled (it also owns a saved Wi-Fi network).\n\nKEEP, even though the names look like bloat (checked with dumpsys package, none of them started):\n- fusion.android.tv.demo: answers android.intent.action.TV_INPUT_BUTTON, i.e. the remote's Input key.\n- com.arcelik.smartremoteservice: GLOBAL_BUTTON receiver and remote server (remote keys).\n- com.mediatek.autopair (persistent): Bluetooth remote pairing.\n- com.arcelik.tv.arcelikbacklight (persistent): backlight control service.\n- com.mediatek.android.leanbacklauncher.partnercustomizer: crash-loops tv.service on MediaTek when off\n(see examples/cecotec-shandao, same Turkish Android 14 platform family).\n- com.mediatek.tv.service, com.mediatek.tvinput, com.mediatek.wwtv.tvcenter: Live TV, HDMI, source menu.\n- com.arcelik.ChannelEditor, .ecomode, .picturecustomizer, .ToneMaster, .easy_installation: TV settings.\n- Factory packages, never opened: arcelik.factory.factorystart, com.mediatek.tv.factory,\nmediatek.factorymenu.ui, com.arcelik.tv.rctest.\n\nReboot-checked: pm list packages -d identical before and after; nothing is re-enabled at boot.\nLauncher works: installs over pm install (no verifier), owns Home (mFocusedApp) also after reboot;\nevery remote button (Home, Input, Settings, app keys) works without the key services. Live TV is\ncom.mediatek.wwtv.tvcenter. Screensaver set to com.gathin.tvhome/.ClockDream before backdrop goes.\nPrivate DNS works on this set.\n\nOwner's choices: Chromecast and YouTube Music kept; voice assistant, AirScreen/AirCast,\nYouTube Kids, Play Movies and Play Games off. Self-installed streaming apps untouched.\n--- Telemetry, analytics and install attribution",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback / bug report uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "feedback consent UI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution (RLZ)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.arcelik.gx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Arcelik partner auto-installs config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox on-device personalization",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox federated compute",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.grundig.tv.channel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "\"Grundig Channel\": Hoppr FAST/ad tiles, home-screen program rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.arcelik.arserviceapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "HotelService (hotel/B2B mode), boot receiver, INSTALL_PACKAGES",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.arcelik.tvcarehub",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "TV Care Hub promo/help videos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "disclaimer popups",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "calendar sync, no calendar app on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Manufacturer content, ads and leftovers",
+      "reason": "first-setup leftover",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvkids",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "YouTube Kids",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Owner's choice: not used",
+      "reason": "Google voice search / Assistant (remote mic button)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "Assistant LED/demo service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.ionitech.airscreen",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "AirScreen (AirPlay/Miracast receiver; Chromecast kept)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sand.aircasttv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Owner's choice: not used",
+      "reason": "AirCast receiver",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.arcelik.smartremotecompanion.grundig",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "Grundig Smart Remote phone-app companion",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Owner's choice: not used",
+      "reason": "stock Android TV home: shopping tab, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Owner's choice: not used",
+      "reason": "feeds the stock home's recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Owner's choice: not used",
+      "reason": "Ambient screensaver, ~160 MB resident; replaced by com.gathin.tvhome/.ClockDream",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/grundig-kunyang/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

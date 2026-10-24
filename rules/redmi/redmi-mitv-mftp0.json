@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "id": "redmi-mitv-mftp0",
+  "brand": "redmi",
+  "title": "Redmi TV (MiTV-MFTP0, codename alita; China-market firmware), Android 9 (SDK 28),",
+  "android": "Android 9",
+  "match": {
+    "brand_patterns": [
+      "redmi"
+    ],
+    "model_patterns": [
+      "mftp0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.mitv.tvhome",
+  "notes": "Redmi TV (MiTV-MFTP0, codename alita; China-market firmware), Android 9 (SDK 28),\nfirmware 23.2.10.6129, MediaTek/MStar m7642, MemTotal 2.6 GB, 1080p UI (320 dpi).\nStock launcher: com.mitv.tvhome 3.49.1601 (HOME activity .MainActivityUserMode) - KEEP IT ENABLED,\nsee \"Home\" below.\nDisabled on 2026-10-21 in two batches; the owner checked Home and the voice remote after each batch,\nand Xiaomi settings and a streaming app after the first. Package states were read back after a\nstandby cycle (all still disabled). After a full reboot (not standby) the owner reported the\nreplacement launcher still Home and no startup ad; ADB closes at reboot, so package states were not\nread again after it. Not yet lived with for several days.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/redmi-mitv-mftp0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/redmi-mitv-mftp0/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- ADB: Settings -> About -> press OK on 产品型号 (product model) 7 times to unlock developer mode,\nthen Settings -> 账号与安全 (Account & Security) -> ADB 调试 -> 允许. Network ADB (port 5555) closes\non every reboot; turn it on again there after each power cycle. Standby is not a reboot.\n- `pm disable-user --user 0` is accepted for the shell user (unlike MiTV-ANTL0, which needs `pm hide`).\n- Home: the framework filters third-party HOME candidates by a package-name allowlist, the same\nmechanism as MiTV-AETP0 (services.vdex has isThirdpartyHomeAllowed and\nAPP_WHITELIST_ALLOW_THIRDPARTY_HOME; the list is /data/system/mitv_security_center.xml, not readable\nfrom the shell). The standard com.gathin.tvhome build installed and opened, and\n`cmd package set-home-activity` printed Success, but HOME still resolved to com.mitv.tvhome.\nThe opt-in application-ID build from docs/devices/xiaomi-mitv-aetp0-dofus.md\n(`./gradlew assembleRelease -PlauncherApplicationId=com.ts.launcher`) became Home with\ncom.mitv.tvhome still enabled, and stayed Home after a full reboot. Do not run\nlauncher/build-and-install.sh with its defaults here: it would disable com.mitv.tvhome, and\ndisabling the stock launcher leaves no allowed Home. Use the manual commands in that doc.\n- Settings: android.settings.SETTINGS and android.settings.WIFI_SETTINGS resolve to nothing; the\nlauncher's Settings pill falls back to com.xiaomi.mitv.settings/.entry.MainActivity, which opened.\n- App grid: the streaming apps declare LEANBACK_LAUNCHER and show up; Xiaomi settings, weather and\nTV Manager are LAUNCHER-only. com.mitv.alarmcenter declares LEANBACK_LAUNCHER (hide it with\nhidden_apps if you don't want a 定时提醒 tile).\n- Inputs: com.mediatek.tvinput registers HDMI HW5-HW8, AV HW2, component HW3, VGA HW4 and tuners\nHW0/HW1. Nothing was plugged in, so switching from the launcher's Inputs menu was not tested.\n- Startup ad: `settings put system boot_ad_switch 0` (it was null before) removed it, checked after\na full reboot with stock launcher 3.49.1601. boot_ad, boot_ad_sound_enable and boot_ad_switch_show\nwere already 0 and did not stop the ad. Undo: `settings delete system boot_ad_switch`.\nSee docs/devices/xiaomi-l43m7-ea-antl0.md for the same key on an older launcher.\n- Screenshots: `screencap` exits 1 with a 0-byte file while PatchWall's home is on screen (it shows a\nsideband video layer); it works over the replacement launcher, settings and the screensaver.\n- com.gitvdemo.video is 银河奇异果 (GITV's licensed iQIYI app, label checked with aapt), a streaming\napp, not a promo reel. Kept here.\n- com.mitv.care (\"adcare\") is disabled by the factory already.\n\nDeliberately NOT disabled:\n- mitv.service, com.xiaomi.mitv.tvplayer, com.mediatek.* (inputs, tuner), com.xiaomi.mitv.settings,\ncom.xiaomi.mitv.systemui, com.sohu.inputmethod.sogou.tv (the only keyboard), com.android.bluetooth,\ncom.xiaomi.account, com.xiaomi.mitv.appstore, com.xiaomi.mitv.mediaexplorer, com.mitv.mivideoplayer,\ncom.mitv.videoplayer, com.mitv.codec.update, com.xia",
+  "packages": [
+    {
+      "package": "com.miui.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "OneTrack analytics SDK host",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV usage statistics",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "statistics upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tvqs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "quality system: crash/perf uploads",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.csi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "售后辅助 \"after-sales assistant\": satisfaction survey upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.cloudcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "cloud control: remote configuration, pushes apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ads / promoted content / shopping",
+      "reason": "电视活动中心: promo web container, also fetches screensaver ads",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.shoplugin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "TV Taobao shopping plugin, two resident processes",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.shop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "电视商城 Xiaomi TV store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.handbook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "user handbook",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.gamecenter.sdk.service.mibox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "game centre SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.screenrecorder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "screen recorder",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "calendar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "Mi Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "相册 photo album; USB media still opens in the media explorer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.smarthome.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content / shopping",
+      "reason": "Mi Home; the remote's voice button still worked without it",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/redmi-mitv-mftp0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

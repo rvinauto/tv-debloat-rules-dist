@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "id": "super-general-cvte-t972",
+  "brand": "super",
+  "title": "Super General 55\" 4K smart TV (CVTE board TP.SK708D.PC821, Amlogic T972, product x30a4, panel HV550QUB),",
+  "android": "Android 9",
+  "match": {
+    "brand_patterns": [
+      "super"
+    ],
+    "model_patterns": [
+      "t972"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Super General 55\" 4K smart TV (CVTE board TP.SK708D.PC821, Amlogic T972, product x30a4, panel HV550QUB),\nAndroid 9 (API 28), firmware x30a4-userdebug 9 PPR1.180610.011 20210518 (CVTE MD_CVTE_OVERSEA_T972_9_0_1G_STARKOS,\nbuild 20210518_103433), Saudi Arabia. 1 GB RAM (low_ram), armeabi-v7a only.\nNot Google TV: CVTE's own launcher (com.cvte.tv.launcher.highend) and settings. The build fingerprint is spoofed\n(google/shamu/...), so match the board name (ro.cvte.boardname) instead.\nTested on one set for a day, reboot-checked; launcher half done with a third-party launcher (see README.md).\nSetup steps (ADB, remote access, Play Services) and troubleshooting: README.md in this folder.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/super-general-cvte-t972/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/super-general-cvte-t972/debloat.txt com.cvte.tv.launcher.highend\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nADB: switch to a source (TV or HDMI) first, then MENU 1 1 4 7 -> DEBUG -> ADB ENABLE. Network ADB on 5555,\nsurvives reboots. userdebug firmware.\n\nGoogle Play Services shipped disabled by the system (enabled=3): `pm enable com.google.android.gms` so Google Play\nworks; it stayed on across a reboot.\n\nKEEP: com.cvte.tv.globalui (.InputSourceActivity, the source menu), com.cvte.tv.setting (TV settings, quick menu),\ncom.cvte.tiflauncher, com.cvte.tv.api.impl (TIF player and the remote's hotkey service), com.cvte.tvservice,\ncom.cvte.tv.remotedebug, com.droidlogic.* (TV input, Bluetooth remote, Miracast). Factory: com.cvte.fac.menu,\ncom.cvte.factory.at, com.cvte.factory.service; never launch these.\nAdware: the \"com.sdk.hades\" SDK (starts on boot and screen-on, background jobs, internet). Both were installed\nsilently; neither appears in the TV's app list.",
+  "packages": [
+    {
+      "package": "com.system.memory.tool",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.media.tools",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "/system/app/clean/clean.apk",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.gaia.ad.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE ad services, pushed silently by the firmware's cloud",
+      "reason": "AdService, calls the stark-cloud.cvte.com ad API",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.wonder.cloud.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE ad services, pushed silently by the firmware's cloud",
+      "reason": "UniAdService",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.pictorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE ad services, pushed silently by the firmware's cloud",
+      "reason": "ad screensaver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.steward",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE extras",
+      "reason": "\"TV assistant\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE extras",
+      "reason": "CVTE extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.stark.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE extras",
+      "reason": "Stark app store; Google Play replaces it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.systemupgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "CVTE extras",
+      "reason": "firmware updates; off by choice, re-enable to update",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.mozilla.tv.firefox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads off by choice",
+      "reason": "Preloads off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads off by choice",
+      "reason": "Preloads off by choice",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads off by choice",
+      "reason": "Preloads off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ionitech.airscreen",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads off by choice",
+      "reason": "AirScreen casting; Miracast (com.droidlogic.miracast) kept",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.launcher.highend",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloads off by choice",
+      "reason": "Preloads off by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.launcher.highend.skin",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloads off by choice",
+      "reason": "Preloads off by choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/super-general-cvte-t972/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

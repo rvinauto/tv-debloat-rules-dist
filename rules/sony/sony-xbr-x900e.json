@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "id": "sony-xbr-x900e",
+  "brand": "sony",
+  "title": "Sony BRAVIA XBR-65X900E (2017, BRAVIA_ATV2, MediaTek), US/Canada firmware",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "x900e"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Sony BRAVIA XBR-65X900E (2017, BRAVIA_ATV2, MediaTek), US/Canada firmware\nAndroid TV 9, build PTT1.190515.001.S54\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-xbr-x900e/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-xbr-x900e/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (restore.sh's default).\nLive TV / input app: com.sony.dtv.tvx. Keep it: it also plays every HDMI input.\nKeep: com.sony.dtv.tvinput.*, braviasync* (HDMI-CEC), remotepairing, rcpowerkey, uinputservice,\nimeproxy, sonysystemservice, settingsprovider, all com.mediatek.* and mtktvapi.agent, timers (sleep timer).\nLeft alone on purpose: the rest of com.sony.dtv.b2b.* (hotel/pro mode plumbing), webapi.core and\nremoteaccess (Sony IP control, possibly used by Alexa control).\nAlready disabled at the factory/by owner: com.sony.rvu, actionmenu.plugin.harmony, Vudu, Crackle,\ncom.google.android.inputmethod.latin. Not in this list so restore.sh leaves them off.\n\nNotes from this firmware:\n- The stock launcher's HOME filter has priority 2, so `cmd package set-home-activity` reports Success\nbut Home keeps opening it until com.google.android.tvlauncher is disabled (build-and-install.sh\ndoes this last). Launch com.gathin.tvhome/.MainActivity with `am start -n` to check it first.\n- Inputs works: com.sony.dtv.tvx handles the passthrough channel URIs, HDMI 1-4 and Video 1/2 listed.\nHide com.sony.dtv.tvx and com.sony.dtv.tvxlauncher.programguide in config.xml; set\nlive_tv_package to com.sony.dtv.tvx if you use an antenna.\n- 2 GB RAM. Survives a reboot straight into the new launcher.\nACR viewing tracker",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony Select app store/promo tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "My BRAVIA promos",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.discovery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony Discover content bar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.bivlinfo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "BIVL content service list (feeds Discover)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.tvlaunchercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony tweaks to the stock home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "recommendation rows for the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demomode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Sony device agent / remote support",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "runs Node.js 4.2.4 (2015) broadcasting model/MAC/IP over SDDP",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.imanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "i-Manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "re-enable to play music from USB",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smartmediaapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Media Player, re-enable to play USB files",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "screnmirroring.com",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Screen mirroring (Miracast)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.networkapp.wifidirect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.huey.dlna.module",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "DLNA renderer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.huey.dlna.renderersettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Android TV phone-app remote"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-xbr-x900e/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

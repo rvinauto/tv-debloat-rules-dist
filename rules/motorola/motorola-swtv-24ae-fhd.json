@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "id": "motorola-swtv-24ae-fhd",
+  "brand": "motorola",
+  "title": "Motorola SWTV-24AE-FHD (Skyworth OEM, device beomil, product SW11_TG, MediaTek), India/Global",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "motorola"
+    ],
+    "model_patterns": [
+      "24ae"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Motorola SWTV-24AE-FHD (Skyworth OEM, device beomil, product SW11_TG, MediaTek), India/Global\nAndroid TV 14 (API 34), build UKN4.250714.138, security patch 2025-10-01.\nStock launcher: com.google.android.apps.tv.launcherx (Google TV).\nSetup wizard: com.google.android.tungsten.setupwraith (claims HOME with priority 1).\nLive TV app: com.cltv.hybrid (iWedia CanaliTV).\nHDMI and tuner inputs: com.mediatek.tvinput.\nRemote: Settings button emits keycode 83 (KEYCODE_NOTIFICATION) on scancode 240; needs HomeKeyService.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/motorola-swtv-24ae-fhd/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/motorola-swtv-24ae-fhd/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nWARNING: If Wi-Fi was set up during the first-run wizard, the saved network belongs to setupwraith\nand Android DELETES it the moment setupwraith is disabled; the TV drops off the network and ADB with it.\nCheck first: `dumpsys wifi | grep -o 'cname=[^ ]*'`. If it is not android.uid.system, forget the network\nand re-join it in Settings > Network BEFORE disabling setupwraith.\nSkyworth telemetry and activation",
+  "packages": [
+    {
+      "package": "com.smartdevice.recordactivation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "records first activation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.aftersale",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"after-sale\" service: boot + network receivers, can install APKs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content and recommendations",
+      "reason": "Coocaa recommendation rows and analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Skyworth content and recommendations",
+      "reason": "partner config that injects rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "Bloatware / cleaners / manuals / unused",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "Bloatware / cleaners / manuals / unused",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.dailymanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "TV Guard / cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.myapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "Daily Key / app manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware / cleaners / manuals / unused",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Disable only after installing and verifying the new launcher!",
+      "reason": "setup wizard recovery activity claiming HOME",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Disable only after installing and verifying the new launcher!",
+      "reason": "stock Google TV launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/motorola-swtv-24ae-fhd/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

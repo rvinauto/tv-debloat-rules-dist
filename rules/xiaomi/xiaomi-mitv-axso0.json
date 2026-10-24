@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-axso0",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-AXSO0 (codename dangal; sold as Mi TV 4C Pro 2019 and Mi TV 4A Pro), Android TV 9 (SDK 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "axso0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-AXSO0 (codename dangal; sold as Mi TV 4C Pro 2019 and Mi TV 4A Pro), Android TV 9 (SDK 28),\nfirmware PI.6036, Amlogic/droidlogic.\nLive TV app: com.android.tv (set it as live_tv_package and hide it in launcher config.xml).\nStock launcher: com.google.android.tvlauncher (the default, disabled by build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-axso0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-axso0/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- Default IME is already Gboard, so the Mi TV 4A missing-keyboard quirk doesn't apply.\n- `svc power reboot` gets killed; reboot through adb's own reboot service instead.\n- com.google.android.leanbacklauncher is re-enabled by the firmware at every boot, so it's not listed.\n- Glance (com.glance.tv) puts news and ads on the lock/standby screen; with it off the screensaver is clean.\n- Netflix, Prime Video and YouTube are preinstalled system apps, so they always get BOOT_COMPLETED.\nOther apps stay out of the boot-time rush after `am force-stop`, until someone opens them again.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.dangal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Play auto-install of partner apps (sic, \"xioami\")",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.glance.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Glance lock-screen news and ads",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Mi TV+ sponsored live channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "co.sensara.tv.mitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Sensara partner TV guide (sponsored show recommendations)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.handbook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable to check for one",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.xiaomo.tv.milegal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "static legal / privacy text screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: voice assistant (the mic button stops working)",
+      "reason": "Personal choice: voice assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.speech.pumpkin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: voice assistant (the mic button stops working)",
+      "reason": "Personal choice: voice assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: casting / mirroring",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.milinkservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: casting / mirroring",
+      "reason": "Mi Cast",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.smartshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: casting / mirroring",
+      "reason": "Personal choice: casting / mirroring",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.wfdsinkhelperservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: casting / mirroring",
+      "reason": "Miracast sink",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Mi Gallery; Media Player still opens USB photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.fancode.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.suntv.sunnxt.mitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.eros.mitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.discoveryplus.mitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ddnational.prasarbharati",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "net.aljazeera.english",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-axso0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

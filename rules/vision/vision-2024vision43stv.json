@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "vision-2024vision43stv",
+  "brand": "vision",
+  "title": "Vision 2024VISION43STV (CVTE TP.T950D4T.PB751, Amlogic T950D4), Android 13 (SDK 33), Europe.",
+  "android": "Android 13",
+  "match": {
+    "brand_patterns": [
+      "vision"
+    ],
+    "model_patterns": [
+      "2024vision43stv"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Vision 2024VISION43STV (CVTE TP.T950D4T.PB751, Amlogic T950D4), Android 13 (SDK 33), Europe.\n1 GB RAM, 1920x1080 at 240 dpi (1280x720 dp UI). Not Google TV: CVTE's own launcher\n(com.cvte.tv.launcher.space, \"LauncherSpace4\") and CVTE settings (com.cvte.settings); no stock\nAndroid settings, so Developer options are unreachable. Build fingerprint is spoofed\n(google/shamu/...), so don't use it to match your set; match the board name instead.\nTested on one set for a day, not yet a few days; launcher half done too.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/vision-2024vision43stv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/vision-2024vision43stv/debloat.txt\nEverything is DISABLED, not uninstalled. Kept on purpose: com.cvte.tv.api.impl (TIF player, hotkeys),\ncom.cvte.tv.setting (the live-TV UI: CH+/-, number keys, info banner), com.cvte.tv.globalui (source\nmenu), com.cvte.tvservice, com.droidlogic.* (tvinput, dtvkit), com.cvte.fac.menu, com.cvte.factory.*.\n\nADB: factory menu. Switch to a source first (TV or HDMI; it does not open from the launcher), then on\nthe remote (H620DF-DS) press MENU 1 1 4 7 quickly -> DEBUG -> ADB ENABLE -> ON. Don't touch SHIPPING\nINIT / BOARD INIT (factory reset), AGING MODE, PANEL SETTING, EMC SETTING or SW UPGRADE. Network ADB\non 5555 then has NO authorisation (ro.adb.secure empty, no prompt) and survives reboots until it is\nswitched OFF in the same menu.\n\nScreenshots: screencap returns 0 bytes (\"FB is protected\") whenever a TV SurfaceView is on screen,\nand that includes the stock launcher, which embeds a live-TV preview. Open Settings for real ones.\npm disable state is written to disk with a delay: wait ~30 s before rebooting.\n\nSTOCK LAUNCHER - READ BEFORE DISABLING IT. This firmware has no FallbackHome. At boot the user is still\nlocked (FBE) and only a direct-boot-aware Home can start; the stock launcher is one, a normal launcher\nis not. With the stock launcher disabled and a non-direct-boot-aware Home, boot never completes: black\nscreen, LED on, remote and power key dead, no Wi-Fi (sys.boot_completed empty, dumpsys user shows\nState: BOOTING, \"No home screen found for Intent { act=MAIN cat=[HOME,COMMON_HOME] }\").\nThe new Home needs android:directBootAware=\"true\" on the activity (application-level alone did not\nmark it), prefs in createDeviceProtectedStorageContext(), and a reload on ACTION_USER_UNLOCKED.\nRecovery: LAN cable straight into a laptop. Android's Ethernet asks for DHCP; answer it from the\nlaptop's 169.254.x.x address (only for the TV's MAC) and adb connects. Then pm enable the stock\nlauncher and am start -a android.intent.action.MAIN -c android.intent.category.HOME\n-c android.intent.category.COMMON_HOME.\n\nLauncher notes for this firmware (the stock launcher did these jobs):\n- Home key sends MAIN + HOME + COMMON_HOME (CvteHomeManager, ro.CVT_EN_COMMON_HOME_INTENT=1):\nthe new launcher needs a second intent-filter with android.intent.category.COMMON_HOME.\n- Inputs: no standard passthrough handler. Use\nam start -a com.cvte.intent.ACTION_TIF_PLAYER\n-n com.cvte.tv.api.impl/com.cvte.tv.api.vendor.common.base.tif.TvSupportActivity\n--ez tune true --ei sourceId N --es toActivity com.cvte.tv.setting.TvSettingActivity\nN is the number after /HW in dumpsys tv_input: DTV (DTVKit, the scanned DVB-T channels) 19,\nHDMI1/2/3 5/6/7, AV 1. 16 (ADTV) is a second tuner with no channels.\nsys.current.source.name does not update; check dumpsys tv_input | grep -A2 sessionStateMap.\n- Channel keys and numbers are handled by com.cvte.tv.setting/.TvSettingActivity, not the player.\nWithout toActivity, CH+/- do nothing. At power-on CVTE starts only the player, so an accessibility\nservice opens the TV UI when TvSupportActivity comes up on its own (same intent with tune=false).\n- Input/Source key: an accessibility key filter maps KEYCODE_TV_INPUT to\ncom.cvte.tv.globalui/.InputSourceActivity. Injected keys bypass the filter; test the real remote.\n- Wi-Fi network belongs to android.uid.system (cname=a",
+  "packages": [
+    {
+      "package": "com.cvte.gaia.ad.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad service, Google Mobile Ads, SensorsData analytics, Sentry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.wonder.cloud.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"UniAdService\", Firebase, Sentry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.industries",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "push messenger (ACTION_INDUSTRY_MESSENGER) + AdReceiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.services.general",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content and ad services",
+      "reason": "Zeasn search / content service, boots with the TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.pictorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content and ad services",
+      "reason": "screensaver with ads; switch to com.android.dreams.basic Colors",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content and ad services",
+      "reason": "Manufacturer content and ad services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.steward",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content and ad services",
+      "reason": "\"cleaner\" with scheduled \"optimisation\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.launcher.space",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Manufacturer content and ad services",
+      "reason": "ads, SensorsData, Sentry, Firebase; also a live-TV preview",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.launcher.space.skin",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Manufacturer content and ad services",
+      "reason": "Manufacturer content and ad services",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.mediaclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Off by choice on the tested set (keep what you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.avod.thirdpartyclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.rialto.cordova.webapp.webapp2660c968ef8949678398aeb6fd6cb036",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "preloaded Amazon web app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tiktok.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Off by choice on the tested set (keep what you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "deezer.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Off by choice on the tested set (keep what you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ted.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Off by choice on the tested set (keep what you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/vision-2024vision43stv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

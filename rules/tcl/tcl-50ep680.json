@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "id": "tcl-50ep680",
+  "brand": "tcl",
+  "title": "TCL 50EP680 (Europe), `ro.product.model` BeyondTV, brand TCL, board `rtd285o` (Realtek),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "50ep680"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 50EP680 (Europe), `ro.product.model` BeyondTV, brand TCL, board `rtd285o` (Realtek),\nAndroid TV 11 (API 30), build `PPR1.180610.011` / incremental `AR05`, dated 2022-05-26,\nsecurity patch 2021-12-05, 32-bit (`armeabi-v7a`), locale `en-GB`.\nFingerprint: TCL/BeyondTV/BeyondTV:11/PPR1.180610.011/AR05:user/release-keys\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-50ep680/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-50ep680/debloat.txt\nStock launcher: com.google.android.tvlauncher (this is Android TV 11, not Google TV, so no\ncom.google.android.apps.tv.launcherx and no setupwraith here). Both tools' defaults fit unchanged.\nLive TV app: com.tcl.tv (owns tuner/HDMI playback; the launcher offers it at the end of the Inputs\nmenu). Keep it and com.tcl.tvinput.\n\nAlready disabled at the factory on this firmware, so no action is needed and none of them are\nlisted below: every uk.co.freeview.* UK catch-up app (14 of them), com.tcl.smartalexa,\ncom.graymatrix.did, tv.wuaki.apptv, com.tcl.gallery, com.google.android.apps.nbu.smartconnect.tv,\ncom.eros.now. (Same pattern as the BeyondTV2 Latin America profile: the UK catch-up apps are\npre-disabled on TCL sets sold outside the UK.)\n\nDeliberately NOT disabled (ambiguous or system-relevant): com.tcl.autopair (Bluetooth remote\npairing), com.tcl.guard, com.tcl.messagebox, com.tcl.usercenter, com.tcl.useragreement,\ncom.tcl.xian.StartandroidService, com.tcl.browser, casting (com.google.android.apps.mediashell,\ncom.tcl.miracast, com.tcl.MultiScreenInteraction_TV, com.google.android.tv.remote.service),\nfirmware updates (com.tcl.versionUpdateApp), the streaming apps (Netflix, YouTube, YouTube Kids,\nDisney+, com.wbd.stream = HBO Max, Spotify, VLC, Firefox, Czech Television iVysilani, SledovaniTV,\nStream.cz, FilmBox), file managers (Total Commander, X-plore, FX, WiFi File Explorer), the sideload\nlauncher, Zoom, and the Play Store (com.android.vending).\n\nVoice assistant is off by choice on this set (one user's pick, grouped so others can comment it\nout): com.google.android.katniss, com.google.android.tv.assistant, com.tcl.assistant. That turns\nthe remote's voice button into a no-op.\n\nTesting: applied on a real unit on 2026-10-19, every package disabled through tools/disable.sh and\nthen re-checked one by one (`pm list packages -e`: 47/47 disabled, 0 failures). Home, the app grid,\nthe Inputs menu (HDMI 1-3, AV, Live TV), the Wi-Fi pill and Settings all kept working afterwards,\nand a dock app was launched and closed to confirm tiles start apps. The set was not rebooted\nafterwards and this list has NOT been lived with for days yet.\nTCL telemetry, promos and content feeds",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "analytics / telemetry service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL web content feed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail demo stickers. Worth re-checking here: the BeyondTV2",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.notereminder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "enabled overnight.",
+      "reason": "enabled overnight.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "enabled overnight.",
+      "reason": "enabled overnight.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "enabled overnight.",
+      "reason": "\"copy your phone's data to the TV\" setup helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "enabled overnight.",
+      "reason": "TCL dashboard; carries a /giftbox promo activity",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "enabled overnight.",
+      "reason": "installs partner/preload apps",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistant (off by choice)",
+      "reason": "Google Assistant voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant (off by choice)",
+      "reason": "Google Assistant for TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant (off by choice)",
+      "reason": "TCL's assistant surface",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Google extras, recommendation rows and Play Movies",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Google extras, recommendation rows and Play Movies",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Google extras, recommendation rows and Play Movies",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Google extras, recommendation rows and Play Movies",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "Google extras, recommendation rows and Play Movies",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras, recommendation rows and Play Movies",
+      "reason": "ambient screensaver. Once it is gone the screensaver has to",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.king.candycrushsaga",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.asanteegames.magicrampage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mautilus.tvgames.portal.androidtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.popoko.tictactoe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.secretexit.turbodismount",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vectorunit.purple.googleplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.wrcplus.release",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "paskov.biz.happyfruits",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "rocks.funkykarts",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "ro.pontes.forinaline",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "net.hexage.ritual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.joxdev.orbia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.bruyere.android.solitaire",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "reason": "Preloaded games (user-space apps: disable-user is enough, and reversible)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "ca.cbc.mobile.android.cbcnewsandroidwebview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.abc.abcnews",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.bloomberg.btva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cnn.mobile.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nousguide.android.rbtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ted.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vimeo.android.videoapp",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "dw.com.androidtv.live",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "net.aljazeera.english",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "jp.co.rarity.tvweb",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cloudmosa.puffinTV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "cm.aptoidetv.pt",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.curiosity.curiositystream.androidtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.teamviewer.quicksupport.market",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "io.tiv.dvtv.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded news, video and remote-support apps",
+      "reason": "Preloaded news, video and remote-support apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-50ep680/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g07-google-tv",
+  "brand": "tcl",
+  "title": "TCL Smart TV (reports as \"Smart TV\"; device G07, product G07_4K_GB_NF, Realtek RTD2851A), Google TV on",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g07"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx;",
+  "notes": "TCL Smart TV (reports as \"Smart TV\"; device G07, product G07_4K_GB_NF, Realtek RTD2851A), Google TV on\nAndroid 11 (SDK 30), build RP1A.200622.001 AR20, security patch 2025-12-05, 2 GB RAM. Same package family\nas the G05 (Quick Panel, waterfall, ttvs, TCL Live) plus the 43C645 extras (useragreement, TCL webview,\ntclhome_passive).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g07-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g07-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nTested 2026-10-20 on a real unit, applied in six batches with screenshots between them: Wi-Fi, Home, the Input\nkey's source panel, Netflix, YouTube, Live TV and HDMI (from the launcher's Inputs menu) all kept working, and\nsetupwraith, launcherx and dreamx stayed disabled after a reboot (unlike the G05). Launcher works.\nStock launcher: com.google.android.apps.tv.launcherx; setupwraith's RecoveryActivity claims HOME at priority 1\nonce it is gone. The Wi-Fi saved at setup belonged to android.uid.system, not setupwraith, so disabling\nsetupwraith kept the network.\n\nAlso tested 2026-10-19 on a second unit, UK firmware used in Brazil, build RP1A.200622.001 AR17, with the\nlauncher as Home and through a reboot. Two things differ from AR20 there:\n- The Wi-Fi saved during first setup belonged to setupwraith, so disabling it made Android delete the\nnetwork and the TV dropped off Wi-Fi (and ADB). Pick the network again in Settings > Network; Settings\nthen owns it and it survives reboots. tools/disable.sh now checks the owner first and skips setupwraith\nwhile it owns the network.\n- The adb shell may not write Android/data, so tools/theme.sh has to go through the launcher's\nThemeProvider (it falls back to it on its own when the plain copy is refused).\nTvInputManager reports AV as connected with nothing plugged in. com.tcl.notereminder was enabled on that\nunit, not disabled at the factory, so it is listed below.\n\nAlso tested 2026-10-20/21 on a third unit in Brazil (product G07_4K_GB_NF, client TCL-LA-RTD51A-S1,\nsoftware V8-R51AT01-LF1V126, incremental AR07, fingerprint TCL/G07_4K_GB_NF/G07:11/RP1A.200622.001/AR17,\nsecurity patch 2024-12-05; Discussion #729):\n- Stage 1 disabled 9 packages in two conservative batches (waterfall.overseas, esticker, notereminder,\nfeedback, guard, then dashboard, partnercustomizer, messagebox, tv.tclhome_passive) while keeping the\nstock launcherx as Home. Stage 2 disabled 25 more packages, installed the reference launcher\n(INPUT_KEY_SERVICE=1 HOME_KEY_SERVICE=1) with the ClockDream screensaver, and disabled launcherx,\nsetupwraith (saved Wi-Fi belonged to android.uid.system, uid 1000) and dreamx.\n- Kept by choice on that unit: com.tcl.ttvs (firmware updates), voice (com.google.android.katniss,\ncom.tcl.assistant, com.google.android.tv.assistant), Chromecast (com.google.android.apps.mediashell)\nand com.google.android.youtube.tvmusic. Physical HDMI/AV playback, OTA update arrival and live\ntools/restore.sh rollback were not exercised in that session.\n- Only au.com.stan.and and tv.wuaki.apptv came disabled at the factory (com.tcl.smartalexa and\ncom.iqiyi.i18n.tv were not installed); com.google.android.videos and com.tcl.notereminder shipped\nenabled.\n- Reboot check (tools/check.py): launcherx, setupwraith, dreamx and the other disabled packages stayed\ndisabled across a reboot, but AR07 firmware automatically re-enabled com.tcl.notereminder and\ncom.tcl.usercenter at boot. Adding both to hidden_apps in launcher/app/src/main/res/values/config.xml\nhides them from the app grid without fighting the firmware on every boot.\n\nRemote (IR, /dev/input/event0 \"mtkinp\"; scancodes from getevent with the real remote):\n- Input (471, TV_INPUT) goes to TclPhoneWindowManager.startQuickPanelService, so it keeps working without\nlauncherx and needs no InputKeyService.\n- Gear (561, TCL_SET) became launcherx's quick settings panel, so it does no",
+  "packages": [
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL BI/analytics, also TCL's firmware updater (comment this line out to keep updates)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TGuard device-use tracking, cleaner",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "privacy-agreement proxy for ttvs business data",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "content \"waterfall\" recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "TCL Live FAST channels (a TV input)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "TCL Home panel, promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content and ad services",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "pushed messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.notereminder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "reminders fed by the message box (already off on AR20; re-enabled at boot on AR07, hide in config.xml)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "TCL home content, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "TCL account (re-enabled at boot on AR07, hide in config.xml)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "retail-demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "hotel-mode portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content and ad services",
+      "reason": "partner app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.MultiScreenInteraction_TV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Background services (off by choice)",
+      "reason": "MagiConnect",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "3. Background services (off by choice)",
+      "reason": "screen mirroring (Chromecast kept)",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "3. Background services (off by choice)",
+      "reason": "Google Assistant / voice search (mic button)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Background services (off by choice)",
+      "reason": "TCL voice service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Background services (off by choice)",
+      "reason": "assistant LED service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Background services (off by choice)",
+      "reason": "T-Solo Bluetooth \"listen alone\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Background services (off by choice)",
+      "reason": "TCL support browser (the system WebView is Google's)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "3. Background services (off by choice)",
+      "reason": "3. Background services (off by choice)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "4. Preloaded apps (off by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "4. Preloaded apps (off by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "Google TV / Play Movies storefront (already off on AR20, enabled on AR07)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "USB media player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "4. Preloaded apps (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.iqiyi.i18n.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Preloaded apps (off by choice)",
+      "reason": "partner auto-install",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "uncomment any you do not use:",
+      "reason": "uncomment any you do not use:",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "uncomment any you do not use:",
+      "reason": "ambient-mode screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g07-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

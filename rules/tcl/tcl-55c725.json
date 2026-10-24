@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55c725",
+  "brand": "tcl",
+  "title": "TCL 55C725 (reports as \"Smart TV Pro\", device BeyondTV4, product G03_4K_GB, Realtek rtd288o / R51MT05), 2 GB RAM",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55c725"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx;",
+  "notes": "TCL 55C725 (reports as \"Smart TV Pro\", device BeyondTV4, product G03_4K_GB, Realtek rtd288o / R51MT05), 2 GB RAM\nAndroid TV 11 (SDK 30) with the Google TV launcher, build RP1A.200622.001, software V8-R51MT05-LF1V620. Italy.\nSame software family as examples/tcl-43c645 (LF1V652) and the BeyondTV4 of examples/tcl-65c725, which shipped\nthe older com.google.android.tvlauncher; this unit runs launcherx.\nApplied and verified on a real unit on 2026-10-20/21 (Ethernet, Wi-Fi off), with launcher/ as Home and a reboot.\nAlso: TCL 65C655 Pro, same build (TCL/G03_4K_GB/BeyondTV4:11/RP1A.200622.001/AR09, LF1V620), on Wi-Fi, 2026-10-23:\nthe list in five batches with launcher/ as Home and three reboots; the remote-mic note below and README.md.\nNotes, remote keycodes and quirks: README.md in this folder.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55c725/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55c725/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx; launcher/build-and-install.sh disables it, it is not listed.\nNever disable (from examples/tcl-43c645, same platform): com.tcl.providers.config com.tcl.initsetup\ncom.tcl.system.server com.tcl.tcl_bt_rcu_service com.tcl.autopair com.tcl.tvinput com.tcl.tv com.tcl.settings\ncom.tcl.inputmethod.international. Also kept here: com.tcl.suspension (Quick panel / Input), com.tcl.micmanager,\ncom.google.android.tv.assistant (assistant LED), com.tcl.xian.StartandroidService (device authentication, purpose\nunclear, left alone).\nTCL and Google content, ads and promos",
+  "packages": [
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"TCL Channel\" content browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.chromium.webview_shell",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services not needed",
+      "reason": "AOSP WebView test browser",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services not needed",
+      "reason": "TCL WebView; TV Settings and TCL apps still work without it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.keyhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "re-enable to play media from USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.MultiScreenInteraction_TV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "TCL T-Cast (phone casting/remote, Firebase); Chromecast kept",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Rakuten TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "stock quick-settings panel; the gear key is remapped, see README.md",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "ambient mode; set screensaver_components first, see README.md",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "re-join every network it saved first (README.md, Brazilian unit).",
+      "reason": "re-join every network it saved first (README.md, Brazilian unit).",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55c725/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

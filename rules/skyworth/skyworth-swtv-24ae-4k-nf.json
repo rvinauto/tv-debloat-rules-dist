@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "id": "skyworth-swtv-24ae-4k-nf",
+  "brand": "skyworth",
+  "title": "Skyworth SWTV-24AE-4K NF (device eleonas, product SW10_NA_NF, MediaTek mt5896), South Africa/Global",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "skyworth"
+    ],
+    "model_patterns": [
+      "24ae"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Skyworth SWTV-24AE-4K NF (device eleonas, product SW10_NA_NF, MediaTek mt5896), South Africa/Global\nGoogle TV 14 (API 34), build UKN6.260116.056, security patch 2026-04-01. ~1 GB RAM, armeabi-v7a.\nro.product.model=\"SWTV-24AE-4K NF\". Same eleonas platform as examples/skyworth-swtv-24na-4k-nf;\nthe NA variant reports ro.product.vendor.model=SWTV-24AE-4K, confirming the shared board.\n\nApply:   $env:TV_HOST=\"<tv ip>\"; tools\\disable.ps1 examples\\skyworth-swtv-24ae-4k-nf\\debloat.txt\nUndo:    $env:TV_HOST=\"<tv ip>\"; tools\\restore.ps1 examples\\skyworth-swtv-24ae-4k-nf\\debloat.txt -Stock com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Re-enable any line with `pm enable --user 0 <package>`.\n\nApplied 2026-10-21 in batches with a screenshot after each, then custom launcher installed.\nHome, Inputs (HDMI 1/2/3/Composite), Settings and the app grid all verified on the day.\n\nDisabled from the factory on this unit, so NOT listed here (restore.sh would turn them ON):\ncom.cltv.hybrid, com.cltv.mal (iWedia CanaliTV Live TV - no tuner in use on this unit)\ncom.app.mlounge, com.mediatek.tv.retaildemo, com.mediatek.opapp\ncom.mediatek.dtv.tvinput.atsctuner, com.mediatek.dtv.tvinput.isdbtuner\n\nQuirks on this firmware, all verified on the TV:\n- Only Wireless debugging: port 5555 stays closed. Pair once with the stock adb:\nadb pair 192.168.1.122:<pairing port> <code>\nadb connect 192.168.1.122:<connect port>\nadb -s 192.168.1.122:<connect port> tcpip 5555\nPort 5555 closes on every reboot; repeat `adb connect` + `adb tcpip 5555` each session.\n- Android switches Wireless debugging off on every reboot; turn it back on in Developer options.\n- All Wi-Fi networks owned by android.uid.system (not setupwraith) on this unit - safe to disable.\n- Chromecast (mediashell) verified NOT using setupwraith's CastInfoProvider on this build;\ndisabling setupwraith does not break casting.\n- All disables survived a full reboot (firmware does not auto-re-enable on this build).\n- Display: 3840x2160 physical, 1920x1080 override (normal for this SoC), density 320, no forced override.\n\nStock launcher:   com.google.android.apps.tv.launcherx\nSetup wizard:     com.google.android.tungsten.setupwraith (RecoveryActivity claims HOME at priority 1)\nHDMI/AV inputs:   com.mediatek.tis\nLive TV / tuner:  com.cltv.hybrid (iWedia CanaliTV) — already disabled from factory on this unit\nRemote service:   com.smartdevice.global.service (BLE, battery, find-my-remote, hot keys)\n\nKept on purpose: com.mediatek.tis (HDMI/AV input driver), com.mediatek.tv.agent (hot keys, Netflix key),\ncom.mediatek.autopair (remote pairing), com.smartdevice.global.service (BLE remote),\ncom.smartdevice.dailyshortcut (quick menu), com.smartdevice.duplebluetooth, com.smartdevice.factory,\norg.liskovsoft.androidtv.rukeyboard + com.google.android.inputmethod.latin (keyboards),\ncom.google.android.apps.mediashell (Chromecast), com.google.android.katniss (Assistant),\ncom.google.android.apps.tv.dreamx (screensaver), Play Store, Play Services.\nKept by owner's choice: com.netflix.ninja, com.google.android.youtube.tv, com.crunchyroll.crunchyroid,\ncom.spotify.tv.android, com.streamflixreborn.streamflix, com.sportzx.live, com.internet.tvbrowser.\nSkyworth telemetry and activation",
+  "packages": [
+    {
+      "package": "com.smartdevice.recordactivation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "records first activation; boot + network receivers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.aftersale",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"after-sale\" service: can silently install APKs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content rows and analytics",
+      "reason": "Coocaa recommendation rows; bundles Sensors Data analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Skyworth content rows and analytics",
+      "reason": "partner config that injects rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "tv.mopa.ginga",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Regional broadcast extras (neither used in ZA/Global market)",
+      "reason": "Brazilian Ginga interactive TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.obs.mhegservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Regional broadcast extras (neither used in ZA/Global market)",
+      "reason": "UK MHEG interactive TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.dailymanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "TV Guard / cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.myapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Daily Key / app manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.dstvmobile.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.sabcplus.vod",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.stremio.one",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.dtv.icast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Miracast / DLNA screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.mediatek.tv.systemupdater",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "automatic OTA firmware updates",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "RecoveryActivity claims HOME at priority 1",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps disabled by owner's choice (not used)",
+      "reason": "Streaming apps disabled by owner's choice (not used)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/skyworth-swtv-24ae-4k-nf/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

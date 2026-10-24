@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "id": "liberton-ltv-24h01at",
+  "brand": "liberton",
+  "title": "Liberton LTV 24H01AT (Liberton, built by Changhong, device redwood, Android 11 API 30,",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "liberton"
+    ],
+    "model_patterns": [
+      "24h01at"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Liberton LTV 24H01AT (Liberton, built by Changhong, device redwood, Android 11 API 30,\nfirmware RTM6.230109.263, security patch 2023-01). Stock launcher: com.google.android.tvlauncher.\nThe vendor layer is Homwee (com.homwee.*). Adapted from examples/rca-ai-pont (same redwood board)\nand examples/chiq-ai-pont (same Android 11 Homwee family). Verified against this TV's 122 packages.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/liberton-ltv-24h01at/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/liberton-ltv-24h01at/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKEEP, even though the names look like bloat (from the redwood-family notes):\n- com.google.android.leanbacklauncher.partnercustomizer: provides the tvlauncher.widget content\nprovider. Without it com.mediatek.tv.service crash-loops after the next reboot and the Input\nkey and other remote hotkeys stop working.\n- com.homwee.factory, com.homwee.synckey (remote key service), com.mediatek.wwtv.setupwizard\n(Live TV channel scan), all com.mediatek.* (Live TV, inputs, remote pairing).\n\nOwner's choices (2026-10-23): keep the voice assistant, keep Chromecast casting, disable the\nvendor updaters (commented out below, since shared lists keep updates), apps suggested by probe (Kyivstar TV, Netflix, YouTube, Prime Video, Spotify).\nNo Anoki/FAST-channel packages on this firmware; no com.android.tv.feedbackconsent.\nHomwee store, ads, silent installers and media extras",
+  "packages": [
+    {
+      "package": "com.homwee.aipont",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "brand portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.chinstallapk",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silent installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.chtvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"TV Manager\" cleaner / memory optimizer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.homwee",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.fileexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable in Settings to browse USB storage",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.imageplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "re-enable in Settings to view photos from USB",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.screenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "brand screen mirroring; Google Cast (mediashell) stays",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.multiscreenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry, ads and sponsored content rows",
+      "reason": "sponsored poster rows in the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, ads and sponsored content rows",
+      "reason": "feedback reports to Google (found by tools/privacy.py)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, ads and sponsored content rows",
+      "reason": "Telemetry, ads and sponsored content rows",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry, ads and sponsored content rows",
+      "reason": "Telemetry, ads and sponsored content rows",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, ads and sponsored content rows",
+      "reason": "ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.alexacontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Assistant, accessibility and preloads the owner does not use",
+      "reason": "Alexa integration; Google Assistant stays (katniss kept)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Assistant, accessibility and preloads the owner does not use",
+      "reason": "Assistant, accessibility and preloads the owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Assistant, accessibility and preloads the owner does not use",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Assistant, accessibility and preloads the owner does not use",
+      "reason": "Assistant, accessibility and preloads the owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "accessibility"
+    },
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Android phone-as-remote app; Chromecast is mediashell"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/liberton-ltv-24h01at/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

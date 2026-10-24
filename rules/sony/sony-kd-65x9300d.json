@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "id": "sony-kd-65x9300d",
+  "brand": "sony",
+  "title": "Sony BRAVIA KD-65X9300D (2016, SVP-DTV15 \"BRAVIA 4K 2015\" platform, MediaTek), Asia-Pacific firmware",
+  "android": "Android TV 8.0",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "65x9300d"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Sony BRAVIA KD-65X9300D (2016, SVP-DTV15 \"BRAVIA 4K 2015\" platform, MediaTek), Asia-Pacific firmware\nAndroid TV 8.0, build OPR2.170623.027.S16 (6.827), 32-bit ARM (armeabi-v7a), 1.5 GB RAM\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-kd-65x9300d/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-kd-65x9300d/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (restore.sh's default). The only other HOME handler is\ncom.android.tv.settings/.FallbackHome. setupwraith has no HOME activity on this firmware, and the\nsaved Wi-Fi belongs to android.uid.system, so it is left alone.\nLive TV / input app: com.sony.dtv.tvx. Keep it: it also plays every HDMI input.\nKeep: com.sony.dtv.tvinput.*, tvplayer*, braviasync* (HDMI-CEC), remotepairing, remotecontrolsettings,\nuinputservice, imeproxy, ime.chww (the active keyboard), settingsprovider, netflixmanager (Netflix\nbutton), duid.generator, enclave.service, systemupdate, timers, all com.mediatek.* and mtktvapi.agent.\nLeft alone on purpose: the rest of com.sony.dtv.b2b.* (hotel/pro mode plumbing), webapi.core and\nremoteaccess (Sony IP control), privacypolicy, com.google.android.leanbacklauncher (no HOME activity).\nAlready disabled at the factory/by owner: com.sony.dtv.kenhchonloc, com.crackle.androidtv,\ncom.sony.dtv.notifybravia, com.sony.dtv.tvcamera. Not in this list so restore.sh leaves them off.\nNo Samba TV (tv.samba.ssm) on this firmware.\n\nNotes from this firmware:\n- build-and-install.sh hands Home over cleanly: com.google.android.tvlauncher is disabled last and\nHome resolves to com.gathin.tvhome straight away.\n- Inputs works: com.sony.dtv.tvx handles the passthrough URIs; HDMI 1-4 (with CEC device names),\nVideo 1/2 and Live TV listed. Dock: Netflix, YouTube, Prime Video, com.sony.dtv.tvx; live_tv_package\ncom.sony.dtv.tvx; nothing hidden (the grid is Play Store, Timers, Programme guide, Screen mirroring).\n- Building on macOS with only a newer JDK: Gradle 8.9 needs JDK 17 (brew install openjdk@17) and the\nandroid-34 platform (sdkmanager \"platforms;android-34\").\n- 1.5 GB RAM. Survives a reboot straight into the new launcher; no crashes logged after boot.\nSony and Google content, ads and promos",
+  "packages": [
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Select app store/promo tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.discovery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Discover content bar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.bivlinfo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "BIVL content service list (feeds Discover)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.tvlaunchercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Sony tweaks to the stock home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.indiametarecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "content recommendation feed (India per its name)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "recommendation rows for the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Sony device agent / remote support",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "SDDP model/MAC/IP broadcast for Control4-style home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Preloaded apps and tutorials",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.imanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "i-Manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.touchpad.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "touchpad remote tutorial",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvtutorials",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Preloaded apps and tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Google Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Preloaded apps and tutorials",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "Google Play Music, shut down in 2020",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.aiv.us",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials",
+      "reason": "US Prime Video stub; the real app is amazonvideo.livingroom",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.huey.dlna.module",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "DLNA renderer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.huey.dlna.renderersettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.dlna.dtcpplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Optional features, off by owner's choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.osat.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "re-enable to play music from USB",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.album",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "re-enable to view photos from USB",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.video",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "re-enable to play videos from USB",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vewd.core.integration.dia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional features, off by owner's choice",
+      "reason": "Vewd (Opera TV) web app store",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.inputmethod.japanese",
+      "why": "critical package (policy match 'com.google.android.inputmethod*')",
+      "source_comment": "Japanese keyboard"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-kd-65x9300d/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

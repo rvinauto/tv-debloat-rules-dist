@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "id": "tornado-65ua1400e",
+  "brand": "tornado",
+  "title": "Tornado 65UA1400E (El Araby, Egypt; Skyworth-built SW4H, product SW4H_Tornado, board SW4, MediaTek m7332),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tornado"
+    ],
+    "model_patterns": [
+      "65ua1400e"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Tornado 65UA1400E (El Araby, Egypt; Skyworth-built SW4H, product SW4H_Tornado, board SW4, MediaTek m7332),\nAndroid TV 11 (API 30), firmware RTM5.220609.106 (built 2023-12-08), security patch 2023-10-06.\nFingerprint Tornado/SW4H_Tornado/SW4H:11/RTM5.220609.106/20231126:user/release-keys.\nro.product.model \"TORNADO Android TV\", manufacturer skyworth. armeabi-v7a, 1.7 GB RAM, 1920x1080 @ 320 dpi.\nSame Skyworth SW4H platform as examples/panasonic-4ktv-0su and examples/karbonn-swtv-20ae.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tornado-65ua1400e/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tornado-65ua1400e/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher:  com.google.android.tvlauncher (classic Android TV home, not Google TV launcherx)\nLive TV app:     com.smartdevice.livetv (Skyworth Live TV / input OSD); inputs in com.mediatek.tvinput.\nHOME claimants:  tvlauncher, com.google.android.tungsten.setupwraith (priority 4), Settings' FallbackHome.\nsetupwraith does NOT own the saved Wi-Fi network here (android.uid.system), but it is\nkept anyway: nothing on this list needs it gone.\nUpdates:         no separate firmware-update package; updates live in Settings.\n\nDisabled at the factory, so not listed (restore.sh would turn them ON): com.sky.market,\ncom.smartdevice.tvworkwithalexa.\n\nKEEP, even though the names look like bloat (checked on this TV with dumpsys package):\n- fusion.android.tv.demo: receives com.mstar.android.intent.action.TV_INPUT_BUTTON (the remote's Input\nkey), as on examples/jvc-android-tv-menlo. The Panasonic SW4H list disables it; do not copy that here.\n- com.mediatek.partner.netflix: serves a TvInputService and handles the Netflix button.\n- com.mediatek.wwtv.tvrecommendation: asks for TV_INPUT_HARDWARE (disable.sh would skip it anyway).\n- com.smartdevice.firewall (purpose unclear), com.smartdevice.dtv.icast (CastPlay), com.tianci.localmedia\n(USB media), com.google.android.backdrop (kept; the launcher's Clock is set as the active screensaver),\nkatniss (Assistant), mediashell (Chromecast), tv.remote.service: kept by the owner's choice.\n- Every streaming / user app is kept and shows in the launcher grid.\n\nStatus: applied in four batches on one TV on 2026-10-22, with a screenshot and a Live TV / Input-key check\nafter each; tools/restore.sh tested after batch 1 (package lists and Home identical to a snapshot), then\nre-applied. Verified after two reboots: nothing re-enabled (tools/check.py clean), launcher/ is Home, Inputs\nmenu (HDMI 1-3, AV, Live TV), Live TV, Netflix, and on the real remote Home, Back, Input (Skyworth source\npanel), Netflix, YouTube, mic and Settings keys all work with no key service. Hours of use, not days yet.\nMeasured at 180 s uptime after a reboot: Home drawn at 48.2 s -> 40.2 s, used PSS 810 MB -> 739 MB.\n\nQuirks on this firmware:\n- /proc/meminfo MemAvailable and dumpsys \"Free RAM\" report impossible values (hundreds of GB of cached\nkernel memory on a 1.7 GB set): compare Used RAM (PSS) instead.\n- The Home handover needs the stock launcher disabled: with tvlauncher enabled (priority 2) Home keeps\nresolving to it even after `set-home-activity` prints Success, so run launcher/build-and-install.sh with\nthe default STOCK_LAUNCHER (it disables tvlauncher, checks Home and rolls back on its own). setupwraith\n(priority 4) did not take Home afterwards.\n- /vendor/etc/global_settings.txt forces animator_duration_scale=0.6 at every boot; window and transition\nscales set to 0.5 stick.\n- USB debugging alone opened port 5555; ro.adb.secure=1.\n- Yango Play, Jawwy TV and STARZ ON wake at every boot from their own WorkManager/recommendation\nreceivers (~300 MB together). Kept installed here; `cmd appops set <pkg> RUN_ANY_IN_BACKGROUND ignore`\nthen `cmd appops write-settings` (survives reboot) leaves them cached-empty and stops Yango's\n:passport and :AppMetrica processes; used PSS 739 MB -> 679 MB. Undo: `cmd ",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "first-run leftover",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "printing, on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner rows and the \"Shop\" tab on the stock launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.smartdevice.acr.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "ACR: recognises what is on screen for ad targeting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.SW",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "Play Auto Installs config that pushes preloads",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "\"Daily Play\" sponsored app + row (Coocaa data collector inside)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.epopplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "e-POP shop-floor promo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "on-screen manual (E-Manual)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "disclaimer screen used only by first-run setup",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.qjy.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 2: Skyworth ads, ACR and auto-installs",
+      "reason": "preloaded Chinese WebView browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.htmlviewer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.backupconfirm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*backup*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dynsystem",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "Dynamic System Updates",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "Android test shim",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "Android test shim",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "--- Batch 3: background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "stock launcher recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Batch 3: background services nobody needs on a TV",
+      "reason": "\"Featured by Google Play\" partner row config",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tornado-65ua1400e/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

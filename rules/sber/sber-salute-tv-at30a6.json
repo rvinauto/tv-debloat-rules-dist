@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "id": "sber-salute-tv-at30a6",
+  "brand": "sber",
+  "title": "Sber Salute TV 43\" (CVTE board TP.T962D4.PC756, Amlogic T962D4 \"t5w\", codename at30a6, panel LE43VA, 2 GB RAM, 8 GB eMMC), Russia",
+  "android": "Android 13",
+  "match": {
+    "brand_patterns": [
+      "sber"
+    ],
+    "model_patterns": [
+      "at30a6"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "ru.sberdevices.starlauncher",
+  "notes": "Sber Salute TV 43\" (CVTE board TP.T962D4.PC756, Amlogic T962D4 \"t5w\", codename at30a6, panel LE43VA, 2 GB RAM, 8 GB eMMC), Russia\nStarOS (Salute TV) 1.101.84-B28350 on Android 13, build TP1A.220905.004.A2 (2026-02-15), user/release-keys\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sber-salute-tv-at30a6/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sber-salute-tv-at30a6/debloat.txt ru.sberdevices.starlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: ru.sberdevices.starlauncher (pass STOCK_LAUNCHER=ru.sberdevices.starlauncher to the install\nscript). Developer options are locked on this firmware; how ADB was turned on is in README.md.\n\nSber's platform service (ru.sberdevices.services, system uid) reinstalls its \"mandatory\" apps after every\nuninstall, usually at the next boot: parental control, SberPrime, beta, SberPlay, surveys, kids room, its\nYouTube and smart home all came back. Disabled, they stay put. Do not uninstall anything here.\nThe platform service itself cannot be disabled (ru.sberdevices.services.core re-enables it within a\nsecond) and it hosts the Salute voice assistant. Leave it and ru.sberdevices.assistant alone.\n\nKeep: ru.sberdevices.tvinputs (HDMI/AV playback, it also answers the launcher's Inputs menu),\nru.sberdevices.app.starkeyboard (the only IME), ru.sberdevices.webview (WebView provider),\nru.sberdevices.systemui, com.android.systemui (Sber build), ru.sberdevices.SberDevicesServiceSystem,\nru.sberdevices.location.provider, ru.sberdevices.app.setup, ru.sberdevices.settings, com.sberbank.settings,\nthe ru.sberdevices.* overlays and resources, every com.droidlogic.* package and every com.cvte.* package\n(factory and TV API apps: do not open them, see README).\nSber content apps and preloads",
+  "packages": [
+    {
+      "package": "ru.sberdevices.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Zvuk music; its ~100 MB update stays in /data while disabled",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starlivetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "StarLiveTv, Sber's online channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.startube",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sber's own \"YouTube\" wrapper; installed itself after a reboot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Видео\" catalogue",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.sberplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SberPlay games",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.subscriptions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SberPrime subscriptions",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starkidsroom.prod",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Детская комната\" (kids room); installed itself after a reboot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.parentcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "parental control",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starprofile",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "user profiles; the voice assistant still worked without it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.smarthome.promo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "smart home promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.salute.star",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Умный дом\" smart home app, ~45 MB resident; installed itself after a reboot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starbrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Salute browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starmarket",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sber app catalogue; re-enable to install apps or apps.sber.ru/my APKs from it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Настройка провайдеров\", TV provider setup for Sber's channel guide; HDMI unaffected",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starscreensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "~220 MB of cached artwork",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.survey",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sber background services",
+      "reason": "surveys",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.openbeta",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sber background services",
+      "reason": "beta programme",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.bugreporter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sber background services",
+      "reason": "StarBugReporter",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starcleaner",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sber background services",
+      "reason": "StarCleaner, the \"Очистка памяти\" screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.rcfupdater",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sber background services",
+      "reason": "remote control firmware updater; the paired remote keeps working",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "ru.sberdevices.gamepad.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sber background services",
+      "reason": "gamepad service stub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.huaweicast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "reason": "Huawei Cast Plus",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.maxhub.screenshare.server.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "reason": "MHshare",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.screenshare.platform",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "reason": "ScreenShare platform for MHshare",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.dssshare.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "reason": "DLNA renderer (Jetty on a random port); a normal app, gone for good once removed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.sberdevices.starlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "reason": "Screen sharing receivers (Chromecast is not part of this firmware)",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sber-salute-tv-at30a6/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

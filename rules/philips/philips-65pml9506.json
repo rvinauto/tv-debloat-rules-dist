@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "id": "philips-65pml9506",
+  "brand": "philips",
+  "title": "Philips 65PML9506/12 (TP Vision, board PH1M_EA_9970A, MediaTek), Spain",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "65pml9506"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Philips 65PML9506/12 (TP Vision, board PH1M_EA_9970A, MediaTek), Spain\nAndroid TV 11 (API 30), build RTT2.211108.001, 2.8 GB RAM, UI 1920x1080 at 320 dpi, Wi-Fi.\nFingerprint: Philips/PH1M_EA_9970A/PH1M_EA_9970A:11/RTT2.211108.001/21029:user/release-keys\n\nSame board and firmware as examples/philips-50pus8517: its quirks apply (read them there), notably\ndo NOT disable org.droidtv.eum or org.droidtv.aurora (org.droidtv.xtv retries forever without them).\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-65pml9506/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-65pml9506/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKept on purpose (owner's choice): Netflix, Prime Video, Disney+, Apple TV, Spotify, Stremio,\nMoonlight, YouTube, voice assistant (katniss), Chromecast (mediashell), Alexa, ipcontrol and DLNA.\nLeft alone because their function could not be confirmed: com.phorus.playfi.*, dropboxprovider,\nfastip, csm, sam, icp, cdasettings, org.droidtv.m7opapp.\nLive TV app: org.droidtv.playtv\nBatch 1: TP Vision telemetry",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"DAC\" analytics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "metrics collector inside the candeebug process",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.usagelogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot stats, keypress counts, panel telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.tv.frameworklogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "reboot reasons handed to the Philips logger",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Market Feedback Agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner referrer / attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "first-setup leftover",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "org.droidtv.nettvrecommender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "\"Top Picks\" promotion row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "its backend",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettv.market",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "app storefront",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp1814",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "ARTE",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4546",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "MEGOGO",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4655",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "Deezer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp4932",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "Free Games by PlayWorks",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapp20004410",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "Couchplay Games",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.demome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotion, NetTV store and preloaded web apps",
+      "reason": "retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.sss.authbridge",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "set-up-from-phone helper",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "Calendar sync, no calendar app",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "Batch 3: Google leftovers and preloaded apps not used",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.whalelive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "WhaleLive ad-supported FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.boosteroidtv.streaming",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "Boosteroid cloud gaming",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: Google leftovers and preloaded apps not used",
+      "reason": "Rakuten TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapps",
+      "action": "disable",
+      "risk": "safe",
+      "group": "(Toon Goggles and others) and Play Protect popped up for each one it blocked.",
+      "reason": "(Toon Goggles and others) and Play Protect popped up for each one it blocked.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-65pml9506/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

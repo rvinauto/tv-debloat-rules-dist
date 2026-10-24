@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "id": "tcl-43s5400a",
+  "brand": "tcl",
+  "title": "TCL 43S5400A (43\" FHD, S5400A series), Indonesia unit: device C06, product C06_2K_GB, model \"Smart TV\".",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "43s5400a"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 43S5400A (43\" FHD, S5400A series), Indonesia unit: device C06, product C06_2K_GB, model \"Smart TV\".\nAndroid TV 11 (SDK 30), build AR2101 / AR21, TCL software V8-T221T05-LF1V320, security patch 2025-03-05.\nMediaTek MT9221 (ro.board.platform mt5867), 4x Cortex-A55, about 1 GB RAM (low_ram=true).\n43\" variant of the C06_2K_GB platform (see also tcl-40s5400a and tcl-32s5400a).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-43s5400a/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-43s5400a/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the restore.sh / build-and-install.sh default).\nLive TV app: com.tcl.tv (also handles HDMI inputs via VIEW intent).\nInputs: com.tcl.tvinput (2x HDMI, AV, tuner).\n\nApplied on 2026-10-21 with verification screenshots after each batch:\n- CleanYourTV launcher boots as default Home screen.\n- YouTube, Vidio, Jellyfin, and Netflix open and play cleanly.\n- HDMI 1, HDMI 2, AV, and Live TV switch properly via launcher's Inputs menu.\n- Free RAM increased from ~100 MB to ~328 MB.\n\nKnown quirks on this firmware:\n- Stock tvlauncher declares HOME priority 2, so cmd package set-home-activity alone does not\ntake Home while it is enabled. Disabling it (as build-and-install.sh does) is required.\n- com.tcl.ttvs is the firmware updater, not text-to-speech. Kept for OTA updates.\n- com.tcl.usercenter is re-enabled by the system at boot (remains idle).\n- Photo screensaver (com.google.android.backdrop) uses ~105 MB RAM. Switch to ClockDream before disabling:\ntools/tv.py 'settings put secure screensaver_components com.gathin.tvhome/.ClockDream'\n\nDO NOT DISABLE on this TV (vital system services):\ncom.tcl.tv                           # Live TV app, plays HDMI, source picker on Input key\ncom.tcl.tvinput                      # TV input services for HDMI, AV and tuner\ncom.tcl.ttvs                         # TCL firmware update service (kept for OTA updates)\ncom.tcl.system.server                # remote-key plumbing\ncom.tcl.tcl_bt_rcu_service           # Bluetooth remote service\ncom.tcl.autopair                     # Bluetooth remote auto-pairing\ncom.tcl.settings                     # picture & sound settings\ncom.tcl.suspension                   # source panel / Quick Panel\ncom.tcl.keyhelp                      # virtual keys\ncom.android.vending                  # Google Play Store\ncom.google.android.gms               # Google Play Services\ncom.google.android.gsf               # Google Services Framework\ncom.google.android.apps.mediashell   # Chromecast built-in\nTCL account, promos and content",
+  "packages": [
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account, re-enabled by system at boot (idle)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TGuard background cleaner",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "promo rows on stock home",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL video portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner auto-installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.audioplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "stock audio player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.imageplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "stock image player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "data migration utility",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL promo app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL push messages & promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "YouTube Music stub",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras & Assistant",
+      "reason": "sponsored/recommended rows (~20 MB RAM)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras & Assistant",
+      "reason": "Google Assistant (~52 MB RAM, mic button)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras & Assistant",
+      "reason": "Google extras & Assistant",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizard (safe to disable after initial TV setup)",
+      "reason": "Setup wizard (safe to disable after initial TV setup)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock screensaver (backdrop eats ~105 MB RAM; replace with ClockDream)",
+      "reason": "Stock screensaver (backdrop eats ~105 MB RAM; replace with ClockDream)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-43s5400a/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

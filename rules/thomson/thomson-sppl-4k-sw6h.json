@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "thomson-sppl-4k-sw6h",
+  "brand": "thomson",
+  "title": "Thomson SPPL 4K Google TV (ro.product.model \"SPPL 4K GSmartTV FF\", product SW6H_Thomson, device SW6H,",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "thomson"
+    ],
+    "model_patterns": [
+      "sw6h"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Thomson SPPL 4K Google TV (ro.product.model \"SPPL 4K GSmartTV FF\", product SW6H_Thomson, device SW6H,\nSkyworth-built, MediaTek, 32-bit ARM), Android TV 14 (API 34), build UTT1.250517.001, ~1.9 GB RAM.\nSame board and build as skyworth-sw-22sa. 4K panel drawn at 1920x1080 (wm size override from the factory).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/thomson-sppl-4k-sw6h/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/thomson-sppl-4k-sw6h/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock Home: com.google.android.apps.tv.launcherx; setupwraith's RecoveryActivity also claims HOME, and the\nfirst build-and-install.sh run rolled back because RecoveryActivity took Home. The saved Wi-Fi network\nbelonged to setupwraith: forgotten + re-joined in Settings (then cname=android.uid.system), setupwraith\ndisabled, build-and-install.sh run again: mFocusedApp = com.gathin.tvhome/.MainActivity.\nLive TV app: com.smartdevice.livetv; launcher Inputs menu lists HDMI 1-3, AV, Live TV and switches through it.\nRemote: Input, YouTube, Netflix, Prime Video, mic all work without launcherx. The Settings/dashboard\nbutton sends keycode 83 (KEYCODE_NOTIFICATION, scancode 240 KEY_UNKNOWN, HID 0c009f), which only launcherx\nanswered: settings_key_keycodes [83] in config.json here + HOME_KEY_SERVICE=1, checked with the real remote.\nlauncher/ config: config.json here (live_tv_package com.smartdevice.livetv, its tile hidden, Settings key).\nSideloading and a third-party HOME app install fine (pm install -r).\n\nApplied on 2026-10-21 in batches with a screenshot after each; Live TV, HDMI, YouTube and Hotstar checked.\nAfter a reboot `pm list packages -d` matched exactly: this firmware re-enables nothing at boot.\n\nDisabled from the factory, so not listed (restore.sh would turn them ON): com.netflix.ninja.\n\nOff on this unit by the owner's choice but left out of the list, since keyboards stay enabled:\norg.liskovsoft.androidtv.rukeyboard (a Russian soft keyboard, not the active IME; Gboard is).\n\nKept on purpose: com.smartdevice.livetv + overlay_SANLUX, com.mediatek.tvinput, com.mediatek.tv.service,\ncom.mediatek.android.tv.globalkeyoverlay (Live TV, HDMI, hot keys), com.smartdevice.dailyshortcut (quick\nmenu), com.smartdevice.duplebluetooth + bleconnectservice (BLE remote pairing), com.smartdevice.factory and\nmediatek.factorymenu.ui (never launched), com.tianci.localmedia, Play Store + Play Services, keyboard,\nkatniss + tv.assistant + tv.remote.service (voice, by choice), mediashell (Chromecast, by choice),\ncom.smartdevice.dtv.icast + com.mediatek.androidbox (Miracast/DLNA, by choice), Prime Video and YouTube\nMusic (by choice).\nTelemetry and after-sale push",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.aftersale",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot + network receivers, can install APKs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.dailymanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Daily Manage\" boot service, no documented purpose",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "Coocaa recommendation rows; bundles Sensors Data analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "partner config that injects rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.epopplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "ePop shop demo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "shop demo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.demonow.lightining",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "\"Demo Now\" retail mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "retail legal-disclaimer dialogs",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.smartdevice.myapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "Skyworth \"My App\" shortcut page",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.setupwraith",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth content, ads, demos and preloads",
+      "reason": "Skyworth first-run/privacy wizard; setup is finished",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "Google TV (Play Movies)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "Off by owner's choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "stock Google TV home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "RecoveryActivity otherwise steals Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/thomson-sppl-4k-sw6h/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

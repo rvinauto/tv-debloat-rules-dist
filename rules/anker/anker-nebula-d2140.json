@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "id": "anker-nebula-d2140",
+  "brand": "anker",
+  "title": "Anker Nebula Cosmos projector, model D2140 (device D2140-Cosmos, SDMC board, Amlogic/droidlogic,",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "anker"
+    ],
+    "model_patterns": [
+      "d2140"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Anker Nebula Cosmos projector, model D2140 (device D2140-Cosmos, SDMC board, Amlogic/droidlogic,\narmeabi-v7a, 2 GB RAM, 4 GB /data), Android TV 9 (SDK 28), build PI.20240530. Vietnam.\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/anker-nebula-d2140/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/anker-nebula-d2140/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED for user 0, never uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (HOME priority 2, ~190 MB RAM). Only other HOME claimant is\ncom.android.tv.settings/.system.FallbackHome. Default IME is already Gboard.\nRemote global keys (keycodes 2000+) go to com.sdmc.GlobalKey (dumpsys window policy, mKeyMapping).\nHDMI 1 and 2 come from com.droidlogic.tvinput, so the launcher's Inputs pill lists them.\n/data was 90% full (411 MB free) out of the box; `pm trim-caches 999G` frees the app caches.\nNetflix: Play Store says \"not compatible\". The set has no ro.nrdp.* properties, so it is not Netflix\ncertified; the TV app (com.netflix.ninja) does not run. A certified stick on HDMI is the way round it.\n\nDO NOT DISABLE on this model (projector hardware, inputs, remote):\ncom.droidlogic.*                      # SoC services, HDMI inputs, Live TV, subtitles, OTA\ncom.droidlogic.keystone               # keystone (picture shape) correction\ncom.sdmc.GlobalKey                    # remote global keys\ncom.sdmc.bluetoothconnect             # Bluetooth remote pairing wizard\ncom.sdmc.bluetoothspeaker             # Bluetooth speaker mode\ncom.sdmc.oemprovisionservice          # OEM provisioning\ncom.oceanwing.receiver                # remote control, Nebula IME, screen control\ncom.oceanwing.nebulalinker            # Nebula Connect phone app, device info, update dispatch\ncom.oceanwing.ota                     # firmware updates (kept by owner's choice)\ncom.google.android.tungsten.setupwraith  # owns the Wi-Fi saved during setup\nLeft alone, purpose unclear: com.sdmc.leakbackcustomer, com.sdmc.cleardataservice\n--- Telemetry and feedback ---",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Content and ad services ---",
+      "reason": "--- Content and ad services ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sdmc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Preloaded apps ---",
+      "reason": "--- Preloaded apps ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Preloaded apps ---",
+      "reason": "found installed as a user app; may not be on every unit",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zhixin.atvchannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Preloaded apps ---",
+      "reason": "channel app, found installed as a user app (~200 MB with its data)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "Ambient Mode screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "text-to-speech; re-enable if the Assistant stops speaking answers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.oceanwing.m1testsample",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "Nebula factory test app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "recommendation rows for the stock home",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/anker-nebula-d2140/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

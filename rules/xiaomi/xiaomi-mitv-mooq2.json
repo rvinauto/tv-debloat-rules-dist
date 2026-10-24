@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-mooq2",
+  "brand": "xiaomi",
+  "title": "Xiaomi Mi TV P1 43\" (MiTV-MOOQ2, codename croods, MediaTek), Android TV 11, firmware RTM4.220307.164.8238",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "mooq2"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi Mi TV P1 43\" (MiTV-MOOQ2, codename croods, MediaTek), Android TV 11, firmware RTM4.220307.164.8238\nLatin America retail unit (L43M6), 1.7 GB RAM, Android low-RAM mode on. Same croods chassis as MiTV-MOOQ0.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-mooq2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-mooq2/debloat.txt\nEverything is DISABLED for user 0, not uninstalled. Comment out any line you want to keep.\nProvisional: applied in one session and reboot-checked; every package stayed disabled after reboot.\n\nStock launcher: com.google.android.tvlauncher. It is NOT in this list: launcher/build-and-install.sh\ndisables it after com.gathin.tvhome is installed and verified as Home (default STOCK_LAUNCHER detection works).\nOnly com.android.tv.settings and the stock launcher claim HOME on this firmware; setupwraith does not, so\nit stays enabled and the saved Wi-Fi network is untouched.\n\nKept deliberately, checked with `dumpsys package`:\ncom.mitv.overseaservice                        hosts netflixService (the Netflix key), as on MOSR4\ncom.xiaomi.android.tvsetup.partnercustomizer   holds BleRcActivity, the Bluetooth remote pairing\ncom.xiaomi.tvqs.overseas                       TV quick-settings receivers\ncom.mediatek.tvinput, com.mediatek.wwtv.tvcenter, mitv.service, com.mediatek.tv.service   HDMI 1-3, AV, tuner\ncom.xiaomi.mitv.updateservice                  firmware updates, kept by owner's choice\n\nBefore disabling com.mitv.dream and com.google.android.backdrop, point the screensaver elsewhere:\nsettings put secure screensaver_components com.gathin.tvhome/.ClockDream\n\nTested after the debloat: launcher Inputs menu lists HDMI 1-3, AV and Live TV; Netflix, YouTube, Prime Video\nand Max launch; Chromecast, Mi Cast/Miracast and the Bluetooth remote still work.\n---- Xiaomi and Google telemetry ----",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash / feedback reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "Mi recommendation channels",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "Xiaomi TV+ FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "Xiaomi promo web content",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.amelie",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "partner app auto-install config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- Xiaomi content, ads and recommendation rows ----",
+      "reason": "stock launcher recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Background services not needed ----",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.amazon.alexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Background services not needed ----",
+      "reason": "Alexa bridge",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Background services not needed ----",
+      "reason": "Mi Gallery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.dream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Background services not needed ----",
+      "reason": "Xiaomi screensaver, replaced by the Clock dream",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Background services not needed ----",
+      "reason": "Google ambient screensaver, replaced by the Clock dream",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvlock",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "Xiaomi TV lock / parental password",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomo.tv.milegal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "Xiaomi legal / privacy screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- Preloaded apps ----",
+      "reason": "vendor disclaimer screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.mediatek.wwtv.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "vendor web view shell",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "retail store demo loop",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "Mi Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Preloaded apps ----",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "mediatek.factorymenu.ui",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- Preloaded apps ----",
+      "reason": "factory menu: disabled, never launched",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- Optional, by owner's choice ----",
+      "reason": "voice assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Optional, by owner's choice ----",
+      "reason": "---- Optional, by owner's choice ----",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Optional, by owner's choice ----",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.mediaexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Optional, by owner's choice ----",
+      "reason": "USB media player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- Optional, by owner's choice ----",
+      "reason": "Mi video player",
+      "uad": "Advanced",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-mooq2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

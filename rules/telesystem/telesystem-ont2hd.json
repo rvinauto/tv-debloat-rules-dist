@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "id": "telesystem-ont2hd",
+  "brand": "telesystem",
+  "title": "Tele System TS ON T2/HD (ONT2HD), Android TV 11 (SDK 30), firmware 20231013:user/release-keys",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "telesystem"
+    ],
+    "model_patterns": [
+      "ont2hd"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Tele System TS ON T2/HD (ONT2HD), Android TV 11 (SDK 30), firmware 20231013:user/release-keys\nSDMC ODM platform with Amlogic/droidlogic SoC, Italy/Europe DVB-T2 set-top box / TV.\n\nLive TV app: com.sdmc.tv (owns the digital tuner and leanback activity; set as live_tv_package).\nStock launcher: com.google.android.tvlauncher (classic Android TV home, disabled by launcher/build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/telesystem-ont2hd/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/telesystem-ont2hd/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes on this device:\n- Connect over ADB: port 5555 is open when USB debugging is enabled in Developer Options.\n- The replacement launcher from launcher/ installs cleanly and takes Home without issues.\n- Live TV: com.sdmc.tv runs tuner playback and provides leanback launcher activity.\n- DO NOT DISABLE:\ncom.sdmc.tv                  Live TV tuner app\ncom.droidlogic.tvinput       HDMI and tuner input framework\ncom.sdmc.bluetoothconnect    Bluetooth remote pairing\ncom.sdmc.GlobalKey           Remote control hotkey handler\ncom.droidlogic.updater       Firmware OTA updates\nSDMC vendor bloat and diagnostics",
+  "packages": [
+    {
+      "package": "com.sdmc.facTest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SDMC factory test menu",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sdmc.leakbackcustomer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SDMC partner customer service (purpose unclear; comment out if anything breaks)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sdmc.hwinfo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SDMC hardware info and diagnostics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sdmc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Voice assistant / search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Stock recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV / Android TV bloat",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Google partner promotions",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Crash reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV / Android TV bloat",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack accessibility"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/telesystem-ont2hd/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

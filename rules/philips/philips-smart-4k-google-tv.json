@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "id": "philips-smart-4k-google-tv",
+  "brand": "philips",
+  "title": "Philips Smart 4K TV (India), Google TV 14, firmware UKN5.251016.083",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Philips Smart 4K TV (India), Google TV 14, firmware UKN5.251016.083\nBuilt by Skyworth (ro.product.manufacturer=skyworth, ro.product.brand=Philips,\nro.product.model=\"Philips Smart 4K TV\", device eleonas), MediaTek SoC, about 1.8 GB RAM.\nSkyworth's own packages use the com.smartdevice, com.sky and com.tianci prefixes.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-smart-4k-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-smart-4k-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it as STOCK_LAUNCHER / to restore.sh).\nLive TV app: com.cltv.hybrid (iWedia CanaliTV); set it as live_tv_package and in hidden_apps in\nlauncher config.xml. com.mediatek.tv.oneworld.tvcenter is already disabled from the factory.\nAlso disabled from the factory, so not listed (restore.sh would turn them ON): com.sky.market\n(Skyworth store), com.mediatek.opapp, com.mediatek.tv.retaildemo, the ATSC and ISDB tuners.\n\nQuirks on this firmware, all checked on the TV:\n- USB debugging alone does NOT open port 5555, not even after a restart. Pair once with Wireless\ndebugging (`dns-sd -B _adb-tls-pairing._tcp` or `adb mdns services` shows the random ports,\nthen `adb pair <ip>:<port> <code>`, `adb connect <ip>:<connect port>`), then `adb tcpip 5555`\nand tools/tv.py works.\n- Assistant/Gemini is com.google.android.katniss. In-app speech recognition is a separate\nservice in com.google.android.tts, which stays enabled; with katniss off the remote's mic\nbutton does nothing.\n- SonyLIV and ZEE5 ship as archived stubs (ReactivateActivity): they reinstall from Play on\nfirst launch.\n- Tested on the day of the debloat, not yet lived with for days.\nSkyworth recommendations, telemetry and preloads",
+  "packages": [
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "content/recommendation rows (coolita channels)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.aftersale",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"after-sale\" tracker: boot + network receivers, location",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.recordactivation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "records first activation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.dailymanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background service started at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.myapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Skyworth \"My Apps\" screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner config that injects rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Casting (by choice; keep if you cast from your phone or mirror an iPhone/PC)",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mediatek.dialservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting (by choice; keep if you cast from your phone or mirror an iPhone/PC)",
+      "reason": "DIAL, phone apps' \"cast to TV\" discovery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.dtv.icast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Casting (by choice; keep if you cast from your phone or mirror an iPhone/PC)",
+      "reason": "Skyworth/Coocaa AirPlay + Miracast; bundles Sensors Data analytics",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google Assistant / Gemini (by choice)",
+      "reason": "Google Assistant / Gemini (by choice)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.hotwordenrollment.okgoogle",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google Assistant / Gemini (by choice)",
+      "reason": "Google Assistant / Gemini (by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.hotwordenrollment.xgoogle",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google Assistant / Gemini (by choice)",
+      "reason": "Google Assistant / Gemini (by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-smart-4k-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "compac-atv-r2",
+  "brand": "compac",
+  "title": "Compac ATV R2 (manufacturer SCBC, device R2, Realtek), Android TV 9 (API 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "compac"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "Compac ATV R2 (manufacturer SCBC, device R2, Realtek), Android TV 9 (API 28),\nfirmware PTT1.201001.001, 2 GB RAM. Same SCBC platform as examples/sanyo-atv-r2.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/compac-atv-r2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/compac-atv-r2/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher is com.google.android.tvlauncher. It is not in this list: disable it only once a\nreplacement Home is installed (launcher/build-and-install.sh does that in the right order).\n\nNotes from this TV:\n- Kept in use: Google Assistant (katniss), FastCast Miracast (com.creative.fastscreen.tv),\nfirmware updates (com.apps.ota, com.apps.authota), Spotify, YouTube Music, Play Movies, Play Games.\n- Not touched, unclear: com.apps.esticker (ShowService overlay, likely store-demo stickers) and\nio.mimi.tvapp (Mimi hearing-profile sound app, bundles Mixpanel).\n- Leave alone, as on the SANYO: com.realtek.tv.* (inputs, tuner), com.apps.smartkey / virtualkey /\nbluetoothremote / com.functions.autopair (remote), com.apps.puresound, com.apps.usbmediaplayer.\n- The saved Wi-Fi network belongs to android.uid.system, not setupwraith.\nSCBC / Google telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.apps.function.gdpr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SCBC data-consent agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vewd app-store/HbbTV core service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.channels",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "\"S-Channel\" content rows on Home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.eshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "E-SHOW in-store demo / promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "sponsored and recommendation rows on the stock Home",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Content rows, promos and auto-installs",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.scbc.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.clear",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "\"TV Booster\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "Background services and duplicates",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "TV as a Wi-Fi hotspot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services and duplicates",
+      "reason": "Background services and duplicates",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.networkspeed",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "speed-test app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.timeclock",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "WorldClock",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "Chromecast built-in; re-enable to cast from phones",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/compac-atv-r2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

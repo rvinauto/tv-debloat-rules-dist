@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "id": "oneplus-tv-cebu",
+  "brand": "oneplus",
+  "title": "OnePlus TV (model C00, codename Cebu), Android TV 10 (API 29), firmware QTG3.201207.001",
+  "android": "Android TV 10",
+  "match": {
+    "brand_patterns": [
+      "oneplus"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "OnePlus TV (model C00, codename Cebu), Android TV 10 (API 29), firmware QTG3.201207.001\nMediaTek m7632, armeabi-v7a, UI at 1920x1080, ~1.8 GB RAM, India. Classic Android TV home, not Google TV.\nStock launcher: com.google.android.tvlauncher. Live TV app: com.heytap.tv.livetv.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/oneplus-tv-cebu/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/oneplus-tv-cebu/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKept on purpose: the HDMI/tuner stack (com.mediatek.tvinput, com.mediatek.tv.agent, com.heytap.tv.support,\ncom.mediatek.tvinputservice.arbitratorservice, com.heytap.tvapiservice), Live TV (com.heytap.tv.livetv),\nthe remote service and TV keyboard (com.oneplus.tv.remote), the hot keys (com.mediatek.hotkey.dispatcher,\nwhich handles the Input key), the Netflix key (com.mstar.netflixobserver), Google Assistant\n(com.google.android.katniss), firmware updates (com.oneplus.tv.systemupgrade, com.heytap.oprcupgradeservice),\nPlay Store and Play Services. Left alone and never launched: the factory apps (com.heytap.optvfactory,\ncom.oneplus.tv.factory). setupwraith does not claim HOME here.\nWith launcher/ as Home (live_tv_package com.heytap.tv.livetv), Home, Input, Netflix, YouTube, Prime Video\nand the Assistant mic on the remote work without InputKeyService or HomeKeyService.\nUSB debugging alone opens port 5555, and it stays open across reboots until switched off.\nReboot-checked: nothing came back enabled. AdGuard Private DNS validates.\nTelemetry and diagnostics",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Bug report sender",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.mcs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HeyTap push messaging, with nearx tracking",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.remotediagnosing",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HeyTap remote diagnosis",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "net.oneplus.odm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "OnePlus device manager (analytics)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "net.oneplus.odm.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "its data provider",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.oneplus.tv.launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "OxygenPlay content page",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "Stock home recommendation rows; also its notification count",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.OnePlus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "Play auto-installs config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coloros.relax.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "\"Relax\" ambient sounds app, with nearx tracking",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.imagewall",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "Image wall",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.oneplus.tv.userguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "Built-in user guide",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.assistant.oneplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OnePlus content, recommendation rows, auto-installs and preloaded extras",
+      "reason": "OnePlus TV Manager (cleaner, bandwidth alerts)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.heytap.optvmiracastservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Miracast",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.heytap.ars.sink",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "OnePlus \"TV Mirror\" screen sharing",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.olink",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "OnePlus Connect phone link",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "oneplus.smarthome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "OnePlus smart home control",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "net.oneplus.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Weather",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.filebrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "File manager (USB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Gallery (USB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.musicplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Music player (USB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Video player (USB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.camera",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Camera app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.heytap.tv.btspeaker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Casting, mirroring and OnePlus extras (off by choice)",
+      "reason": "Bluetooth speaker mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.airtel.xstream.tvapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Airtel Xstream Play",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Spotify",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.discoveryplus.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Discovery+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "video.laminar.tv.chaupal.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Chaupal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jio.media.stb.ondemand",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "JioCinema / JioTV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jio.web.androidtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "JioPages browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming and preloaded apps (off by choice)",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/oneplus-tv-cebu/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

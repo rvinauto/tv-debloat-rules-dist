@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "id": "formovie-mprojm05",
+  "brand": "formovie",
+  "title": "Formovie / Fengmi projector MiProjM05 (device eva, Amlogic/droidlogic), Android TV 9 (SDK 28), build PQ3B.190705.003.2102",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "formovie"
+    ],
+    "model_patterns": [
+      "mprojm05"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Formovie / Fengmi projector MiProjM05 (device eva, Amlogic/droidlogic), Android TV 9 (SDK 28), build PQ3B.190705.003.2102\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/formovie-mprojm05/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/formovie-mprojm05/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED for user 0, never uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. Only other HOME claimant is com.android.tv.settings/.system.FallbackHome.\nSaved Wi-Fi belongs to android.uid.system and com.google.uid.shared, not setupwraith, which does not claim HOME here.\nThe firmware re-enables com.google.android.leanbacklauncher at every boot; it claims no HOME, so it is left alone.\nHDMI comes from com.droidlogic.tvinput, so the launcher's Inputs pill lists the one HDMI port. No tuner:\nlive_tv_package can be left empty.\nKept: com.fengmi.projector.imaging (focus, keystone, auto keystone; auto keystone still works with Camera2 off),\ncom.fengmi.fmsettings, com.fengmi.platform, com.formovie.fmutils, com.formovie.gsettings (projector settings,\nvoice key, USB), com.formovie.launchboard (Formovie app drawer), droidlogic services, Live Channels, Play Store and Services.\nRemote (\"Xiaomi RC\", Vendor_2717_Product_32b9.kl): the gear button sends KEY_APPSELECT (580), mapped to\nKEYCODE_ALL_APPS (284), not KEY_TAPE (384). With tvlauncher disabled it does nothing; settings_key_keycodes 284 with\nHOME_KEY_SERVICE=1 makes it open Settings, but that helper stops a held Volume Up from ramping (one step per press).\nFirmware updates come through TvSettings; no separate updater package.\nTelemetry and partner auto-installs",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google data meter / VPN client",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendations and content",
+      "reason": "Recommendations and content",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendations and content",
+      "reason": "Recommendations and content",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations and content",
+      "reason": "Ambient screensaver, off by choice",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "cn.formovie.fengos.usermanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations and content",
+      "reason": "Recommendations and content",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.espn.score_center",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cbsnews.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ted.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nousguide.android.rbtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.camera2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused system apps",
+      "reason": "the webcam is driven by Formovie's own cameraservice_fm, not this app",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Unused system apps",
+      "reason": "Unused system apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.fengmi.testsuite",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused system apps",
+      "reason": "factory test suite: disabled, never launched",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher (only after the new launcher is Home)",
+      "reason": "Stock launcher (only after the new launcher is Home)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/formovie-mprojm05/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

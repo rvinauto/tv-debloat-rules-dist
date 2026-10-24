@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "anker-nebula-d2426",
+  "brand": "anker",
+  "title": "Anker Nebula projector, model D2426 (build name D2426_CapsuleIIIPro, device baekdu, SDMC board,",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "anker"
+    ],
+    "model_patterns": [
+      "d2426"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Anker Nebula projector, model D2426 (build name D2426_CapsuleIIIPro, device baekdu, SDMC board,\nMediaTek m7632, ~1.7 GB RAM), Android TV 14 (SDK 34), build UKNV.260603.001.\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/anker-nebula-d2426/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/anker-nebula-d2426/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED for user 0, never uninstalled. Comment out any line you want to keep.\n\nRe-enabled by the firmware at every boot (checked with one reboot on 2026-10-22): com.cltv.fast and\ncom.google.android.katniss come back as enabled=1. Disabling them again only lasts until the next boot.\nWith the stock launcher gone, the Free TV rows have nowhere to show anyway.\n\nStock launcher: com.google.android.tvlauncher (classic Android TV home, HOME priority 2). The setup wizard\n(setupwraith) does NOT claim HOME on this build, but it owns the Wi-Fi network saved during first setup,\nso it is deliberately not in this list. Wireless debugging is on from the factory and port 5555 was open.\nRemote global keys go to com.mediatek.tv.service, com.zhixin.nebulasmart, com.sdmc.btservice and\ncom.sdmc.projector (dumpsys window policy), none to the stock launcher.\nLauncher config: config.json in this folder (tools/theme.sh examples/anker-nebula-d2426). The installed Netflix\nis the phone app (com.netflix.mediaclient, no TV banner), so it was added to Home through the App library.\nHDMI 1 opens in com.google.android.tv.inputplayer from the Inputs menu; no tuner, so live_tv_package is \"\".\n\nDO NOT DISABLE on this model (projector hardware, inputs, remote):\ncom.mediatek.tvinput                  # HDMI input service\ncom.mediatek.tv.service               # TV service, global remote keys, Netflix key\ncom.google.android.tv.inputplayer     # HDMI passthrough player\ncom.oceanwing.receiver                # remote control, Nebula IME, accessibility, screen control\ncom.zhixin.nebulasmart                # remote events (GLOBAL_BUTTON), accessibility service\ncom.sdmc.btservice                    # Bluetooth remote auto-pairing, speaker\ncom.sdmc.projector                    # projector picture settings, brightness adaptation keys\ncom.sdmc.service                      # SDMC service manager, picture, USB OTA\ncom.oceanwing.nebulalinker            # device info, custom shutdown, eMMC, firmware update dispatch\ncom.zhixin.apphelper                  # McuHelper: package install helper, HTML viewer (purpose partly unclear)\ncom.google.android.tungsten.setupwraith  # owns the Wi-Fi saved during setup\nFactory tools left alone and never opened: com.nebula.factorytest, mediatek.factorymenu.ui, com.sdmc.keyburn\n--- Telemetry and feedback ---",
+  "packages": [
+    {
+      "package": "com.zhixin.logservice.nebula",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Nebula log collector/uploader (UPLOAD_LOG, runs at boot)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "feedback consent prompt",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "federated learning",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "on-device ad personalisation",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.cltv.fast",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "Anoki/iWedia \"Free TV\" FAST channels (ad-supported TV input, ACR)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sdmc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content and ad services ---",
+      "reason": "RetailDisplay store demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "Ambient Mode screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "Google Assistant / voice search (mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "stock Android TV home: sponsored banner, \"Free TV\" and recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "recommendation rows for the stock home",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mediatek.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "settings put secure screensaver_components com.android.dreams.basic/.Colors",
+      "reason": "partner rows/config for the stock home",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/anker-nebula-d2426/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

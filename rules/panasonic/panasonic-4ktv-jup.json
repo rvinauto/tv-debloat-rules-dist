@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "id": "panasonic-4ktv-jup",
+  "brand": "panasonic",
+  "title": "Panasonic 4KTV-JUP (Jupiter_PA, MediaTek), Android TV 11 (API 30), firmware 4.501 / RTM2.210929.137",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "panasonic"
+    ],
+    "model_patterns": [
+      "4ktv"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Panasonic 4KTV-JUP (Jupiter_PA, MediaTek), Android TV 11 (API 30), firmware 4.501 / RTM2.210929.137\narmeabi-v7a, 1920x1080, ~1.7 GB RAM (about 50 MB free at idle before debloating).\nThis is a Panasonic/MediaTek Google TV build: there is no PatchWall or other OEM content stack.\n\nStock launcher:  com.google.android.tvlauncher\nLive TV app:     com.mediatek.wwtv.tvcenter  (Panasonic's TV UI; keep it, the Inputs menu opens it)\nNever disable any com.mediatek.* package: they are the tuner, input and HDMI stack.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/panasonic-4ktv-jup/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/panasonic-4ktv-jup/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStatus: disabled together on one TV on 2026-10-18 and checked with remote-key injection and screenshots\n(launcher, HDMI/AV switching, Live TV). Nothing broke in that testing, but this list had under a day of\nreal use when submitted: treat it as a starting point, and re-enable anything you miss.\n\nThree apps claim HOME here (stock launcher, a third-party launcher, FallbackHome). After\ninstalling launcher/, `cmd package set-home-activity` is needed before the stock one is disabled.\nGoogle telemetry / setup leftovers",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation and content services",
+      "reason": "Recommendation and content services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.wwtv.tvrecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendation and content services",
+      "reason": "Recommendation and content services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendation and content services",
+      "reason": "ambient-mode screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation and content services",
+      "reason": "Recommendation and content services",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.htmlviewer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.backupconfirm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*backup*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "Background services nobody needs on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services nobody needs on a TV",
+      "reason": "setup wizard; re-enable before a factory-style re-setup",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.panasonic.ehelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Panasonic preloads",
+      "reason": "Panasonic preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.panasonic.demomode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Panasonic preloads",
+      "reason": "Panasonic preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.panasonic.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Panasonic preloads",
+      "reason": "Panasonic preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by choice (comment out the ones you use)",
+      "reason": "Streaming apps disabled by choice (comment out the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by choice (comment out the ones you use)",
+      "reason": "Streaming apps disabled by choice (comment out the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by choice (comment out the ones you use)",
+      "reason": "Streaming apps disabled by choice (comment out the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps disabled by choice (comment out the ones you use)",
+      "reason": "Streaming apps disabled by choice (comment out the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/panasonic-4ktv-jup/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "id": "skyworth-swtv-22ae-fhd",
+  "brand": "skyworth",
+  "title": "Skyworth SWTV-22AE-FHD (codename umeda, MediaTek), Google TV / Android 14 (SDK 34),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "skyworth"
+    ],
+    "model_patterns": [
+      "22ae"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Skyworth SWTV-22AE-FHD (codename umeda, MediaTek), Google TV / Android 14 (SDK 34),\nfirmware UKNV.260211.001.\nLive TV app: com.mediatek.wwtv.tvcenter (set it as live_tv_package and hide it in launcher config.xml).\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh and build-and-install.sh:\nSTOCK_LAUNCHER=com.google.android.apps.tv.launcherx launcher/build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/skyworth-swtv-22ae-fhd/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/skyworth-swtv-22ae-fhd/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKeep (TV needs them):\ncom.smartdevice.global.service (handles SkwGlobalKeyReceiver, OneKeyMenuDialog, remote keys)\ncom.skyworth.backligthadjust (backlight control)\ncom.smartdevice.bleconnectservice (SkyAutoPair bluetooth remote pairing)\ncom.mediatek.* (LiveTV, tuners, video player services)\ncom.google.android.katniss (Google Assistant - kept per user choice)\ncom.google.android.apps.mediashell (Chromecast built-in - kept per user choice)\ncom.google.android.inputmethod.latin (Gboard on-screen keyboard)\nSkyworth / Coocaa factory test & store demo apps",
+  "packages": [
+    {
+      "package": "com.coocaa.demonow.lightining",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "mediatek.factorymenu.ui",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.aftersale",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.recordactivation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.dailymanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.dailyshortcut",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.smartdevice.myapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Skyworth telemetry, ads, recommendation rows",
+      "reason": "Skyworth telemetry, ads, recommendation rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google feedback",
+      "reason": "Google feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Must be disabled to free Home and prevent crash loops on Google TV 14!",
+      "reason": "Must be disabled to free Home and prevent crash loops on Google TV 14!",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused apps (user opted out)",
+      "reason": "Preloaded / unused apps (user opted out)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused apps (user opted out)",
+      "reason": "Preloaded / unused apps (user opted out)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/skyworth-swtv-22ae-fhd/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

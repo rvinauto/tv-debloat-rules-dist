@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "id": "chiq-ai-pont",
+  "brand": "chiq",
+  "title": "CHiQ \"AI PONT\" (DVB93CQ, built by Changhong, codename samseong), Android TV 11 (API 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "chiq"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "CHiQ \"AI PONT\" (DVB93CQ, built by Changhong, codename samseong), Android TV 11 (API 30),\nfirmware RTO2.250508.001, 1.3 GB RAM, MStar/MediaTek m7322.\nThe vendor layer is Homwee (com.homwee.*); content recognition and FAST channels come from Anoki\n(tv.anoki.acr.controller, com.cltv.fast). Same platform family as the BenQ, realme and RCA \"AI PONT\" sets.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/chiq-ai-pont/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/chiq-ai-pont/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the scripts' default). Live TV: com.mediatek.wwtv.tvcenter.\n\nKEEP, even though the names look like bloat:\n- com.google.android.leanbacklauncher.partnercustomizer: provides the tvlauncher.widget content provider.\nWithout it com.mediatek.tv.service crash-loops after the next reboot (\"Failed to find provider\ntvlauncher.widget\") and the Input key and other remote hotkeys stop working. Nothing shows up until\nthe TV reboots, so test any change with a reboot.\n- com.homwee.dmt.upgrade (firmware updates), com.homwee.synckey (remote key service),\ncom.mediatek.* (Live TV, inputs, remote pairing), com.homwee.factory.\n\nNotes from this firmware:\n- Live TV reopens the last source; if that was an empty HDMI port it shows a black screen.\n- HDMI and Live TV screenshots come out black (protected video layer).\n- The HbbTV browser (teatro_tv_browser, about 30 MB) is a native vendor process, not a package;\nswitch HbbTV off in the Live TV menu instead.\n- The Wi-Fi pill shows the network name only when Location is on (Android 11).\n- The power button only suspends the TV; restart it now and then (long-press power, Restart).\nTelemetry, ads and recommendation rows",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki automatic content recognition",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cltv.fast",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "FAST channel app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.aipont",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "AI PONT brand portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.homwee",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor apps",
+      "reason": "Vendor apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor apps",
+      "reason": "Vendor apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor apps",
+      "reason": "vendor app updater; the Play Store still updates apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: comment out what you use",
+      "reason": "Google Assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: comment out what you use",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.homwee.multiscreenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: comment out what you use",
+      "reason": "Miracast / AirPlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.screenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: comment out what you use",
+      "reason": "Personal choice: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.alexacontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: comment out what you use",
+      "reason": "Personal choice: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/chiq-ai-pont/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

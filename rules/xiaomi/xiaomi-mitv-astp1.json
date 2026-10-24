@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-astp1",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-ASTP1 (codename maverick; China-market firmware), Android 9 (SDK 28),",
+  "android": "Android 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "astp1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.mitv.tvhome",
+  "notes": "Xiaomi MiTV-ASTP1 (codename maverick; China-market firmware), Android 9 (SDK 28),\nfirmware 2.40.641.0514.cn (HyperOS-era CN build), Amlogic/droidlogic, 1 GB RAM, 720p panel.\nStock launcher: com.mitv.tvhome (HOME activity .MainActivityUserMode). It is not in\nKNOWN_STOCK_LAUNCHERS, so install with: STOCK_LAUNCHER=com.mitv.tvhome launcher/build-and-install.sh\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-astp1/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-astp1/debloat.txt com.mitv.tvhome\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- No Google apps at all. Content comes from CN streaming apps: com.ktcp.video (Tencent\nVideo), com.cibn.tv (Youku's TV build \"Kumiao\"), com.hunantv.license (Mango TV - yes,\nthe app itself is in the \"license\" package), com.newtv.cboxtv (CCTV NewTV),\ncom.xiaodianshi.tv.yst (bilibili). The list below keeps them all except NewTV.\n- Network ADB (port 5555) closes on every reboot; re-enable it in\nSettings -> Account & Security -> ADB debugging after each power cycle.\n- mitv.service is the core MiTV service: do not touch it.\n- com.xiaomi.mitv.settings is the ONLY settings UI: nothing on this firmware answers\nandroid.settings.SETTINGS or WIFI_SETTINGS (the launcher's pills need a fallback for that).\n- Casting (com.xiaomi.mitv.smartshare / com.xiaomi.miplay / com.xiaomi.wfdsinkhelperservice /\ncom.duokan.airkan.tvbox) and the app store are deliberately kept.\nNewer China firmware (MiTV-MFTR0 \"freeguy\", Android 14): input routes, Xiaomi settings intents and app\ndiscovery notes in docs/devices/xiaomi-mitv-mftr0-freeguy.txt.\nXiaomi telemetry / push / cloud control",
+  "packages": [
+    {
+      "package": "com.miui.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.cloudcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.tvpush.tvpushservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.smspush",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ads / promoted content",
+      "reason": "Ads / promoted content",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.shoplugin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "TV shopping channel plugin",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.gitvdemo.video",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "GITV promo demo reel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.duokan.videodaily",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "video daily promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable to check for one",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.gamecenter.sdk.service.mibox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Mi Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Preloaded apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Media Explorer still opens USB photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.screenrecorder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Preloaded apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.smartpanel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "smart home panel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.newtv.cboxtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "CCTV NewTV (owner does not use)",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-astp1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

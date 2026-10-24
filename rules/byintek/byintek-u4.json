@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "byintek-u4",
+  "brand": "byintek",
+  "title": "BYINTEK Love U4, 1080P version (Skyworth board RG_HS352_D1E8_SW_B10, HiSilicon Hi3751V350)",
+  "android": "Android 9",
+  "match": {
+    "brand_patterns": [
+      "byintek"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.zeasn.whale.saas",
+  "notes": "BYINTEK Love U4, 1080P version (Skyworth board RG_HS352_D1E8_SW_B10, HiSilicon Hi3751V350)\nAndroid 9, firmware 1.01.08 (Hi3751V352F_DMO-userdebug, build 2025-09), 1 GB RAM\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/byintek-u4/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/byintek-u4/debloat.txt com.zeasn.whale.saas\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.zeasn.whale.saas (Zeasn \"Whale\"); Android's FallbackHome is the only other HOME.\nKeep com.sdt.app.skysettings (all projector settings, input sources, and the ADB switch: see README),\ncom.sdt.projectionservice (keystone and focus), every com.hisilicon.* package (TV service, HDMI input,\nMiracast, media), com.skyworthdigital.*, and the factory test apps, which may hold calibration data.\nKeep com.android.toofifi too: it is the AirPlay, Chromecast and DLNA receiver (\"tranScreen\").\nZeasn ads and store\nThe ad service is a persistent system app with permission to install apps silently: Android starts it\nat boot even when disabled. Hiding it (optional, needs root, see README) is what keeps it from running.",
+  "packages": [
+    {
+      "package": "com.zeasn.deviceportal.asdprovider.skyworth_hisi352",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad/portal service for the Whale launcher",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "zeasn.open.technical.tv.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Zeasn app store; Google Play stays",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "cn.wps.moffice_i18n_TV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads",
+      "reason": "WPS Office",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ru.vk.store.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "script leaves it alone; uninstalled, it is back after the next restart.",
+      "reason": "script leaves it alone; uninstalled, it is back after the next restart.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.carriersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.simappdialog",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Phone and setup leftovers",
+      "reason": "SIM toolkit",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.pixelmigrate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Phone and setup leftovers",
+      "reason": "Phone and setup leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.toofifi.lineserver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Wired phone casting (USB); wireless AirPlay/Chromecast/Miracast stay",
+      "reason": "Wired phone casting (USB); wireless AirPlay/Chromecast/Miracast stay",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mphotool.usbcastserver",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Wired phone casting (USB); wireless AirPlay/Chromecast/Miracast stay",
+      "reason": "Wired phone casting (USB); wireless AirPlay/Chromecast/Miracast stay",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.bips",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras",
+      "reason": "default print service",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/byintek-u4/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

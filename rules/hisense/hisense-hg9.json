@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "id": "hisense-hg9",
+  "brand": "hisense",
+  "title": "Hisense HG9 (HiSmart 4K A4FFM, device laohushan, MediaTek), Android TV 9 (API 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "hg9"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Hisense HG9 (HiSmart 4K A4FFM, device laohushan, MediaTek), Android TV 9 (API 28),\nbuild PTMR.190127.037, security patch 2021-02-05, kernel 4.9.118. 2 GB RAM class.\nTested on a set used as an Apple TV display over HDMI.\n\nStock launcher: com.google.android.tvlauncher (pass it to restore.sh; replaced\nhere by FLauncher from the Play Store, not launcher/, set as default with\n`cmd package set-home-activity me.efesser.flauncher/.MainActivity`).\nLive TV app: stock Live TV was left alone; HDMI input is com.hisense.tv.hitvinput.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-hg9/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-hg9/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nReboot-tested: the TV boots normally with this full list applied, including\ncom.hisense.tv.smartsense, com.vt.tv.smartsense.ui and\ncom.hisense.tv.smartservice all disabled (verified after a settings-reset\nreboot, followed by a full evening of use: streaming, Store, launcher).\nThis differs from the #45 SmartTV 4K FFM (Android TV 10) report where the\nsmartsense pair sent that set to Recovery — model/firmware difference, HG9\non Android TV 9 is unaffected.\n\nNotes from this firmware:\n- USB debugging alone does NOT open network ADB; the TV needs its explicit\nNetwork/Wireless debugging toggle too, plus a reboot before port 5555 opens.\n- The Beryl/GL.iNet \"block client\" toggle deauths the TV entirely (no join at\nall), it is not a WAN-only block. Debloat over an isolated offline LAN instead.\n- com.google.android.tungsten.setupwraith re-enables the stock launcher, so it\nis listed (per the FLauncher README method).\n- Play Store showed \"Something went wrong\" with AuthFailureError even after\nre-signing in; `pm clear com.google.android.gsf` + reboot + fresh sign-in\nfixed it. The tvrecommendations prefetch errors in Finsky logs are a red\nherring (they persist with the services enabled and are non-fatal).\n- Kept deliberately: hitvinput + mtktvapi_agent + tvcenter (HDMI/tuner),\ntv.settings/providers.tv, Play Store + Play Services, remote keys (kpad,\nhotkey dispatcher, autopair), Bluetooth, latin IME, system UI, Alexa,\nChromecast, DLNA service, OTA updater, phone-remote service (lost-remote\nfallback), and the MStar disclaimer customizer (first-boot legal text).\n- Netflix, Prime Video, YouTube, Apple TV, Pluto, Vudu, Hulu apps kept and\nupdated through the Play Store. Pandora, Peacock, Kids, Play Games, Max,\nParamount+, MediaCenter removed by owner choice (Apple TV is the streamer).\nHisense telemetry and viewing-data collection",
+  "packages": [
+    {
+      "package": "com.hisense.app.logreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "LogReportManagerService, persistent system reporter",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.evservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ACR collector (/system/priv-app/acr), watches HDMI too",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.smartsense",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Smartsense analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.smartservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SmartsenseService background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.tv.smartsense.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Smartsense companion UI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.netflixobserver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "MNetflixObserver measurement service (Netflix app untouched)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HiMsgService push messaging",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.hitv.hicloud.account",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HiCloud account manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.hisense.laohushan",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner silent app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.customerlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Hisense promos, cleaners, demo, business mode",
+      "reason": "CustomerLauncher home-screen tweaks",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.protector",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense promos, cleaners, demo, business mode",
+      "reason": "TvProtector \"speedup\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense promos, cleaners, demo, business mode",
+      "reason": "retail store demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.b2b",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense promos, cleaners, demo, business mode",
+      "reason": "HisenseB2B hotel/business mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense promos, cleaners, demo, business mode",
+      "reason": "fusion demo app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Google recommendation rows and reporters",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Google recommendation rows and reporters",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Google recommendation rows and reporters",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Google recommendation rows and reporters",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Backdrop Daydream idle/cast screensaver (owner choice)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google recommendation rows and reporters",
+      "reason": "Speech recognition & synthesis (owner choice; kills voice search)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.pandora.android.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Owner-confirmed streaming preload removals",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.peacocktv.peacockandroid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Owner-confirmed streaming preload removals",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvkids",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Owner-confirmed streaming preload removals",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Owner-confirmed streaming preload removals",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.wbd.stream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Max",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cbs.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Paramount+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.tv.mediacenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Owner-confirmed streaming preload removals",
+      "reason": "Hisense MediaCenter DLNA/USB player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Launchers (stock replaced by FLauncher)",
+      "reason": "Launchers (stock replaced by FLauncher)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Launchers (stock replaced by FLauncher)",
+      "reason": "Launchers (stock replaced by FLauncher)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-hg9/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

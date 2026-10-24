@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "id": "tcl-32l5a",
+  "brand": "tcl",
+  "title": "TCL 32L5A (32\" FHD Smart TV, device C06), Android TV 11 (SDK 30), build AR2101",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "32l5a"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 32L5A (32\" FHD Smart TV, device C06), Android TV 11 (SDK 30), build AR2101\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-32l5a/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-32l5a/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (replaced by launcher/)\nLive TV app: com.tcl.tv\nInputs: com.tcl.tvinput (HDMI 1, HDMI 2, AV, tuner)\nTCL account, promos, telemetry and content",
+  "packages": [
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account center",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TGuard cleaner app",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Promo/recommendation rows on stock home",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL Channel / web video portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Store demo sticker app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Copy data utility",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL promotional service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.internet.tvbrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Web browsers and feedback bloat",
+      "reason": "Preloaded TV Browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Web browsers and feedback bloat",
+      "reason": "TCL Browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Web browsers and feedback bloat",
+      "reason": "User feedback reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Web browsers and feedback bloat",
+      "reason": "Play Games TV service",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Google TV launcher recommendations",
+      "reason": "Channel recommendation feeds",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-32l5a/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

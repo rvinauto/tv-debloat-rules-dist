@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-axfr1",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-AXFR1 (codename rango, product dune; Amlogic/droidlogic, 1 GB RAM, India), Android TV 11 (SDK 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "axfr1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-AXFR1 (codename rango, product dune; Amlogic/droidlogic, 1 GB RAM, India), Android TV 11 (SDK 30),\nfirmware RTT0.210630.002.485 (Xiaomi/dune/rango:11/RTT0.210630.002/485), security patch 1 November 2025.\nSame firmware family as xiaomi-mitv-axso0 (ships android.autoinstalls.config.xioami.dangal).\nLive TV app: com.android.tv (also owns the input picker, .input.SelectInputActivity).\nStock launcher: com.google.android.tvlauncher (the default, disabled by build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-axfr1/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-axfr1/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- USB debugging alone opens port 5555; no wireless-debugging pairing needed.\n- Sideloading works (pm install over the shell), and a third-party HOME app is accepted without a\nXiaomi signature. setupwraith is installed but does not claim HOME here, so it can stay enabled.\n- PatchWall (com.mitv.tvhome.atv) also contains an InputSourcePopupActivity, but the Settings key opens\nstock TV Settings and the Inputs panel is com.android.tv's, so PatchWall is safe to disable.\nSettings, the Inputs panel (HDMI 1, HDMI 2, AV, TV) and HDMI switching were checked after each batch.\n- An injected KEYCODE_TV_INPUT is unhandled on this firmware; inputs are reached from Settings or the launcher.\n- Live TV with no channels tuned goes straight to a channel scan when opened (stock behaviour too).\n- Disabled state, the Home default and Private DNS all survive a reboot. The TV can come back on a\ndifferent IP after a reboot (DHCP), so re-check TV_HOST.\n- Default IME is already Gboard; the Baidu-keyboard quirk from the Mi TV 4A doesn't apply.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log upload receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "sponsored rows in the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.dangal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Play auto-install of partner apps (sic, \"xioami\")",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Mi TV+ sponsored live channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.handbook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomo.tv.milegal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "static legal / privacy text screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.smartshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: screen mirroring (Chromecast built-in kept)",
+      "reason": "Miracast + MiPlay receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.wfdsinkhelperservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: screen mirroring (Chromecast built-in kept)",
+      "reason": "Miracast sink",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.milinkservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: screen mirroring (Chromecast built-in kept)",
+      "reason": "Mi Cast discovery",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: firmware updates (re-enable to check for one)",
+      "reason": "Personal choice: firmware updates (re-enable to check for one)",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.dream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Mi screensaver; Google Ambient mode (backdrop) kept",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jio.media.stb.ondemand",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "JioCinema / JioTV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonyliv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.graymatrix.did",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "ZEE5",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Personal choice: preloaded streaming apps not used",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mxtech.videoplayer.television",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "MX Player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.formulaone.production",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "F1 TV",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-axfr1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "id": "xgimi-mogo-3-pro",
+  "brand": "xgimi",
+  "title": "XGIMI MoGo 3 Pro projector (model G0035, device altai, MediaTek), Google TV / Android 14 (SDK 34),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "xgimi"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "XGIMI MoGo 3 Pro projector (model G0035, device altai, MediaTek), Google TV / Android 14 (SDK 34),\nbuild UKNV.260707.001.15802496.\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/xgimi-mogo-3-pro/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/xgimi-mogo-3-pro/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (HOME priority 2), with the setup wizard's\nRecoveryActivity at priority 1, so setupwraith is listed below (see docs/TROUBLESHOOTING.md, Google TV).\nWireless debugging is the way in: pair, then `adb tcpip 5555`. It turns itself off whenever the projector\nrejoins Wi-Fi. Already disabled from the factory: com.google.android.youtube.tvmusic.\n\nLauncher notes (applied and verified on a real unit on 2026-10-19/20):\n- Install with HOME_KEY_SERVICE=1, and put this in config.xml or a theme's config.json:\n\"live_tv_package\": \"\"                    no tuner\n\"settings_key_keycodes\": [83]            the gear button sends KEYCODE_NOTIFICATION\n\"app_keys\": [\"KEYCODE_F4:com.google.android.youtube.tv\",\n\"KEYCODE_F9:com.netflix.ninja\",\n\"KEYCODE_F8:com.amazon.amazonvideo.livingroom\"]\n\"stock_home_redirect\": \"com.google.android.apps.tv.launcherx\"\nXGIMI's xrmservice re-enables the disabled stock launcher on every one of its remote keys\n(docs/TROUBLESHOOTING.md). app_keys takes YouTube (F4), Netflix (F9) and Prime Video (F8) away from it.\nThe programmable button (F5, mute by default), the profile button (F6, whose chooser lived in the stock\nlauncher) and power (F11) still revive it: stock_home_redirect sends its home screen back, and\nre-applying this list disables it again.\n- HDMI 1 opens through com.google.android.tv.inputplayer from the Inputs menu, so no input_action is needed\n(unlike the Horizon S Pro).\n- The default Backdrop screensaver (dreamx) is disabled below: point the screensaver at\ncom.android.dreams.basic/.Colors first, or it has nothing to show.\n- Check who owns the saved Wi-Fi network before setupwraith is disabled (TROUBLESHOOTING, \"drops off Wi-Fi for\ngood\"): on this unit the network set up during first-run setup disappeared and had to be joined again.\n- Screenshots from `screencap -p` start with a vendor log line (\"Init wrapper sys mutex ...\"): strip\neverything before the PNG signature.\n\nDO NOT DISABLE on this model (projector hardware, inputs, mirroring):\ncom.xgimi.autokst                    # auto keystone correction\ncom.xgimi.windowsystem               # keystone/window service\ncom.xgimi.tof                        # ToF autofocus\ncom.xgimi.misckey                    # remote keys, focus/keystone shortcuts\ncom.xgimi.uiconfiguration            # global key receiver, power listener\ncom.xgimi.xrmservice                 # global remote keys, picture/sound adaptation (re-enables the stock launcher, see above)\ncom.xgimi.xgimiservice               # core XGIMI system service\ncom.xgimi.autoinstall                # purpose unclear (PermissionRequestActivity only): kept\ncom.xgimi.overseas.xgimiatvbootwizard  # first-boot wizard\ncom.mediatek.tvinput                 # HDMI input service\ncom.mediatek.tv.service              # TV service, Netflix key receiver\ncom.google.android.tv.inputplayer    # HDMI passthrough player and input switcher\ncom.nbcast.wirelessscreen            # MagiCast: the screen-mirroring receiver (\"Mogo3Pro\" in a phone's list)\nStore demo, factory and test tools",
+  "packages": [
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "RetailDisplay store demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.atvwifiverify",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "factory Wi-Fi verification",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.minitvfactory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "factory menu, file transfer and burn-in services",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.xgimi.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "XGIMI bug report uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "Google feedback",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry and feedback",
+      "reason": "Telemetry and feedback",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google content and preloads",
+      "reason": "Google TV Ambient / Backdrop screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google content and preloads",
+      "reason": "Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google content and preloads",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "air.ITVMobilePlayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps (off by choice)",
+      "reason": "ITVX",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice, casting, phone remote (off by choice)",
+      "reason": "Google Assistant / Gemini voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice, casting, phone remote (off by choice)",
+      "reason": "assistant LED service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice, casting, phone remote (off by choice)",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.xgimi.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "XGIMI extras (off by choice)",
+      "reason": "XGIMI Atmosphere screensaver / ambient scenes",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.ota.accessories",
+      "action": "disable",
+      "risk": "caution",
+      "group": "XGIMI extras (off by choice)",
+      "reason": "firmware updates for remote, speaker, curtain",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.xgimi.gimiplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "XGIMI extras (off by choice)",
+      "reason": "local video/photo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.doubanfm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "XGIMI extras (off by choice)",
+      "reason": "XGIMI music app, speaker-mode screen",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack (accessibility)"
+    },
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Google TV phone remote"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xgimi-mogo-3-pro/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

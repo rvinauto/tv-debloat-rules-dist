@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "coocaa-k3-pro-90p3d-max",
+  "brand": "coocaa",
+  "title": "Skyworth Coocaa K3 Pro 90P3D Max (system board 8R145_P3DM, Realtek RTD2885N),",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "coocaa"
+    ],
+    "model_patterns": [
+      "90p3d"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Skyworth Coocaa K3 Pro 90P3D Max (system board 8R145_P3DM, Realtek RTD2885N),\nAndroid 11 (SDK 30), build eng.www-da.20231205.132148, China-market Coocaa OS.\nFirst China-market Coocaa (Realtek) list in this repo. The export Skyworth lists in\nthis folder (com.skyworth.* Google TV builds) share nothing with this firmware: here\nthe namespace is com.coocaa.* / com.tianci.* and the stock launcher is\ncom.tianci.movieplatform.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/coocaa-k3-pro-90p3d-max/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/coocaa-k3-pro-90p3d-max/debloat.txt\nEverything is DISABLED (pm disable-user --user 0), not uninstalled. Comment out any\nline you want to keep.\n\n⚠ CRITICAL: NEVER disable com.tianci.movieplatform (the Coocaa launcher). The 8R145\nboot flow hard-depends on it: disabling it hangs the TV on the COOCAA logo, the remote\nbecomes unresponsive, and the only recovery is a factory reset from recovery mode\n(verified the hard way). It is deliberately absent from the list below.\n\nADB: this firmware hides Developer options. ADB is toggled from the Coocaa factory\nmenu (a secret key sequence), not from stock Settings, and ro.adb.secure is set, so\nthe TV still shows the \"Allow USB debugging?\" prompt. The ADB toggle resets on every\nreboot - re-enable it from the factory menu after rebooting.\n\nLauncher notes (for anyone porting cleanyourtv to this set):\n1. Almost no app declares a leanback entry on this firmware: the Home grid starts\nnearly empty (only the app store resolves LEANBACK_LAUNCHER). The TV app\n(com.skyworth.tv), local media (com.tianci.localmedia), TV manager\n(com.coocaa.tvmanager) and settings (com.coocaa.os.softsettings) only resolve the\nplain LAUNCHER category - they need the app-library mechanism to appear on\nHome/dock.\n2. The launcher needs a plain CATEGORY_LAUNCHER intent-filter on MainActivity so it\nshows up in the Coocaa launcher's \"My Apps\" list (that list only queries LAUNCHER).\n3. The Home key is hard-coded by the firmware to bring up com.tianci.movieplatform;\nthe accessibility HomeKeyService cannot intercept a standard Home key press\n(Android platform limitation), so no launcher can own the Home button here. The\nlauncher is set as the default Home (cmd package set-home-activity) and reached\nfrom the stock \"My Apps\" list.\n4. The firmware never broadcasts standard boot events (BOOT_COMPLETED,\nQUICKBOOT_POWERON) to third-party apps, so auto-start on boot is not possible\nwithout root.\n5. \"Boot source\" is also hard-coded: \"Signal source\" on boot launches\ncom.skyworth.tv (TV app) via firmware logic - there is no app-selection option.\n\nVerified: 23 packages disabled with pm disable-user --user 0, then a full reboot.\nHome, the source panel, local media, TV manager, app store, casting, settings and the\nremote all still work. Fully reversible with restore.sh.\n\n=============================================================================\nAds / telemetry / tracking",
+  "packages": [
+    {
+      "package": "com.tianci.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Coocaa ad SDK: boot/shutdown/screensaver/landing ads",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.skyworth.aisense",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ACR content recognition (pushes ads)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.sysreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "system telemetry reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.push",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "push channel (can remotely launch apps / ads)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.dstv.ad1",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bundled third-party ad app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.tvpi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV+ streaming (bundled UMeng push ad component)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.autoinstaller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silent auto-install service (remote app pushing)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.sport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Coocaa Sports",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.educate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Coocaa Education",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.lifeassistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Life Assistant",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.app_browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "App Browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.teampresent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Team Presentation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.mitee.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Kids content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.miitee.guard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Kids guard",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.family.photograph",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Family photo album",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.os.thememanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Theme manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.theme_package_ccos_nine",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Theme package",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.theme_package_ccos_seven",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Theme package",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.os.customerservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Online customer service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.messageprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Message provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.playtvskill",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "TV skill",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.guide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "First-boot guide",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.itwgame.mota.nearme.gamecenter",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Vendor content / preinstalled bloat",
+      "reason": "Bundled third-party game center",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/coocaa-k3-pro-90p3d-max/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

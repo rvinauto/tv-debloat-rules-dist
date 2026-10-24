@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "lumio-vision-7",
+  "brand": "lumio",
+  "title": "Lumio Vision 7, 55\" / 139 cm (KTC ODM, Realtek chipset, device khardi, product KTC_LUMIO_4K_EU_23GV1), India",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "lumio"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Lumio Vision 7, 55\" / 139 cm (KTC ODM, Realtek chipset, device khardi, product KTC_LUMIO_4K_EU_23GV1), India\nGoogle TV 14 (Android 14, SDK 34), build UKRA.251202.032\nFirst Lumio list. Contributed by Subramanya GB.\n\nApply:   TV_HOST=<tv ip> FORCE_SETUPWRAITH=1 tools/disable.sh examples/lumio-vision-7/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/lumio-vision-7/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (disabled by launcher/build-and-install.sh after the\nnew launcher is confirmed Home). On this build setupwraith re-claims Home (.RecoveryActivity/.MainActivity)\nthe moment launcherx is off, and the shell cannot disable that component alone (SecurityException), so\nsetupwraith has to be disabled too (listed below). The active Wi-Fi here was system-owned (OwnerUid 1000),\nso disabling setupwraith did NOT drop Wi-Fi - but disable.sh's guard is conservative, hence\nFORCE_SETUPWRAITH=1. Disabling setupwraith may break Chromecast (mediashell reads device info from it);\nre-enable setupwraith to get casting back.\nLive TV / tuner app: com.realtek.tv (set as live_tv_package in config.xml, and hidden from the grid).\nNetflix (com.netflix.ninja) shipped already disabled on this unit.\nRemote app buttons (for config.xml app_keys): YouTube 190, Netflix 191, Prime Video 195, TL;DR 200.\nTested same day over Wireless debugging (classic port 5555 was already open): every HDMI/tuner input and\ninstalled app verified by screenshot; rebooted and the fork launcher came back as Home.\nAd tracking / Privacy Sandbox",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki ACR: on-screen content recognition for ad targeting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox ad APIs (Topics, attribution)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo + regional / unused preloads",
+      "reason": "KtcStoreMode: in-store demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.realtek.kara",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo + regional / unused preloads",
+      "reason": "Karaoke",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.realtek.karaoke.userguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo + regional / unused preloads",
+      "reason": "Retail demo + regional / unused preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hk.gingaplayer.huangs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo + regional / unused preloads",
+      "reason": "Ginga (Latin-America ISDB-T middleware), inert on an EU DVB set",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry / bloat",
+      "reason": "crash / usage reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry / bloat",
+      "reason": "partner / referrer telemetry",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry / bloat",
+      "reason": "background calendar sync, unused on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry / bloat",
+      "reason": "Google ambient screensaver (the fork launcher has its own clock)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry / bloat",
+      "reason": "Google telemetry / bloat",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google telemetry / bloat",
+      "reason": "Google telemetry / bloat",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry / bloat",
+      "reason": "Google telemetry / bloat",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google telemetry / bloat",
+      "reason": "Google telemetry / bloat",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/lumio-vision-7/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

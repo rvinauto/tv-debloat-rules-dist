@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "id": "sankey-smart2ktvse",
+  "brand": "sankey",
+  "title": "Sankey SMART2KTVSE (Whale OS)",
+  "android": null,
+  "match": {
+    "brand_patterns": [
+      "sankey"
+    ],
+    "model_patterns": [
+      "smart2ktvse"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Sankey SMART2KTVSE (Whale OS)\nModel: SMART2KTVSE\nBrand: SiliconPlayer\nDevice: am30bm\nAndroid: 13\nProduct: WhaleTV\nFirmware: (not captured - TV went to sleep)\n\nBloatware/Telemetry packages disabled with pm disable-user\nTested and working for several days. Nothing broken.\n\nIMPORTANT: How to enable ADB on Whale OS (SMART2KTVSE)\n- MENU+1147 does NOT work on this model (tested, nothing appears)\n- To enable ADB: Install \"Activity Launcher\" app (de.szalkowski.activitylauncher)\nvia USB, open it, navigate to Settings -> Developer options, enable USB debugging\n- ADB over WiFi works on port 5555 after enabling\n\nWhale OS specific services",
+  "packages": [
+    {
+      "package": "com.zeasn.whaletrackservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Tracking/telemetry service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.whaleservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Core Whale OS service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.tokenapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Token management",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.hotelmodelservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Hotel mode (not needed for home use)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.deviceportal.asdprovider.certified",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Device portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.tv.cast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Casting bloat (not the system cast)",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.zeasn.whaleos.settings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Whale OS settings overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hikeen.factorymenu",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory/test apps",
+      "reason": "Factory menu (MENU+1147 does NOT work on SMART2KTVSE)",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.hikeen.factoryautomation",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory/test apps",
+      "reason": "Factory automation",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.hikeen.middleware.server",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory/test apps",
+      "reason": "Middleware server",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.whaletv.aivoice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant and runtime",
+      "reason": "AI voice assistant",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.whaletv.web.app_runtime",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistant and runtime",
+      "reason": "Web app runtime",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad services",
+      "reason": "Android ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mirakulo.astrotv.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unknown services",
+      "reason": "Ginga interactive TV for ISDB-Tb broadcasts; disabling only turns broadcast interactivity off",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.droidlogic.updater",
+      "action": "disable",
+      "risk": "caution",
+      "group": "System updaters (disable to prevent bloat from returning)",
+      "reason": "OTA updater",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.droidlogic.appinstall",
+      "action": "disable",
+      "risk": "safe",
+      "group": "System updaters (disable to prevent bloat from returning)",
+      "reason": "App installer service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.whaletv.launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher (disabled after CleanYourTV launcher is installed)",
+      "reason": "Original Whale TV launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sankey-smart2ktvse/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

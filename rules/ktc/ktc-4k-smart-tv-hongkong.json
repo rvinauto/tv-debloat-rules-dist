@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "id": "ktc-4k-smart-tv-hongkong",
+  "brand": "ktc",
+  "title": "KTC 4K Smart TV (device hongkong, MediaTek), Taiwan, Google TV 14, build UKNV.260626.001.",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "ktc"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "KTC 4K Smart TV (device hongkong, MediaTek), Taiwan, Google TV 14, build UKNV.260626.001.\nSold white-label with Taiwan telecom VOD apps preinstalled (friDay/ChocoTV/LiTV/myVideo/\nHami/iQIYI) — those are kept here on the owner's request. This list only removes ACR\ntracking, Google feedback telemetry, and OEM factory/demo tools.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/ktc-4k-smart-tv-hongkong/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/ktc-4k-smart-tv-hongkong/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nDo NOT disable com.google.android.katniss — it's Google Assistant/voice search; the\nremote's mic button and in-app voice search stop working without it.\nACR (automatic content recognition) tracking",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google feedback/crash telemetry",
+      "reason": "Google feedback/crash telemetry",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ktc.serialport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OEM factory/production-line test tools",
+      "reason": "OEM factory/production-line test tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ktc.tv.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OEM factory/production-line test tools",
+      "reason": "OEM factory/production-line test tools",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "ktc.factorymenu.ui",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OEM factory/production-line test tools",
+      "reason": "OEM factory/production-line test tools",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "mediatek.factorymenu.ui",
+      "action": "disable",
+      "risk": "caution",
+      "group": "OEM factory/production-line test tools",
+      "reason": "OEM factory/production-line test tools",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.electronic.manual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Misc unused preinstalled apps",
+      "reason": "Misc unused preinstalled apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Misc unused preinstalled apps",
+      "reason": "Misc unused preinstalled apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/ktc-4k-smart-tv-hongkong/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

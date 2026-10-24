@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "id": "vidda-mt9653",
+  "brand": "vidda",
+  "title": "Vidda VIDAA_TV (Hisense sub-brand; device MT9653, board mt5879), Android TV 11, build",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "vidda"
+    ],
+    "model_patterns": [
+      "mt9653"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.jamdeo.tv.vod",
+  "notes": "Vidda VIDAA_TV (Hisense sub-brand; device MT9653, board mt5879), Android TV 11, build\nRP1A.200720.011 (02.02.70.01). Vidda is Hisense's youth sub-brand, sold in China with 聚好看 JuUI:\nthe model string is VIDAA_TV and the package namespace is com.jamdeo.* / com.hisense.*, so it shares\nnothing with the export Hisense lists in this folder (com.hisense.evservice, com.mediatek.*).\n3.8 GB RAM, 41 GB storage, UI at 1080p / 320 dpi.\nSame build as examples/hisense-e5q-pro/, a smaller list that keeps the stock home.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/vidda-mt9653/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/vidda-mt9653/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nADB: turning USB debugging on opens network ADB on 5555 directly; no wireless pairing needed.\nro.adb.secure=0, so the TV does not even show \"Allow USB debugging?\" — any device on the LAN gets a\nshell with no prompt. Close the port when you are done, or keep the TV on a trusted network only.\n\n⚠ com.hisense.tv.tiletransition is NOT in this list on purpose. Its name reads like a transition or\nboot-ad layer, but it hosts TileAnimationService, which the vendor source panel binds to before it\nswitches inputs. Disabled, the panel still opens and still animates, but picking HDMI does nothing:\nW/ActivityManager: Unable to start service Intent {\nact=com.hisense.tv.tiletransition.TileAnimationService\npkg=com.hisense.tv.tiletransition } not found\nW/a: switchToAppViaRemote, no service found\nRe-enabling it fixes input switching immediately. This is the \"package names often don't say what a\npackage does\" warning in PROMPT.md, made concrete.\n\nStock launcher: com.jamdeo.tv.vod (JuUI). launcher/build-and-install.sh does not know that name:\nTV_HOST=<tv ip> HOME_KEY_SERVICE=1 STOCK_LAUNCHER=com.jamdeo.tv.vod launcher/build-and-install.sh\nEnabling it again (pm enable) makes the TV reclaim Home even after an explicit set-home-activity;\nto go back, disable it first and set Home afterwards.\n\nRemote Home key: the physical button is Linux scancode 102, but the keylayout maps it to\nKEYCODE_F12 (142), and the vendor SysUIMerge app used that to switch to the previous app — which was\nthe stock launcher until it got disabled, so Home stopped working. WARNING: the fix the author tested\n(a home_key_scancodes=[102] option for HomeKeyService) is not in the launcher on main yet, so with the\nstock launcher disabled the remote's Home button does nothing until that option lands. Injected\nKEYCODE_HOME cannot test it: the vendor framework swallows injected keycode 3 and the scancode is 0.\n\nSecond vendor home: com.keylab.speech.view.vidaa hosts com.ju.secondscreen.HomeActivity, started by\ncomponent name at boot, so it takes the foreground even though Home resolves to your launcher. It\ncarries a \"39% memory boost\" nag, music/video card rows and a NewTV badge. Component-level disable is\nrefused (SecurityException from setEnabledSetting), so this list disables the whole package instead:\nthat also removes the voice-assistant UI (AgentDisplayService, ViewService, SIWindowMonitorService,\nmemo, task master) and the remote's mic key. Re-enable it if voice matters more than the card home.\n\nInputs menu: dumpsys tv_input is empty on this firmware (no TvInputManager inputs), so the launcher's\nInputs pill uses source_panel_service = com.hisense.tv.inputs/com.hisense.tv.InputsUIService with\naction com.hisense.tv.start_inputs. That panel does perform the switch itself. With nothing to list,\nshowInputs() now opens it on the first OK instead of showing a one-row dropdown.\n\nDebloat does NOT change the visual home screen on this set: the sponsored rows and the VIP banner are\nfetched by com.jamdeo.tv.vod itself, not by the ad sidecars this list disables. Only the launcher swap\nremoves them. What this list buys is the telemetry, the push channel, the persistent poller and the\nstray ad processes.\n\nVerified: applied in batches with a screenshot between them, th",
+  "packages": [
+    {
+      "package": "com.hisense.hitv.das",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "DasApp: DataReportReceiver only",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.platformreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.logupload",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.service.hproxy",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "LoopingService + network-change receiver, polls forever",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HiMsgService, the vendor push channel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.business.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping and home operator rows",
+      "reason": "ships Alibaba Baichuan + CIBN shopping SDKs; installed as a user app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping and home operator rows",
+      "reason": "its WatchingAccessibilityService was registered in enabled_accessibility_services",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.widget.pro",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping and home operator rows",
+      "reason": "home operator widget rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping and home operator rows",
+      "reason": "weather card, another content feed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.demonstrate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "DbxDemo / multi-channel sound demo reels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.meetingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.autotest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.electronictutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.ar.baike",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.jamdeo.tv.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "first-run wizard, done; the saved Wi-Fi belongs to android.uid.system",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.usbupgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.videoconference",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.fitmirror",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.foodmanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.jamdeo.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vision.aibook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail, hotel, factory and leftovers",
+      "reason": "Retail, hotel, factory and leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.jamdeo.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Also run: settings put secure screensaver_enabled 0",
+      "reason": "Also run: settings put secure screensaver_enabled 0",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP leftovers on a TV",
+      "reason": "AOSP leftovers on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.keylab.speech.view.vidaa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP leftovers on a TV",
+      "reason": "AOSP leftovers on a TV",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/vidda-mt9653/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

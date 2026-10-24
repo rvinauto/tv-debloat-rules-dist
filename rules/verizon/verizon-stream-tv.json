@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "id": "verizon-stream-tv",
+  "brand": "verizon",
+  "title": "Verizon Stream TV, 1st generation (WNC JS8V, Amlogic droidlogic), US",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "verizon"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.verizon.tv.launcher",
+  "notes": "Verizon Stream TV, 1st generation (WNC JS8V, Amlogic droidlogic), US\nAndroid 12 (API 31), build SC.v6.6.3-20250328, security patch 2025-03-01. About 2 GB RAM, 1080p, Ethernet.\nro.product.manufacturer=wnc, ro.product.model=Stream TV, ro.adb.secure=1. A streaming box: HDMI out only, no inputs.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/verizon-stream-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/verizon-stream-tv/debloat.txt com.verizon.tv.launcher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nApplied in small batches on 2026-10-20 with a screenshot after each, then a custom launcher installed and\nthe real remote pressed after each batch. Not yet lived with for days; if something breaks, re-enable it with\n`pm enable <package>` and please report it.\n\nStock launcher: com.verizon.tv.launcher (HomeActivity). Home claimants: the Verizon launcher and\ncom.android.tv.settings FallbackHome (-1000). setupwraith does NOT claim Home here. Live TV app: com.google.android.tv\n(TvActivity; set it as live_tv_package). The box has no HDMI or tuner inputs. Live Channels is EMPTY unless an app\nregisters a TV input: with Pluto TV (tv.pluto.android, LiveTVInputService) enabled, Inputs > Live TV shows its channels\n(checked); with Pluto disabled there was nothing, and live_tv_package is better left empty. Tablo and IPTV apps are\nstandalone apps (own guide), they do not feed Live Channels.\nAlready disabled at the factory, so not listed (restore.sh would turn them ON): com.google.android.tvlauncher,\ncom.google.android.tvrecommendations, com.google.android.feedback, com.google.android.play.games.\n\nQuirks on this firmware, all checked on the TV:\n- Port 5555 opened with USB debugging and Network debugging on; stock adb and tools/tv.py both worked, with an\n\"Allow USB debugging?\" prompt on the first connect. Sideloading works (pm install -r), including a package that\ndeclares HOME; a base-only reinstall of a split APK gives INSTALL_FAILED_VERIFICATION_FAILURE, which is not a block.\n- The remote is a Bluetooth remote. To pair a new one, hold OK + Apps (bottom right button) together for 6 seconds and release;\nthe \"Pairing your remote\" screen is part of the stock launcher. Its buttons: D-pad, OK, Back, Home, Apps (sends\nKEYCODE_APP_SWITCH), Mic (KEY_SEARCH), Mute, Play/Pause, Volume. No app buttons. Non-functional buttons: INPUT, center color button\n- With the stock launcher off the Apps button does nothing. The custom launcher answers it through HomeKeyService\n(HOME_KEY_SERVICE=1) once it also accepts KEYCODE_APP_SWITCH.\n- The TV installed a firmware update (Android 10 QTT8.201201.004 to this build) while the work was in progress, so keep\nthe OTA package if you want updates. A new build removed com.bc360.*, com.omni.sci, org.lineageos.tvcustomizer and\nadded com.wnc.wnclogger, com.wnc.logger_provider_1 and com.wnc.tvcustomizer.\n- com.verizon.tv.ams records app, screen and power events (AppState, Screen, TurnOff, Health) in a local event table\nand ships Firebase Crashlytics. Disabling it left the remote, Bluetooth pairing and Home working.\n- Screenshots work on Home and in apps. AdGuard Private DNS (dns.adguard-dns.com) works and YouTube still loads.\n\nKept on purpose: com.omni.ota (firmware updates, by owner's choice), com.omni.simplesetup, com.google.android.tv\n(Live TV), tv.pluto.android (Pluto TV: the only TV input on this box, see the Live TV note above), com.google.android.tv.remote.service (phone remote), com.google.android.inputmethod.latin (keyboard),\nPlay Store, Play Services, Bluetooth, com.droidlogic.* and com.android.tv.settings, Netflix, Prime Video, YouTube,\nDisney+, Hulu.\nLeft alone because their purpose is unclear from their components: com.wnc.wnclogger, com.wnc.logger_provider_1\n(holds INTERNET), com.wnc.tvcustomizer.\nTelemetry",
+  "packages": [
+    {
+      "package": "com.verizon.tv.ams",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Verizon app/screen/power event recorder + Crashlytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "Assistant; the mic button does nothing without it",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "ambient screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by owner's choice",
+      "reason": "text-to-speech",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvunplugged",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "YouTube TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hbo.hbonow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by owner's choice",
+      "reason": "HBO",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Gallery",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.setup.customizationsample",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.verizon.tv.launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Verizon home with sponsored Trending/Store tabs; also hosts the remote pairing screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/verizon-stream-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

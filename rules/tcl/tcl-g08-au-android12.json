@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g08-au-android12",
+  "brand": "tcl",
+  "title": "TCL Smart TV Pro (G08, G08_4K_GB, MediaTek), Australian firmware, Android 12 (Google TV, Basic TV mode)",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g08[-_ ]?android12"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL Smart TV Pro (G08, G08_4K_GB, MediaTek), Australian firmware, Android 12 (Google TV, Basic TV mode)\nModel \"Smart TV Pro\", device G08, fingerprint TCL/G08_4K_GB/G08:12/STT2.221228.001/AS34:user/release-keys,\n32-bit userspace (armeabi-v7a), about 2.4 GB RAM.\nSame fingerprint as examples/tcl-g08-eu-android12, but the Australian set also ships Stan, AirPlay\n(com.tcl.airplay2 + com.mediatek.AirplayAPK), TCL Channel (com.tcl.waterfall.overseas), TCL Live free\nchannels (com.tcl.channelplus), com.tcl.esticker, com.tcl.hotelmenu and com.tcl.guard, and has no Google\nCast (mediashell) and no voice assistant (katniss). com.tcl.browser, com.tcl.messagebox,\ncom.tcl.smartalexa and com.google.android.videos from the EU list are not on it.\n\nTested 22 October 2026 on one set, applied with tools/disable.sh in five batches with screenshots between\nthem. All 28 packages stayed disabled across a reboot (pm list packages -d compared before and after);\nthe Source key panel, HDMI 1/2 switching, SmartTube and Plex were checked afterwards (AirPlay and Miracast\nsessions were not), and the launcher was installed with launcher/build-and-install.ps1 -HomeKeyService\n(HOME_KEY_SERVICE=1 launcher/build-and-install.sh on macOS or Linux).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g08-au-android12/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g08-au-android12/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.tcl.tv.\nAlready disabled before this list on the tested set, by Google TV Basic TV mode: com.netflix.ninja,\ncom.google.android.youtube.tv, au.com.stan.and (the recovery record keeps them disabled on undo).\nLeft enabled on purpose: com.tcl.tv, com.tcl.tvinput, com.tcl.systemserver, com.tcl.ui_mediaCenter (USB\nmedia player), com.tcl.partnercustomizer (its TKeyFree \"TCL Channel\" tile shows up as an app once launcherx\nis off; hide it with hidden_apps instead), com.tcl.useragreement, tv.mopa.ginga, the keyboards,\nPlay Store and Play Services, plus the DO NOT DISABLE lines below.\nKept by the owner's choice: AirPlay (com.tcl.airplay2, com.mediatek.AirplayAPK, com.mediatek.airplaydaemon -\nthe EU list disables the daemon, AirPlay needs it) and screen mirroring (com.tcl.miracast).\nTCL promo, demo and help",
+  "packages": [
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "home-screen push messages",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail-demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "hotel-mode portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "onboarding/tips overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log collection",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.eva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL voice assistant layer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.magiconnectfree",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "MagicConnect pairing promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "peripheral firmware helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL extras",
+      "reason": "cleaner / \"permission shield\"",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.iplayer.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.support.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.backgrounddetection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.network",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "photo screensaver; the basic one takes over",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL extras",
+      "reason": "TCL extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps",
+      "reason": "TCL Channel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps",
+      "reason": "TCL Live free channels - see the README: with no aerial this is all Live TV has",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps",
+      "reason": "Prime Video, off by choice",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content apps",
+      "reason": "stock Google TV home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content apps",
+      "reason": "setup wizard; its RecoveryActivity takes Home when launcherx is off",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g08-au-android12/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

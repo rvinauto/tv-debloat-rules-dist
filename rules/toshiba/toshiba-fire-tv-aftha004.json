@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "id": "toshiba-fire-tv-aftha004",
+  "brand": "toshiba",
+  "title": "Toshiba Fire TV (AFTHA004, codename hazel), Fire OS 7 / Android 9 (SDK 28), build PS7717.5741N.0036408028416",
+  "android": "Fire OS 7",
+  "match": {
+    "brand_patterns": [
+      "toshiba"
+    ],
+    "model_patterns": [
+      "aftha004"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Toshiba Fire TV (AFTHA004, codename hazel), Fire OS 7 / Android 9 (SDK 28), build PS7717.5741N.0036408028416\nContributed by umang350 (PR #4). Also a fair start for other Toshiba / Insignia Fire TV Edition sets on Fire OS 7.\n\nFIRE OS: DEBLOAT ONLY. Fire OS will not let a third-party launcher take over Home: com.amazon.tv.launcher and\ncom.amazon.firehomestarter are protected packages (pm disable-user is refused), their HOME filter has priority 950,\nand `cmd package set-home-activity` prints Success but is ignored. launcher/build-and-install.sh does not apply\nhere; this list removes Amazon's ads, telemetry and preloads around the stock home screen.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/toshiba-fire-tv-aftha004/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/toshiba-fire-tv-aftha004/debloat.txt com.amazon.tv.launcher\n(restore.sh re-enables the stock launcher as a matter of routine; on Fire OS it was never disabled, which is harmless.)\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKept on purpose: Alexa, OTA updates, AirPlay, DIAL/whisperplay (Netflix and YouTube casting), the streaming apps\nthis owner uses (Netflix, YouTube, Spotify, Plex, VLC, MX Player) and the stock launcher.\nTwo packages tried on this set would not disable (protected): com.amazon.device.metrics and\ncom.amazon.ftvads.deeplinking. They are left out; the Insignia list mentions the same two.\nAds, shopping, content recognition",
+  "packages": [
+    {
+      "package": "com.amazon.shoptv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.shoptv.firetv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.acr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.democontent.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.fw.metrics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva.logcat",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.wirelessmetrics.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfcollection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.dp.logger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.storm.lightning.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials and promos",
+      "reason": "Tutorials and promos",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tmm.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials and promos",
+      "reason": "Tutorials and promos",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.gamehub",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials and promos",
+      "reason": "Tutorials and promos",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.bueller.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon content apps",
+      "reason": "Amazon content apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.bueller.photos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon content apps",
+      "reason": "Amazon content apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.minitv.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon content apps",
+      "reason": "Amazon content apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.naatyam",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon content apps",
+      "reason": "Amazon content apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.cast.sink",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Cast-to-Fire-TV receiver (Miracast), personal choice",
+      "reason": "Cast-to-Fire-TV receiver (Miracast), personal choice",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "in.startv.hotstar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hbo.hbonow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hulu.plus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.peacock.peacockfiretv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tubitv.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.pluto.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.onemainstream.sonyliv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.zee5.amazon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.suntv.sunnxt",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.yupptv.firetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.jio.media.stb.ondemand",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hungama.movies",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.aajtak.firetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.july.ndtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nexgtv.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "reason": "Streaming apps not used (personal choice: comment out the ones you watch)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/toshiba-fire-tv-aftha004/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

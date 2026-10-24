@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "panasonic-th-40hs550k",
+  "brand": "panasonic",
+  "title": "Panasonic TH-40HS550K (Skyworth-built, GS655, codename shibuya, MediaTek m5621), Android TV 11 (API 30), firmware RTO9.240708.002 (12195242)",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "panasonic"
+    ],
+    "model_patterns": [
+      "40hs550k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Panasonic TH-40HS550K (Skyworth-built, GS655, codename shibuya, MediaTek m5621), Android TV 11 (API 30), firmware RTO9.240708.002 (12195242)\nVendor fingerprint skyworth/SW1_T/shibuya. armeabi-v7a, UI at 1280x720, about 0.9 GB RAM.\nClassic Android TV home, not Google TV: the stock launcher is com.google.android.tvlauncher.\n\nStock launcher:  com.google.android.tvlauncher\nLive TV app:     com.mediatek.wwtv.tvcenter  (Live TV and the input panel; keep it)\nNever disable any com.mediatek.* package: they are the tuner, input and HDMI stack.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/panasonic-th-40hs550k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/panasonic-th-40hs550k/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nDisabled before this debloat, so not listed (restore.sh would turn it ON): com.google.android.marvin.talkback.\n\nStatus: disabled in four batches on one TV on 2026-10-19, with a screenshot after each batch and remote-key\nchecks of Home, Live TV, the input panel and HDMI detection. Nothing broke in that testing; the list had\nabout a day of real use when submitted, so treat it as a starting point.\n\nQuirks on this firmware, all checked on the TV:\n- Only the stock launcher and Settings' FallbackHome claim HOME; setupwraith does not. A sideloaded launcher\ninstalls and can be set as home with `cmd package set-home-activity`, no signature check.\n- Screenshots: `exec-out screencap -p` mixes \"Init wrapper sys mutex\" / \"open mma dev failed\" lines into the\nPNG. Write to a file with `screencap -p /sdcard/s.png` and pull it. While Live TV or an HDMI input is on\nscreen the file comes back empty (protected video layer).\n- The TV powers on to the last source (Live TV or an HDMI port). TV Settings contains a \"Power on behavior\"\nstring but this firmware shows no menu for it.\n- HDMI-CEC devices appear as child TV inputs, so the input list can show \"HDMI 1  PlayStation 5\".\n- Disabling partnercustomizer (below) removes the Inputs and Wi-Fi icons from the stock launcher's top bar;\nirrelevant once launcher/ is home. The stock launcher also keeps a Play Movies tile after\ncom.google.android.videos is disabled: it is a built-in shortcut, not the app.\n- About 0.9 GB of RAM: the low-memory killer ends background apps (Netflix included) quickly.\nSkyworth auto-installs, shop demo and setup leftovers",
+  "packages": [
+    {
+      "package": "android.autoinstalls.config.skyworth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play Auto Installs config for preloaded apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Skyworth retail demo service, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.common.demonow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Demo Now\" store demo app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "disclaimer screen used only by the first-run setup",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "on-screen manual (E-Manual)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and background services",
+      "reason": "Telemetry and background services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and background services",
+      "reason": "Google background data service (registers a VpnService), starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.testpq",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and background services",
+      "reason": "MediaTek picture-quality test tool, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation rows and stock-launcher partner config",
+      "reason": "Recommendation rows and stock-launcher partner config",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation rows and stock-launcher partner config",
+      "reason": "see the top-bar quirk above",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "Not used (by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "Not used (by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.wwtv.mediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "the \"Media\" tile: plays files from a USB drive",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not used (by choice)",
+      "reason": "Google Assistant / voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.airoha.ble.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not used (by choice)",
+      "reason": "\"RC Upgrade\": firmware updater for the Bluetooth remote; pairing still works",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/panasonic-th-40hs550k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

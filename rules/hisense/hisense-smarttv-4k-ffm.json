@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "id": "hisense-smarttv-4k-ffm",
+  "brand": "hisense",
+  "title": "Hisense SmartTV 4K FFM (device huangshan, MediaTek), Android TV 10, firmware QTG3.200902.001",
+  "android": "Android TV 10",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Hisense SmartTV 4K FFM (device huangshan, MediaTek), Android TV 10, firmware QTG3.200902.001\nSecurity patch 2023-02-05. Sold in Latin America; the Android model string is \"SmartTV 4K FFM\".\nThe same device and build ships in the USA as the Hisense U9DG (75\" Dual-Cell ULED, 2021), with a\nUS preload set: the \"US (U9DG)\" groups below. 2 GB RAM, armeabi-v7a (32-bit userspace), 7.7 GB /data.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-smarttv-4k-ffm/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-smarttv-4k-ffm/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nWARNING, read before applying: a first version of this list that also disabled\ncom.hisense.tv.smartsense, com.vt.tv.smartsense.ui and com.vt.tv.aiot sent the TV to Android\nRecovery on the next boot (\"Can't load Android system. Your data may be corrupt\"). \"Try again\"\nbooted normally and tools/restore.sh undid everything. Which of the three was the cause is not\nconfirmed, so all three are left out below. Never pick \"Factory data reset\" on that screen\nbefore trying \"Try again\".\nThis list was then applied in seven groups with a reboot after each: no crashes, normal boot.\nIf you experiment with more packages, reboot after each small group, and wait ~15 s after\npm disable-user before rebooting: rebooting immediately lost the change on this TV.\nUS (U9DG), 2026-10-21: the Hisense, Google and US groups applied in five batches with a reboot after\neach, OTA kept: normal boot every time, all 7 inputs (HDMI 1-4, composite, two tuners) still\nregistered, HDMI switching from the launcher and Chromecast work. Fresh on that set, not yet lived\nwith for weeks.\n\nADB: turning USB debugging on opens port 5555 directly (no Wireless debugging pairing);\nro.adb.secure=1, so the TV asks \"Allow USB debugging?\" on first connect.\nInput button (U9DG Bluetooth remote, Vendor_000d_Product_3838.kl): scancode 220 = KEYCODE_TV_INPUT,\nwhich the Live TV app and the launcher's InputKeyService turn into com.android.tv.action.VIEW_INPUTS.\nNothing on this firmware answers that action once tvlauncher is disabled (no global_keys.xml, no\nvendor input picker), so the button does nothing until the launcher answers it itself:\nhandle_view_inputs in config.json in this folder (TV_HOST=<tv ip> tools/theme.sh\nexamples/hisense-smarttv-4k-ffm), with INPUT_KEY_SERVICE=1 at install.\nsetupwraith (com.google.android.tungsten.setupwraith) owns the Wi-Fi saved at setup but does not\nclaim HOME on this firmware, so it stays enabled; launcher/build-and-install.sh worked unchanged.\n\nKeep: com.mediatek.* (including com.mediatek.wwtv.tvcenter, the Live TV and HDMI app),\ncom.hisense.tv.hitvinput, com.hisense.tv.smartservice, com.vidaa.persistent.service,\ncom.hisense.tv.customerlauncher. HDMI-CEC and the inputs keep working with this list.\nStock launcher: com.google.android.tvlauncher (the default in restore.sh).\nAlready disabled at the factory: net.vidaatv.android.tv, Pandora, Vudu, Play Games (and on the\nU9DG also Google TV movies, YouTube Music, the Hisense browser and the calendar provider).\nHisense telemetry: ACR (\"Enhanced Viewing\" content recognition and data-sharing consent)",
+  "packages": [
+    {
+      "package": "com.hisense.evservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "reason": "partner referral tracking",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.hisense.huangshan",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "reason": "PAI: queues partner apps (Sling, FanDuel, Freevee tiles on the US set)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "reason": "crash/feedback uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "reason": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google tracking and silent auto-installs (checked on the US U9DG, same build)",
+      "reason": "unused on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "net.vidaatv.hisense.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and push messages",
+      "reason": "VIDAA app preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and push messages",
+      "reason": "first-time experience",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.hibrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and push messages",
+      "reason": "Hisense content, preloads and push messages",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and push messages",
+      "reason": "Hisense push messages",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store / hotel mode",
+      "reason": "Retail demo / store / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store / hotel mode",
+      "reason": "Retail demo / store / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.b2b",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store / hotel mode",
+      "reason": "Retail demo / store / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store / hotel mode",
+      "reason": "Retail demo / store / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "reason": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.remoteupgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "reason": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.tv.usbota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "reason": "Firmware updates. Re-enable all three to receive an OTA update.",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google home-screen content",
+      "reason": "Google home-screen content",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google home-screen content",
+      "reason": "Google TV movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google home-screen content",
+      "reason": "Google home-screen content",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.alexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Google Assistant and voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvkids",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvunplugged",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "YouTube TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cbs.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Paramount+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.twitch.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vimeo.android.videoapp",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.ted.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.clearchannel.iheartradio.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.espn.score_center",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.foxsports.videogo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nousguide.android.rbtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Red Bull TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.abclocal.kabc.news",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "ABC7 Los Angeles",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.imdbtv.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "IMDb TV / Freevee",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.yeelink.yeelightflow.hisense.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Yeelight smart-light app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.androidbox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Miracast screen sharing (WFDSinkTest)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.hisremotenow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "RemoteNOW phone app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.hisremotenowserver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants. The remote's microphone button stops working.",
+      "reason": "Voice assistants. The remote's microphone button stops working.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-smarttv-4k-ffm/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

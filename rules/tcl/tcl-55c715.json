@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55c715",
+  "brand": "tcl",
+  "title": "TCL 55C715 QLED (2020, Belgium), reports ro.product.model BeyondTV2 / device BeyondTV, board rtd285o (Realtek RT2851),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55c715"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 55C715 QLED (2020, Belgium), reports ro.product.model BeyondTV2 / device BeyondTV, board rtd285o (Realtek RT2851),\nclient type TCL-EU-RT2851-S1, software V8-R851T02-LF1V606 (AP06), Android TV 9 (API 28), build PPR1.180610.011,\nsecurity patch 2020-09-05, 2 GB RAM. Same firmware as examples/tcl-beyondtv-rt2851/, which was the starting point.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55c715/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55c715/debloat.txt\nStock launcher: com.google.android.tvlauncher (Android TV Home 7.x, Play-updated). Live TV app: com.tcl.tv\n(launcher config: live_tv_package com.tcl.tv). The launcher's Inputs menu lists HDMI 1-3, AV and Live TV through\nTvInputManager; no source_panel fallback needed. Network ADB (port 5555) was open as soon as USB debugging was on.\n\nTested 2026-10-20 on a real unit: applied in the groups below with a screenshot after each, then rebooted three times.\nNetflix, YouTube, Prime Video, Play Store, Play Movies, Live TV, HDMI through TCL's source menu and the launcher's\nInputs menu, Settings, Chromecast and the Bluetooth remote all kept working. MemAvailable went from 557 MB to\nabout 780 MB with the same apps; voice_ap dropped from ~27% of one core to ~3% once group 6 was off.\nIn daily family use since then (streaming apps, live TV through the set-top box on HDMI 1, casting); nothing beyond\nthe notes below had to be re-enabled.\n\nQuirks on this firmware:\n- com.tcl.usercenter comes back enabled at every boot, even with its Play update removed (TCL's boot-time list;\nTV Settings also binds to it). Listed anyway: it stays off until the next reboot. Rakuten TV (tv.wuaki.apptv)\ndoes the same, see group 3.\n- com.tcl.partnercustomizer also supplies the stock Android TV Home's Inputs icon (and the TCL Channel tile and a\nTV Guard shortcut). Disabling it removes the icon; the remote's Source button still works. No effect with a\ncustom launcher.\n- Disabling com.google.android.katniss (group 6) also disables search on the stock home screen, typed search too.\n- Settings > Applications opens TCL \"TV Guard\" (com.tcl.tvweishi), and still does while it is disabled.\n- Re-enable com.tcl.tvweishi and com.tcl.appmarket2 (group 7) while installing the launcher, as on the RT2851 list.\n\nAlready disabled at the factory, left alone: the 14 uk.co.freeview.* apps, com.tcl.bootadservice,\ncom.tcl.common.terminalmanagerplus, com.tcl.smartalexa, com.tcl.notereminder, com.tcl.gallery, Stan, ZEE5, Eros Now,\nLINE TV, Play Music, Play Games.\n\nDO NOT DISABLE (load-bearing on this firmware, as on tcl-beyondtv-rt2851):\ncom.tcl.tv com.tcl.tvinput com.tcl.tvpassthrough com.tcl.sourcemananger com.tcl.keycustomfunctionservice\ncom.tcl.framework.custom com.tcl.tcl_bt_rcu_service com.tcl.autopair com.google.android.tv.remote.service\ncom.tcl.inputmethod.international com.tcl.settings com.tcl.initsetup com.tcl.factory.view com.tcl.showmode\ncom.tcl.xian.StartandroidService com.tcl.appstatecontroller com.realtek.netflix.setting com.android.WifiCountryService\nAlso kept: com.tcl.videoplayer (serves Live TV info dialogs), com.tcl.audioplayer (\"listen with the screen off\"),\ncom.tcl.imageplayer, com.tcl.UpdatePeripheral (boot-time peripheral updater, purpose unclear), com.tcl.rc.ota.\n1. Telemetry and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL BI analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"send feedback\"",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bug report uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "one-time setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "home-screen recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "2. Content, recommendation rows and promos",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "TCL Channel tile, promo rows; also the stock home's Inputs icon (see above)",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "TCL message/promo box",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "retail demo stickers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.cyberui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, recommendation rows and promos",
+      "reason": "TCL content service, unused",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Preloads and background extras",
+      "reason": "end-user agreement screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Preloads and background extras",
+      "reason": "unused, Google WebView is the active provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.keyhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Preloads and background extras",
+      "reason": "remote-key help overlays",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. USB media, off by choice (the players stay, see above)",
+      "reason": "USB media centre (\"Centre multimédia\" stays in the source menu, opens nothing)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. USB media, off by choice (the players stay, see above)",
+      "reason": "copy-to-TV helper, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "5. Off by choice",
+      "reason": "Miracast screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.tcl.MultiScreenInteraction_TV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "5. Off by choice",
+      "reason": "TCL T-Cast / MagiConnect",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "5. Off by choice",
+      "reason": "TCL firmware updater; no update since AP06 (2020)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "6. Voice, off by choice: the mic button and home-screen search go with it",
+      "reason": "Google voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.speech.pumpkin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "6. Voice, off by choice: the mic button and home-screen search go with it",
+      "reason": "offline speech recognition",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "6. Voice, off by choice: the mic button and home-screen search go with it",
+      "reason": "TCL's Google Assistant bridge",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "6. Voice, off by choice: the mic button and home-screen search go with it",
+      "reason": "remote microphone manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "6. Voice, off by choice: the mic button and home-screen search go with it",
+      "reason": "Assistant LED service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tvweishi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "7. After the launcher is installed",
+      "reason": "TCL \"TV Guard\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.appmarket2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "7. After the launcher is installed",
+      "reason": "TCL app store (Play Store stays)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "8. Extras nobody used here",
+      "reason": "TCL account login (QR / phone binding); re-enabled at boot, see above",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "8. Extras nobody used here",
+      "reason": "printing",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "8. Extras nobody used here",
+      "reason": "calendar sync",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "8. Extras nobody used here",
+      "reason": "contacts sync",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "8. Extras nobody used here",
+      "reason": "Ambient-mode screensaver (pick another screensaver first)",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55c715/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

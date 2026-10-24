@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "id": "sony-kd-65x82l",
+  "brand": "sony",
+  "title": "Sony BRAVIA KD-65X82L (2023, device BRAVIA_VH22, MediaTek), India",
+  "android": "Google TV 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "65x82l"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Sony BRAVIA KD-65X82L (2023, device BRAVIA_VH22, MediaTek), India\nGoogle TV 12 (API 31), build BRAVIA_VH22_M_PA-user 12 STT2.230505.001.S136 682241\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-kd-65x82l/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-kd-65x82l/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nBased on examples/sony-bravia-4k-vh21 (same firmware build).\nKept by owner's choice: Google Assistant (katniss, voicesearch, assistantadapter), Chromecast (mediashell),\nAirPlay/HomeKit, Sony updates, Apple TV app, Google TV movies, text-to-speech, UEI QuickSet.\nKept as unclear: com.sony.dtv.sensingfusionservice (backed by a running sensingFusion HAL, likely the\nambient light sensor) and com.sony.dtv.frame.\nLive TV / input app: com.sony.dtv.tvx. Keep tvinput.*, braviasync*, tvapi, sonysystemservice, imeproxy,\nirblaster/irbservice and all com.mediatek.*.\n\nADB: the TV shows only \"ADB debugging\" (no separate USB toggle); it opens port 5555, and the \"Allow USB\ndebugging?\" prompt appears on first connect. ro.adb.secure=1.\nLauncher: installed with launcher/build-and-install.sh, which disabled launcherx and set Home on the first try\nonce setupwraith (batch 3) was off. Set live_tv_package and hidden_apps to com.sony.dtv.tvx. The remote's\ngear button stops working with launcherx off: it is scancode 646 (0x286, HID 0x0c0586, device \"SONY TV VRC\n001\"), so settings_key_scancodes [646] with HOME_KEY_SERVICE=1 brings it back.\nThe display runs a 1920x1080 override on the 3840x2160 panel at density 320; that is the factory state.\nApplied 2026-10-21 in three batches with a screenshot and crash-log check after each, then reboot-checked: all\ndisabled packages stayed disabled, Home stayed on the launcher. At that boot com.sony.dtv.sonysystemservice\ncrashed once (\"GoToSleepInterface has already initialized\") and restarted on its own; not seen before the\ndebloat because no earlier boot was logged. Not lived with for days yet.\nBatch 1: tracking, ads, demo mode",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony IDD usage-data agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "user context providers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "remote-support session service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Select app recommendations",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonytab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony content tab / partner rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vewd.core.integration.dia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vewd",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Sony smart-home / phone-app link (BRAVIA Connect)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot.remotestart",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.auth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "account link for the above",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.helpguidecontents",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.livingfit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Living Decor",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.ecodashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.distancealert",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "BRAVIA CAM (optional accessory) features",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.gestureapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.settings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.fwupdate",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: extras the owner doesn't use",
+      "reason": "Batch 2: extras the owner doesn't use",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "(re-joined in Settings), so it ran with FORCE_SETUPWRAITH=1.",
+      "reason": "(re-joined in Settings), so it ran with FORCE_SETUPWRAITH=1.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-kd-65x82l/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "id": "tivo-stream-4k",
+  "brand": "tivo",
+  "title": "TiVo Stream 4K (SEI Robotics IPA1104HDW, SKU RA2400, device SEI400TV, Amlogic S905Y2, NES middleware), 2 GB RAM",
+  "android": "Android TV 12",
+  "match": {
+    "brand_patterns": [
+      "tivo"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TiVo Stream 4K (SEI Robotics IPA1104HDW, SKU RA2400, device SEI400TV, Amlogic S905Y2, NES middleware), 2 GB RAM\nAndroid TV 12 (SDK 31), build SC.1272, 32-bit (armeabi-v7a), security patch 2025-07-05\n\nApply and undo: the commands in README.md here, NOT tools/disable.sh (this firmware refuses it).\nEverything is SUSPENDED and barred from the background, not disabled or uninstalled.\nComment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (classic Android TV). HOME priority 2, so set-home-activity says\n\"Success\" and changes nothing; README.md here explains how Home reaches another launcher. A streaming stick: no\nHDMI inputs and no tuner. Suspending the stock launcher only works after it stops owning the HOME role.\n\nKnown quirks on this firmware:\n- Every pm disable-user, pm disable <component> and pm hide is refused (\"This command is illegal!\"); pm uninstall\n--user 0 is refused for core apps. pm suspend and appops work and survive a reboot.\n- Port 5555 opens as soon as USB debugging is on, with a per-computer prompt; there is no separate network toggle.\n- com.nes.coreservice runs EvoBlackListAppsFun at every start (its BootReceiver, kicked by the persistent\ncom.nes.daemon): it uninstalls every non-system app whose activity declares android.intent.category.HOME, and a\nfixed list of 53 packages from array/evo_black_list_to_uninstall_pkgs (alternative launchers, Downloader,\nMagisk, IPTV \"Magis TV\" variants). Suspending it does not stop its boot receiver.\n- A suspended package still gets its boot broadcasts: coreservice, sageservice, tvlauncher, katniss,\ntvrecommendations and tvbugtracker are running again after a boot. Stop them with am force-stop.\n\nKept on purpose (checked with dumpsys package):\ncom.uei.uas.tivo               UEI QuickSet: the remote switches the TV on and off\ncom.sei.hdmi.services          HDMI-CEC\ncom.nes.tivo.remote.pair       Bluetooth remote pairing; remote.ota updates the remote's firmware\ncom.google.android.apps.mediashell   Chromecast (suspending it saved no memory: another component binds it)\nPlay Store, Play Services, keyboard, TV Settings\nTelemetry and feedback",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google RLZ partner attribution pings",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.tvbugtracker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "NES bug tracker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.coreservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "App blocker and NES background services",
+      "reason": "uninstalls launchers and sideload tools at boot; polls the update status once a second",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.daemon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "App blocker and NES background services",
+      "reason": "persistent: the system re-creates it, so suspending changes nothing visible",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tivo.sageservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "App blocker and NES background services",
+      "reason": "TiVo service, no use outside the US",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendations, partner rows and auto-installs",
+      "reason": "also switch its notification listener off: cmd notification disallow_listener",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sei",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations, partner rows and auto-installs",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps, off by choice",
+      "reason": "Preloaded apps, off by choice",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable if you need the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tivo-stream-4k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

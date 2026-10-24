@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-4k-ur2",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K UR2 (device BRAVIA_UR2_4K, MediaTek)",
+  "android": "Android 10",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "ur2"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Sony BRAVIA 4K UR2 (device BRAVIA_UR2_4K, MediaTek)\nAndroid 10 (Android TV, API 29), build QTG3.200305.006.S97 662301 (US UC firmware and EU retail KD-55XG9505)\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-4k-ur2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-4k-ur2/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the restore.sh default is correct).\nLive TV / tuner app: com.sony.dtv.tvx (set it as live_tv_package in the launcher's config.xml).\nKeep the com.sony.dtv.tvinput.* services, com.sony.dtv.braviasync*, com.sony.dtv.tvapi,\ncom.sony.dtv.sonysystemservice and the Sony settings apps: they drive HDMI, the tuner, Bravia Sync\nand the remote.\nAlready disabled at the factory: com.sony.dtv.b2b.vendorprotocol, com.sony.dtv.b2b.softap,\nscrenmirroring.com.\n\nApplied on US firmware (dock: Netflix, YouTube, Disney+, ZEE5) and re-confirmed on an EU retail\nKD-55XG9505 (BRAVIA_UR2_4K_EU) with the Apple TV style launcher (dock: Netflix, Prime Video,\nYouTube, Spotify). HDMI 1-4/eARC, TVX tuner, Bravia Sync, and remote control verified across reboots.\ntracking / ads / recommendations",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV (ACR viewing data)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "only the stock launcher uses it",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyloglevelsettingsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony IoT and ambient services",
+      "reason": "Sony IoT and ambient services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot.remotestart",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony IoT and ambient services",
+      "reason": "Sony IoT and ambient services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.auth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony IoT and ambient services",
+      "reason": "Sony IoT and ambient services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.livingfit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony IoT and ambient services",
+      "reason": "Living Decor / ambient service",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.prosettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.adminpassword",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.deviceadminsettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.importexport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.rs232csupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "hotel / professional mode (unused in a home)",
+      "reason": "hotel / professional mode (unused in a home)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.assistantadapter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Chromecast built-in (skip to keep casting)",
+      "reason": "Chromecast built-in (skip to keep casting)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.wfd",
+      "action": "disable",
+      "risk": "safe",
+      "group": "screen mirroring / Wi-Fi Direct (skip to keep Miracast)",
+      "reason": "screen mirroring / Wi-Fi Direct (skip to keep Miracast)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.networkapp.wifidirect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "screen mirroring / Wi-Fi Direct (skip to keep Miracast)",
+      "reason": "screen mirroring / Wi-Fi Direct (skip to keep Miracast)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.onehundredpics.onehundredpicsquiz",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "air.com.vudu.air.DownloaderTablet",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sling",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.fox.foxone",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cbs.ott",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvunplugged",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apple.atve.sony.appletv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps, disabled by choice",
+      "reason": "preloaded apps, disabled by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-4k-ur2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

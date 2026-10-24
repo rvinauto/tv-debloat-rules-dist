@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "id": "acer-ar55ar2851udpro",
+  "brand": "acer",
+  "title": "Acer AR55AR2851UDPRO 55\" (SCBC device R4, Realtek rtd2851m), India, Android TV 14, firmware UKR1.260308",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "acer"
+    ],
+    "model_patterns": [
+      "ar55ar2851udpro"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Acer AR55AR2851UDPRO 55\" (SCBC device R4, Realtek rtd2851m), India, Android TV 14, firmware UKR1.260308\nBuild UKR1.260308, incremental 3272 (the R4G 50\" note's set is 5597)\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/acer-ar55ar2851udpro/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/acer-ar55ar2851udpro/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (Android TV, not Google TV: launcherx is not installed).\nHDMI and AV inputs: com.apps.passthrough. Live TV: com.apps.livetv with com.apps.atv / com.apps.dtv.\n\nNot the same as the Acer R4G 50\" in docs/devices/acer-r4g.md (MOKA R4_GTV, Google TV 14), although the\nbuild is the same. Boot runs Acer's own com.apps.tvsettings/.ui.FallbackHome, and nothing came back:\nafter three cold boots (power cable out for 30 s) all 28 packages below stayed disabled, including ten that\nthe R4G firmware re-enables at every boot (play.games, feedback, gdpr, esticker, tvmanager, meeting.service,\ntimeclock, audiolink, scast, fastscreen). No RecoveryActivity in logcat.\n\nsetupwraith owns the saved Wi-Fi network on this set (dumpsys wifi | grep -o 'cname=[^ ]*'): leave it enabled.\nPort 5555 opened with `adb tcpip 5555` after Wireless debugging pairing stayed open across all three cold boots.\n\nThe remote's YouTube button never reaches Android: com.realtek.keyinterceptserver takes it (keycode 2030) and\nstarts com.google.android.youtube.tv by package, so app_keys cannot remap it. With YouTube disabled, every press\ncrashes that persistent service (ActivityNotFoundException); Android restarts it at once and nothing else\nbreaks. Comment out the YouTube line below if you want the button to work.\n\nNew launcher: see README.md and config.json here. Home stays on tvlauncher with set-home-activity, so the\nlauncher takes the Home button through HOME_KEY_SERVICE with stock_home_redirect (tvlauncher stays enabled).\n\nKept on purpose: com.realtek.leanbacklauncher.partnercustomizer (supplies the Inputs button on tvlauncher,\nas on the Compac ATV R2), com.apps.passthrough, com.apps.smartmenu (picture menu), the key handlers\n(com.apps.smartkey, com.apps.virtualkey, com.mk.tv.fivekey, com.realtek.keyinterceptserver,\ncom.realtek.android.globalkeyhandler, com.apps.bluetoothremote), com.apps.sys, com.mk.service.tvmidware,\nfirmware updates (com.apps.ota, com.apps.authota), Assistant, Chromecast, Netflix, Prime Video, Backdrop.\nNot touched: com.apps.factory.ui and com.realtek.factorytools (never started), com.apps.biz.ds and\ncom.apps.biz.mt (unclear), com.seraphic.hbbtv.app, com.apps.usbmediaplayer.\n\nTested on one set on 2026-10-24, in three batches with a Home screenshot after each, then a cold boot:\nHome, HDMI input, Prime Video, Assistant mic, casting, Home/Back/volume/Settings keys work. Then five more\npackages (Play Movies, speed test, partner setup, basic screensaver, TalkBack) and two more\ncold boots, with the new launcher on Home. AdGuard Private DNS validates and Prime Video plays with it.\nFresh, not yet lived with for days; update it if something breaks.\nSCBC / Google telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.apps.function.gdpr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SCBC data-consent agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android ad and personalisation services",
+      "reason": "Android ad and personalisation services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.mk.wd",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, content rows and auto-installs",
+      "reason": "boot receiver with ClickAd/ClickApp/ClickChannel activities",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.scbc.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, content rows and auto-installs",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ads, content rows and auto-installs",
+      "reason": "sponsored and recommendation rows on the stock Home",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.apps.eshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OEM demo and background apps",
+      "reason": "in-store demo / promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OEM demo and background apps",
+      "reason": "ShowService overlay, demo stickers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mk.tv.meeting.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OEM demo and background apps",
+      "reason": "digital-signage service with an accessibility service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OEM demo and background apps",
+      "reason": "TV manager / cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "TV as a Wi-Fi hotspot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mk.tv.timeclock",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Not needed on a TV",
+      "reason": "WorldClock",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.apps.function.audiolink",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Audio Link",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Not needed on a TV",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "Google partner setup / RLZ pings",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not needed on a TV",
+      "reason": "basic \"Colors\" screensaver (Ambient/Backdrop kept)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.creative.fastscreen.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "FastCast Miracast receiver (screen mirroring)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.scast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "SCast casting receiver",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "Google Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mk.tv.networkspeed",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and casting (personal choice: comment out any you use)",
+      "reason": "network speed test (Firebase)",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader: keep it if anyone uses it"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/acer-ar55ar2851udpro/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

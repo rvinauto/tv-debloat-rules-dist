@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "id": "philips-55oled708",
+  "brand": "philips",
+  "title": "Philips 55OLED708/12 (55\" 4K OLED, Ambilight, 2023 model), Poland, UI in Ukrainian",
+  "android": "Google TV 12",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "55oled708"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Philips 55OLED708/12 (55\" 4K OLED, Ambilight, 2023 model), Poland, UI in Ukrainian\nGoogle TV 12 (API 31), firmware STT2.230831.001 build 20803, board PH1M_WW_9972\nro.product.model=Philips Google TV TA1  ro.product.device=PH1M_WW_9972  ro.product.manufacturer=TPV\nFingerprint: Philips/PH1M_WW_9972/PH1M_WW_9972:12/STT2.230831.001/20803:user/release-keys\nMediaTek, 2.8 GB RAM, armeabi-v7a userspace. On Wi-Fi. ro.adb.secure=1.\n\nNOT the same platform as examples/philips-55oled707 or philips-50pus8517 (Android TV 11, board\nPH1M_EA_9970A, com.google.android.tvlauncher) nor philips-75pus8505 (Android TV 12, PH9M). This is the\nGoogle TV generation: stock launcher com.google.android.apps.tv.launcherx, setupwraith claims Home,\nSamba TV ACR is preinstalled, and there is no org.droidtv.usagelogger. The org.droidtv layer is shared\nwith those files, so their DO NOT DISABLE blocks still apply (xtv, eum, aurora, icp, playtv...).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-55oled708/debloat.txt\n(forget and re-join Wi-Fi first, see setupwraith below; then FORCE_SETUPWRAITH=1)\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-55oled708/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh)\nHome claimants: launcherx (priority 2), setupwraith .RecoveryActivity (1), tv.settings FallbackHome (-1000)\nLive TV app:    org.droidtv.playtv (live_tv_package). HDMI 1-4, component and composite are\ncom.mediatek.tis (labelled \"TIF Test\"; keep it), the DVB tuner com.mediatek.dtv.tvinput.dvbtuner.\nApp labels were read from each APK with `aapt dump badging`, not guessed from package names.\nAlready disabled from the factory, so not listed: tv.wuaki.apptv (Rakuten), ru.ivi.client, the\nATSC and ISDB tuners, com.omni.ssutv.*, and the regional org.droidtv.*config packages.\n\nApplied in small batches on 2026-10-21 with a screenshot and a 30 s idle-log check (50PUS8517 quirk 5\nmethod) after each. No retry loop appeared; the idle log went from 865 to ~690 lines per 30 s.\nHome, inputs (HDMI 2 with a PS5), Live TV, Settings, YouTube playback and every remote button were\nchecked the same day; not yet lived with for days. If something breaks, `pm enable <package>` and report it.\nAfter a reboot `pm list packages -d` was identical: nothing re-enabled itself on this firmware, Play-Fi\nand Chromecast included (unlike the 55OLED707 and 50PUS8517). Checked again 8.5 min after boot.\n\nMemory, `dumpsys meminfo` on the home screen; readings straddle a reboot, so approximate:\nStock:                      1,755 MB used PSS (launcherx 182 MB across two processes)\nThis list + launcher/:      1,582 MB used PSS (com.gathin.tvhome 159 MB)\n\nQuirks on this firmware:\n1. org.droidtv.demome asks for TV_INPUT_HARDWARE here, so tools/disable.sh refuses it (#321). Kept.\n2. Remote buttons go through org.droidtv.GlobalKey, which hard-codes two of them to the stock launcher:\nthe gear button (scancode 141, KEY_SETUP) starts launcherx/.dashboard.DashboardActivity and the\nApps button (scancode 779, keycode 813) sends ALL_APPS. With launcherx disabled both do nothing.\nFixed with the launcher's HomeKeyService (HOME_KEY_SERVICE=1): settings_key_scancodes 141 and\napp_keys 813:com.gathin.tvhome. Matching the gear button by keycode (327) did NOT work, by\nscancode it does; checked with the real remote. SOURCES (768), Netflix (772), YouTube (776), TV\n(170, last source) and Quick menu (765) are handled by GlobalKey itself and keep working.\nTV Guide (172) does nothing on a set with no channels tuned, before and after.\n3. The org.droidtv.candeebug CollectionService is bound by 22 TV processes; none retried after it was\ndisabled. tv.samba.ssm is bound by org.droidtv.tv.tptvservice:SambaService, also no retries.\n4. Settings references io.mimi.tvapp and tpvaudiomanager sends Mimi a broadcast; with both Mimi\npackages disabled the sound menus still ope",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"DAC\" analytics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"GEL\" metrics collector, runs inside candeebug's process; disable both",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.tv.frameworklogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"FrameworkLogger\": hands reboot reasons and firmware-install records to the Philips logger",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Samba Services Manager\": Samba TV ACR (identifies what is on screen), Firebase + Mixpanel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Market Feedback Agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tpv.nftgallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips and Google promos, retail demo, first-setup leftovers",
+      "reason": "\"NFT Collection\" art gallery app, INTERNET",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.m7opapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips and Google promos, retail demo, first-setup leftovers",
+      "reason": "M7 satellite operator promo (Canal Digitaal, TV Vlaanderen, Skylink, HD Austria); keep if you use one",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.astrahdplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips and Google promos, retail demo, first-setup leftovers",
+      "reason": "\"HD+\", German Astra satellite pay-TV operator app; keep if you subscribe",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips and Google promos, retail demo, first-setup leftovers",
+      "reason": "partner referrer / attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Philips and Google promos, retail demo, first-setup leftovers",
+      "reason": "runs once at first setup, nothing afterwards",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.phorus.playfi.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"Play-Fi\" multi-room audio app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.phorus.playfi.softap",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "DTSPlayFiSoftAP, Play-Fi's soft access point helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.control4app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"Control4\" home-automation integration (4 packages)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.control4adapterservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"UcAdaptor\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.control4sddp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"SddpService\", Control4 discovery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.control4UcService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"UcService\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.matter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"MatterTV\", Matter smart-home bridge",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "io.mimi.tvapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"Mimi Sound Personalization\" hearing-test app; Settings only links to it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "io.mimi.sdk.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"MimiService\", its audio service; nothing bound it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.amazonalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"Amazon Alexa\" bridge (was running at idle)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "Chromecast built-in (~26 MB at idle)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mediatek.dialservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips features this owner does not use. Check each against your own setup.",
+      "reason": "\"AOW_DIAL\": DIAL, how Netflix/YouTube phone apps find the TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.twitch.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "Twitch",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.megogo.application",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "MEGOGO",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.boosteroidtv.streaming",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "Boosteroid cloud gaming",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tm.replica",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "\"Replica\" iPhone screen mirroring",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.droidtv.oemtabprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preinstalled apps and streaming apps this owner does not use, all in /data/app",
+      "reason": "\"Philips\" tab of the Google TV home screen (promos), INTERNET",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-55oled708/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

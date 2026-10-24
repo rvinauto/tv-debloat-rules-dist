@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "sankey-smart-tv-hi3751v350",
+  "brand": "sankey",
+  "title": "Sankey SMART_TV (CVTE firmware, HiSilicon Hi3751V350 \"bigfish\"), Android 12, build Hi3751V352E_DMO, firmware 20231115_180213_01",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "sankey"
+    ],
+    "model_patterns": [
+      "hi3751v350"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.cvte.tv.launcher.space",
+  "notes": "Sankey SMART_TV (CVTE firmware, HiSilicon Hi3751V350 \"bigfish\"), Android 12, build Hi3751V352E_DMO, firmware 20231115_180213_01\n1 GB RAM (low_ram), 1280x720 panel. Not the SMART2KTVSE (Whale OS, Amlogic) in sankey-smart2ktvse/: different board.\nTested on one set for one day, with the launcher; notes in README.md in this folder.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sankey-smart-tv-hi3751v350/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sankey-smart-tv-hi3751v350/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.cvte.tv.launcher.space (+ .skin). Keep it ENABLED: it is the only HOME, there is no FallbackHome.\nLive TV: com.cvte.tv.setting/.TvSettingActivity. Source picker: com.cvte.tv.globalui/.InputSourceActivity.\nKept on purpose: com.cvte.tvservice, com.cvte.tv.api.impl, com.cvte.tv.setting and com.cvte.tv.globalui (inputs,\nchannels, remote keys), com.cvte.settings, com.hisilicon.rmservice (the remote's accessibility service),\ncom.vendor.vnaudiomanager, com.cvte.tv.media and com.hisilicon.higallery (the file browser that opens when a USB\ndrive is plugged in), com.cvte.tv.systemupgrade (firmware updates), com.maxhub.screenshare.server.tv,\ncom.screenshare.platform and com.cvte.dssshare.dlna (MHshare phone casting, the \"ShareServer\" tile),\ncom.cvte.tv.ucservice (unknown, runs from boot), and the factory packages com.cvte.fac.menu, com.cvte.factory.*,\ncom.cvte.license.at and com.cvte.tv.tools (never launched).\nCVTE ads and telemetry",
+  "packages": [
+    {
+      "package": "com.cvte.gaia.ad.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad service, the largest app process after Play services (~27 MB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.wonder.cloud.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"UniAdService\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.industries",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "push messenger and ad receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.pictorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content",
+      "reason": "screensaver with ads",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.steward",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content",
+      "reason": "\"cleaner\" with scheduled optimisation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Manufacturer content",
+      "reason": "the stock launcher's weather; keep it if you keep the stock launcher",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisilicon.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on the tested set",
+      "reason": "Miracast receiver",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sankey-smart-tv-hi3751v350/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

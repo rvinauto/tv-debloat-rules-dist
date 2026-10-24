@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "id": "turkcell-tv-plus-4k-box-dv6069y",
+  "brand": "turkcell",
+  "title": "Turkcell TV+ 4K Box (TV PLUS 4K BOX, SDMC DV6069Y_TVPLUS, Amlogic, board \"faraday\"), Turkey, operator streaming box",
+  "android": "Android TV 10",
+  "match": {
+    "brand_patterns": [
+      "turkcell"
+    ],
+    "model_patterns": [
+      "dv6069y"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Turkcell TV+ 4K Box (TV PLUS 4K BOX, SDMC DV6069Y_TVPLUS, Amlogic, board \"faraday\"), Turkey, operator streaming box\nAndroid TV 10 (SDK 29), build QT.20230328, security patch 2023-02-05. 2 GB RAM, 32-bit userspace (armeabi-v7a).\nFingerprint: TVPLUS/TVPLUS_OTT/DV6069Y_TVPLUS:10/QT/20230328:user/release-keys\n\nApply:   TV_HOST=<box ip> tools/disable.sh examples/turkcell-tv-plus-4k-box-dv6069y/debloat.txt\nUndo:    TV_HOST=<box ip> tools/restore.sh examples/turkcell-tv-plus-4k-box-dv6069y/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\nTested on one box the same day, including several reboots; not a multi-day soak.\n\nA streaming box: no HDMI-in or tuner, so set live_tv_package empty in config.xml. Stock launcher:\ncom.google.android.tvlauncher (the scripts' default). It is a Google-certified Android TV: Play Store, Play Services\nand the standard launcher, no operator home screen. No user restrictions or device owner; sideloading works.\n\nNotes from this box:\n- Network debugging opens port 5555 with ro.adb.secure=1, so each computer is accepted on screen.\n- The remote's app buttons are global keys handled by com.sdmc.GlobalKey (keylayout Vendor_7545_Product_0171.kl):\nYouTube = KEYCODE_BUTTON_4 (KEY_F1), Play Store = BUTTON_5 (KEY_F3), TV+ = BUTTON_10 (key 185, which\nGlobalKey calls \"SDMCEXTEND2\"). GlobalKey starts the mapped app; if the app is not installed it opens its Play\nStore page instead. The keylayout also maps a Prime Video key (63, BUTTON_8), but this box's remote has none.\n- DISABLING YOUTUBE BREAKS THE PLAY STORE BUTTON: GlobalKey only checks that a package is installed, so the\nYouTube button on a disabled com.google.android.youtube.tv throws ActivityNotFoundException and crashes\nGlobalKey. After repeated crashes Android marks the process bad and every app button (Play Store, TV+)\nis dead until a reboot. If you\ndisable YouTube, take the buttons away from GlobalKey with app_keys and INPUT_KEY_SERVICE=1, e.g.\n\"KEYCODE_BUTTON_4:<your YouTube app>\", \"KEYCODE_BUTTON_5:com.android.vending\", \"KEYCODE_BUTTON_10:<package>\".\nInputKeyService gets the keys before the global-key broadcast. Checked with the real remote after a reboot.\n- com.google.android.tv.remote.service comes back at every boot, after both pm disable-user and pm uninstall --user 0,\nso it is not listed here (about 14 MB).\n- com.sdmc.disablecec turns HDMI-CEC off on first boot only (com_sdmc_disablecec_first_run=1); switching CEC on in\nSettings sticks.\n- The test unit was on a 1080p PC monitor and the box had picked 2160p59.94 with YCbCr 4:2:0 (cur_VIC 353 in\n/sys/class/amhdmitx/amhdmitx0/config). Settings > TV settings > Display > Screen resolution set to 1080p-59.94hz\nswitched it to VIC 16, YCbCr 4:4:4, and it survives a reboot.\n- Free RAM after boot went from about 460 MB to about 930 MB; ZRAM in use from about 185 MB to about 25 MB.\n- AdGuard Private DNS (dns.adguard-dns.com) works.\n\nKept on purpose: com.sdmc.GlobalKey (remote app buttons), com.sdmc.standbyserver (standby), com.sdmc.bluetoothconnect\n(remote pairing), com.sdmc.disablecec, com.sdmc.factorymonitor (watches package removal, purpose unclear),\ncom.droidlogic* (Amlogic settings, display and Bluetooth), com.droidlogic.otaupgrade (firmware updates),\ncom.google.android.tungsten.setupwraith, com.google.android.inputmethod.latin (keyboard), Play Store, Play Services.\nTelemetry, log collection, factory test",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.droidlogic.readlog",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "copies logs to a USB drive when one is mounted",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sdmc.facTest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "factory tester, starts at boot; checked with dumpsys only, never opened",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendations, operator customisation, auto-installs",
+      "reason": "Recommendations, operator customisation, auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sdmc.leakbackcustomer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations, operator customisation, auto-installs",
+      "reason": "operator rows and widgets for the stock launcher (PARTNER_CONFIGURATION)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sdmc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations, operator customisation, auto-installs",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sdmc.autorunapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Recommendations, operator customisation, auto-installs",
+      "reason": "starts the operator app at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: voice, casting, YouTube",
+      "reason": "voice assistant; the mic button stops working",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: voice, casting, YouTube",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: voice, casting, YouTube",
+      "reason": "replaced by SmartTube here; read the GlobalKey note above first",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.camera2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/turkcell-tv-plus-4k-box-dv6069y/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

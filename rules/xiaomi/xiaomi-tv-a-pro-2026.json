@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-tv-a-pro-2026",
+  "brand": "xiaomi",
+  "title": "Xiaomi TV A Pro 75\" 2026 (MiTV-MZTU0, codename river, MediaTek), Google TV / Android 14 (SDK 34),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "2026"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Xiaomi TV A Pro 75\" 2026 (MiTV-MZTU0, codename river, MediaTek), Google TV / Android 14 (SDK 34),\nfirmware UKN1.240806.017.V816.0.25.3.10.URTMIXM. Likely a good start for other 2024+ Xiaomi Google TVs.\nLive TV app: com.mitv.livetv (set it as live_tv_package and hide it in launcher config.xml).\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh and build-and-install.sh:\nSTOCK_LAUNCHER=com.google.android.apps.tv.launcherx launcher/build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-tv-a-pro-2026/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-tv-a-pro-2026/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKeep (TV needs them): mitv.service and com.mitv.overseaservice (remote keys, Netflix button, BT remote),\ncom.mediatek.* (extservice, tv.agent, tis, tuners, airplay), com.mitv.livetv, com.mi.bluetooth,\ncom.mitv.setup, com.xiaomi.android.tvsetup.partnercustomizer, com.xiaomi.mitv.scenemode (game mode).\nKeep (apps, on this model): com.google.android.apps.mediashell. Stremio on Android TV plays\nthrough it; disabling it leaves the Stremio server \"online\" but no video ever plays.\nAlready disabled at the factory: com.xiaomi.floatingframe, com.iwedia.tvinput, atsc/isdb tuners.\nDefault IME is Gboard, no keyboard quirk. 1.8 GB RAM.\n\nGoogle TV 14 quirk (the important one): HOME is resolved by intent priority here and the saved\n\"default home\" is ignored. launcherx has priority 2, the setup wizard's RecoveryActivity priority 1,\na sideloaded launcher 0. Disable launcherx alone and Home lands on RecoveryActivity, which\ncrash-loops system_server (soft reboots every ~60 s, Wi-Fi drops). Shell may not disable that one\nactivity, so the whole setup wizard package is disabled below; it is only used for first-time setup.\nRe-enable it (and launcherx) before a factory reset or to get the Google home back: restore.sh does.\nThe firmware re-enables com.netflix.ninja by itself (Netflix button), so don't bother disabling it.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.tvqs.overseas.y24",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Xiaomi quality-stats uploader (DROPBOX_ENTRY_ADDED, upload log)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "Mi TV+ FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.oemtab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "the \"Mi Home\" tab injected into Google TV home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall / \"Mi Home\" tab, content rows, promos",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner / booster",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable these three to check for one",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.mitv.upgrader",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.tv.systemupdater",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "Xiaomi background services",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used (YouTube and Netflix kept)",
+      "reason": "Personal choice: preloaded streaming apps not used (YouTube and Netflix kept)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used (YouTube and Netflix kept)",
+      "reason": "Personal choice: preloaded streaming apps not used (YouTube and Netflix kept)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-tv-a-pro-2026/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

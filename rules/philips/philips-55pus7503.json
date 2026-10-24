@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "id": "philips-55pus7503",
+  "brand": "philips",
+  "title": "Philips 55PUS7503/12 (TP Vision TPM171E, device PH7M_EU_5596), Europe, 2018 model",
+  "android": "Android TV 8.0.0",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "55pus7503"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Philips 55PUS7503/12 (TP Vision TPM171E, device PH7M_EU_5596), Europe, 2018 model\nAndroid TV 8.0.0 (API 26), firmware OC build 4718, security patch 2021-01-05\nBoard TPM17XE_96, MediaTek MT5891, armeabi-v7a, 1.9 GB RAM, 1920x1080.\nFingerprint: Philips/PH7M_EU_5596/PH7M_EU_5596:8.0.0/OC/4718:user/release-keys\n\nThis is the older TPM171E generation, not the Android 11 PH1M_EA_9970A platform in\nexamples/philips-50pus8517 and not the Skyworth-built Google TV 14 Philips. Match the device,\nboard and firmware before applying the list; package names shared across Philips generations\ndo not imply that every package has the same dependencies.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-55pus7503/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-55pus7503/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher\nLive TV app:    org.droidtv.playtv\nLauncher config/theme: set live_tv_package to org.droidtv.playtv and add it to hidden_apps.\n\nVerified on the real TV: replacement Home, Netflix launch/return, HDMI 1-4, YPbPr and Live TV.\nThe packages below remained disabled across standby and overnight use. This is still a draft:\ncomplete a several-day soak test before opening the PR.\n\nUSB debugging alone opens ADB on TCP 5555. If the RSA authorisation prompt does not appear,\nfully restart the TV (not standby), return to Android Home and connect again.\n\nKept on purpose: Chromecast (com.google.android.apps.mediashell), Google Assistant\n(com.google.android.katniss), Alexa, firmware updates, Ambilight/Hue, DLNA, remote/Bluetooth,\nPhilips settings, tuner/HDMI services and every streaming app. In particular, do not disable\norg.droidtv.GlobalKey, org.droidtv.playtv, org.droidtv.xtv, com.mediatek.tvinput,\ncom.mediatek.tunerservice, org.droidtv.tvsystemui or org.droidtv.settings.\nThe newer Philips list identifies org.droidtv.candeebug + org.droidtv.gel as the DAC analytics\npair; both exist here but remain enabled until they have been exercised on this older firmware.\nGoogle feedback and first-run tutorial",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Market Feedback Agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvtutorials",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Android TV first-run tutorials",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.demome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips promotional services and telemetry",
+      "reason": "Retail/store demonstration app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvrecommender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips promotional services and telemetry",
+      "reason": "Philips NetTV / Top Picks recommendation row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.usagelogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Philips promotional services and telemetry",
+      "reason": "Philips usage and device logging",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher and its recommendation engines, replaced by launcher/",
+      "reason": "Stock launcher and its recommendation engines, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher and its recommendation engines, replaced by launcher/",
+      "reason": "Android TV recommendations/content rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher and its recommendation engines, replaced by launcher/",
+      "reason": "Stock launcher and its recommendation engines, replaced by launcher/",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-55pus7503/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

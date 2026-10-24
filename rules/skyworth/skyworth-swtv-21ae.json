@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "id": "skyworth-swtv-21ae",
+  "brand": "skyworth",
+  "title": "Skyworth SWTV-21AE (\"Living Room TV\"), Android TV 14, firmware UKNV.260824.001",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "skyworth"
+    ],
+    "model_patterns": [
+      "21ae"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Skyworth SWTV-21AE (\"Living Room TV\"), Android TV 14, firmware UKNV.260824.001\nro.product.manufacturer=skyworth, device sunnyvale, MediaTek, about 0.9 GB RAM.\nStock launcher: com.google.android.tvlauncher (classic Android TV home, not Google TV launcherx).\nLive TV and inputs: com.mediatek.wwtv.tvcenter.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/skyworth-swtv-21ae/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/skyworth-swtv-21ae/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nDisabled before this debloat, so not listed (restore.sh would turn them ON):\ncom.smartdevice.recommendation, com.google.android.play.games, com.google.android.youtube.tvmusic,\ncom.google.android.marvin.talkback, com.amazon.amazonvideo.livingroom, org.liskovsoft.androidtv.rukeyboard.\n\nQuirks on this firmware, all checked on the TV:\n- Port 5555 opened with USB debugging alone; no wireless-debugging pairing (unlike the Philips set).\n- Live TV screenshots come back blank (protected video layer); check dumpsys topResumedActivity instead.\n- Tested on the day of the debloat, not yet lived with for days.\nSkyworth content, ads and preloads",
+  "packages": [
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner config that injects rows into the home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "shop demo player (Skyworth ePop)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "Telemetry and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "Telemetry and feedback",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "official YouTube; SmartTube is used instead",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.cltv.fast",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "iWedia free channels with ads; starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Not used (by choice)",
+      "reason": "ambient screensaver; screensaver_components still names it, so",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "recommendation rows for the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/skyworth-swtv-21ae/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

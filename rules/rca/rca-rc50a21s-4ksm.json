@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "rca-rc50a21s-4ksm",
+  "brand": "rca",
+  "title": "RCA Android TV, RC50A21S-4KSM (Toptech/Zeasn firmware, Realtek RTD2851P)",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "rca"
+    ],
+    "model_patterns": [
+      "rc50a21s[-_ ]?4ksm"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.zeasn.rca.toptech",
+  "notes": "RCA Android TV, RC50A21S-4KSM (Toptech/Zeasn firmware, Realtek RTD2851P)\nAndroid TV 9 (API 28), firmware RTK2851P eng.tianju.20210703.181325 (userdebug, release-keys)\nro.product.model=SmartTV  ro.product.device=SmartTV  ro.product.manufacturer=Q010\nro.board.platform=rtd285o  ro.product.board=mac6p  ~1.5 GB RAM, armeabi-v7a userspace\nFingerprint: Realtek/RealtekATV/RealtekATV:9/RTK2851P/tianjunyong07031813:userdebug/release-keys\nThe model properties are generic (SmartTV / SMARTPHONE): match on the build id and board, not the name.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/rca-rc50a21s-4ksm/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/rca-rc50a21s-4ksm/debloat.txt com.zeasn.rca.toptech\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.zeasn.rca.toptech (Zeasn). Android's FallbackHome is the only other HOME.\nNo Live TV app with a leanback entry point: tuner and inputs live in com.toptech.tvmenu (keep it).\nThe saved Wi-Fi network belongs to android.uid.system; no setupwraith on this build.\n\nLeave alone: com.toptech.* (tvmenu = input panel and TV player, tv.service, keyboard_seven,\nsetupwizard, systemupdate, tvfactory, factorytools), com.realtek.* (dtv, tv.atv, tv.passthrough = HDMI/AV/\nVGA/YPbPr inputs, providers.tv), com.hikeen.actiontest. Do not launch the factory packages.\nKept by choice on the test set: Google Assistant (katniss), firmware updates (com.toptech.systemupdate),\nAirPlay/EShare/DLNA (com.ecloud.*), Miracast (com.rtk.android.miracast), USB media player, photo screensaver.\n\nApplied 2026-10-21 on one set and used for two days, through several reboots and power off/on: nothing came\nback enabled, Home stayed on the reference launcher, Wi-Fi and Ethernet reconnect. Not a longer soak yet.\nSee README.md in this folder for the Inputs panel, the Input key and the ADB notes.\nZeasn ad portal, store and background services",
+  "packages": [
+    {
+      "package": "com.zeasn.deviceportal.asdprovider.toptech",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad/portal service; starts at boot, can install packages (~69 MB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.services.general",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Zeasn \"weather\" service; starts at boot, reads logs (~69 MB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "cn.zeasn.toptech2851.rca.vstoresubclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Zeasn app store; Google Play stays",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.realtek.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Partner auto-installs and unused services",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Partner auto-installs and unused services",
+      "reason": "printing",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.zeasn.rca.toptech",
+      "action": "disable",
+      "risk": "safe",
+      "group": "STOCK_LAUNCHER=com.zeasn.rca.toptech does it in the right order)",
+      "reason": "Zeasn launcher with promo rows",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/rca-rc50a21s-4ksm/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

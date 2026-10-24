@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "id": "amazon-fire-tv-afttiff43",
+  "brand": "amazon",
+  "title": "Amazon Fire TV 50\" 4K smart TV (AFTTIFF43, codename brandenburg; panel AMZ_K24NE5_4K50M600A),",
+  "android": "Fire OS 7.7.1.7",
+  "match": {
+    "brand_patterns": [
+      "amazon"
+    ],
+    "model_patterns": [
+      "afttiff43"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Amazon Fire TV 50\" 4K smart TV (AFTTIFF43, codename brandenburg; panel AMZ_K24NE5_4K50M600A),\nFire OS 7.7.1.7 / Android 9 (SDK 28), build PS7717.5741N, MediaTek, armeabi-v7a. US.\nDone remotely over Tailscale through a Synology NAS as subnet router (docs/REMOTE.md, option B).\n\nFIRE OS: DEBLOAT ONLY. Home stays com.amazon.tv.launcher/.ui.HomeActivity_vNext (priority 950);\nthe shared launcher does not apply. Same build line as toshiba-fire-tv-aftha004, and the list\nstarts from it plus the ad and tracking packages from insignia-ns55f301na25.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/amazon-fire-tv-afttiff43/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/amazon-fire-tv-afttiff43/debloat.txt com.amazon.tv.launcher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nProtected (pm disable-user refused with \"Cannot disable a protected package\"), so left out:\ncom.fireos.usagestats.proxy, com.amazon.device.crashmanager, com.amazon.device.metrics,\ncom.amazon.ftvads.deeplinking.\n\nKept on purpose: Alexa core (com.amazon.vizzini, alexadirectivebrokerservice, alexa.datastore;\nthe Alexa and Fire TV phone apps control the TV through it, and voice only listens while the mic\nbutton is held), casting (AirPlay com.apple.airplay.amazon.airplay, Miracast com.amazon.cast.sink,\nDIAL/whisperplay), OTA updates, Live TV and channel scan, Silk (com.amazon.cloud9) and the website\nlauncher, account and sync services, Appstore, HDMI inputs (com.mediatek.tvinput), remote and\nBluetooth.\n\nShips with only YouTube installed (com.amazon.firetv.youtube); the Netflix/Prime/Disney+ tiles are\nplaceholders that install on first open. The Amazon-hosted hero banner on Home is not affected by\nthis list; Private DNS (dns.adguard-dns.com) works on this build (private_dns_mode hostname) and\nblocks doubleclick.net and amazon-adsystem.com, but not YouTube ads.\n\nadb exec-out screencap -p prints \"Init wrapper sys mutex successful\" before the PNG data on this\nset (docs/TROUBLESHOOTING.md).\nContent recognition, telemetry and metrics",
+  "packages": [
+    {
+      "package": "com.amazon.tv.acr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.fw.metrics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva.logcat",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.wirelessmetrics.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfcollection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.dp.logger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.hybridadidservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "advertising ID",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.sneakpeek",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.democontent.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.shoptv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.shoptv.firetv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.storm.lightning.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tmm.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, shopping, retail demo, tutorials",
+      "reason": "Ads, shopping, retail demo, tutorials",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.bueller.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.bueller.photos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon Photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.localgallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon apps (owner's choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.gamehub",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Luna / Game Hub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.minitv.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon apps (owner's choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.naatyam",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon apps (owner's choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tahoe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Amazon apps (owner's choice)",
+      "reason": "Amazon Kids",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.alexaalerts",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa extras (Alexa core kept)",
+      "reason": "Alexa extras (Alexa core kept)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.alexanotifications",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa extras (Alexa core kept)",
+      "reason": "Alexa extras (Alexa core kept)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.audiohome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa extras (Alexa core kept)",
+      "reason": "Alexa Home Theater",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.ftvambient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screensaver (screensaver_enabled was already 0; idle screen comes from these)",
+      "reason": "Ambient Experience",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.ftv.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screensaver (screensaver_enabled was already 0; idle screen comes from these)",
+      "reason": "Screensaver (screensaver_enabled was already 0; idle screen comes from these)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/amazon-fire-tv-afttiff43/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

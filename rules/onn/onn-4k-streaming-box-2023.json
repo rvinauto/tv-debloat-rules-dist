@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "id": "onn-4k-streaming-box-2023",
+  "brand": "onn",
+  "title": "onn 4K Streaming Box (2023, Walmart; device YOC, product onn_4k_gtv, Amlogic), 2 GB RAM",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "onn"
+    ],
+    "model_patterns": [
+      "2023"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "onn 4K Streaming Box (2023, Walmart; device YOC, product onn_4k_gtv, Amlogic), 2 GB RAM\nGoogle TV 14 (SDK 34), build URO4.260304.011.B1.15051976\nSecond unit: same model, device and build, Vietnam, 32-bit userspace (armeabi-v7a, zygote32), remote\n\"Onn-Remote Keyboard\" (Vendor_0957_Product_0005.kl). Its notes are marked \"second unit\" below.\n\nApply:   TV_HOST=<ip> tools/disable.sh examples/onn-4k-streaming-box-2023/debloat.txt\nUndo:    TV_HOST=<ip> tools/restore.sh examples/onn-4k-streaming-box-2023/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. No HDMI inputs or Live TV (it's a box):\nleave live_tv_package empty in config.xml.\n\nKnown quirks on this firmware:\n- Unlike the Chromecast on Google TV 14, port 5555 is open as soon as USB debugging is on; no pairing.\n- If a VPN app is connected, Settings > Network shows the VPN tunnel address, not the LAN one.\nFind the box with `nc -z <lan>.x 5555` or `dns-sd -B _adb-tls-connect._tcp local.`.\n- The Wi-Fi network saved during first setup belongs to setupwraith (dumpsys wifi: cname=...setupwraith).\nForget and re-join it in Settings before disabling setupwraith, or the network is deleted.\nSecond unit: this applies to every network saved during setup, not only the one in use - a second,\nout-of-range network saved at setup was still owned by setupwraith after the first was re-joined, and\nwas deleted with it (`cmd wifi list-networks` lists them; check each one's cname in `dumpsys wifi`).\n- As on the Chromecast, setupwraith's RecoveryActivity takes Home until setupwraith is disabled.\n- Unlike the Chromecast, the remote's app buttons and mic keep working with launcherx disabled\n(com.gretzky.GlobalKey handles them; keep it). No key-mapper workaround needed.\nSecond unit: not with its remote. Its YouTube button (KEYCODE_BUTTON_3, usage 0x0c0077), profile button\n(KEYCODE_PROFILE_SWITCH, 0x0c019c) and MACRO_1 (0x0c0186) are global keys routed to launcherx, and its\nSettings button (KEYCODE_NOTIFICATION 83, 0x0c009f) goes to com.droidlogic's receiver, which opens\nlauncherx's quick settings: all four do nothing once launcherx is disabled (`dumpsys window policy` lists\nthe routing). HOME_KEY_SERVICE=1 with settings_key_keycodes [83] and app_keys\n[\"KEYCODE_BUTTON_3:com.google.android.youtube.tv\", \"KEYCODE_PROFILE_SWITCH:<app>\"] brings them back, but\nthe bound helper costs held-key repeat on this box (Volume Up moves one step per press), as on the TCL G09.\nThe mic itself keeps working.\n- Second unit: voice search for songs and videos needs launcherx. With it disabled, saying a title gives\n\"Google Assistant is having trouble processing your request\" (logcat: provider.OPEN UNKNOWN_ERROR); app\ncommands (\"open YouTube\") still work. See docs/TROUBLESHOOTING.md. Apps only mode (Settings > Accounts)\nis no way out: on this build it switches the Assistant off.\n- Second unit: casting with setupwraith disabled was not tested. On the Chromecast with Google TV the Cast\nreceiver loses its device credentials with setupwraith (docs/TROUBLESHOOTING.md); check before relying on it.\n- Second unit: `com.google.android.videos` is not preinstalled.\n\nKept on purpose: Google Assistant (com.google.android.katniss), Cast receiver\n(com.google.android.apps.mediashell), onn update prompts (com.onn.updatenotification), com.gretzky.GlobalKey (onn remote app buttons), com.gretzky.hwinfo,\ncom.droidlogic.* (Amlogic vendor: HDMI, picture, remote pairing), com.onn.bluetoothconnect,\nPlay Store / Play Services, Gboard, com.google.android.tv.dfuservice (remote firmware updates),\ncom.google.android.tv.remote.service (phone remote).\nTelemetry and feedback",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "so it stays in the list for restore.sh to bring back.",
+      "reason": "setup wizard; its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable if you need the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/onn-4k-streaming-box-2023/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g03-google-tv",
+  "brand": "tcl",
+  "title": "TCL Smart TV Pro (device BeyondTV4, product G03_4K_GB, Realtek rtd288o / R51MT05, software",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g03"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL Smart TV Pro (device BeyondTV4, product G03_4K_GB, Realtek rtd288o / R51MT05, software\nV8-R51MT05-LF1V620), Google TV on Android 11 (SDK 30), build RP1A.200622.001 AR09, security patch\n2024-03-05, 32-bit userspace (armeabi-v7a), client TCL-ME-RTD51M-S1 (Middle East firmware).\nFingerprint: TCL/G03_4K_GB/BeyondTV4:11/RP1A.200622.001/AR09:user/release-keys\nSame R51MT05 platform as examples/tcl-43c645 (LF1V652); that list was the starting point.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g03-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g03-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nTested 2026-10-20 on a real unit, applied in the seven batches below with a screenshot after each, then a\nreboot: Wi-Fi stayed up, Settings, the remote's Input key (TCL's source panel), Live TV and HDMI from the\nlauncher's Inputs menu, app launches and playback with AdGuard Private DNS all worked, and every package\nstayed disabled after the reboot. Lived with for one day so far. launcher/ installed with the default\nbuild-and-install.sh (b64push.py md5 matched here, unlike the 43C645).\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI: com.tcl.tv (TVActivity) with inputs from\ncom.tcl.tvinput (tuner, HDMI 1-3, AV). The launcher's default live_tv_package is MediaTek's, so the Inputs menu\nhas no Live TV row until a theme sets \"live_tv_package\": \"com.tcl.tv\". config.json in this folder sets it,\nthe gear button and the app buttons described under \"Second unit\" below; push it with:\nTV_HOST=<tv ip> tools/theme.sh examples/tcl-g03-google-tv\nAlready disabled at the factory: au.com.stan.and (Stan), tv.wuaki.apptv (Rakuten TV); the second unit below\nalso had com.tcl.smartalexa off at the factory.\n\nBefore batch 6 (setupwraith): on this unit the Wi-Fi saved during first setup belonged to setupwraith\n(`dumpsys wifi | grep -o 'cname=[^ ]*'`), so disabling it would have deleted the network. Forgetting the\nnetwork and joining it again in Settings moved it to com.android.tv.settings; then disabling setupwraith kept\nWi-Fi. tools/disable.sh skips setupwraith while it owns the network.\n\nRemote (Bluetooth \"TCL_RC902V_MM\", Generic.kl):\n- Input keeps opening TCL's source panel (com.tcl.suspension) without launcherx; no InputKeyService needed.\n- Gear is scancode 233 (KEY_FORWARDMAIL, HID 0x0c0055), mapped to TCL_SET, keycode 4077. Only launcherx\nanswered it, so it does nothing once launcherx is off. HOME_KEY_SERVICE=1 at install plus\n\"settings_key_keycodes\": [4077] in the theme brings it back (verified with the real remote); with\n\"settings_key_panel\": true it opens the launcher's quick settings panel over any app.\n- `input keyevent SETTINGS` opens Android's version easter egg here; inject 176 instead.\n\nSecond unit, 2026-10-21, same AR09 build, applied in the batches below with a screenshot after each and then\nrebooted with launcherx off: the list minus Netflix and Prime Video, minus the factory-off smartalexa, plus\nlauncherx (38 packages) stayed disabled, and HDMI, Netflix playback, the remote and Wi-Fi all worked.\nAdGuard's Private DNS (private_dns_mode hostname) changed nothing for playback. Two things differ:\n- Its Bluetooth remote is \"TCL_RC902V_M1\" (also /dev/input/event3, Generic.kl), not the \"TCL_RC902V_MM\" above.\nNetflix (HID 0x0c0051, TCL_NETFLIX), YouTube (0x0c0057, TCL_YOUTUBE) and Prime Video (0x0c005f, keycode\n4099) are broadcasts only launcherx answers, so all three do nothing once it is off. `getevent -lt` prints\nthe HID usage and the Linux key under each button, which is how the two remotes are told apart.\n- HOME_KEY_SERVICE=1 with the app_keys in config.json brings all three back (verified with the real remote;\na button whose app you disabled still opens nothing). Gear is keycode 4077 on this remote too, so\nsettings_key_keycodes and settings_key_panel above apply unchanged.\nsetupwraith owned the Wi-",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL BI analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.xian.StartandroidService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background reporting service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash / feedback reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "TCL dashboard / promo backend",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "partner customisation channel, promo rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "TCL message / promo box",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "\"recommended apps\" showcase",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "sticker / emoji overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "TCL web-video recommendation portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Removes the \"TCL Channel\" row from the stock home.",
+      "reason": "one-time setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL online support",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL WebView; com.google.android.webview stays the provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.chromium.webview_shell",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "WebView test shell",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "calendar sync, no calendar on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL photo gallery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Netflix (the remote's Netflix button then opens nothing)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "USB media player; re-enable to play media from USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "game mode / VRR overlay for consoles",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL web browser; removes the \"BrowseHere\" row from the stock home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Google search / voice (the remote's mic button)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Google Assistant for TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL voice assistant",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Alexa bridge",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "remote microphone manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Chromecast receiver",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Miracast screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.tcl.MultiScreenInteraction_TV",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "T-Cast / MagiConnect phone link",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Re-enable it (tools/restore.sh does) before a factory reset.",
+      "reason": "Re-enable it (tools/restore.sh does) before a factory reset.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g03-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

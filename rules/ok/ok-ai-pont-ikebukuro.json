@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "id": "ok-ai-pont-ikebukuro",
+  "brand": "ok",
+  "title": "OK. \"AI PONT\" (Changhong, device ikebukuro), Android TV 11 (API 30), firmware RTO2.250804.001,",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "ok"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "OK. \"AI PONT\" (Changhong, device ikebukuro), Android TV 11 (API 30), firmware RTO2.250804.001,\n1280x720 panel, about 0.9 GB RAM (MemTotal 929000 kB). Vendor layer Homwee (com.homwee.*), content\nrecognition from Anoki. Same platform family as examples/chiq-ai-pont.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/ok-ai-pont-ikebukuro/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/ok-ai-pont-ikebukuro/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. Live TV: com.mediatek.wwtv.tvcenter.\nTested the same day on one set and through two reboots, not a multi-day soak. Every package stayed\ndisabled after both reboots. Then launcher/build-and-install.sh set com.gathin.tvhome as Home (checked with\nmFocusedApp after Home and after a reboot) and tools/theme.sh pushed config.json (dock: Netflix, YouTube,\nPrime Video, RaiPlay). Checked: D-pad across the dock, grid and top bar; Inputs lists HDMI 1, HDMI 2,\nAV and Live TV, and Live TV opens tvcenter; a video plays (YouTube or Netflix) with AdGuard Private DNS on; the real\nremote's Input, Settings, Netflix, YouTube and Prime Video buttons all still work without tvlauncher.\nOnly com.google.android.tvlauncher and com.android.tv.settings/.system.FallbackHome answer HOME, so\nsetupwraith is left alone (one saved Wi-Fi network belongs to it).\ncom.homwee.dmt.upgrade crashes at every start (NullPointerException in readProjectID), also with every\nHomwee package and Anoki re-enabled, so it is the firmware, not this list.\nShipped disabled: com.cltv.fast (FAST channels), com.google.android.marvin.talkback.\n\nKEEP: com.google.android.leanbacklauncher.partnercustomizer (see examples/chiq-ai-pont),\ncom.homwee.dmt.upgrade (firmware updates), com.homwee.synckey (remote keys), com.homwee.factory,\ncom.mediatek.* (Live TV, inputs, remote pairing, picture), com.mstar.android.tv.disclaimercustomization,\ncom.google.android.apps.nbu.smartconnect.tv (Google connectivity helper, left alone).\nBatch 1: telemetry, ads and recommendation rows",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki automatic content recognition",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.aipont",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "AI PONT brand portal and its recommendation channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.homwee",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Google Assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.homwee.multiscreenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Miracast mirroring",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.screenshare",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "it.mediaset.infinitytv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.pluto.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tiktok.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "it.radioplayer.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.arte.plus7",
+      "action": "disable",
+      "risk": "safe",
+      "group": "RaiPlay, Max). Comment out what you use.",
+      "reason": "RaiPlay, Max). Comment out what you use.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/ok-ai-pont-ikebukuro/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "id": "nokia-streaming-box-8000",
+  "brand": "nokia",
+  "title": "Nokia Streaming Box 8000 (Sagemcom/NES, product SEI600NK4, device HND, Amlogic), 2 GB RAM",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "nokia"
+    ],
+    "model_patterns": [
+      "8000"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Nokia Streaming Box 8000 (Sagemcom/NES, product SEI600NK4, device HND, Amlogic), 2 GB RAM\nAndroid TV 14 (SDK 34), build UKG3.240613.001, 32-bit (armeabi-v7a)\n\nApply and undo: the commands in README.md here, NOT tools/disable.sh (this firmware refuses it).\nEverything is SUSPENDED and barred from the background, not disabled or uninstalled.\nComment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (classic Android TV, not Google TV launcherx), with\nShop and Discover tabs. Only it and Settings' FallbackHome claim HOME; setupwraith does not.\nNo HDMI inputs (it's a box); a DTVKit tuner input (org.dtvkit.inputsource) is registered, and\nlive-TV streaming apps can add their own TIF inputs. com.nes.seilivetv and com.google.android.tv.axel ship\nalready disabled.\n\nKnown quirks on this firmware:\n- Port 5555 opens as soon as USB debugging is on; no pairing. The box also advertises\n_adb._tcp over mDNS, which is the quickest way to find it when DHCP moves it.\n- The saved Wi-Fi belongs to com.google.uid.shared (GMS), not setupwraith.\n- Network debugging does not survive a reboot: port 5555 refuses connections afterwards until it\nis switched on again in Developer options (USB debugging itself stays on).\n- Every pm disable*/hide/uninstall --user 0 is refused (\"This command is illegal!\"), and the stock\nlauncher has HOME priority 2, so this list is suspended instead (README.md here) and the\nstock launcher cannot be replaced yet.\n\nKept on purpose (load-bearing, checked with dumpsys package):\ncom.nes.blerc                  Bluetooth remote service (NesBleRemoteService)\ncom.standard.irtvcontrol       IR control of the TV from the box remote (SetUpRemoteActivity)\ncom.nes.tvglobalkeyhandler     remote app buttons\ncom.nes.recents                recent-apps screen\ncom.nes.remoteota.*            remote firmware updates (Realtek/Telink/Weina RCU OTA)\ncom.nes.coreservice            front LED, OTA messages and an analytics receiver mixed together\ncom.nes.daemon                 unknown NES daemon\ncom.google.android.tvsetup.partnercustomizer   IR remote wizard + low-power-mode page\ncom.droidlogic.*               Amlogic vendor (Settings, sleep timer, HDMI-CEC, picture)\norg.dtvkit.inputsource, com.android.providers.tv, Play Store/Services, Gboard,\ncom.google.android.tv.remote.service (phone remote), com.google.android.tv.dfuservice\nKept by choice: Chromecast (com.google.android.apps.mediashell), Nokia OTA updater\n(com.droidlogic.updater) + NES device manager (com.nes.skywayclient: firmware check, privacy\nagreement), Netflix, Prime Video, YouTube, Play Games.\nTelemetry, feedback and ad measurement",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google RLZ partner attribution pings",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad personalisation",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "federated ad/usage learning",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content and ad services",
+      "reason": "recommendation rows for the stock launcher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.nes.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content and ad services",
+      "reason": "Nokia's Shop/Discover row config for the stock launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sei",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content and ad services",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.dvb.playtest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory/test leftovers and preloads nobody uses on a TV",
+      "reason": "DVB factory play test",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.utsmta.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory/test leftovers and preloads nobody uses on a TV",
+      "reason": "factory test, listens for USB sticks",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory/test leftovers and preloads nobody uses on a TV",
+      "reason": "Factory/test leftovers and preloads nobody uses on a TV",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice",
+      "reason": "Off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice",
+      "reason": "Google Assistant: the remote's mic button stops working",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice",
+      "reason": "ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable if you need the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/nokia-streaming-box-8000/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

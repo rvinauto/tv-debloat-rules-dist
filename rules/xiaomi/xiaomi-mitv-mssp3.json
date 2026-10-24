@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-mssp3",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-MSSP3 (codename machuca), Android TV 11 (SDK 30), firmware RTT2.211214.001.1065, MediaTek.",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "mssp3"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-MSSP3 (codename machuca), Android TV 11 (SDK 30), firmware RTT2.211214.001.1065, MediaTek.\nLive TV app: com.mediatek.wwtv.tvcenter (already the live_tv_package in launcher config.xml).\nStock launcher: com.google.android.tvlauncher (the default, disabled by build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-mssp3/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-mssp3/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- Default IME is already Gboard, so the Mi TV 4A missing-keyboard quirk doesn't apply.\n- Left alone on purpose: com.mediatek.wwtv.tvcenter / tvinput* (HDMI + tuner), mitv.service,\ncom.mi.bluetooth, com.mediatek.hotkey.dispatcher, com.google.android.tv.remote.service.\n- Netflix and Prime Video come back at every reboot even when disabled. The cause is\ncom.mstar.netflixobserver: it is a PERSISTENT app with the system uid, so Android starts it at boot even\nwhen it is disabled, and it re-enables both (it even re-installed them after pm uninstall --user 0).\nDisabling it is not enough. This list only disables it, like everything else in this repo.\nBeyond what this repo does, and your own call: removing it for user 0 worked here across a reboot\npm uninstall --user 0 com.mstar.netflixobserver\nand is undone with\ncmd package install-existing com.mstar.netflixobserver   (the remote's Netflix button needs it)\n- Device admin is not supported on this firmware (no android.software.device_admin).\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall channels on the Google TV home",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.amelie",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable to check for one",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: casting",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "reason": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.dream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "reason": "\"WallPaper\" tile, Xiaomi screensaver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV (already disabled on this firmware; shell may refuse)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Mi Gallery; Media Player still opens USB photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "comes back at boot, see header",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.netflixobserver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "remote's Netflix button; see header",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Prime Video; comes back like Netflix, see header",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: preloaded streaming apps not used",
+      "reason": "Xiaomi TV+",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-mssp3/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

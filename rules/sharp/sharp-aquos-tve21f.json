@@ -1,0 +1,347 @@
+{
+  "schema_version": 1,
+  "id": "sharp-aquos-tve21f",
+  "brand": "sharp",
+  "title": "SHARP AQUOS TVE21F (reported as AQUOS-TVE21F; device banqiao, product tcpreue_b), UK",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "sharp"
+    ],
+    "model_patterns": [
+      "tve21f"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "SHARP AQUOS TVE21F (reported as AQUOS-TVE21F; device banqiao, product tcpreue_b), UK\nAndroid TV 14 (SDK 34), firmware UKNV.260623.001, CVTE/MediaTek platform, 1.8 GB RAM\nStock launcher: com.google.android.tvlauncher (already disabled when this list was applied)\nLive TV app: com.mediatek.wwtv.tvcenter; HDMI/tuner inputs: com.mediatek.tvinput\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sharp-aquos-tve21f/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sharp-aquos-tve21f/debloat.txt\nEverything is DISABLED for user 0, never uninstalled. Comment out any line you want to keep.\n\nApplied and verified on 2026-10-20: screenshots after each batch, Live TV, HDMI 1, Play Store and\nSmartTube playback. Package names never say what they do on this firmware: every entry below was\nchecked with `dumpsys package` first.\n\nKept on purpose: Google Play Store + Play Services, Gboard, Google TTS, Dolby audio,\ncom.mediatek.tvinput / com.mediatek.tv.service / com.mediatek.wwtv.tvcenter (Live TV and HDMI),\ncom.mediatek.wwtv.setupwizard (channel scan), com.mediatek.wwtv.mediaplayer (USB media),\ncom.mediatek.tv.freeviewplay, com.cvte.hotkey.dispatcher (remote hotkeys),\ncom.cvte.automaticbrightnesscontrol, com.cvte.tv.kmode (picture mode), com.cvte.tv.infoprovider,\nall com.cvte.overlay.* and com.mediatek.* overlays, com.mstar.android.tv.disclaimercustomization.\n--- Manufacturer telemetry, recommendation rows and retail/partner plumbing ---",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sharp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "PAI partner auto-install stub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.hkc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "PAI partner auto-install stub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner rows for the stock launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.fac.menu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer factory / test only apps ---",
+      "reason": "factory menu",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.fac.aging",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer factory / test only apps ---",
+      "reason": "factory aging test",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.at.factory.factorymanager",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Manufacturer factory / test only apps ---",
+      "reason": "factory test manager",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.at.factory.androidtvaidlservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Manufacturer factory / test only apps ---",
+      "reason": "factory test service",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.at",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Manufacturer factory / test only apps ---",
+      "reason": "factory auto-test activity",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "Play partner customizations",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "ambient screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "feedback consent dialog",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "calendar sync (calendar provider already disabled)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "Google TV first-run wizard, finished long ago",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "Google Assistant / voice search, off by choice",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google telemetry, recommendations, first-run wizard and phone remote ---",
+      "reason": "Chromecast, off by choice",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused preloaded apps ---",
+      "reason": "--- Unused preloaded apps ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cxinventor.file.explorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused preloaded apps ---",
+      "reason": "X-plore file manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.arte.plus7",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fr.francetv.pluzz",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.megogo.application",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.limelight",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.videolan.vlc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "reason": "--- Unused streaming / media apps (off by choice; all still installed) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "phone remote app, off by choice"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sharp-aquos-tve21f/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

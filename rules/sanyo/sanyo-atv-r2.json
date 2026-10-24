@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "id": "sanyo-atv-r2",
+  "brand": "sanyo",
+  "title": "SANYO ATV R2 (manufacturer SCBC, device R2, Realtek RTD285O), Android TV 9 (API 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "sanyo"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "SANYO ATV R2 (manufacturer SCBC, device R2, Realtek RTD285O), Android TV 9 (API 28),\nfirmware PTT1.201001.001 build 200, security patch 2020-11-05, 2 GB RAM, 1920x1080.\nFingerprint: SANYO/SANYO/R2:9/PTT1.201001.001/200:user/release-keys\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sanyo-atv-r2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sanyo-atv-r2/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher is com.google.android.tvlauncher and Live TV is com.android.tv (Realtek RtkLiveTv),\nso the defaults in tools/restore.sh and launcher/build-and-install.sh work unchanged.\ncom.google.android.leanbacklauncher is also installed and claims HOME; it was left enabled as a fallback.\n\nNotes from this TV:\n- Leave alone: com.rtk.engmenu, com.realtek.factorytools, com.apps.factory.ui (factory menus),\ncom.apps.fivekey / smartkey / virtualkey and com.realtek.keyinterceptserver (remote keys),\ncom.realtek.tv.* / com.realtek.dtv (HDMI, AV, tuner inputs), com.apps.sys (SystemProvider).\n- Kept in use: Chromecast (com.google.android.apps.mediashell), Assistant (com.google.android.katniss),\nFastCast Miracast (com.creative.fastscreen.tv), Audio Link and PureSound.\n- Inputs: HDMI 1-3 and AV are TvInputService passthrough inputs; switching via\nTvContract.buildChannelUriForPassthroughInput() opens them in Live TV. HDMI200004 is a CEC child, skip it.\n- Android 9 only shows the Wi-Fi SSID to apps holding location permission (location is on by default here).\n- Over Wi-Fi ADB, streamed `adb install` of a ~45 MB APK failed silently; push to /data/local/tmp and `pm install` worked.\nSCBC / Realtek / Google telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.apps.function.gdpr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SCBC data-consent agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vewd app-store/HbbTV core service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.channels",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "\"S-Channels\" content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.eshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "E-SHOW in-store demo / promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Content rows, promos and auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Content rows, promos and auto-installs",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Content rows, promos and auto-installs",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.scbc.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content rows, promos and auto-installs",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.clear",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "\"TV Booster\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "Background services and duplicates",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "TV as a Wi-Fi hotspot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services and duplicates",
+      "reason": "Background services and duplicates",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.networkspeed",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and duplicates",
+      "reason": "speed-test app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services and duplicates",
+      "reason": "SANYO firmware updates; re-enable to check for updates",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.apps.authota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services and duplicates",
+      "reason": "companion to com.apps.ota",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.accuweather.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "map.finder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.timeclock",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "WorldClock",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.yupptv.androidtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tunein.player",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.appgeneration.itunerfree",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nousguide.android.rbtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Red Bull TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.poovarasan.tv.tamiltv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "reason": "Preloaded streaming / radio apps (personal choice: comment out any you use)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Google TV launcher, replaced by launcher/",
+      "reason": "Stock Google TV launcher, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sanyo-atv-r2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

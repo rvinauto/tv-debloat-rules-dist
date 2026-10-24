@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "id": "sony-kd-55xe8596",
+  "brand": "sony",
+  "title": "Sony BRAVIA KD-55XE8596 (2017, model string \"BRAVIA 4K GB\", product BRAVIA_ATV2_EU, MediaTek MT5891), UK",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "55xe8596"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Sony BRAVIA KD-55XE8596 (2017, model string \"BRAVIA 4K GB\", product BRAVIA_ATV2_EU, MediaTek MT5891), UK\nAndroid TV 9 (API 28), firmware Sony/BRAVIA_ATV2_EU/BRAVIA_ATV2:9/PTT1.190515.001.S52/672101:user/release-keys,\nsecurity patch 2022-01-05 (Sony has stopped updating it). 2 GB RAM, about 8 GB /data.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-kd-55xe8596/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-kd-55xe8596/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nSame product and platform as examples/sony-bravia-4k-gb (that list is firmware S54; this one is the older S52\nbuild, on the UK retail model). The package set matches. The difference is in the choices: this owner\nkept Chromecast, mirroring, DLNA, USB media, the Assistant and the phone remote, and also disabled the\nhotel/pro-mode b2b packages, the old leanback launcher and the print spooler.\nApplied 2026-10-19 (most of the list) and 2026-10-20 (Samba TV, agents, feeds). Not lived with for days\nyet, and not yet checked across a reboot. Checked after every batch: Home, Netflix, Jellyfin, live TV\nand the HDMI inputs all still work, and there are no new crashes. Re-enable anything that breaks with `pm enable <package>`.\n\nStock launcher: com.google.android.tvlauncher (restore.sh's default). Its HOME filter has priority 2,\nso `cmd package set-home-activity` reports Success but does nothing until it is disabled.\ncom.google.android.leanbacklauncher is also installed, but it has no HOME activity here.\nLive TV / input app: com.sony.dtv.tvx. Keep it: it plays every HDMI input too. On this UK firmware Live\nTV hands over to YouView (com.sony.dtv.youview + com.sony.dtv.youview.servicehost, Freeview Play),\nwhich has no leanback entry of its own: launch com.sony.dtv.tvx, not youview. Keep both, and keep\ncom.vewd.core.integration.dia (HbbTV / red button). Hide only its \"Internet Browser\" tile.\nKeep: com.sony.dtv.tvinput.*, braviasync* (HDMI-CEC), remotepairing, rcpowerkey, uinputservice,\nimeproxy, sonysystemservice, settingsprovider, all com.mediatek.* and mtktvapi.agent, timers,\nwebapi.core and remoteaccess (Sony IP control, used by Home Assistant's Bravia TV integration).\n\nNotes from this firmware:\n- The launcher works: built from launcher/, installed with `adb install`, and Home switched by hand. Inputs\nlists HDMI 2, HDMI 3/ARC, HDMI 4 and Live TV, with the input labels set in Sony's settings and the CEC\ndevice name in place of the port name, and real per-port \"Connected\" / \"No device\" status. config.xml:\nlive_tv_package com.sony.dtv.tvx; put com.sony.dtv.tvx in dock_apps if you want a TV tile.\n- /data was down to 1.5 GB free, nearly all of it app caches. `pm trim-caches 8G` took it to 2.8 GB, so\nrun it before installing anything.\n- The `uiautomator dump` of a launcher with an animated wallpaper never finishes, so use screencaps there.\nACR viewing tracker",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony Select app store/promo tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect.overlay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony and Google content, ads and promos",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "My BRAVIA promos",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.discovery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony Discover content bar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.bivlinfo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "BIVL content service list (feeds Discover)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.tvlaunchercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "Sony tweaks to the stock home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Sony and Google content, ads and promos",
+      "reason": "recommendation rows for the stock launcher; other",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "launchers' Watch Next and channel rows still fill",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demomode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Sony device agent / remote support",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Telemetry, remote support and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, remote support and feedback",
+      "reason": "Node.js SDDP broadcaster for Control4-style home automation;",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "re-enable if you use one",
+      "reason": "re-enable if you use one",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.prosettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "re-enable if you use one",
+      "reason": "re-enable if you use one",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.importexport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "re-enable if you use one",
+      "reason": "re-enable if you use one",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.rs232csupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "re-enable if you use one",
+      "reason": "RS-232C control; re-enable if something drives the TV over serial",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and leftovers",
+      "reason": "Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.imanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and leftovers",
+      "reason": "i-Manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and leftovers",
+      "reason": "Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and leftovers",
+      "reason": "Preloaded apps and leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and leftovers",
+      "reason": "old Android TV launcher, no HOME activity on this build",
+      "uad": null,
+      "review_flags": [
+        "policy:com.google.android.leanbacklauncher"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and leftovers",
+      "reason": "printing, nothing to print to",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-kd-55xe8596/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

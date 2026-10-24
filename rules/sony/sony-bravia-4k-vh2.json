@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-4k-vh2",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K VH2 (device BRAVIA_VH2, KD-55X80J, MediaTek), EU firmware",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "vh2"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA 4K VH2 (device BRAVIA_VH2, KD-55X80J, MediaTek), EU firmware\nAndroid 12 (Google TV, API 31), build BRAVIA_VH2_EU-user 12 STT2.230505.001.S136 682241\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-4k-vh2/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-4k-vh2/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (Google TV). Pass it to restore.sh as above.\nLive TV / tuner app: com.sony.dtv.tvx (set it as live_tv_package in the launcher's config.xml and hide it).\nKeep the com.sony.dtv.tvinput.* services, com.sony.dtv.braviasync*, com.sony.dtv.tvapi,\ncom.sony.dtv.sonysystemservice, imeproxy, settingsprovider, systemupdate/update (firmware), the Sony\nsettings apps and all com.mediatek.*: they drive HDMI, the tuner, Bravia Sync, updates and the remote.\nKept by owner's choice: voice assistant (katniss, voicesearch, assistantadapter), Chromecast built-in\n(mediashell) and firmware updates.\nAlready disabled at the factory: com.sony.dtv.promos, com.sony.dtv.b2b.vendorprotocol,\ncom.sony.dtv.b2b.softap, com.apple.atve.sony.appletv, the my5/itv/ard/all4/iplayer/sounds launchers,\ncom.youview.poa, de.hdplus.tvapp.androidtv, com.sony.dtv.seeds.iot, com.sonypicturescore.\nNot in this list, so restore.sh leaves them as they are.\n\nLive TV in the launcher: set live_tv_package to com.sony.dtv.tvx and hide it; Inputs lists HDMI 1-4 and\nAV from the TV input framework. Launcher installed with the Input-button service (INPUT_KEY_SERVICE=1).\nApplied one afternoon on a KD-55X80J with the dock set to Stremio, Netflix, SmartTube, OTT Navigator.\nNot yet lived with for weeks; if something breaks, re-enable it with `pm enable <package>` and please\nreport it. launcherx was left enabled, since Home already resolved to the new launcher once the setup\nwizard was disabled.\n\nSecond unit, North American firmware: build BRAVIA_VH2_M_UC-user 12 STT2.230505.001.S136 682241,\nsame board and the same build number as the EU unit above. Every package in this list is present and\nevery one disabled cleanly, but two things differ:\n\n- Home handover needs the stock launcher disabled. On this firmware launcherx registers its HOME\nintent filter at priority=2, which outranks the preference `cmd package set-home-activity` writes:\nit prints Success while `resolve-activity` keeps naming launcherx. Disabling setupwraith alone did\nnot hand Home over either, so the note above about leaving launcherx enabled does not hold here.\nDisabling it (the commented line at the end of this list) handed Home over at once, and the TV has\nbooted to the new launcher since. Check with `dumpsys activity activities | grep mFocusedApp`, not\nwith the \"Success\" from set-home-activity.\n- promos, seeds.iot and b2b.vendorprotocol ship ENABLED here, where the EU unit has them off at the\nfactory; sonyselect and seeds.iot.remotestart are enabled too and were not named either way above.\nThey are in the list below, so one file covers both regions: on an EU set they are already disabled\nand recovery.py records that, so undo leaves them alone.\n\nThe Input-button service was NOT needed on this unit: with launcherx disabled, the remote's Input,\ngear and app buttons were all still answered by Sony's own firmware (checked on the real remote, not\nwith injected keys), so INPUT_KEY_SERVICE was left off and key auto-repeat kept. On Ethernet, so the\nsetupwraith Wi-Fi check did not apply. Applied over one evening, not lived with for days.\nACR viewing tracker",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "\"Freeplay\" tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "Sony Select app promos",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.seeds.iot.remotestart",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps",
+      "reason": "hotel/B2B control protocol",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "preloaded apps",
+      "reason": "preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-4k-vh2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "id": "hisense-u75-hengshan",
+  "brand": "hisense",
+  "title": "Hisense U75 (device hengshan, MediaTek), Google TV / Android 12, build STT2.230310.002.",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "u75"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Hisense U75 (device hengshan, MediaTek), Google TV / Android 12, build STT2.230310.002.\nAndroid model string is \"SmartTV 4K FFM\" (same string as the Android 10 huangshan set, but a\ndifferent device and a mostly different package namespace: com.vt.* here, com.hisense.* there).\n2.4 GB RAM. Latin America / Brazil market (Ginga broadcast middleware preloaded).\nSecond unit: Hisense 75U75N, US market, same device and build (STT2.230310.002). This list applied\nthere except com.hisense.odinbrowser (kept by that owner); README.md has its remote's button codes\nand notes, config.json its dock.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-u75-hengshan/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-u75-hengshan/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nWARNING: do not add com.vt.tv.smartsense, com.vt.tv.smartsense.ui, com.vt.tv.ai_sense,\ncom.vt.tv.aiot, com.vt.tv.aiotprotocolapp or com.vt.tv.aiotsystemservice. On the related\nhuangshan firmware disabling that family sent the TV to Android Recovery on the next boot\n(\"Can't load Android system\"). \"Try again\" booted normally and restore.sh undid it. If you ever\nland on that screen, pick \"Try again\", never \"Factory data reset\".\n\nKeep, verified load-bearing on this set:\ncom.vt.tv.tvcenter        Live TV app (LiveTV)\ncom.vt.tv.input           the Inputs / source menu\ncom.vt.source.external    HDMI inputs      com.vt.source.tuner   tuner input\ncom.mediatek.dtv.tvinput.framework.server  TV input framework\ncom.vt.tv.commonui, com.vt.tvservice, com.vt.avmiddleware, com.vt.tvplayer, com.vt.edv.drmp\ncom.mediatek.autopair     remote pairing   com.mediatek.android.tv.globalkeyoverlay  remote keys\ncom.google.android.tv.remote.service       com.google.android.inputmethod.latin  keyboard\ncom.android.vending, com.google.android.gms, com.google.android.gsf, com.android.tv.settings\ncom.vt.tv.smartservice, com.dolby.android.audio.service, com.vt.tv.aipq, com.vt.tv.videocolor\ncom.vt.eula               wired to ota.eula.message, keep it while OTA is kept\ncom.vt.udpserver          LAN discovery used by casting / the phone remote\nAlready disabled at the factory: com.mediatek.tis, com.mediatek.dtv.tvinput.isdbtuner,\ncom.mediatek.dtv.tvinput.dvbtuner\nStock launcher: com.google.android.apps.tv.launcherx (Google TV), handled by build-and-install.sh.\nHisense ACR: automatic content recognition, the codePath is literally Vtp_ACR",
+  "packages": [
+    {
+      "package": "com.vt.tv.evservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.hishow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and promo surfaces",
+      "reason": "Vtp_FamilyMoment, photo/camera app + its screensaver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "net.vidaatv.hisense.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and promo surfaces",
+      "reason": "VIDAA Channels Plus, the FAST free-channel preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vidaa.oemtabcontentprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and promo surfaces",
+      "reason": "feeds the VIDAA content tab",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.odinbrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense content, preloads and promo surfaces",
+      "reason": "built-in web browser, off by choice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo, hotel/commercial mode, factory tools",
+      "reason": "Retail demo, hotel/commercial mode, factory tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.tv.b2b",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo, hotel/commercial mode, factory tools",
+      "reason": "Retail demo, hotel/commercial mode, factory tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Retail demo, hotel/commercial mode, factory tools",
+      "reason": "Retail demo, hotel/commercial mode, factory tools",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo, hotel/commercial mode, factory tools",
+      "reason": "first-time-experience walkthrough, setup only",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.alexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant, off by choice",
+      "reason": "HiAlexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.mopa.ginga",
+      "action": "disable",
+      "risk": "safe",
+      "group": "on a set used purely with HDMI sources.",
+      "reason": "Ginga, the Brazilian interactive-broadcast stack",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.tv.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "on a set used purely with HDMI sources.",
+      "reason": "on a set used purely with HDMI sources.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.tv.protector",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services that are not needed",
+      "reason": "\"DeviceAssistant\" cleaner: CACHE_CLEAN, TURBO_MODE, SPACE_PROTECTION",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vt.tv.calmanconnector",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services that are not needed",
+      "reason": "Calman professional calibration connector",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV ad, preload and tracking services",
+      "reason": "PAI: silently auto-installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV ad, preload and tracking services",
+      "reason": "partner referral tracking",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV ad, preload and tracking services",
+      "reason": "crash/feedback uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Unused on a television",
+      "reason": "Unused on a television",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Unused on a television",
+      "reason": "Unused on a television",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Unused on a television",
+      "reason": "Unused on a television",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Unused on a television",
+      "reason": "Unused on a television",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "network, re-enter it with the remote. restore.sh re-enables it.",
+      "reason": "network, re-enter it with the remote. restore.sh re-enables it.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-u75-hengshan/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

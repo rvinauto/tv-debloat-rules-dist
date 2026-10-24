@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "id": "hisense-hismarttv-a4",
+  "brand": "hisense",
+  "title": "Hisense HiSmartTV A4 (device xiaoyushan, product xiaoyushan-em, MStar/MediaTek m7322), Android TV 9,",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Hisense HiSmartTV A4 (device xiaoyushan, product xiaoyushan-em, MStar/MediaTek m7322), Android TV 9,\nfirmware PTMR.190127.037 (build 01.00.00.04), security patch 2020-05-05. Sold in India.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-hismarttv-a4/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-hismarttv-a4/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nADB: Developer options has USB debugging only, no Wireless or Network debugging toggle. Turning\nUSB debugging on opens network ADB on port 5555 directly.\nApplied in the four groups below with ~15 s wait and a reboot after each (as the Hisense FFM list\nadvises): normal boot every time, HDMI 1-3, AV and the tuner still listed by the TV input framework.\nStock launcher: com.google.android.tvlauncher (the default in restore.sh). It is not in this list:\nlauncher/build-and-install.sh disables it after the new launcher is running. The stock home shows a\nfull-width \"Sponsored\" banner and a sponsored row, which only goes away with the launcher swap.\n\nKeep: com.mediatek.* (Live TV, HDMI, hotkeys, factory), com.hisense.tv.hitvinput (the HDMI/AV/tuner\ninputs), com.hisense.kpad (remote's menu key), com.mstar.netflixobserver (remote's Netflix key),\ncom.hisense.tv.customerlauncher, com.hisense.uifac, com.hisense.audio_update_service, and\ncom.hisense.tv.smartsense (left alone because of the Recovery warning in hisense-smarttv-4k-ffm).\nKept by choice: Chromecast (mediashell), Assistant (katniss, pumpkin), Miracast receiver\n(\"Screen Sharing\", com.mediatek.androidbox), YouTube.\nAlready disabled at the factory: com.google.android.backdrop, com.google.android.apps.inputmethod.zhuyin.\nGroup 1: telemetry",
+  "packages": [
+    {
+      "package": "com.hisense.app.logreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Hisense LogReportManagerService",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "old launcher, not a HOME candidate on this firmware",
+      "uad": null,
+      "review_flags": [
+        "policy:com.google.android.leanbacklauncher"
+      ]
+    },
+    {
+      "package": "com.hisense.storemode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "retail display",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "store disclaimer screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.hisense.xiaoyushan",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "reason": "Group 2: recommendation rows, retail demo, silent preload installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.seraphic.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Hisense browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Play Music, discontinued",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Group 3: preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Group 3: preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Group 3: preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "off by choice",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Prime Video, off by choice",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.hisremotenow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "RemoteNOW phone remote, off by choice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.tv.mediacenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "USB media player, off by choice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.myapplication",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 3: preloaded apps",
+      "reason": "Hisense screensaver (DayDreamService), off by choice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Group 4: firmware updates. Re-enable both to receive an OTA update.",
+      "reason": "Group 4: firmware updates. Re-enable both to receive an OTA update.",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.remoteupgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Group 4: firmware updates. Re-enable both to receive an OTA update.",
+      "reason": "Group 4: firmware updates. Re-enable both to receive an OTA update.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-hismarttv-a4/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

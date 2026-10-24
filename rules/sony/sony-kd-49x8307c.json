@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "id": "sony-kd-49x8307c",
+  "brand": "sony",
+  "title": "Sony BRAVIA KD-49X8307C (2015, \"BRAVIA 4K 2015\", device SVP-DTV15, MediaTek), EU firmware",
+  "android": "Android TV 7.0",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "49x8307c"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Sony BRAVIA KD-49X8307C (2015, \"BRAVIA 4K 2015\", device SVP-DTV15, MediaTek), EU firmware\nAndroid TV 7.0 (API 24), build SVP4KDTV15_EU-user 7.0 NRD91N.S44 5.457, 1.5 GB RAM\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-kd-49x8307c/debloat.txt\ntools\\disable.ps1 -TvHost <tv ip> examples\\sony-kd-49x8307c\\debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-kd-49x8307c/debloat.txt com.google.android.leanbacklauncher\ntools\\restore.ps1 -TvHost <tv ip> examples\\sony-kd-49x8307c\\debloat.txt -Stock com.google.android.leanbacklauncher\n\nEverything is DISABLED (pm disable-user --user 0), NOT uninstalled. 100% reversible.\nStock launcher is com.google.android.leanbacklauncher (not com.google.android.tvlauncher).\ncom.sony.dtv.tvx plays TV channels and HDMI inputs: keep it.\nTelemetry, remote support, bug reports",
+  "packages": [
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Qterics device agent telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony device agent / remote support",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Feedback / crash reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Bug report sender",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Node.js broadcasting for Control4 home automation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV telemetry & ACR ad tracker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.discovery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Discover bar (~22 MB RAM)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.bivlinfo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Feeds Discover",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Sony Select app store/promo tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyshelf",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Sony Shelf recommendation row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.recommendationservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Recommendation service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.woprecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "What's on Play recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.irbrecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "IRB recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.networkrecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Network recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.watchtvrecommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Watch TV recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony content, ads, shelves and recommendation background services",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demomode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Shop demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded help and unused Sony apps",
+      "reason": "Customer support",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded help and unused Sony apps",
+      "reason": "Smart help",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.imanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded help and unused Sony apps",
+      "reason": "i-Manual electronic guide",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.bravialifehack",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded help and unused Sony apps",
+      "reason": "Bravia Lifehack",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.opera.sdk.example",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded help and unused Sony apps",
+      "reason": "Preinstalled Internet Browser (Opera TV SDK)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Discontinued / unused Google services",
+      "reason": "Google Play Music (discontinued)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Discontinued / unused Google services",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Discontinued / unused Google services",
+      "reason": "Google Play Movies & TV (discontinued)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistant (disabled if not using voice search / remote)",
+      "reason": "Google Assistant / voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.speech.pumpkin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant (disabled if not using voice search / remote)",
+      "reason": "Voice recognition backend",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.youview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "YouView (UK broadcast service, unused in other regions)",
+      "reason": "YouView (UK broadcast service, unused in other regions)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.youview.tv.servicehost",
+      "action": "disable",
+      "risk": "safe",
+      "group": "YouView (UK broadcast service, unused in other regions)",
+      "reason": "YouView (UK broadcast service, unused in other regions)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.inputmethod.japanese",
+      "why": "critical package (policy match 'com.google.android.inputmethod*')",
+      "source_comment": "Japanese IME (keyboard is leanback.ime)"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-kd-49x8307c/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

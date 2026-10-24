@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "id": "karbonn-swtv-20ae",
+  "brand": "karbonn",
+  "title": "Karbonn SWTV-20AE (Skyworth OEM, SW4H, MediaTek), Android TV 10, firmware QTG3.200617.002",
+  "android": "Android TV 10",
+  "match": {
+    "brand_patterns": [
+      "karbonn"
+    ],
+    "model_patterns": [
+      "20ae"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Karbonn SWTV-20AE (Skyworth OEM, SW4H, MediaTek), Android TV 10, firmware QTG3.200617.002\nro.product.manufacturer=skyworth, device SW4H, API 29, armeabi-v7a, ~1.68 GB RAM.\nStock launcher: com.google.android.tvlauncher (classic Android TV home, not Google TV launcherx).\nLive TV: com.smartdevice.livetv / com.mediatek.tvinput.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/karbonn-swtv-20ae/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/karbonn-swtv-20ae/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nTested on the day of debloat and confirmed working. Same Skyworth SW4H platform as the\nPanasonic 4KTV-0SU and OnePlus Y1. com.sky.market is a protected package: the firmware\nrefuses pm disable-user for it (SecurityException); it stays on.\n\nPerformance tweaks for 1.68 GB RAM (32-bit armeabi-v7a, MediaTek):\nsettings put global window_animation_scale 0.5\nsettings put global transition_animation_scale 0.5\nsettings put global animator_duration_scale 0.5\nsettings put global background_process_limit 2\nSet reduced_motion: true in your theme's config.json for the CleanYourTV launcher.\nSkyworth content, ads and preloads",
+  "packages": [
+    {
+      "package": "com.smartdevice.leanbacklauncher.customizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner config that injects ad rows into home screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.smartdevice.acr.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ACR — listens to ambient audio for ad targeting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Skyworth recommendation rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.epopplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ePop shop demo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "on-screen manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail shop demo player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "manufacturer branding/disclaimer screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "tv.airtel.xstream.tvapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "Airtel Xstream",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.facebook.katana",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "Facebook",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.community.newroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "Community Newroom",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.community.oneroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "Community OneRoom",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.internet.tvbrowser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "generic TV browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qjy.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "unknown browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.yablio.sendfilestotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "India-specific preloads (never asked for)",
+      "reason": "Send Files to TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "Telemetry and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and feedback",
+      "reason": "Telemetry and feedback",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ambient screensaver (replaced by the ClockDream screensaver in launcher/)",
+      "reason": "Ambient screensaver (replaced by the ClockDream screensaver in launcher/)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home recommendation rows; disable after the new launcher owns Home",
+      "reason": "Stock home recommendation rows; disable after the new launcher owns Home",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/karbonn-swtv-20ae/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "formovie-laser-4k-hanlla",
+  "brand": "formovie",
+  "title": "Formovie Laser 4K projector (codename hanlla, MediaTek T31 / m7632), Android TV 14 (SDK 34),",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "formovie"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Formovie Laser 4K projector (codename hanlla, MediaTek T31 / m7632), Android TV 14 (SDK 34),\nfirmware UKNV.260619.001. Classic Android TV home (com.google.android.tvlauncher), not Google TV.\nLive TV / input app: com.mediatek.wwtv.tvcenter (already live_tv_package and hidden in config.xml).\nStock launcher: com.google.android.tvlauncher (build-and-install.sh finds it by itself).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/formovie-laser-4k-hanlla/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/formovie-laser-4k-hanlla/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nA light list: there is no Formovie ad or content service on this build, and the projector's own\napps carry the features. Keep: cn.formovie.projectormanager (persistent; BLE remote service, global\nkeys, projector settings: focus, keystone), com.formovie.launchboard (all-apps overlay on a remote\nkey), cn.formovie.fengos.usermanual, com.fengmi.testsuite (factory tests, left alone), fusion.android.tv.demo (listens\nfor the input/source button), com.mediatek.* (tv service, tvinput, tvcenter, autopair = BT remote\npairing), com.dolby.android.audio.service (Dolby / optical out), com.mstar.android.tv.disclaimercustomization.\nNever launch mediatek.factorymenu.ui.\nAlready disabled at the factory: com.google.android.play.games, com.google.android.youtube.tvmusic,\ncom.google.android.videos.\nThe only Ethernet is the built-in RJ45 (eth0); USB debugging does not affect it.\n1.8 GB RAM. Default IME is Gboard.\nGoogle telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google RLZ attribution pings",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.fomovie",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-install of partner apps (sic, \"fomovie\")",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home extras, unused once the new launcher is Home",
+      "reason": "recommendation/ad rows for tvlauncher",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock home extras, unused once the new launcher is Home",
+      "reason": "Ambient Mode screensaver (Immich is the screensaver here)",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/formovie-laser-4k-hanlla/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

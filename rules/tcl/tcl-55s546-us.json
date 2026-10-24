@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55s546-us",
+  "brand": "tcl",
+  "title": "TCL 55S546 (5-Series, \"Smart TV Pro\", device BeyondTV4, product G03_4K_US), Google TV on Android 11 (SDK 30),",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55s546"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL 55S546 (5-Series, \"Smart TV Pro\", device BeyondTV4, product G03_4K_US), Google TV on Android 11 (SDK 30),\nbuild RP1A.200622.001 GTV93. Fingerprint: TCL/G03_4K_US/BeyondTV4:11/RP1A.200622.001/GTV93:user/release-keys\nSame G03 platform as examples/tcl-g03-google-tv; that list was the starting point. This US build lacks\ncom.tcl.logkit, overseasappshow, tclhome_passive, browser, gamebar, micmanager, miracast and\nMultiScreenInteraction_TV, and adds com.tcl.tv.plus (TCL+) and com.tcl.tv.tclchannel (TCL Channel), both kept.\nNothing was disabled at the factory.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55s546-us/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55s546-us/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled.\n\nTested 2026-10-21 on a real unit, applied in the six batches below with a screenshot after each, plus the stock\nlauncher com.google.android.apps.tv.launcherx (24 packages), then rebooted: every package stayed disabled (this\nbuild re-enables nothing at boot), Home came up on launcher/ (mFocusedApp checked), Wi-Fi stayed up.\n- The saved Wi-Fi belonged to android.uid.system, not setupwraith, so setupwraith was disabled without\nforgetting the network.\n- With launcherx off, the real remote's Netflix, YouTube, Prime Video, Input (TCL source panel) and gear buttons\nall kept working, and volume kept auto-repeating: no InputKeyService / HomeKeyService needed.\n- Mic / Google voice worked with com.tcl.assistant disabled.\n- The first `pm install` of the launcher hung past tv.py's 120 s timeout with no dialog on screen; a retry of\n`pm install -r` on the already-pushed APK answered Success in a second.\n- Wi-Fi pill shows \"Wi-Fi\" instead of the SSID because Location is off (location_mode 0); left off by choice.\n\nKept by choice on this unit: Netflix, Prime Video, YouTube, YouTube Music, Google TV app, TCL Channel, TCL+,\nUSB media player, Google voice search / Assistant, Chromecast, TCL firmware updates.\n\nDO NOT DISABLE: com.tcl.tv, com.tcl.tvinput (Live TV, tuner, HDMI/AV), com.tcl.suspension (Input key's source\npanel), com.tcl.settings, com.tcl.system.server, com.tcl.providers.config, com.tcl.initsetup,\ncom.tcl.factory.view, com.tcl.tcl_bt_rcu_service, com.tcl.autopair (remote), com.tcl.keyhelp,\ncom.google.android.tv.remote.service, com.google.android.inputmethod.latin (keyboard), com.tvos (framework res).\n---- 1. TCL and Google telemetry ----",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL BI analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.xian.StartandroidService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background reporting service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash / feedback reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "TCL dashboard / promo backend",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "partner customisation channel, promo rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "TCL message / promo box",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "sticker / emoji overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "older copy of TCL's web-video portal (TCL+ is its own package)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 2. TCL and Google content, ads and recommendation rows ----",
+      "reason": "one-time setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL online support",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL WebView; com.google.android.webview stays the provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.chromium.webview_shell",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "WebView test shell",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "calendar sync, no calendar on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 3. Background services and preloaded extras ----",
+      "reason": "TCL photo gallery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 4. Off by choice: voice assistants not used ----",
+      "reason": "Alexa bridge",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 4. Off by choice: voice assistants not used ----",
+      "reason": "TCL voice assistant / voice TV control",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "---- 5. Google TV first-run wizard: claims HOME once launcherx is off ----",
+      "reason": "---- 5. Google TV first-run wizard: claims HOME once launcherx is off ----",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "---- 6. Google ambient screensaver (promos) ----",
+      "reason": "---- 6. Google ambient screensaver (promos) ----",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55s546-us/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

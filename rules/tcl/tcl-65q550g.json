@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "id": "tcl-65q550g",
+  "brand": "tcl",
+  "title": "TCL 65Q550G (TCL BeyondTV4, codename UNKNOWN), Google TV 11, firmware V8-R51MT08-LF1V095.021344",
+  "android": "Google TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "65q550g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL 65Q550G (TCL BeyondTV4, codename UNKNOWN), Google TV 11, firmware V8-R51MT08-LF1V095.021344\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-65q550g/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-65q550g/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKnown quirk on this firmware: default_input_method points at com.baidu.input, which is not\ninstalled, so no keyboard appears in search fields. Set Gboard as the IME (see README gotchas).\nTested on one unit over Ethernet: setupwraith owned saved Wi-Fi networks and claimed HOME;\ndisabling it over Ethernet allowed CleanYourTV to become HOME. Do not disable it over Wi-Fi.\nBatch 1 - telemetry and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL BI/awareness/identifier services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TGuard: device-use tracking, \"health info\", memory cleaner",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"send feedback\"",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "TCL content recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "TCL rows on the Google TV home",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "pushed messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "TCL account",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "\"TCL Home\" panel, gift box and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "pushes TCL content at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2 - TCL content, ads and promos",
+      "reason": "retail demo stickers",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Rakuten TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Google TV / Play Movies storefront",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Batch 3 - preloaded apps and services not used",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "USB media player (VLC is installed) - re-enable for USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.notereminder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "notes/reminders",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "hearing test / volume adaptation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Batch 3 - preloaded apps and services not used",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3 - preloaded apps and services not used",
+      "reason": "Batch 3 - preloaded apps and services not used",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "Google Assistant / voice search (mic button)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "assistant LED service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "TCL voice service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.airplay2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "AirPlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.AirplayAPK",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "AirPlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4 - voice and casting (owner keeps Chromecast and Miracast)",
+      "reason": "first-run wizard; owns saved Wi-Fi networks and claims HOME.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-65q550g/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

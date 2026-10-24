@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "id": "tcl-mt9655-cn-android14",
+  "brand": "tcl",
+  "title": "TCL / FFalcon China 2026, device tcl9655_cn / product MT9655_4K_CN, MediaTek MT9655 (\"merak\"),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "mt9655[-_ ]?android14"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.tcl.cyberui",
+  "notes": "TCL / FFalcon China 2026, device tcl9655_cn / product MT9655_4K_CN, MediaTek MT9655 (\"merak\"),\nAndroid 14 (SDK 34), build tcl9655_cn_an64-user 14 UTT2.250416.001 AU01, security patch\n2025-09-05, 3.7 GB RAM, arm64-v8a. ro.adb.secure=1.\nRetail name reported as \"TCL Smart TV Pro\" / IFFALCON (雷鸟); ro.product.model is generic, so\nidentify this unit by ro.product.name=MT9655_4K_CN and the build id above, not by the brand.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-mt9655-cn-android14/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-mt9655-cn-android14/debloat.txt com.tcl.cyberui\n\n============================================================================\nADB: read this before anything else. This build is much harder than the 2026 MT9653 sets.\n============================================================================\nThere is no \"Developer options\" screen and no \"Wireless debugging\" row anywhere in the UI.\nTCL replaced the whole Settings app: com.android.settings is NOT installed, the stock settings\npackage is com.tcl.setting and it only declares MainActivity, SceneActivity,\nStartOtherAppActivity and SlicePermissionActivity. Searching every activity for \"adb\", \"debug\"\nor \"develop\" through an activity launcher returns nothing, and\nandroid.settings.APPLICATION_DEVELOPMENT_SETTINGS has no handler.\n\nThe only switch is 通用设置 -> 更多 -> ADB. It opens adbd in **TLS mode on a random high port**\n(observed 40769, 35879, 41629, 46493 on the same unit, a new one on every toggle):\n- the port answers an ADB CNXN with STLS and never speaks plaintext;\n- `adb connect ip:port` fails, daemon trace shows\n\"Post-handshake SSL_peek failed [SSLV3_ALERT_CERTIFICATE_UNKNOWN]\";\n- mDNS advertises _adb-tls-connect._tcp (instance adb-<serial>-xxxx) but never\n_adb-tls-pairing._tcp, so `adb pair` has nothing to talk to;\n- 5555 is closed and no other listener speaks ADB (full 1-65535 scan: adbd, two TCL services,\nDLNA on 16626, AirPlay on 38171).\nSwitching Wi-Fi shows the stock Android prompt \"要允许通过此网络进行无线调试吗\" (per-BSSID), which\nproves the wireless-debugging framework is present but the pairing UI was removed.\n\nThe working path is USB:\n1. dual male USB-A cable, PC side in a USB 3.0 port, TV side in a **USB 2.0** port;\n2. ADB toggle ON, then `adb devices`: Windows enumerates USB\\VID_18D1&PID_4EE7 with the serial\nthat matches the mDNS instance, and the TV shows \"Allow USB debugging\";\n3. accept it (and \"always allow\"), then `adb tcpip 5555` and `adb connect <ip>:5555`.\nThe USB path only works while the ADB toggle stays on, and 5555 is lost on every reboot\n(re-run `adb tcpip 5555` with the cable attached).\n\n============================================================================\nSideloading and the launcher: both are locked, and the lock is not in the installer app.\n============================================================================\nEvery APK is refused over adb, including apps that do not declare HOME:\nadb install / pm install / cmd package install\n-> INSTALL_FAILED_VERIFICATION_FAILURE: Install not allowed for file:///data/app/vmdl*.tmp\nSpoofing the installer package (-i com.tcl.guard, com.tcl.appmarket2, com.android.packageinstaller)\nchanges nothing. The rejection is logged by system_server (PackageManager), not only by the\ncom.android.packageinstaller verifier.\n\nThe only channel that installs normal APKs is a USB stick through 电视卫士 (com.tcl.guard).\nDriving the system installer UI over adb gets further but still fails: file:// URIs are refused\noutright on Android 14, and a MediaStore content:// URI\nam start -a android.intent.action.VIEW -t application/vnd.android.package-archive \\\n-d content://media/external/file/<id> --grant-read-uri-permission \\\n-n com.android.packageinstaller/.InstallStart\ndoes show \"应用未被认证，是否继续安装\" and then fails with\nverifier: signature not match for tcl com.gathin.tvhome, will not be installed !\n\nRoot cause, readable with:\ncontent query --uri content://com.tcl.providers.config/all | grep InstallConfig\n",
+  "packages": [
+    {
+      "package": "com.tcl.bootadservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "full-screen ad before Home",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.tcl.profilemanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "audience / profile reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.xian.StartandroidService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background reporting service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log collection and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.atomic.servicecenter",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "home-screen recommendation cards",
+      "uad": null,
+      "review_flags": [
+        "policy:*cec*"
+      ]
+    },
+    {
+      "package": "com.tcl.c2dm.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL push, long-lived connection",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.wholenetsearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "whole-net search with VOD promotions",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.playskill",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"tips\" promo app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "repair-guide app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "user-agreement popup",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.appreciate.art",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "art-wallpaper / screensaver promo content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffeducation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "kids / education content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffkaraoke",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "karaoke",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "bringing the packages above back.",
+      "reason": "system OTA and app auto-update",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "bringing the packages above back.",
+      "reason": "peripheral firmware OTA, ~200 MB resident",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.snm.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "bringing the packages above back.",
+      "reason": "updateos, a second updater",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.common.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "weather widget and its background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tshop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "TCL shop / shopping entry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "game bar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "game centre",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "microphone manager (karaoke)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.audiocn.karaoke.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "karaoke microphone manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tvsmartalbum",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "smart photo album",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "hotel mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "hearing aid",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.vod",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "TCL VOD entry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.qiyiguo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "iQIYI content entry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tliveplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "OPTIONAL: home widgets and content apps",
+      "reason": "live TV content entry",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-mt9655-cn-android14/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

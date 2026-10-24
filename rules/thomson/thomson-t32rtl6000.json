@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "id": "thomson-t32rtl6000",
+  "brand": "thomson",
+  "title": "Thomson T32RTL6000 (manufacturer SCBC, Realtek platform), Android TV 9 (API 28), 1.5 GB",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "thomson"
+    ],
+    "model_patterns": [
+      "t32rtl6000"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Thomson T32RTL6000 (manufacturer SCBC, Realtek platform), Android TV 9 (API 28), 1.5 GB\nRAM, 1280x720 output. Firmware PTT1.210114.001 build 337 (2021-04-25), security patch 2021-03-05.\nThe OS itself reports model/device strings \"ATV R1\"/\"R1\" on this TV — same hardware:\nfingerprint THOMSON/THOMSON/R1:9/PTT1.210114.001/337:user/release-keys\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/thomson-t32rtl6000/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/thomson-t32rtl6000/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nSame platform family as examples/sanyo-atv-r2/ (SCBC, PTT1.x firmware branch): the SANYO\nlist cross-checks several decisions here (the GDPR consent agent, and FastScreen being a\nFastCast Miracast receiver rather than a launcher on this family).\n\nStock launcher: com.google.android.tvlauncher (restore.sh / build-and-install.sh defaults work).\nLive TV app: com.android.tv with the Realtek tuner stack (com.realtek.dtv and friends) —\nthe tuner must stay enabled or live channels disappear.\nTvProvider quirk: on this firmware the system TvProvider stays empty — the vendor tuner\nkeeps channels and EPG in its own store, so launcher channel rows are dormant until the\nprovider fills (e.g. after a firmware update).\nKept on purpose: GMS / Play / WebView / keyboard, the tuner stack above, remote/Bluetooth\n(com.apps.smartkey, bluetoothremote, fivekey, virtualkey, autopair),\ncom.creative.fastscreen.tv (FastCast Miracast receiver on this family — NOT a FastScreen\nad app, do not disable it as one), and streaming apps left to taste.\n--- Telemetry, analytics, recommendation rows ---",
+  "packages": [
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.function.gdpr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.channels",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "the SCBC \"S-Channels\" content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.scbc.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "partner auto-install config for SCBC devices",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "--- Content/promo rows and partner auto-installs ---",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google Assistant (the mic button on the remote goes dead) ---",
+      "reason": "--- Google Assistant (the mic button on the remote goes dead) ---",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Preinstalled service and stores ---",
+      "reason": "--- Preinstalled service and stores ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.okko.androidtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "mobi.zona",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "de.benzac.msx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "limehd.ru.lise",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "limehd.ru.lite",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "limehd.ru.ctv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "limehd.ru.ctvshka",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google add-ons ---",
+      "reason": "--- Google add-ons ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google add-ons ---",
+      "reason": "--- Google add-ons ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.factory.ui",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.rtk.engmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.factorytools",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.clear",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.networkspeed",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.usbmediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Firmware OTA (keeps an update from reinstalling the junk) ---",
+      "reason": "--- Firmware OTA (keeps an update from reinstalling the junk) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.authota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Firmware OTA (keeps an update from reinstalling the junk) ---",
+      "reason": "--- Firmware OTA (keeps an update from reinstalling the junk) ---",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/thomson-t32rtl6000/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

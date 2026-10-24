@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "id": "polytron-2k-hayward",
+  "brand": "polytron",
+  "title": "Polytron 2K Android TV (WLTV POLYTRON2K, device hayward; Hisense/CVTE board, MediaTek mt5867), Android TV 11,",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "polytron"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "Polytron 2K Android TV (WLTV POLYTRON2K, device hayward; Hisense/CVTE board, MediaTek mt5867), Android TV 11,\nbuild RTMA.250416.094. About 930 MB of RAM, 1280x720 UI, hardware decoders up to 1080p, classic Android TV\nlauncher (com.google.android.tvlauncher) plus com.google.android.tungsten.setupwraith, which also claims Home.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/polytron-2k-hayward/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/polytron-2k-hayward/debloat.txt\nEverything is DISABLED, not uninstalled; comment out any line you want to keep. (The tested set had\nthese packages removed for user 0, with the same effect.) Kept on purpose: Live TV\n(com.mediatek.wwtv.tvcenter), the USB media player, the Play Store, Google Play services and\ncom.android.providers.contacts. The installer disables tvlauncher once the new Home is in.\n\nADB: USB debugging opens network ADB on port 5555 directly. The TV hops between the 2.4 GHz and 5 GHz\nnetworks of a dual-band router and gets a new IP each time; reserve one on the router.\nAds and silent installs",
+  "packages": [
+    {
+      "package": "android.autoinstalls.config.hisense",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silently installs promoted apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.hisense.hayward",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "same, device-specific config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "partner promo rows on the stock launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "feeds the recommendation / sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry",
+      "reason": "Telemetry",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry",
+      "reason": "partner referral tracking",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry",
+      "reason": "store-mode disclaimer",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry",
+      "reason": "printing",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry",
+      "reason": "Telemetry",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry",
+      "reason": "Telemetry",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "voice search / Assistant",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "ambient screensaver (pick Basic or the launcher's Clock screensaver instead)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "official YouTube (TizenTube is used instead)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Off by choice on the tested set (keep what you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Chromecast built-in (26 MB in the background)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on the tested set (keep what you use)",
+      "reason": "Google text-to-speech (only needed for screen reading)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Already disabled at the factory on this firmware",
+      "reason": "Already disabled at the factory on this firmware",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Already disabled at the factory on this firmware",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Already disabled at the factory on this firmware",
+      "reason": "Already disabled at the factory on this firmware",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/polytron-2k-hayward/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

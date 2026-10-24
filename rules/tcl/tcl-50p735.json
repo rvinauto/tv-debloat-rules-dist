@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "id": "tcl-50p735",
+  "brand": "tcl",
+  "title": "TCL 50P735 BeyondTV4 (Smart TV Pro, Android 11, SDK 30) debloat list",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "50p735"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL 50P735 BeyondTV4 (Smart TV Pro, Android 11, SDK 30) debloat list\nShared by one owner (#911); the firmware build and a reboot check were not reported, so treat it as provisional\nand compare with tcl-50c725k/ and tcl-55p638/ (same BeyondTV4 family).\n\nApply: TV_HOST=<tv ip> tools/disable.sh examples/tcl-50p735/debloat.txt\nUndo:  TV_HOST=<tv ip> tools/restore.sh examples/tcl-50p735/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\ncom.tcl.versionUpdateApp is TCL's firmware updater: this owner turned it off; re-enable it to take an update.\n1. Telemetry and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Content, promos, recommendation rows and Google extras",
+      "reason": "2. Content, promos, recommendation rows and Google extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.suspension",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.keyhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "reason": "3. Cleaners, background services, duplicate webview, and unused tools",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-50p735/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

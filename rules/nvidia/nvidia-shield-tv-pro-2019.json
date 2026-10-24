@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "id": "nvidia-shield-tv-pro-2019",
+  "brand": "nvidia",
+  "title": "NVIDIA SHIELD TV Pro (2019, model P2897, codename mdarcy, Tegra X1+, 3 GB RAM), Android TV 11 (API 30)",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "nvidia"
+    ],
+    "model_patterns": [
+      "2019"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "NVIDIA SHIELD TV Pro (2019, model P2897, codename mdarcy, Tegra X1+, 3 GB RAM), Android TV 11 (API 30)\nTested on SHIELD Experience 9.2.4 (33.2.0.400), build RQ1A.210105.003.7825230_4387.0822,\nsecurity patch 2026-01-05. Package names also checked against a unit on 9.2.2.\nThe 2019 tube (P3430) and the 2015/2017 models run the same 9.x software, so this is a fair\nstarting point for them too. Check `pm list packages` first.\n\nApply:   TV_HOST=<shield ip> tools/disable.sh examples/nvidia-shield-tv-pro-2019/debloat.txt\nUndo:    TV_HOST=<shield ip> tools/restore.sh examples/nvidia-shield-tv-pro-2019/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nConnecting: Developer options -> turn on \"Network debugging\"; that is what opens ADB on port 5555.\nThe Pro has only USB-A host ports, so there is no cable route. Ethernet and Wi-Fi get different\naddresses and the Shield can come back from a reboot on the other one, so reserve an IP in your router.\n\nLauncher: the stock launcher is com.google.android.tvlauncher, so the defaults in tools/restore.sh\nand launcher/build-and-install.sh work. Run build-and-install.sh before this list. The stock\nlauncher's Home filter has priority 2 and launcher/'s has 0, so `cmd package set-home-activity`\nhas no effect while the stock launcher is enabled; disabling it (build-and-install.sh does that\nlast) is what hands Home over. launcher/ stayed the default Home across a reboot. With no\nlauncher at all, Home falls back to com.android.tv.settings/.system.FallbackHome.\nLeave com.google.android.tungsten.setupwraith alone. It declares Home activities, but after setup\nnone of them is a Home candidate (its MainActivity is disabled), unlike on some Google TV sets.\nA Shield has no HDMI inputs and no tuner, so the launcher's Inputs pill has nothing to list. To\nreach a network tuner through Live Channels, set live_tv_package to com.google.android.tv in\nconfig.xml.\nThe network pill says \"Wi-Fi\" without the network name, because location is off by default\n(location_mode=0) and Android 11 hides the SSID without it. Over Ethernet it says \"Ethernet\".\n\nNotes:\n- The remote's Netflix button is handled in firmware; disabling Netflix doesn't free it.\n- The default screensaver is Backdrop (com.google.android.backdrop). Switch to the Clock\nscreensaver (README) before disabling Backdrop, or nothing is set.\n- A SHIELD Experience update can re-enable packages; re-run this list afterwards.\n- On a Shield where some of these were already removed with `pm uninstall --user 0`,\ndisable.sh still reports \"disabled-user\" for them. That's harmless.\n- Leave alone: com.nvidia.blakepairing, com.nvidia.bluetooth.*, com.nvidia.shieldtech.accessoryui,\ncom.nvidia.ControllerMapper, com.nvidia.remotelocator, com.nvidia.irtuner (remote, controllers,\nBluetooth); com.nvidia.NvCPLSvc, com.nvidia.nvaudiosvc, com.nvidia.avsync,\ncom.dolby.android.audio.service (AI upscaling, display, audio); com.nvidia.shieldservice,\ncom.nvidia.packagemanagerservice, com.nvidia.KeyComboOta, com.android.tv.settings,\ncom.android.providers.tv (Watch Next and Live Channels), com.google.android.tv.remote.service.\n- Some guides remove Play Services, keychain or com.android.se on the Shield. People report\nsoft-bricked units after doing so. Don't.\nNVIDIA and Google telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.nvidia.stats",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "anonymous usage statistics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash reports and the \"send feedback\" form",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.diagtools",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log collector; re-enable if NVIDIA support asks for logs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.nvidia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.nvgamecast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "NVIDIA gaming leftovers (GameStream closed in 2023)",
+      "reason": "GameStream receiver; Moonlight and Sunshine don't use it",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.nvidia.tegrazone3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "NVIDIA gaming leftovers (GameStream closed in 2023)",
+      "reason": "\"NVIDIA Games\" app and row; GeForce NOW is a separate app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "legacy photo viewer",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Android TV launcher, replaced by launcher/",
+      "reason": "Stock Android TV launcher, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/nvidia-shield-tv-pro-2019/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

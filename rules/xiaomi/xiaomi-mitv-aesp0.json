@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-aesp0",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-AESP0 (codename aquaman), Android TV 9 (SDK 28), firmware PI.2055.",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "aesp0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-AESP0 (codename aquaman), Android TV 9 (SDK 28), firmware PI.2055.\nStock launcher: com.google.android.tvlauncher (disabled by launcher/build-and-install.sh).\nLive TV app: none (no tuner/HDMI inputs); com.google.android.tv is Live Channels.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-aesp0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-aesp0/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- Default IME is already Gboard, so the Mi TV 4A missing-keyboard quirk doesn't apply.\n- The remote's Home button sends KEYCODE_ALL_APPS (284), not HOME. Android 9 sends that key only\nto the system launcher, so with tvlauncher disabled Home does nothing. Fix: install with\nHOME_KEY_SERVICE=1 TV_HOST=<tv ip> launcher/build-and-install.sh\nwhich enables the launcher's HomeKeyService. Android switches it off on every reinstall,\nso always pass HOME_KEY_SERVICE=1.\n`input keyevent 284` over adb skips the accessibility filter; test with the real remote.\n- No HDMI/AV inputs: the launcher hides its Inputs pill by itself on this stick.\n- Kept on this set: voice assistant (katniss/pumpkin), Chromecast (mediashell),\nMi Cast (com.mitv.milinkservice) and firmware updates (com.xiaomi.mitv.updateservice).\n\nSecond verified set (Indonesia-region unit, same firmware PI.2055, in daily use since\n21 Oct 2026 with Netflix / Jellyfin / SmartTube / Vidio): the groups marked\n\"second set\" below are disabled on that stick on top of the original list.\nRegion note: the ID unit has only the misspelled autoinstalls package below, and\nnone of the preloaded apps in the original list (DAZN, Red Bull TV, Duo, TCL browser).\n\nThird verified set (France unit, same firmware PI.2055, patch 2022-08-05, debloated 21 Oct 2026; the group\nmarked \"third set\" below is on top of the original list, plus voice, Chromecast, Mi Cast, the phone remote and\nthe updater off by the owner's choice). Notes from that unit:\n- The Home key arrived as KEYCODE_HOME (3), not ALL_APPS: `interceptKeyTq keycode=3` in logcat, then HOME\nstarted the launcher. HOME_KEY_SERVICE=1 was used anyway and does no harm; check your remote's revision.\n- The Netflix key is Xiaomi keycode 1001, consumed by the system in interceptKeyBeforeQueueing without\nPOLICY_FLAG_PASS_TO_USER, which launches Netflix itself. Accessibility services never see it, so it cannot\nbe remapped (app_keys, Button Mapper) without root; with Netflix disabled the key just does nothing.\n- Closing ADB: switching off \"USB debugging\" alone, then rebooting, left 5555 open. Switching off the\nDeveloper options master switch and rebooting closed it (tools/adb-closed.py: refused).\n- Free memory: about 150 MB stock, about 265 MB right after a reboot with the list and the launcher.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.alphonso.alphonso_eula",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Alphonso automatic content recognition (viewing tracking)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.mibox3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.mibox3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "same, misspelled duplicate (sic, \"xioami\")",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.dazn",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.nousguide.android.rbtv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Red Bull TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tachyon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google Duo",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomo.tv.milegal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi extras (third set)",
+      "reason": "Xiaomi privacy-policy screen (sic, \"xiaomo\"); nothing else uses it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "mitv.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi services (second set)",
+      "reason": "MiTV service framework for the rows removed above",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.download.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi services (second set)",
+      "reason": "PatchWall download service",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi services (second set)",
+      "reason": "stock Mi video player; comment out if you use it",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.android.tvsetup.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi services (second set)",
+      "reason": "partner customisation that seeds partner apps at setup",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.google.android.tv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "Live Channels; the stick has no tuner or HDMI input",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tv",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "YouTube Music TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "setup wizard: gives Home back, costs casting (comment out to keep casting)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "Google TV plumbing this stick does not need (second set)",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "Google TV plumbing this stick does not need (second set)",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google TV plumbing this stick does not need (second set)",
+      "reason": "Google TV plumbing this stick does not need (second set)",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.contacts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backuptransport",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.backupconfirm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*backup*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.settings.intelligence",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "CTS test shims, not user features",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "reason": "Accounts, backup and printing plumbing (second set; nothing on a TV uses these)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "reason": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "reason": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.dream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "reason": "Screensavers (second set; that stick runs always-on with its own home screen)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.android.se",
+      "why": "critical package (policy match 'com.android.se')",
+      "source_comment": "secure element; the stick has no NFC"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-aesp0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

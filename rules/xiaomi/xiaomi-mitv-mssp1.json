@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-mssp1",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-MSSP1 (codename nino), Android TV 9 (SDK 28), firmware PI.5925 release-keys.",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "mssp1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-MSSP1 (codename nino), Android TV 9 (SDK 28), firmware PI.5925 release-keys.\n\nApply: TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-mssp1/debloat.txt\nUndo:  TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-mssp1/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. It is not listed here;\nlauncher/build-and-install.sh handles its cutover after the replacement Home is installed.\nLive TV: com.mediatek.wwtv.tvcenter; HDMI/tuner service: com.mediatek.tvinput. Both kept enabled.\nAlso kept enabled: com.xiaomi.mitv.updateservice (firmware updates), Google Assistant,\nChromecast, com.xiaomi.mitv.mediaexplorer (USB media), Play Store and Play Services.\n\nChecks on this set: the replacement Home survived reboot; the owner confirmed streaming-app\nplayback. All eight packages below remain disabled.\nNo package from this list had to be re-enabled during those checks.\nThis is nino / PI.5925, not the MSSP0 (amelie), MSSP2 (volver) or MSSP3 (machuca) firmware.\nXiaomi telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall and Xiaomi content add-ons",
+      "reason": "PatchWall and Xiaomi content add-ons",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall and Xiaomi content add-ons",
+      "reason": "PatchWall and Xiaomi content add-ons",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall and Xiaomi content add-ons",
+      "reason": "PatchWall and Xiaomi content add-ons",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall and Xiaomi content add-ons",
+      "reason": "PatchWall and Xiaomi content add-ons",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock-home recommendation feeds",
+      "reason": "Stock-home recommendation feeds",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock-home recommendation feeds",
+      "reason": "Stock-home recommendation feeds",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-mssp1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

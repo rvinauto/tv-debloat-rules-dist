@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g10-google-tv",
+  "brand": "tcl",
+  "title": "TCL 55\" 4K Google TV, 2023 model year, US (device G10, product G10_4K_US_NF, Realtek RTD2875P)",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g10"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 55\" 4K Google TV, 2023 model year, US (device G10, product G10_4K_US_NF, Realtek RTD2875P)\nAndroid 12 (Google TV, basic mode), firmware STT2.230203.001, software V8-R75PT01-LF1V499\nLikely a good starting point for other 2023+ TCL Google TV sets on the Realtek G10 platform.\n\nAlso confirmed on a TCL 55P6K (Spain retail name for the same G10 platform), product\nG10_4K_GB_NF_32BIT, identical firmware build STT2.230203.001 — this list applies unchanged.\n\nAlso tested on a TCL 43P69K, Netherlands (G10_4K_GB_NF_32BIT, Android 12 / SDK 31,\nbuild STT2.230203.001, ro.adb.secure=1). Unlike the original US unit, logkit, Samba TV ACR\nand ttvs shipped enabled; all three were disabled and stayed off after a reboot (2026-10-22).\nIts TCL Channel package is com.tcl.waterfall.overseas. That unit also disabled TGuard and\nMagiConnect, but kept TalkBack and re-enabled dreamx to keep the screensaver menu in Settings.\nComment out TalkBack and dreamx below to match that choice; the unit-specific additions are optional.\nTweakers groups the Netherlands range as \"TCL P6K/P69K/P61K\":\nhttps://tweakers.net/televisies/tcl/p6k-p69k-p61k_p1739438/vergelijken/\nOnly the 43P69K unit above was tested here; check the product and build before using this list.\n\nAlso used on a TCL C69B (EU, product G10_4K_GB, software V8-R75PT01-LF1V548, same build\nSTT2.230203.001; tv.plus and smartlink.core are not installed there). That set kept\npartnercustomizer, gamebar and tv.remote.service by choice, so those three are untested on it;\neverything else on the list was disabled and lived with. Its BT_RC833 remote sends\nYouTube 4065, Netflix 4062, Prime Video 4099 and Web 4159, which only app_keys brings back once\nlauncherx is off, and the gear as keycode 83 on scancode 233 (settings_key_keycodes).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g10-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g10-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh, the default is wrong here).\nLive TV app: com.tcl.tv (keep it, it also owns HDMI/antenna playback). Keep com.tcl.tvinput,\ncom.tcl.dashboard, com.tcl.suspension, com.tcl.autopair and com.tcl.systemserver too.\nAlready disabled at the factory on the original US unit: com.tcl.logkit, tv.samba.ssm.ui\n(Samba TV ACR), com.tcl.ttvs. These shipped enabled on the Netherlands 43P69K (see optional lines).\n\nKnown quirks on this firmware:\n- The red \"TV\" tile disappears from the Google TV Home row after this list (probably\ncom.tcl.partnercustomizer). TV stays in the Apps row and behind the Inputs tile.\n- Disabling dreamx leaves screensaver_components pointing at it. Switch to the AOSP fallback with\ntools/tv.py 'settings put secure screensaver_components com.android.dreams.basic/.Colors'\nOn the 43P69K it also removes the screensaver menu from Settings. dreamx was re-enabled there;\nleave its line commented out if you need that menu, even when using a third-party screensaver or the add-on photo-screensaver.\n- screencap writes an empty file while Live TV/HDMI is on screen. Press Home first.\n- The Google TV promo banner is drawn by launcherx itself, so only launcher/ removes it.\n- Disabling the stock launcher alone is not enough to install a replacement:\ncom.google.android.tungsten.setupwraith (the setup wizard) also claims Home at a lower\npriority and takes over once launcherx is disabled. Disable it too before setting the new\nlauncher as Home — launcher/build-and-install.sh does this automatically and rolls back if\nHome doesn't land on the new launcher. List it in your own debloat file so restore.sh brings\nit back. Confirmed on two separate 55P6K units.\n- On the 43P69K, the saved setup Wi-Fi belonged to setupwraith (dumpsys wifi: cname=...setupwraith).\nForget and re-join it in Settings BEFORE disabling setupwraith, so the network belongs to Settings;\noth",
+  "packages": [
+    {
+      "package": "com.tcl.tv.plus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL TV+ content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL Live FAST channels, also removes them from Live TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartlink.core",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bundles a silent app installer (CustomInstallService)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store mode",
+      "reason": "Retail demo / store mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / store mode",
+      "reason": "Retail demo / store mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "re-enable for the console game-mode overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "re-enable to play media from USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "re-enable to update a TCL soundbar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "ambient mode screensaver, see quirks above",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    },
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Google TV phone-app remote"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g10-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

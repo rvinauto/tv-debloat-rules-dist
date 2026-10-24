@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "id": "ffalcon-r34a0-cn",
+  "brand": "ffalcon",
+  "title": "FFALCON (雷鸟) r34a0, China firmware V8-A920T01-LF1V147, Amlogic T920, 1 GB RAM,",
+  "android": "Android 5.1.1",
+  "match": {
+    "brand_patterns": [
+      "ffalcon"
+    ],
+    "model_patterns": [
+      "r34a0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "FFALCON (雷鸟) r34a0, China firmware V8-A920T01-LF1V147, Amlogic T920, 1 GB RAM,\nAndroid 5.1.1 (SDK 22), 8 GB storage (5.44 GB user). Tested 2026-10-21.\nADB: Settings → System → System Info page, press UP DOWN LEFT RIGHT on the remote\n(repeat 2-3 times until the ADB toggle appears at the bottom). Persists across reboots.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/ffalcon-r34a0-cn/debloat.txt\n(tools/disable.sh uses pm disable-user, which this firmware DENIES — see INSTALL\nBLOCKER below; swap to `pm hide` as disable.sh does not know the difference yet)\nUndo:    NOT tools/restore.sh — its pm enable cannot undo a hide on this firmware.\nRun `pm unhide <package>` for each package listed below instead.\n\nINSTALL BLOCKER, read first: `pm disable-user` is denied on this firmware\n(SecurityException: Permission Denial ... uid=2000 → uid=1000). Use `pm hide` instead;\non Android 5.1 hidden state persists across reboots and `pm unhide` restores.\n\nadb install is blocked with \"install apk has be disabled from pm by system default\".\nUnlock with (both persist, shell has permission on this old build):\nsetprop persist.tcl.debug.installapk 1\nsetprop persist.tcl.installapk.enable 1\nNon-HOME apks then install fine. Any APK declaring android.intent.category.HOME is refused\nwith INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES even for a never-installed package name\n— the launcher signature gate, disguised as a cert error (same gate as tcl-ak30a5/Q10G Pro).\nA HOME-free build of com.gathin.tvhome installs but crashes instantly on this Android 5.1\nand logd is disabled, so it cannot be debugged. Conclusion: debloat only, stock CyberUI\nlauncher stays. (uninstall of the test app also failed with DELETE_FAILED_INTERNAL_ERROR;\n`pm hide <pkg>` removes it from the user-facing list.)\n\nBoot ad: com.tcl.bootadservice. Push-ad popups: com.tcl.c2dm.client + com.android.tcl.messagebox.\nKept on purpose: TVBox (com.github.tvbox.osc.tk), 云视听小电视 (com.xiaodianshi.tv.yst),\n千寻 (com.tv.qx), 电视卫士 (com.tcl.tvweishi), app store (com.tcl.appmarket2) — user's choice;\ncyberui (the only HOME handler), com.tcl.tv (DTV/HDMI), sourcemananger, sogou IME (the keyboard),\ndroidlogic platform services, local media players.",
+  "packages": [
+    {
+      "package": "com.tcl.bootadservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "full-screen ad before Home",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.tcl.c2dm.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL push channel (ad popups)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "image-message popup receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "analytics/behaviour reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usagestats",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "usage statistics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tvhealthcheck",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "diagnostics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.xian.StartandroidService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background reporting service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.vod",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL VOD",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.resource",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "waterfall content feed (home wall tiles)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tshop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV shopping mall",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamecenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "game center",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffeducation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "education preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.pptv.tvsports.preinstall",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "PPTV sports preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tencent.qqmusictv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "QQ Music TV preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.weixin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV WeChat",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iflytek.xiri",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "iFlytek voice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iflytek.xiri.recorder.svc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "iFlytek recorder",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iflytek.xiri2.hal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "iFlytek HAL",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iflytek.xiri2.system",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "iFlytek system service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.walleve",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "小T AI / smart-home settings (voice framework)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "system updater (user choice; snm.upgrade untouched)",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/ffalcon-r34a0-cn/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-ayfr0",
+  "brand": "xiaomi",
+  "title": "Xiaomi TV Stick 4K (model MiTV-AYFR0, codename soul, Amlogic), Android TV 14 (SDK 34),",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "ayfr0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi TV Stick 4K (model MiTV-AYFR0, codename soul, Amlogic), Android TV 14 (SDK 34),\nfirmware UKG3.250107.001 / V816.0.26.6.10.UZFAATK.\nFingerprint: Xiaomi/soul/soul:14/UKG3.250107.001/V816.0.26.6.10.UZFAATK:user/release-keys\n\nApply:   TV_HOST=<stick ip> tools/disable.sh examples/xiaomi-mitv-ayfr0/debloat.txt\nUndo:    TV_HOST=<stick ip> tools/restore.sh examples/xiaomi-mitv-ayfr0/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nA streaming stick: no HDMI-in or tuner, so leave live_tv_package empty in config.xml.\nStock launcher: com.google.android.tvlauncher (disabled by launcher/build-and-install.sh).\n\nNotes from this stick:\n- HOME claimants on stock: com.google.android.tvlauncher/.MainActivity and\ncom.android.tv.settings/.system.FallbackHome. Unlike Google TV builds (such as MiTV-AFMU0/AFMU1),\ncom.google.android.tungsten.setupwraith does NOT claim HOME here, so setupwraith can stay enabled\nand the saved Wi-Fi network (owned by setupwraith) does not need to be forgotten and re-joined.\n- The Bluetooth remote (\"Xiaomi RC Consumer Control\", vendor 0x2717 product 0x32b9,\n/vendor/usr/keylayout/Vendor_2717_Product_32b9.kl) sends standard KEY_HOMEPAGE (scancode 0x000c0223 -> HOME)\non the round Home button, not ALL_APPS, so HOME_KEY_SERVICE=1 is not needed.\n- HDMI-CEC One Touch Play works with the custom launcher: system_server (HdmiControlService) sends\n<Text View On> and <Active Source> before starting the HOME activity.\n- Kept on purpose: Google Assistant (katniss), Chromecast (mediashell), phone remote (tv.remote.service),\nMiracast (smartshare, wfdsinkhelperservice), screensavers (com.mitv.dream, com.google.android.backdrop),\ncom.xiaomi.tvqs.overseas (quick settings panel), com.xiaomi.android.tvsetup.partnercustomizer,\ncom.google.android.tungsten.setupwraith.\nXiaomi + Google telemetry and attribution",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.soc.amlogic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.mibox3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.mibox3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "misspelled duplicate present on firmware (sic, \"xioami\")",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi update service (re-enable to check for firmware updates)",
+      "reason": "Xiaomi update service (re-enable to check for firmware updates)",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-ayfr0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

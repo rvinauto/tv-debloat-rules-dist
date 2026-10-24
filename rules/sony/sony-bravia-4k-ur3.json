@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-4k-ur3",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K UR3 (device BRAVIA_UR3, MediaTek mt5893)",
+  "android": "Android 10",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "ur3"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Sony BRAVIA 4K UR3 (device BRAVIA_UR3, MediaTek mt5893)\nAndroid 10 (Android TV, API 29), firmware BRAVIA_UR3_EU-user 10 QTG3.200305.006.S97 662301\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-4k-ur3/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-4k-ur3/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the restore.sh default is correct).\nThe only other HOME claimant is com.android.tv.settings/.system.FallbackHome, so even a\nfailed launcher takeover still lands on a settings home rather than a black screen.\nLive TV / tuner app: com.sony.dtv.tvx (set it as live_tv_package in the launcher's config).\nKeep the com.sony.dtv.tvinput.* services, com.sony.dtv.braviasync*, com.sony.dtv.tvapi,\ncom.sony.dtv.sonysystemservice and the Sony settings apps: they drive HDMI, the tuner,\nBravia Sync and the remote. Also keep com.sony.dtv.airplayapp and com.sony.dtv.homekit\n(AirPlay and HomeKit), and the update services (com.sony.dtv.update, .systemupdate,\n.oadservice) if you want OTA firmware updates. Left enabled by choice here:\ncom.sony.dtv.seeds.iot* , the Vewd core and com.youview.poa / com.sony.dtv.youview.\nAlready disabled at the factory: com.sony.dtv.b2b.vendorprotocol, com.sony.dtv.b2b.softap,\nscrenmirroring.com (that typo'd name is exactly what Sony ships — do not \"fix\" it).\n\nApplied in one session and reboot-checked: all 16 below stayed disabled after a reboot.\nChromecast built-in (com.google.android.apps.mediashell) kept, assistant off by choice.\nNot yet lived with for weeks; if something breaks, re-enable with `pm enable <package>`\nand please report it.\ntracking / ads / recommendations",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV (ACR viewing data)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "only the stock launcher uses it",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.assistantadapter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "reason": "voice assistant (removes the remote's mic search; skip these three to keep it)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-4k-ur3/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

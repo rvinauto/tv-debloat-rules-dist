@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "tcl-43s5k",
+  "brand": "tcl",
+  "title": "TCL 43S5K and 32V5C, India (device G13, product G13_2K_GB, model \"Smart TV\"), Google TV 14 (SDK 34),",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "43s5k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 43S5K and 32V5C, India (device G13, product G13_2K_GB, model \"Smart TV\"), Google TV 14 (SDK 34),\nbuild UKN2.241110.001 AU10, security patch 2025-12-01. The 43S5K reports MediaTek MT9221 and the\n32V5C reports MT5867 (both ro.board.platform mt5867); about 1 GB RAM (954 MB, low_ram=true), 32-bit\nonly (armeabi-v7a).\nUnlike the G08 TCL Google TVs, Live TV and HDMI are MediaTek's com.mediatek.wwtv.tvcenter, not com.tcl.tv.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-43s5k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-43s5k/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.mediatek.wwtv.tvcenter.\nKeep: com.mediatek.wwtv.tvcenter, com.mediatek.tvinput, com.mediatek.tv.service, com.tcl.suspension\n(source panel / Input button), com.tcl.keyhelp (virtual keys), com.tcl.useragreement, com.tcl.factory.view,\nmediatek.factorymenu.ui, com.mediatek.wwtv.setupwizard, com.google.android.tv.remote.service.\nLive TV/HDMI safety (both models): keep com.mediatek.wwtv.tvcenter; it also plays HDMI, so disabling it\nbreaks both. Keep com.mediatek.tvinput, com.mediatek.tv.service and com.tcl.suspension as well.\n\ncom.tcl.ttvs on this firmware is BOTH TCL's analytics (bi.core.BIService, identifier, trackdata) AND\nTCL's firmware/app updater (versionUpdateApp.core.SystemUpdateService). Disabling it stops TCL\nfirmware updates until it is enabled again, so it is commented out below; uncomment it to trade\nupdates for less tracking.\n\nThe saved Wi-Fi network was created by com.google.android.tungsten.setupwraith on the 43S5K (cname= in\ndumpsys wifi), so forget and re-join it in Settings before setupwraith is disabled there. On the 32V5C\nthe saved network survived disabling setupwraith without forgetting and re-joining; check dumpsys wifi /\nthe network owner on another unit before copying that step.\n\nApplied in four batches on 2026-10-20 with a screenshot after each and lived with for an afternoon so far\n(shorter than CONTRIBUTING.md asks; I'll report back if anything breaks). Since then: two power cuts and a\nreboot, Home came back on launcher/ each time; Wi-Fi, the remote's Input key (TCL's source panel), the\nlauncher's Inputs menu (HDMI 1, HDMI 2, Composite, Live TV), YouTube, Netflix and JioHotstar (with AdGuard\nPrivate DNS) all fine. launcherx was disabled by launcher/build-and-install.sh after the new Home ran.\n\n32V5C variant (32-inch V5C, MT5867, 954 MB): applied and reboot-checked; package state was re-checked on\n2026-10-22, and the owner reports several days of use. Home and ClockDream survived a reboot. The nine\nentries verified on this unit (exact match with pm list packages -d) are:\ncom.tcl.messagebox\ncom.tcl.logkit\nandroid.autoinstalls.config.google.gtvpai\ncom.google.android.partnersetup\ncom.tcl.browser\ncom.google.android.feedback\ncom.android.tv.feedbackconsent\ncom.google.android.tungsten.setupwraith\ncom.google.android.apps.tv.dreamx\nThe three entries marked [43S5K ONLY] below were not disabled on the 32V5C. Comment them out before\napplying this file to a 32V5C; they remain part of the tested 43S5K set.\n\nKnown quirks on this firmware:\n- The remote's gear button sends keycode 83 (KEYCODE_NOTIFICATION, scancode 561), which only launcherx\nhandled: set settings_key_keycodes to [83] (config.xml or a theme) so it opens Settings again.\n- On both models, launcherx is disabled only after CleanYourTV owns Home; build-and-install does it,\nand restore.sh needs launcherx as its argument.\n- HomeKeyService, used for the gear button, can stop volume long-press from repeating on some TCL\nGoogle TV builds: holding volume then steps once. Set key_filter=false to restore the repeat and\nlose the remapped keys, or leave HomeKeyService off. Not measured on the 32V5C; see\ndocs/TROUBLESHOOTING.md.\n- With katniss off the mic button does nothing; leave it enabled if you use voice.\n- Usage ",
+  "packages": [
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL push messages and promos; carries an org.tcl.ttvs receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TCL promo rows on the Google TV home; [43S5K ONLY]",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner attribution (RLZ pings)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: preloaded apps and extras not used on this unit",
+      "reason": "TCL \"BrowseHere\" browser and web-video portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: preloaded apps and extras not used on this unit",
+      "reason": "[43S5K ONLY]",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: preloaded apps and extras not used on this unit",
+      "reason": "Batch 2: preloaded apps and extras not used on this unit",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: preloaded apps and extras not used on this unit",
+      "reason": "Batch 2: preloaded apps and extras not used on this unit",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: preloaded apps and extras not used on this unit",
+      "reason": "Google Assistant voice (mic button), about 63 MB; off by choice; [43S5K ONLY]",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "another unit before copying.",
+      "reason": "another unit before copying.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "undo with 'settings delete secure screensaver_components')",
+      "reason": "Google TV Ambient mode screensaver (promos)",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-43s5k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

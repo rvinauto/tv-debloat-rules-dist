@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "id": "skyworth-7s60-a5",
+  "brand": "skyworth",
+  "title": "Skyworth 7S60_A5 (board 6A658B, sky8S34), China market, Coocaa OS on Android 8.0 (API 26)",
+  "android": "Android 8.0",
+  "match": {
+    "brand_patterns": [
+      "skyworth"
+    ],
+    "model_patterns": [
+      "7s60"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Skyworth 7S60_A5 (board 6A658B, sky8S34), China market, Coocaa OS on Android 8.0 (API 26)\nBuild OPR5.170623.014 / 022.008.220, armeabi-v7a, about 1.9 GB RAM.\nStock home: com.tianci.movieplatform (com.coocaa.homepage.vast.HomePageActivity; elder mode\ncom.ccos.cooui.movieplatform.ElderMainActivity). TV/inputs: com.skyworth.tv.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/skyworth-7s60-a5/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/skyworth-7s60-a5/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nDisabled before this debloat, so not listed (restore.sh would turn them ON):\ncom.bajintech.karaok, com.coocaa.activecenter.\n\nCoocaa OS has no Android HOME chooser and ignores set-home-activity: the launcher goes in through\na small homepage shim instead, see README.md in this folder. Tested in October 2026.\nAds and telemetry",
+  "packages": [
+    {
+      "package": "com.tianci.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot ad (persist.sys.ad.startboot)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.push",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "push service with Sensors Data analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.sysreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "usage reporting on boot, screen and app install",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.baidu.oases",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Baidu SDK service started at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.autoinstaller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silently installs promoted apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.skyworth.skymarket",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "shop demo display",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "screensaver with an ad SDK (com.coocaa.adsdk)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.guide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot/upgrade guide, push receiver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.educate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "kids/education channel, ad SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.lifeassistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "morning call, sleep aid, weather",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.appstore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "Coocaa app store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.app_browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "Preloads not used (by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.coocaa.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "cleaner / \"speed up\", Baidu TV shield",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.loostone.tuning",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads not used (by choice)",
+      "reason": "karaoke mic tuning, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.skyworth.angel.voice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant and updates (by choice)",
+      "reason": "Voice assistant and updates (by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.skyworth.aimanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant and updates (by choice)",
+      "reason": "far-field mic AI service, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.os.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistant and updates (by choice)",
+      "reason": "firmware/OTA updates",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.teampresent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "help and customer service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.os.thememanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "theme store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.messageprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "system message box, pushes notices and promotions",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.sky.ccapi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "Coocaa payment centre; breaks Coocaa membership purchases",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.user",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "Coocaa account centre; breaks Coocaa account login",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.skycast.tool",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Coocaa extras, unused with the new home (by choice)",
+      "reason": "cast component updater; casting itself still works",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/skyworth-7s60-a5/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "id": "redmi-mitv-antl0",
+  "brand": "redmi",
+  "title": "Redmi TV (MiTV-ANTL0, codename starwars), Android 5.1.1 (SDK 22), firmware 22.8.17.1977, Amlogic.",
+  "android": "Android 5.1.1",
+  "match": {
+    "brand_patterns": [
+      "redmi"
+    ],
+    "model_patterns": [
+      "antl0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Redmi TV (MiTV-ANTL0, codename starwars), Android 5.1.1 (SDK 22), firmware 22.8.17.1977, Amlogic.\nDiscovered on-device 2026-10-19; every package verified with dumpsys before being listed.\nChinese-market firmware: no Google services at all, Sogou TV is the ONLY input method.\n\nFIRMWARE QUIRK: `pm disable-user` / `pm disable` are refused for the shell user with a\nSecurityException on this build. The equivalent here is `pm hide` / `pm unhide` - just as\nreversible, and `tools/restore.sh`'s `pm enable` must be swapped for `pm unhide`.\nApply (one pm command per shell call):\ngrep -vE '^\\s*(#|$)' examples/redmi-mitv-antl0/debloat.txt | sed -E 's/\\s+#.*$//' \\\n| awk '{print \"pm hide \" $1}' | TV_HOST=<tv ip> tools/venv/bin/python -I tools/tv.py --batch\nUndo: same, but `pm unhide`.\n\nBoot-video property method reported on firmware 22.8.17.1977 (reversible):\ntools/tv.py 'setprop persist.bootvideo.bootanim false'      # true restores it\nFirmware 23.2.4.2225 with stock launcher 3.38.1017 (L43M7-EA): the property above does not remove\nthe startup ad, but one setting does (docs/devices/xiaomi-l43m7-ea-antl0.md):\ntools/tv.py 'settings put system boot_ad_switch 0'      # undo: 'settings delete system boot_ad_switch'\nThe package-disable list below was not re-tested on that newer configuration.\nXiaomi telemetry / analytics / quality uploads",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.tvqs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "quality system: uploads crash/perf/dropbox entries",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvpush.tvpushservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ad delivery: push service, promo web-content renderer, cloud app-push",
+      "reason": "Ad delivery: push service, promo web-content renderer, cloud app-push",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ad delivery: push service, promo web-content renderer, cloud app-push",
+      "reason": "webview/RN container for promos; fetches screensaver ads too",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.cloudcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ad delivery: push service, promo web-content renderer, cloud app-push",
+      "reason": "cloud control: starts on connectivity, remotely pushes apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.shoplugin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Shopping plugin (Alibaba Baichuan / TV Taobao SDK)",
+      "reason": "Shopping plugin (Alibaba Baichuan / TV Taobao SDK)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "reason": "settings put secure screensaver_components com.gathin.tvhome/.ClockDream",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "either; re-enable it for a while when you want an OTA.",
+      "reason": "either; re-enable it for a while when you want an OTA.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "either; re-enable it for a while when you want an OTA.",
+      "reason": "either; re-enable it for a while when you want an OTA.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.gamecenter.sdk.service.mibox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "either; re-enable it for a while when you want an OTA.",
+      "reason": "either; re-enable it for a while when you want an OTA.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/redmi-mitv-antl0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

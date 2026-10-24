@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "id": "challenger-32t22bt",
+  "brand": "challenger",
+  "title": "Challenger 32T22 BT (device cvt_mt5863_col, board TP.MT5510.PB781, MTK MT5659 / MT5863), Android 7.0 (API 24), firmware NRD90M 1464 (V8-MT659CO-A18V015)",
+  "android": "Android 7.0",
+  "match": {
+    "brand_patterns": [
+      "challenger"
+    ],
+    "model_patterns": [
+      "32t22bt"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.cvte.tv.launcher",
+  "notes": "Challenger 32T22 BT (device cvt_mt5863_col, board TP.MT5510.PB781, MTK MT5659 / MT5863), Android 7.0 (API 24), firmware NRD90M 1464 (V8-MT659CO-A18V015)\nUltra low-spec budget TV (1 GB RAM, 8 GB Flash, MediaTek MT5659, CVTE / TCL ODM firmware for Challenger Colombia).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/challenger-32t22bt/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/challenger-32t22bt/debloat.txt com.cvte.tv.launcher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.cvte.tv.launcher (AppActivity). Pass it to restore.sh or set-home-activity if reverting.\nLive TV & Inputs: keep com.cvte.tvservice, com.cvte.tv.androidsetting, and com.mediatek.tv.agent (needed for HDMI and TV tuners).\n\nTested on Challenger 32T22 BT: freed up crucial RAM for third-party launcher (com.gathin.tvhome) and streaming apps.\nFactory test and diagnostic tools (CVTE & TCL ODM)",
+  "packages": [
+    {
+      "package": "cn.cvte.tv.factory.autotest",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.tcl.factory.at",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.tv.audiotest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.fac.menu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.FactoryMode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.sticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.cvte.tvclean",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware, cleaners, and third-party stores",
+      "reason": "Background memory cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.appstore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware, cleaners, and third-party stores",
+      "reason": "Proprietary app store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "cm.aptoidetv.pt.cvt_platform7",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware, cleaners, and third-party stores",
+      "reason": "Preinstalled Aptoide TV build",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "cn.tcl.odm.android.vstoresubclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware, cleaners, and third-party stores",
+      "reason": "Zeasn / TCL store client",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.creative.fastscreen.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Bloatware, cleaners, and third-party stores",
+      "reason": "Screen mirroring adware/service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.ucservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "CVTE UserCenter service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.androidbox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "MediaTek WFD Sink test utility",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.usbmediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "Redundant USB player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.media",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "Stock media center",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.player",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "Stock media player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.ecloud.emedia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services and redundant media apps",
+      "reason": "DLNA/media cloud service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.htmlviewer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "System extras & browsers",
+      "reason": "System extras & browsers",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "System extras & browsers",
+      "reason": "Outdated stock browser (AOSP)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.tv.launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "System extras & browsers",
+      "reason": "System extras & browsers",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.talents.huanclientauth",
+      "why": "critical package (policy match 'com.talents.huanclientauth')",
+      "source_comment": "Huan client authentication"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/challenger-32t22bt/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

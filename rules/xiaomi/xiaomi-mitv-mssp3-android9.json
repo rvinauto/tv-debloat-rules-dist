@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-mssp3-android9",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-MSSP3 (codename machuca), Android TV 9 (SDK 28), firmware PI.7524, MediaTek, 1.8 GB RAM.",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "mssp3[-_ ]?android9"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-MSSP3 (codename machuca), Android TV 9 (SDK 28), firmware PI.7524, MediaTek, 1.8 GB RAM.\nSame model as examples/xiaomi-mitv-mssp3 on its older Android 9 firmware, before the Android 11 update.\nLive TV app: com.mediatek.wwtv.tvcenter (already the live_tv_package in launcher config.xml).\nStock launcher: com.google.android.tvlauncher (the default, disabled by build-and-install.sh).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-mssp3-android9/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-mssp3-android9/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- Before: swap full (200 of 200 MB) and over 200% iowait a few minutes after boot, so the UI froze.\nAfter this list and the launcher: about 900 MB available instead of 570, swap nearly empty, no iowait.\nThe load average stays near 100 either way: MediaTek kernel threads (VMon_Task, DMX_Filt_Task,\nhdcp22_hdmi_rx_) sit in D state permanently and count towards it while the CPU is idle.\n- USB debugging alone opens port 5555; there is no network debugging toggle.\n- Default IME is already Gboard and every package below exists on this build.\n- The stock screensaver is com.mitv.dream/com.mitv.dream.MiDream, disabled below; point it elsewhere:\nsettings put secure screensaver_components com.gathin.tvhome/.ClockDream\n- The voice assistant (katniss) does not stay disabled: at every boot the package manager rescans it\nas an updated system app (\"Expecting better updated system app for com.google.android.katniss\"\nin logcat -b events) and it comes back enabled, bound as voice_interaction_service. Disabling it is\nall this list does. Beyond what this repo does, and your own call: removing it for user 0 and\nclearing the voice services held across reboots here\nsettings put secure voice_interaction_service ''\nsettings put secure voice_recognition_service ''\npm uninstall --user 0 com.google.android.katniss\nand is undone with\ncmd package install-existing com.google.android.katniss\nsettings put secure voice_interaction_service com.google.android.katniss/.search.serviceapi.KatnissVoiceInteractionService\nsettings put secure voice_recognition_service com.google.android.katniss/com.google.android.apps.tvsearch.voice.recognition.KatnissRecognitionService\n- Left alone on purpose: com.mediatek.wwtv.tvcenter / tvinput* (HDMI + tuner), mitv.service,\ncom.xiaomi.mitv.mediaexplorer (Media Player), com.google.android.tv.remote.service.\n- Netflix, Prime Video, Pluto TV, YouTube Music and Chromecast kept by choice; com.mstar.netflixobserver\nstarts Netflix at boot (about 130 MB) and needs the same treatment as in examples/xiaomi-mitv-mssp3.\n\nOlder Android 9 firmware PI.4663 (ro.build.display.id \"PI.4663 release-keys\", same 1.8 GB set), Italy:\n- com.mitv.tvhome.michannel and com.mitv.dream are not installed. The screensaver there is\ncom.google.android.backdrop/.Backdrop, which this list already disables.\n- The older Android TV home is still installed and enabled next to tvlauncher, and its receiver runs at\nevery boot: com.google.android.leanbacklauncher and com.google.android.leanbacklauncher.recommendations.\nBoth disabled here with the CleanYourTV launcher as Home, and Home kept resolving to it.\n- The voice assistant stayed disabled across a power cycle on this build (pm list packages -d a minute\nafter boot), unlike PI.7524 above.\n- After 7 days of uptime MemAvailable was about 740 MB and adbd stalled; a minute after a cold boot with\nthis list and the launcher it was about 850 MB.\nXiaomi + Google telemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall channels on the Android TV home",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "PatchWall, content rows, sponsored rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xiaomi.amelie",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, sponsored rows",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware updates: re-enable to check for one",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: voice assistant",
+      "reason": "comes back at boot, see header",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "reason": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.dream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: Ambient and Mi WallPaper screensavers",
+      "reason": "stock screensaver, see header",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Mi Gallery; Media Player still opens USB photos",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-mssp3-android9/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

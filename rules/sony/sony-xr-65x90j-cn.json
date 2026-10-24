@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "id": "sony-xr-65x90j-cn",
+  "brand": "sony",
+  "title": "Sony XR-65X90J (2021, BRAVIA_VH2, MediaTek MT5895), China firmware",
+  "android": "Android 10",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "65x90j"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Sony XR-65X90J (2021, BRAVIA_VH2, MediaTek MT5895), China firmware\nAndroid 10 (API 29), build BRAVIA_VH2_M_CN-user 10 QTG3.200305.006.S386 675461 release-keys,\nsecurity patch 2024-04-01, armeabi-v7a only, 3 GB RAM. HOME is an owner-supplied third-party\nlauncher (dxidev.sideloadchannel3) on this unit, not the reference launcher.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-xr-65x90j-cn/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-xr-65x90j-cn/debloat.txt com.dangbei.TVHomeLauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nFirst VH2 list on Android 10 (the other BRAVIA_VH2 / VH21 lists are Android 12) and the first\nChina-market VH2 build, so the package set differs from all of them: this firmware has no\ntv.samba.ssm, no com.sony.dtv.promos / sonyselect / sonytab, no com.google.android.feedback and no\nPlay Store, so there is no Sony ACR or recommendation row to remove here. The ad surfaces on a\nChina set are the Dangbei home and store and the preinstalled content apps.\n\nStock Home on this firmware is com.dangbei.TVHomeLauncher (ChinaHome). It is left enabled as the\nfallback, which is why restore.sh is given it rather than com.google.android.tvlauncher. Pass the\nowner's own launcher instead if that is what owns HOME on your unit. Live TV / player:\ncom.sony.dtv.tvx.\nKeep the com.sony.dtv.tvinput.* services, tvapi, sonysystemservice, sonyvendorservice,\nsettingsprovider, systemupdate/update, partnerkeycn (DRM), braviasync*, imeproxy, webapi.core,\nirbservice, devicecontrolservice, homenetwork, searchapp, notificationcenter, HappyCast\n(com.hpplay.happyplay.aw, the only casting path on a set without Google Cast), the Dangbei store\n(com.sony.dangbeimarket) and every com.mediatek.* package: they drive HDMI, the tuner, DRM, CEC,\nthe remote, OTA and casting. None of them is in this list.\n\nChecked on the TV over wired Ethernet with network ADB on 5555:\n- 47 packages are disabled on this set in total. The 13 that were already disabled at the factory\nor by an earlier session (setupwraith, mysony, iot, livingfit, smarthelp, eulaviewer, braviashow,\nsmartmediaapp, b2b.softap, b2b.vendorprotocol, screnmirroring.com, dreams.basic,\nproviders.contacts) are not in this list, so restore.sh leaves them as they were.\n- All 34 below survived `adb reboot` (pm list packages -d still showed them) and none had a process\nagain afterwards, including the PERSISTENT com.sony.dtv.b2b.hotelmode: unlike the X9000H Android\n12 report, system_server did not start it again on this build.\n- MemAvailable went from 1,053,752 kB to 1,092,224 kB without a reboot, and SwapFree from 49,404 kB\n(53 MB already swapped out) to 102,396 kB after the reboot. The processes below measured about\n103 MB of PSS together while they were still running. Most of the RAM on this set belongs to user\napps, not to anything in this list, so expect a smaller win than on a 1.5 GB set.\n- After the reboot HOME still resolved to the owner's launcher, the Home key returned to it, HDMI\n1-4 still enumerated, tvinput / sonysystemservice / tvx / webapi.core / systemupdate were still\nrunning, `logcat -b crash` had no new FATAL entry and a screenshot was a normal 1920x1080 frame.\n- `svc power reboot` is refused on this firmware (PowerManagerService.reboot, SecurityException);\n`adb reboot` works.\n- Applied and reboot-checked on 22 October 2026, not yet lived with for days. If something breaks,\nre-enable it with `pm enable <package>` and please report it.\ntelemetry, device agents and remote support",
+  "packages": [
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony IDD usage-data agent; native iddd keeps running without root",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bug report uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "viewing context providers used for recommendations and profiling",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.seeds.auth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "BRAVIA Connect / phone remote-start authorisation",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help, support and unused Sony surfaces",
+      "reason": "Help / Support tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.customersupport.provider.res",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help, support and unused Sony surfaces",
+      "reason": "help, support and unused Sony surfaces",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.helpguidecontents",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help, support and unused Sony surfaces",
+      "reason": "built-in help guide contents",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.distancealert",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help, support and unused Sony surfaces",
+      "reason": "viewing-distance warning",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help, support and unused Sony surfaces",
+      "reason": "Sony music entry",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sensingfusionservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BRAVIA CAM leftovers: this model has no camera",
+      "reason": "BRAVIA CAM leftovers: this model has no camera",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.settings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BRAVIA CAM leftovers: this model has no camera",
+      "reason": "BRAVIA CAM leftovers: this model has no camera",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.fwupdate",
+      "action": "disable",
+      "risk": "caution",
+      "group": "BRAVIA CAM leftovers: this model has no camera",
+      "reason": "BRAVIA CAM leftovers: this model has no camera",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.gestureapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BRAVIA CAM leftovers: this model has no camera",
+      "reason": "BRAVIA CAM gesture control",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.videochatrecord",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BRAVIA CAM leftovers: this model has no camera",
+      "reason": "BRAVIA CAM video chat recording",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jd.smartservicetwo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "China promotion / IoT",
+      "reason": "JD SmartService",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.uei.quicksetsdk.sony",
+      "action": "disable",
+      "risk": "safe",
+      "group": "always-running services, off by choice to free memory",
+      "reason": "UEI QuickSet: IR control of set-top boxes and soundbars; HDMI-CEC unaffected",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "PERSISTENT, but the process did not return after a reboot here",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.adminpassword",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.deviceadminsettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.frameworkextension",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.importexport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntime.normal",
+      "action": "disable",
+      "risk": "caution",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntime.privilege",
+      "action": "disable",
+      "risk": "caution",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntimeextension.bpk",
+      "action": "disable",
+      "risk": "caution",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntimeextension.node_16_13_1",
+      "action": "disable",
+      "risk": "caution",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "node_20_11_1 on the newer VH21 builds",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.prosettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.rs232csupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.webappruntimedrm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.huey.dlna.module",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.huey.dlna.renderersettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "commercial / hotel (b2b) packages, none used on a home set",
+      "reason": "commercial / hotel (b2b) packages, none used on a home set",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-xr-65x90j-cn/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

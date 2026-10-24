@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "id": "freebox-player-pop",
+  "brand": "freebox",
+  "title": "Freebox Player POP (Free, France; codename fbx8am, Amlogic, 2 GB RAM), Android TV 10 (API 29)",
+  "android": "Android TV 10",
+  "match": {
+    "brand_patterns": [
+      "freebox"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": null,
+  "notes": "Freebox Player POP (Free, France; codename fbx8am, Amlogic, 2 GB RAM), Android TV 10 (API 29)\nTested on build QTT8.201201.002.v10.5.66.\n\nApply:   TV_HOST=<player ip> tools/disable.sh examples/freebox-player-pop/debloat.txt\nUndo:    TV_HOST=<player ip> tools/restore.sh examples/freebox-player-pop/debloat.txt net.oqee.launcher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nConnecting: Settings > Device Preferences > About > Build x7, then Developer options > USB debugging.\nPort 5555 opens with that alone (no separate Network debugging switch). ro.adb.secure=1, so each\ncomputer still has to be accepted on screen. macOS: the Command Line Tools Python is blocked by Local\nNetwork privacy (\"No route to host\" while nc reaches the port); a uv-managed Python works:\nuv venv --python 3.12 --managed-python tools/venv && uv pip install --python tools/venv/bin/python -r tools/requirements.txt\n\nSideloading works. A test reinstall of a Play-installed app answered INSTALL_FAILED_VERIFICATION_FAILURE,\nbut logcat showed Play Protect blocking it for \"missing splits\" (base.apk pushed without its splits),\nnot a firmware gate; a normal single APK installs fine.\n\nLauncher: the stock home is OQEE (net.oqee.launcher, HOME priority 3). com.stremio.tv.boot also claims\nHOME (priority 0) when Stremio is installed. Run launcher/build-and-install.sh with\nSTOCK_LAUNCHER=net.oqee.launcher; it disables OQEE after the swap.\nsetupwraith is not a HOME candidate here, but it owns a Wi-Fi network saved during first setup:\nleave it enabled.\nThe Player has no HDMI input. Its TV inputs are the DVB-T tuner (org.dtvkit.inputsource, HW19,\nfronted by fr.freebox.fbxdtvkit) and IPTV through OQEE (net.oqee.androidtv), which is the Live TV app.\nThe tuner reports itself as a hardware passthrough input, so the launcher's Inputs menu lists it next\nto Live TV, and picking it sends a channel URI nothing answers (\"not available\"). Use the Live TV row\n(live_tv_package net.oqee.androidtv), or put OQEE in the dock.\nLocation is off on the tested unit (location_mode=0), so the network pill reads \"Wi-Fi\", not the SSID.\n\nSpotify: keep Chromecast built-in (com.google.android.apps.mediashell). Spotify Connect from a phone\nstarts the TV app through it, even when Spotify is not on screen.\nAd-blocking DNS breaks Spotify here. dns.adguard-dns.com answers 0.0.0.0 for pixel.spotify.com, and\nthe TV app then stops at \"Vérifiez votre connexion réseau\". Worse, a session refreshed while it was\nblocked stayed broken after the DNS went back: the app logged \"invalid access token\" until\n`pm clear com.spotify.tv.android` and a new login. With Spotify, use a personal NextDNS / AdGuard\nDNS profile that allowlists pixel.spotify.com, or no ad-blocking DNS at all.\nStandby is not a reboot (uptime keeps counting), and ADB stays reachable through it.\n\nLeave alone: net.oqee.androidtv (TV), org.dtvkit.inputsource, fr.freebox.fbxdtvkit,\ncom.nes.dtvkitdatabackup (channel database), com.nes.blerc (Bluetooth remote),\nfr.freebox.bleirlearner (remote's IR learning for the TV's power/volume), com.nes.tvglobalkeyhandler\n(remote keys), com.nes.freeboxburnkey (key provisioning), fr.freebox.fbx8am.externalauth,\nfr.freebox.fbxservices and fr.freebox.fbx8lc.canalsubscriptionservice (Free billing for partner apps),\nfr.freebox.fbx8lc.fbxcustomization, fr.freebox.fbxshortcutsettings, com.droidlogic.* system services,\ncom.google.android.tungsten.setupwraith, Play Store / Services, the keyboard.\nTelemetry and log collection",
+  "packages": [
+    {
+      "package": "fr.freebox.fbxstats",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Free usage statistics (system uid, boot receiver)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback reports",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bug report uploader",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.droidlogic.readlog",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Amlogic log dumper to USB storage",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ads, recommendations and partner auto-installs",
+      "reason": "recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.sei",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, recommendations and partner auto-installs",
+      "reason": "auto-installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nes.dvb.playtest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and test leftovers",
+      "reason": "DVB playback factory test",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.ctc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and test leftovers",
+      "reason": "\"MediaProcessorDemoActivity\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.utsmta.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and test leftovers",
+      "reason": "factory test triggered by USB",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.camera2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory and test leftovers",
+      "reason": "no camera on the Player",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory and test leftovers",
+      "reason": "printing",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice and casting (owner's choice; re-enable if you use them)",
+      "reason": "Google Assistant / voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "fr.tf1.mytf1.free",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "TF1+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.m6.m6replay.free",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "M6+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.francetv.pluzz",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "france.tv",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "YouTube",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.canal.android.canal",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "Canal+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "Disney+",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.freebox.disneypluslauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "Free's Disney+ shortcut",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.nextinteractive.rmcbfmplay.tv.free",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "RMC BFM Play",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.videolan.vlc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps the owner does not use (comment out the ones you watch)",
+      "reason": "VLC",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.free.aktu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "Free Aktu news",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.francetv.zouzous",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "Okoo (france.tv kids)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fr.tfou.max",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "TFOU Max (TF1 kids)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded extras (owner's choice)",
+      "reason": "TCL Browser (preinstalled as a user app)",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/freebox-player-pop/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

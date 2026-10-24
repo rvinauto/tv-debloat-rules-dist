@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "peaq-ptv43aqu-5023c",
+  "brand": "peaq",
+  "title": "PEAQ PTV 43AQU-5023C (Changhong, reports brand OK. / model \"AI PONT\", device dundas), Android TV 11",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "peaq"
+    ],
+    "model_patterns": [
+      "ptv43aqu[-_ ]?5023c"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "PEAQ PTV 43AQU-5023C (Changhong, reports brand OK. / model \"AI PONT\", device dundas), Android TV 11\n(API 30), firmware RTMA.250416.196, MediaTek m7332, 1920x1080, about 1.3 GB RAM (MemTotal 1405164 kB).\nSame Homwee vendor layer as examples/ok-ai-pont-ikebukuro; this list starts from that one.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/peaq-ptv43aqu-5023c/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/peaq-ptv43aqu-5023c/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. Shipped disabled: com.cltv.fast, com.google.android.marvin.talkback.\nThe one saved Wi-Fi network belongs to setupwraith, so setupwraith is left alone. Only tvlauncher and\ncom.android.tv.settings/.system.FallbackHome answer HOME.\nTested on one set on 21 Oct 2026, the same day and through one reboot, not a multi-day soak. Done over the\ntools/relay.py relay (macOS Local Network privacy blocked direct ADB).\nDisabled in batches with a screenshot between each; every package stayed disabled through a reboot. Then\nlauncher/build-and-install.sh set com.gathin.tvhome as Home (mFocusedApp checked, also after the reboot) and\ntools/theme.sh pushed config.json. Checked: D-pad across dock, grid and top bar; Inputs lists HDMI 1-3, AV and\nLive TV; YouTube, Netflix and Spotify play with AdGuard Private DNS on; the remote's Netflix, YouTube, Input\nand Settings buttons still work without tvlauncher.\n\nKEEP: com.homwee.dmt.upgrade and com.homwee.upgrade (updates), com.homwee.synckey (remote keys),\ncom.homwee.chtvmanager, com.homwee.factory, com.mediatek.* (Live TV, inputs, remote pairing, picture),\ncom.google.android.apps.mediashell (Chromecast) and com.homwee.multiscreenshare / mmp.screenshare\n(mirroring), both used on this set.\nBatch 1: telemetry, ads and recommendation rows",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki automatic content recognition",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.aipont",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "AI PONT brand portal and its recommendation channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.homwee",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Google Play Movies & TV",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: vendor and preloaded apps",
+      "reason": "Batch 2: vendor and preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Google Assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Ambient screensaver, replaced by the launcher's Clock",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.homwee.mmp.fileexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: personal choice, not used on this set: comment out what you use",
+      "reason": "Media Player (USB files and media); not used on this set",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/peaq-ptv43aqu-5023c/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

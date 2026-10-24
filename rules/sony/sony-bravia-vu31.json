@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-vu31",
+  "brand": "sony",
+  "title": "Sony BRAVIA VU31 4K (device BRAVIA_VU31_4K, Realtek SoC), India firmware, 2 GB RAM",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "vu31"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA VU31 4K (device BRAVIA_VU31_4K, Realtek SoC), India firmware, 2 GB RAM\nGoogle TV 14 (API 34), build UKR1.240726.001\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-vu31/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-vu31/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (Google TV); pass it to restore.sh as above.\nLauncher: done on a second VU31 (see the last group). setupwraith also claims HOME (priority 1), so it\ngoes before launcherx; build-and-install.sh disables launcherx itself.\nTuner / inputs on this Realtek set are com.realtek.dtv, com.realtek.tv.atv and com.android.tv (Live\nChannels): keep them, plus com.sony.dtv.tvapi-style services (sonysystemservice, smartui = Input menu,\nm2.devicecontrolservice, ipcontrol) and all com.realtek.* overlays.\nUnlike the MediaTek Sony sets, this firmware ships no Samba TV, Qterics or IDD agents, so there is\nnothing of that kind to disable. com.sony.dtv.b2b.vendorprotocol was already disabled from the factory.\nADB: USB debugging alone opens port 5555 (no wireless-debugging pairing needed); the \"Allow USB\ndebugging?\" prompt appears on first connect. On macOS the terminal app needs Local Network permission\nor every LAN host answers \"No route to host\".\nApplied 2026-10-20 in two batches with a screenshot and crash-log check after each, then reboot-checked:\nall 18 stayed disabled, no crashes, Home, Inputs and the kept apps fine. Not lived with for days yet.\nWith 2 GB of RAM the set still swaps after this; the stock home screen (~170 MB over two processes)\nis the next thing to replace.\n\nSecond VU31, same build, 2026-10-20: the extra lines marked (2nd) disabled in batches with a screenshot and\ncrash-log check after each, then the launcher installed and Home switched, reboot-checked. Notes from it:\n- Live TV and every HDMI/AV input play in com.android.tv; the inputs come from com.realtek.tv.passthrough\n(HDMI 1-3, a CEC soundbar on HDMI 3, Video). In the launcher set live_tv_package to com.android.tv and\nhide it. The Input key opens smartui's menu system-wide, so no INPUT_KEY_SERVICE is needed.\n- Before disabling setupwraith check `dumpsys wifi | grep -o 'cname=[^ ]*'`: here the network belonged to\nandroid.uid.system, so Wi-Fi and ADB stayed up.\n- com.sony.dtv.applicationdisabler re-enables com.sony.dtv.ecodashboard at every boot (as on the BF1), so\nit is not listed; hide its tile in the launcher (hidden_apps) instead.\n- Sony's Timers & Clock declares two leanback activities with one label, which showed as two tiles\n(launcher fix in #298).\n- Real remote checked after the switch: Home, Input, the mic and the app buttons all work.\n\nThird VU31, same build, 2026-10-21: the list above plus the launcher, reboot-checked. On this set the remote's\napp buttons did NOT work once launcherx was off:\n- Realtek's com.realtek.advancesetting owns the app buttons (`dumpsys window policy`: KEYCODE_BUTTON_2/4/14/15\ngo to its GlobalKeyReceiver), but on Google TV it does not open the app itself: Utils.startApp hands every\nlaunch to launcherx's globalbutton.GlobalButtonLaunch_Receiver whenever the\ncom.google.android.feature.AMATI_EXPERIENCE feature is present. With launcherx disabled that broadcast has no\nreceiver and the press does nothing; logcat shows \"Failed to find provider info for\n...launcherx.coreservices.DeviceModeContentProvider\".\n- Fix for four of them: app_keys in the launcher with INPUT_KEY_SERVICE=1, which catches the keycode first:\n201:com.google.android.youtube.tv, 202:com.google.android.youtube.tv (second YouTube button),\n191:com.netflix.ninja, 189:com.amazon.amazonvideo.livingroom. Checked with the real remote.\n- SonyLIV (3004) and JioHotstar (3006) cannot be fixed this way: Realtek's KeyEventManager delivers those Sony\ncodes to advancesetting only, they never reach Android's input pipeline, so no accessibility serv",
+  "packages": [
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "My BRAVIA promos",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Select app promos",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonytab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony tab / partner content on the stock home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "shop demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony help tile",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.helpguidecontents",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "help guide content (2nd)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonypicturescore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Pictures Core preload (2nd)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads and on-device ad personalisation (2nd)",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads and on-device ad personalisation (2nd)",
+      "reason": "federated learning for ad/usage models",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads and on-device ad personalisation (2nd)",
+      "reason": "on-device ad personalisation",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "Google feedback reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "RLZ install-attribution provider",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google leftovers a TV never needs",
+      "reason": "runs once after first setup",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google leftovers a TV never needs",
+      "reason": "calendar sync; also carries Google's GrowthKit promos",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google leftovers a TV never needs",
+      "reason": "printing",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "Play partner auto-installs (2nd)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "legacy photo viewer (2nd)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google leftovers a TV never needs",
+      "reason": "Ambient photo/art screensaver (~46 MB resident; ~80 MB PSS",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.apple.atve.androidtv.appletv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "Apple TV (preloaded in /data)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.crunchyroll.crunchyroid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "Crunchyroll",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.suntv.sunnxt",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "Sun NXT",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.yupptv.scope.tvapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "YuppTV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.analiti.fastest.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "remote and Assistant were kept on purpose.",
+      "reason": "analiti speed test",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "only once the Wi-Fi owner check above is clean.",
+      "reason": "setup wizard; its RecoveryActivity claims HOME once launcherx is off",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "screen reader, off by choice (2nd)"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-vu31/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

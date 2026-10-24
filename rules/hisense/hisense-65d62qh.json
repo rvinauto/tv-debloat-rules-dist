@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "id": "hisense-65d62qh",
+  "brand": "hisense",
+  "title": "Hisense 65D62QH (China market), JuUI 9.0.10.845",
+  "android": null,
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "65d62qh"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Hisense 65D62QH (China market), JuUI 9.0.10.845\nro.product.model         = VIDAA_TV\nro.product.device        = MT9653\nro.build.version.release = 11  (API 30)\nro.build.display.id      = RP1A.200720.011 release-keys\nro.adb.secure            = 0     <- no \"Allow USB debugging?\" prompt, see below\nservice.adb.tcp.port     = 5555\n\nSame platform and build as examples/vidda-mt9653/ and examples/hisense-e5q-pro/ (device MT9653,\nbuild RP1A.200720.011, package namespace com.jamdeo.* / com.hisense.*). This list was derived from\ntheirs and re-checked package by package against this set's own `pm list packages` (131 packages).\nPackages those lists name that are NOT installed here are left out rather than copied over.\n\nADB: turning USB debugging on opens port 5555 directly. ro.adb.secure=0 means the TV does not show\nthe \"Allow USB debugging?\" dialog: ANY device on the LAN gets a shell with no prompt. Close the\ndebugging switches when you are done and check the port really refuses connections\n(tools/adb-closed.py <tv ip>).\n\nState at the time this list was written (2026-10-22):\npm list packages -d        -> empty: nothing is disabled at the factory on this build, so the\nAOSP leftovers in BATCH 5 below are all running here.\ndumpsys tv_input           -> empty: no TvInputManager inputs at all. The launcher's Inputs pill\ntherefore has nothing to list and must use the vendor source panel\n(config.json in this folder: source_panel_service =\ncom.hisense.tv.inputs/com.hisense.tv.InputsUIService,\nsource_panel_action = com.hisense.tv.start_inputs).\n\nApplied on the real set on 2026-10-22: five batches, each followed by a cold reboot, with the input\npanel switching HDMI, the remote, Wi-Fi, Bluetooth pairing and the IME checked after every one.\n26 packages stick. com.android.calendar / .deskclock / .music do not: the firmware re-enables them\nat every boot (see BATCH 5). Nothing else came back.\n\nRead before applying:\n* This list does NOT change how Home looks. The sponsored rows, the VIP banner and the promo\ntiles are fetched by com.jamdeo.tv.vod itself, not by the ad sidecars below. Only swapping the\nlauncher removes them. What this list buys is the telemetry, the push channel, the persistent\nnetwork poller, the ad SDK processes and the leftover preloads.\n* Everything is DISABLED (pm disable-user --user 0), never uninstalled. tools\\disable.ps1 records\neach package's original state under %USERPROFILE%\\.cleanyourtv\\ before touching it, so\ntools\\restore.ps1 with this same file puts it all back.\n* Apply in batches, reboot after each one, and confirm the TV boots, the remote works, the input\npanel switches to HDMI and Wi-Fi is still up. A batch can take something load-bearing with it\nand you cannot tell which without the reboot.\n\nApply:   tools\\disable.ps1 -TvHost <tv ip> examples\\hisense-65d62qh\\debloat.txt\nUndo:    tools\\restore.ps1 -TvHost <tv ip> examples\\hisense-65d62qh\\debloat.txt\nReboot:  & tools\\venv\\Scripts\\python.exe -I tools\\tv.py 'reboot'\nCompare: & tools\\venv\\Scripts\\python.exe -I tools\\tv.py 'pm list packages -d'\nComment out any line you want to keep.\nBATCH 1 — telemetry, reporting and the vendor push channel (lowest risk, start here)",
+  "packages": [
+    {
+      "package": "com.hisense.hitv.das",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "DasApp: DataReportReceiver only",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.platformreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "usage/telemetry reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.logupload",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.hproxy",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "LoopingService + network-change receiver, polls forever",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HiMsgService, the vendor push channel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.business.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 2 — advertising, home operator rows and content feeds",
+      "reason": "ad SDK (ships Alibaba Baichuan + CIBN shopping SDKs)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 2 — advertising, home operator rows and content feeds",
+      "reason": "ad service; registers a WatchingAccessibilityService",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.widget.pro",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 2 — advertising, home operator rows and content feeds",
+      "reason": "home operator widget rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 2 — advertising, home operator rows and content feeds",
+      "reason": "weather card, another content feed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.demonstrate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "DbxDemo / multi-channel sound demo reels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "hotel mode menu",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.meetingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "meeting-room mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.autotest",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "factory autotest app (never launch it, see PROMPT.md)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.electronictutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.ar.baike",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "AR encyclopedia",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.tv.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 3 — retail, hotel, factory and first-run leftovers",
+      "reason": "first-run wizard, already done; Wi-Fi belongs to android.uid.system",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.videoconference",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "video conferencing",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.videochat.social",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "preloaded video chat",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.fitmirror",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "fitness mirror",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.foodmanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "recipe app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vision.aibook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "AI picture book",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 4 — preloaded content nobody asked for",
+      "reason": "vendor calendar, not the AOSP one",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "reason": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "reason": "the AOSP screensaver it falls back to",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "reason": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "reason": "BATCH 5 — the screensaver ad surface and AOSP leftovers",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-65d62qh/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "benq-e55-750",
+  "brand": "benq",
+  "title": "BenQ E55-750 (55\" 4K, Taiwan), Google TV on Android 11 (SDK 30), firmware RTM8.240401.136",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "benq"
+    ],
+    "model_patterns": [
+      "e55[-_ ]?750"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "BenQ E55-750 (55\" 4K, Taiwan), Google TV on Android 11 (SDK 30), firmware RTM8.240401.136\nBuilt by Changhong (ro.product.model=\"AI PONT\", product DVB96BQ, board m7632), MediaTek, about 1.8 GB\nRAM. Same product name as the E55-735 example but an older, Android 11 based firmware.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/benq-e55-750/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/benq-e55-750/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Already disabled from the factory:\ncom.google.android.marvin.talkback. No ACR package (tv.anoki.*) on this firmware.\n\nQuirks on this firmware, checked on the TV:\n- USB debugging alone opens port 5555; there is no Wireless debugging toggle.\n- HOME candidates: launcherx (priority 2), setupwraith/.RecoveryActivity (priority 1), so disable\nsetupwraith first, then run launcher/build-and-install.sh.\n- The default screensaver is dreamx's Backdrop (ambient mode). Point it at the launcher's clock\nbefore disabling dreamx:\nsettings put secure screensaver_components com.gathin.tvhome/.ClockDream\nsettings put secure screensaver_default_component com.gathin.tvhome/.ClockDream\nrestore.sh does not undo either; the stock value of both is com.google.android.apps.tv.dreamx/.service.Backdrop\nChanghong / Homwee store and help",
+  "packages": [
+    {
+      "package": "com.homwee.store",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.homwee.help",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV recommendations and screensaver (set another screensaver first)",
+      "reason": "Google TV app, the home screen's recommendation source",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google TV recommendations and screensaver (set another screensaver first)",
+      "reason": "ambient mode; mixes recommendations into the screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "reason": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "reason": "Streaming apps not used in this home (by choice; keep the ones you use)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "reason": "Stock home. Disable only after the new launcher is installed and set as home.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/benq-e55-750/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

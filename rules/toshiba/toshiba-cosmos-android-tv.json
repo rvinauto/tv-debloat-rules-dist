@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "toshiba-cosmos-android-tv",
+  "brand": "toshiba",
+  "title": "Toshiba (Vestel) Cosmos, Android TV 11 — Spain-market unit, UK/multi-market firmware",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "toshiba"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Toshiba (Vestel) Cosmos, Android TV 11 — Spain-market unit, UK/multi-market firmware\nro.product.model=Cosmos  ro.product.name=Cosmos170  ro.product.device=yeoksam  brand/manufacturer=Vestel\nFingerprint: Vestel/Cosmos170/yeoksam:11/RTOC.251019.001/14296264:user/release-keys\nBuild date 2025-10-20, security patch 2025-08-01, SDK 30, MediaTek platform, ro.config.low_ram=true (~1 GB).\n\nMatch on the Vestel/Cosmos170/yeoksam fingerprint, not on the Toshiba badge: Vestel ships this\nfirmware across several European badge brands (Toshiba, JVC, Hitachi, Telefunken...). A Toshiba\nFire TV (examples/toshiba-fire-tv-aftha004) is a completely different platform; nothing here applies.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/toshiba-cosmos-android-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/toshiba-cosmos-android-tv/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (pass it to restore.sh, as above).\nLive TV app:    com.mediatek.wwtv.tvcenter (.nav.TurnkeyUiMainActivity) — NEVER disable it.\nNOT the live TV app: com.cltv.fast (\"FAST\" streaming channels, iWedia). Its activities ship\ndisabled by Vestel (disabledComponents), so it looks launchable in the resolver table but is not.\nKeep also: com.vestel.tv.service, com.vestel.tv.backlight, com.vestel.tv.keycontroller (hardware),\ncom.vestel.tv.servicepatch + com.vestel.tv.rcupdater (firmware/remote updates, owner keeps updates),\ncom.mediatek.tvinput, com.mediatek.tv.service, com.mediatek.wwtv.tvcenter,\ncom.mediatek.tvinputservice.arbitratorservice (tuner/HDMI plumbing),\ncom.google.android.apps.mediashell (Chromecast built-in, owner uses it).\n\nQUIRKS ON THIS FIRMWARE:\n- screencap prints \"Init wrapper sys mutex successful...\" junk to stdout before the PNG, so\n`adb exec-out screencap -p` is corrupt. Use `screencap -p /sdcard/x.png` + `adb pull` instead.\n- Port 5555 is closed until USB debugging has been toggled/authorised; it opened without a\nseparate Network-debugging switch on this unit. No Wireless-debugging (pairing) menu exists.\n- The uk.co.freeview.* pack (BBC, ITV, Ch4/5, Freeview explore...) ships already disabled on\nSpain-market units; it is not listed below because `pm list packages -d` already held it.\n- The remote's YouTube and Prime Video buttons are handled by Vestel firmware below Android: the\nIR driver logs \"u4IRKey after convert: 0xffffffff\" and no keycode reaches InputDispatcher\n(getevent shows scancodes 0x129/0x13e, but the IR device's vendor keylayout drops them). With\ntheir apps disabled the buttons simply do nothing; no launcher key service can remap them.\n- Volume keys do reach Android (KEY_VOLUMEUP/DOWN on event0), but the firmware changes the volume\nbefore the accessibility filter and never passes them on, so no app (InputKeyService included)\ncan replace the system volume slider.\n- The TV closes Wi-Fi (and ADB with it) in standby. Accessibility services survived days of\nstandby cycles; only a force-stop of the launcher switched InputKeyService off.\n- No microphone (no android.hardware.microphone) and an IR-only remote, so voice comes from a\nphone or Nest speaker (\"Hey Google, ... on the TV\"). That needs katniss: keep it if you use it.\n--- Vestel telemetry and retail junk ---",
+  "packages": [
+    {
+      "package": "com.vestel.vestelreporter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vestel analytics/telemetry uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail/shop demo loops",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.vestel.cosmos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner auto-preinstall config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "home-screen recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "partner rows/channels for the stock launcher",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "crash/feedback uploader to Google",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "calendar sync, on a TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "Google TV / Play Movies storefront",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "Smart Connect",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google services nobody asked for ---",
+      "reason": "ambient photo screensaver (launcher's ClockDream replaces it)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "stock YouTube (SmartTube kept instead)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "Prime Video (unused here)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.wwtv.mediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "USB media player; re-enable: pm enable --user 0 com.mediatek.wwtv.mediaplayer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.tv.freeviewplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "Freeview Play (UK) integration, dead weight in Spain",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "# because \"Hey Google\" from the owner's phone stopped working",
+      "reason": "disable LAST, after launcher/build-and-install.sh",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/toshiba-cosmos-android-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

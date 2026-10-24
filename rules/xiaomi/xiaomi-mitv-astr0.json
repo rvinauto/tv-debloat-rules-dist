@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-astr0",
+  "brand": "xiaomi",
+  "title": "Xiaomi Redmi Smart TV A Pro 55\" 2025 Energy-saving (MiTV-ASTR0, blueplanet, Amlogic",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "astr0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Xiaomi Redmi Smart TV A Pro 55\" 2025 Energy-saving (MiTV-ASTR0, blueplanet, Amlogic\nAMLT963D4/T5M), China firmware OS3.0.106.0.USTAATV (HyperOS TV 3), Android 14 (SDK 34),\n3 GB RAM. Stock launcher com.mitv.tvhome (PatchWall) - its line at the bottom is\ncommented out by default: on this build the stock launcher was replaced through the\ncom.ts.launcher allowlist trampoline (see the PatchWall block and the device doc)\nbefore disabling it; uncomment that line only together with that setup.\nDisabled and lived with on 2026-10-22; the screensaver-ad package was verified live\n(resumed activity while the ad showed). See docs/devices/xiaomi-mitv-astr0-blueplanet.md\nfor the ad screensaver, the Home allowlist behavior and what must stay enabled.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-astr0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-astr0/debloat.txt com.mitv.tvhome\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- The standby/screensaver ads come from com.xiaomi.mitv.hyper.screensaver: a plain\nActivity with its own downloaded carousel, not a DreamService, so screensaver_enabled=0\ndoes not touch it. com.mitv.screensaver / com.xiaomi.mitv.advertise do not exist here.\n- Keep com.xiaomi.mitv.smartpanel enabled (Menu-button panel: source switcher +\nwireless tiles). Do NOT add it here; disabling it kills the Menu key.\n- ADB over TCP closes on every boot: Settings -> 账号与安全 -> ADB 调试.\n- No idle clock screensaver is possible: the idle timeout path is a hard panel-off\n(suspend), the AOSP dream never renders. Keep screen_off_timeout at 2147483647.\nXiaomi telemetry / ads / push",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV usage statistics",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tvqs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "quality/performance reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvpush.tvpushservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "push ads/notifications",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.overseaservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "overseas service partner helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.miui.hybrid.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "hybrid runtime container",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "webview container for promotions",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.shoplugin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV Taobao shopping plugin",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.shop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Xiaomi store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.duokan.videodaily",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "short-video promos, bundles the Mi ad SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.gamecenter.sdk.service.mibox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "game center SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ext.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.health",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.healthdiagnosis",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.karaoke.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.screenrecorder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.tweather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "weather provider; also feeds the Hyper screensaver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.tv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "\"Pictorial\" wallpaper app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.smarthome.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "cf. MFFU0: XiaoAI app-opening runs through its provider",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.toolhouse",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.hyper.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps (WPS cn.wps.moffice_i18n_TV kept at owner request)",
+      "reason": "HyperOS screensaver Activity; see device doc",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-astr0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

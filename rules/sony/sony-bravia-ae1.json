@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-ae1",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K AE1 (device BRAVIA_AE_M6L, MediaTek MT5897), EU firmware",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "ae1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA 4K AE1 (device BRAVIA_AE_M6L, MediaTek MT5897), EU firmware\nAndroid 12 (Google TV, API 31), build BRAVIA_AE1_EU-user 12 STT2.231117.001 634040\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-ae1/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-ae1/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (Google TV). Install the launcher first\n(launcher/build-and-install.sh): tools/disable.sh refuses to disable launcherx while it still owns Home.\nLive TV / input player: com.sony.dtv.tvlin. It also plays the HDMI inputs, so keep it even if you never\nwatch broadcast TV; set it as live_tv_package and in hidden_apps (config.json here). The Inputs menu\nlists HDMI 1-4 and Live TV, and picking an HDMI port opens tvlin on that input.\nKeep com.sony.dtv.tvlin, com.sony.dtv.tvinput.dvbtuner, com.sony.dtv.sonysystemservice, imeproxy,\nsettingsprovider, the Sony settings apps, update/update.agent.* (firmware) and all com.mediatek.*:\nthey drive HDMI, the tuner, the remote and updates.\nKept by owner's choice: Netflix, YouTube, Prime Video, UEI QuickSet (IR blaster), Sony IoT/smart-speaker\ncontrol (seeds.iot), Sony IP control (webapi), firmware updates. Left alone because their components\ndon't say enough: fingerprinterserver, crashlogcollector, lastaccess, interactivetvutil.\nThis set has no Chromecast (mediashell) and no Google Assistant (katniss) package.\nAlready disabled at the factory: the my5, sounds, iplayer, itv and all4 launchers, com.youview.poa,\nde.hdplus.tvapp.androidtv. Not in this list, so restore.sh leaves them as they are.\n\nQuirks on this firmware, all checked on the TV:\n- setupwraith claims HOME with priority 1; on this unit it did not own the saved Wi-Fi network\n(`dumpsys wifi | grep -o 'cname=[^ ]*'` showed android.uid.system only). Check yours first.\n- The remote's Input key opens Sony's own source panel (tvlin's GlobalKeyReceiver): no helper needed.\n- With launcherx disabled the Settings, Netflix, YouTube and Prime Video buttons do nothing. They come\nback with HOME_KEY_SERVICE=1 and scancodes (getevent, decimal): Settings 646 (settings_key_scancodes,\nconfig.xml only), Netflix 583, YouTube 485, Prime Video 490 (app_keys, in config.json here).\n- With that helper bound, a held Volume key moves one step instead of ramping, the same trade as\ndocs/devices/tcl-55p71b-g09-key-repeat.md (checked on the real remote, before and after).\n\nApplied 22 October 2026 on one unit and reboot-checked: everything below stayed disabled and Home came\nback on the new launcher. Not yet lived with for days; if something breaks, re-enable it with\n`pm enable <package>` and please report it.\nACR viewing tracker and telemetry",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "remote-support session service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony usage data",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "viewing context for recommendations",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "bug-report uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "broadcasts model/MAC/IP over SDDP",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony ads and partner installs",
+      "reason": "Sony ads and partner installs",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonytab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony ads and partner installs",
+      "reason": "Sony tab on the Google TV home; unused once launcherx is off",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.sony.bravia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony ads and partner installs",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help",
+      "reason": "Help tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "help",
+      "reason": "help",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.voicesearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "remote's mic button stops working",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.assistantadapter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "features not used (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.airplayapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "AirPlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonyericsson.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "DLNA media server/renderer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.huey.dlna.module",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "features not used (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.smartmediaapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "Media Player, re-enable to play USB files",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.osat.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "re-enable to play music from USB",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.vewd.core.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "Vewd web browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.youview.dtv.bbc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "UK broadcaster apps and USB recording (off by choice)",
+      "reason": "UK broadcaster apps and USB recording (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.itv.youviewandroidlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "UK broadcaster apps and USB recording (off by choice)",
+      "reason": "UK broadcaster apps and USB recording (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.channel4.youviewandroidlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "UK broadcaster apps and USB recording (off by choice)",
+      "reason": "UK broadcaster apps and USB recording (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.channel5.my5sony",
+      "action": "disable",
+      "risk": "safe",
+      "group": "UK broadcaster apps and USB recording (off by choice)",
+      "reason": "UK broadcaster apps and USB recording (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.recapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "UK broadcaster apps and USB recording (off by choice)",
+      "reason": "records Live TV to a USB drive",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Re-enable both before a factory reset. See the Wi-Fi note above first.",
+      "reason": "Re-enable both before a factory reset. See the Wi-Fi note above first.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Re-enable both before a factory reset. See the Wi-Fi note above first.",
+      "reason": "Re-enable both before a factory reset. See the Wi-Fi note above first.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-ae1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "id": "amazon-fire-tv-aftdec012e",
+  "brand": "amazon",
+  "title": "Amazon Fire TV, model AFTDEC012E (codename ginza), Android 11 (SDK 30), build RS8185.3885N",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "amazon"
+    ],
+    "model_patterns": [
+      "aftdec012e"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Amazon Fire TV, model AFTDEC012E (codename ginza), Android 11 (SDK 30), build RS8185.3885N\nTested on one unit, Fire OS (Amazon), so no Google services.\n\nFIRE OS: DEBLOAT ONLY. Amazon's launcher (com.amazon.tv.launcher) keeps Home, and its packages and components\ncannot be disabled (\"Cannot disable a protected package\"), so this list does not install a launcher. It removes\nAmazon's ads, telemetry and preloads. Details and what was tested: docs/TROUBLESHOOTING.md, \"Fire TV (Fire OS)\".\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/amazon-fire-tv-aftdec012e/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/amazon-fire-tv-aftdec012e/debloat.txt com.amazon.tv.launcher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nKept on purpose: Alexa, OTA updates, DIAL/whisperplay (Netflix and YouTube casting), Netflix, YouTube, Prime\nVideo, voice search and the stock launcher. Miracast, MiniTV, Disney+ and Tubi are listed at the bottom, commented\nout, for the owner to decide.\nAds, content recognition, shopping",
+  "packages": [
+    {
+      "package": "com.amazon.shoptv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.acr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.democontent.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva.logcat",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.wirelessmetrics.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfcollection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.dp.logger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and metrics",
+      "reason": "Telemetry and metrics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.storm.lightning.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tmm.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.gamehub",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.bueller.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.bueller.photos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.naatyam",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Tutorials, promos and Amazon content preloads",
+      "reason": "Tutorials, promos and Amazon content preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/amazon-fire-tv-aftdec012e/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

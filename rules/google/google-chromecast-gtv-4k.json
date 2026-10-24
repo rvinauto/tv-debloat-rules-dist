@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "id": "google-chromecast-gtv-4k",
+  "brand": "google",
+  "title": "Chromecast with Google TV 4K (2020, device sabrina, product sabrina_prod_stable), 2 GB RAM",
+  "android": "Google TV 4",
+  "match": {
+    "brand_patterns": [
+      "google"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Chromecast with Google TV 4K (2020, device sabrina, product sabrina_prod_stable), 2 GB RAM\nGoogle TV 14 (SDK 34), build UTTC.250917.004 (14193937)\nSecond unit: Canada, same build, one day of use (2026-10-22). Notes under \"Second unit\" below.\n\nApply:   TV_HOST=<ip> tools/disable.sh examples/google-chromecast-gtv-4k/debloat.txt\nUndo:    TV_HOST=<ip> tools/restore.sh examples/google-chromecast-gtv-4k/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\nTo keep phone casting and the stock home (no new launcher), use debloat-keep-cast.txt in this folder instead.\n\nStock launcher: com.google.android.apps.tv.launcherx. No Live TV app and no HDMI inputs (it's a dongle):\nleave live_tv_package empty in config.xml.\n\nKnown quirks on this firmware:\n- ADB on port 5555 is closed (connection refused) until you pair once through Wireless debugging with\nthe stock adb: Developer options > Wireless debugging > Pair device with pairing code, `adb pair\n<ip:pairport> <code>`, `adb connect <ip:connectport>` (`adb mdns services` lists both ports), then\n`adb tcpip 5555`. After that tools/tv.py works on 5555 (README, Troubleshooting).\n- `cmd package set-home-activity com.gathin.tvhome` returns Success but launcherx stays the default.\nDisable BOTH com.google.android.apps.tv.launcherx and com.google.android.tungsten.setupwraith\n(setupwraith re-enables launcherx), only after the new launcher is installed.\n- Disabling setupwraith also breaks casting from phones, reported on the Chromecast HD on the same\nbuild (#361). The Cast receiver (com.google.android.apps.mediashell) reads its factory device\ncredentials from a provider inside setupwraith\n(com.google.android.libraries.tv.setupwraith.libs.castinfo.CastInfoProvider), so once the wizard\nis gone and the device has rebooted, YouTube on the phone answers \"Untrusted device ... couldn't\nbe verified\" and the receiver logs \"No private key, hence empty signature\" every minute. Keeping\nthe provider while taking Home away does not work: pm disable-user on\nsetupwraith/.RecoveryActivity is refused with a SecurityException. Either debloat only (keep\nlauncherx and setupwraith enabled), or re-enable setupwraith after each boot, wait a minute for\n\"Created singleton instance of ClientAuthSigner\" in logcat, then disable it again - the receiver\nholds the credentials in memory, so casting works until the next reboot\n(docs/TROUBLESHOOTING.md, \"Casting fails with Untrusted device\").\nSeen again after a reboot: re-enabling setupwraith brought no ClientAuthSigner line within 3 minutes\nand phones did not list the device at all. With setupwraith enabled, restart the receiver instead:\nam force-stop com.google.android.apps.mediashell\nam start-foreground-service -n com.google.android.apps.mediashell/.CastReceiverService\n(nothing starts it again after a force-stop); the signer line follows within seconds.\n- Turning USB debugging off leaves Wireless debugging listening on its own port. Switch both off when\nyou are done; tools/adb-closed.py only checks 5555.\n- With launcherx disabled the YouTube button on the remote does nothing. It sends BUTTON_3\n(keycode 190). Button Mapper only remaps added buttons in its paid Pro version; Key Mapper\n(open source, keymapperorg/KeyMapper) does it for free. Play Store lists Key Mapper as incompatible\nwith this device, so install the -foss APK from its GitHub releases, then over ADB:\npm grant io.github.sds100.keymapper android.permission.WRITE_SECURE_SETTINGS\nsettings put secure enabled_accessibility_services io.github.sds100.keymapper/io.github.sds100.keymapper.system.accessibility.MyAccessibilityService\nMap trigger \"Button 3\" (short press) to action \"Launch app > YouTube\". Record the trigger with the\nphysical remote: keys injected with `input keyevent 190` don't reach Key Mapper, and D-pad presses\nmade while recording get added to the trigger.\n- com.google.android.tvrecommendations and com.google.android.apps.education.cast2class ",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.remotecontrol.logging",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "remote usage logging",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.netoscope",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "network diagnostics reporting",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.federatedcompute",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.ext.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "the Play Store or Assistant misbehave.",
+      "reason": "the Play Store or Assistant misbehave.",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ambient mode screensaver (replaced by the launcher's Clock screensaver)",
+      "reason": "Google ambient mode screensaver (replaced by the launcher's Clock screensaver)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ambient mode screensaver (replaced by the launcher's Clock screensaver)",
+      "reason": "Google ambient mode screensaver (replaced by the launcher's Clock screensaver)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "so it stays in the list for restore.sh to bring back.",
+      "reason": "setup wizard; its RecoveryActivity otherwise takes over Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "re-enable if you need the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/google-chromecast-gtv-4k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

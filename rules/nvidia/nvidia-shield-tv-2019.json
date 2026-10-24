@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "id": "nvidia-shield-tv-2019",
+  "brand": "nvidia",
+  "title": "NVIDIA SHIELD TV 2019 tube (model P3430, codename sif, Tegra X1+, 2 GB RAM), Android TV 11 (API 30)",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "nvidia"
+    ],
+    "model_patterns": [
+      "2019"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "NVIDIA SHIELD TV 2019 tube (model P3430, codename sif, Tegra X1+, 2 GB RAM), Android TV 11 (API 30)\nTested on build RQ1A.210105.003.7825199_4387.0822 (SHIELD Experience 9.2.4), security patch 2026-01-05.\nBased on examples/nvidia-shield-tv-pro-2019/debloat.txt. Every active line below is disabled on the\nreporter's unit, with the items they already had disabled left commented out.\n\nApply:   TV_HOST=<shield ip> tools/disable.sh examples/nvidia-shield-tv-2019/debloat.txt\nUndo:    TV_HOST=<shield ip> tools/restore.sh examples/nvidia-shield-tv-2019/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nConnecting: Developer options -> \"Network debugging\" opens ADB on port 5555. The tube has no USB\nports at all, so there is no cable route and nothing loses power while debugging is on.\n\nLauncher: run launcher/build-and-install.sh before this list; it installs the launcher and hands\nHome over by disabling com.google.android.tvlauncher, which is the last line here. As on the Pro,\nthe stock launcher's Home filter has priority 2 and this repo's has 0, so `cmd package\nset-home-activity` does nothing while the stock launcher is still enabled. setupwraith is not a\nHome candidate here either. The unit this list came from runs Glass Launcher (au.busby.glasslauncher)\nrather than this repo's launcher; the stock launcher has to go for either of them to take over.\nA Shield has no HDMI inputs and no tuner, so the launcher's Inputs pill has nothing to list.\nOn that unit location is on (location_mode=3) and the launcher holds ACCESS_FINE_LOCATION, so the\nnetwork pill shows the network name; with location off it says \"Wi-Fi\".\n\nDifferences from the Pro example, by the owner's choice:\n- Firmware updates are OFF (com.nvidia.ota, NvCPLUpdater and KeyComboOta disabled). The Pro example\nkeeps KeyComboOta; re-enable all three before contacting NVIDIA support or to get security patches.\n- Live Channels and Backdrop are off. The screensaver on that unit was already \"Colors\"\n(com.android.dreams.basic), so disabling Backdrop left a screensaver set.\n- Kept: Prime Video, Chromecast built-in, Google Assistant and hotword, Alexa / Google Home control\n(com.nvidia.shield.ask), the SHIELD TV phone-remote app (com.nvidia.shield.remote.server).\n- Not present on this unit: com.nvidia.nvgamecast, com.android.printspooler, com.nvidia.osc,\ncom.google.android.katniss, com.google.android.play.games.\n\nLeave alone (same as the Pro example): com.nvidia.blakepairing, com.nvidia.bluetooth.*,\ncom.nvidia.shieldtech.accessoryui, com.nvidia.ControllerMapper, com.nvidia.remotelocator,\ncom.nvidia.irtuner, com.nvidia.NvCPLSvc, com.nvidia.nvaudiosvc, com.nvidia.avsync,\ncom.dolby.android.audio.service, com.nvidia.packagemanagerservice, com.android.tv.settings,\ncom.android.providers.tv, com.google.android.tv.remote.service, com.google.android.tungsten.setupwraith,\nPlay Services, keychain, com.android.se.\n\nReported by @geekitup in issue #312, with a screenshot of the running setup.\nNotes from that firmware:\n- A SHIELD Experience update can re-enable packages; re-run this list afterwards.\n- The remote's Netflix button is handled in firmware; disabling Netflix does not free it.\nNVIDIA and Google telemetry and feedback",
+  "packages": [
+    {
+      "package": "com.nvidia.stats",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "anonymous usage statistics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "crash reports and the \"send feedback\" form",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.diagtools",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log collector; re-enable if NVIDIA support asks for logs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shield.registration",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "product registration",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.developerwidget",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "developer widget service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.tegraprofiler.security",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Tegra profiler permissions",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.factorysyschecker",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "factory test",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.nvidia.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "factory test mode",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.nvidia.inputviewer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "input test viewer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.nvidia",
+      "action": "disable",
+      "risk": "safe",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shield.welcome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "first-run promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.factorybundling",
+      "action": "disable",
+      "risk": "caution",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "accessory bundle offers",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.nvidia.shield.beta",
+      "action": "disable",
+      "risk": "safe",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "beta programme",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shieldbeta",
+      "action": "disable",
+      "risk": "safe",
+      "group": "feeds only show on the stock home, which this list replaces anyway.",
+      "reason": "beta programme",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.tegrazone3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "NVIDIA gaming leftovers",
+      "reason": "\"NVIDIA Games\" app and row; GeForce NOW is a separate app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.gallery3d",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "legacy photo viewer (\"Photos & Videos\")",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shield.nas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "SHIELD as network storage",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shield.smbserver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "\"Transfer files over local network\" SMB share",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.shield.smbauth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "SMB share authentication",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Google data-saver VPN",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice (the owner's picks)",
+      "reason": "firmware updates OFF by choice; NVIDIA still ships security patches",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.nvidia.NvCPLUpdater",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice (the owner's picks)",
+      "reason": "control-panel updater, with the above",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.nvidia.KeyComboOta",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice (the owner's picks)",
+      "reason": "OTA key combo, with the above (the Pro example leaves this on)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice (the owner's picks)",
+      "reason": "Live Channels; re-enable for a network tuner (HDHomeRun, Channels)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tv",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice (the owner's picks)",
+      "reason": "Ambient mode; screensaver on that unit is Colors, so nothing breaks",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.dynsystem",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "Dynamic System Updates (GSI loader)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.hotspot2.osulogin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "Passpoint hotspot sign-in",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.bluetoothmidiservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "Bluetooth MIDI",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*bluetooth*"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "CTS test shim",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "CTS test shim",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "runs once at first boot",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Idle stubs: no RAM saved, disabled for tidiness; nothing broke across a reboot",
+      "reason": "wallpaper backup agent",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*"
+      ]
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "don't re-enable them; uncomment to manage them with this list.",
+      "reason": "don't re-enable them; uncomment to manage them with this list.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/nvidia-shield-tv-2019/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

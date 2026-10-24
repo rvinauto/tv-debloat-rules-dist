@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "id": "oneplus-tv-y1",
+  "brand": "oneplus",
+  "title": "OnePlus TV (Y Series 43\", Skyworth-built SW1, codename shibuya), Android TV 11 (API 30), firmware RTO9.231122.002",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "oneplus"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "OnePlus TV (Y Series 43\", Skyworth-built SW1, codename shibuya), Android TV 11 (API 30), firmware RTO9.231122.002\nVendor fingerprint OnePlus/OnePlus_Y_Series/shibuya:11/RTO9.231122.002/11136549. armeabi-v7a, UI at 1280x720, ~0.9 GB RAM.\nClassic Android TV home, not Google TV: the stock launcher is com.google.android.tvlauncher.\n\nStock launcher:  com.google.android.tvlauncher\nLive TV app:     com.mediatek.wwtv.tvcenter  (Live TV tuner and HDMI input panel; keep it)\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/oneplus-tv-y1/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/oneplus-tv-y1/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nDisabled before this debloat, so not listed (restore.sh would turn it ON): com.google.android.marvin.talkback.\n\nStatus: disabled on one TV on 2026-10-18 and lived with through 2026-10-20 without trouble; checked with\nremote-key injection and screenshots (stock home, Live TV tuner via com.mediatek.wwtv.tvcenter, HDMI input\nswitching, Bluetooth voice remote, audio, and launcher/ installed as Home). Unlike the Panasonic list on the\nsame Skyworth platform, com.coocaa.factory and com.mediatek.tv.factory were disabled and lived with for several\ndays without side effects.\n\nKept on purpose: Google Assistant (com.google.android.katniss), Chromecast\n(com.google.android.apps.mediashell), Google Play Services, Bluetooth Remote &\nGboard (LatinIME). Live TV tuner uses com.mediatek.wwtv.tvcenter.\nSkyworth auto-installs, retail demo and setup leftovers",
+  "packages": [
+    {
+      "package": "android.autoinstalls.config.skyworth",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Skyworth OEM partner configuration",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "OnePlus retail display demo, starts at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.common.demonow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "In-store retail demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mstar.android.tv.disclaimercustomization",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "MStar disclaimer splash screen",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.Smartdevice.emanual",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Built-in electronic user manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and background services",
+      "reason": "User feedback agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry and background services",
+      "reason": "Background calendar synchronization",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.android.providers.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry and background services",
+      "reason": "Calendar content provider",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.boot.appsplashscreen",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and background services",
+      "reason": "Boot splash screen animator",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation rows and stock-launcher partner customizer",
+      "reason": "Home screen recommendation ad service",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Recommendation rows and stock-launcher partner customizer",
+      "reason": "Sponsored leanback partner channels",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.coocaa.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory testing tools (verified safe on this set)",
+      "reason": "Coocaa factory test suite; lived with disabled without trouble",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.mediatek.testpq",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory testing tools (verified safe on this set)",
+      "reason": "MediaTek picture quality test tool",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.tv.factory",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory testing tools (verified safe on this set)",
+      "reason": "MediaTek TV factory diagnostics; lived with disabled without trouble",
+      "uad": null,
+      "review_flags": [
+        "policy:*factory*"
+      ]
+    },
+    {
+      "package": "com.airoha.ble.ota",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Factory testing tools (verified safe on this set)",
+      "reason": "Airoha Bluetooth OTA updater; remote pairing still works",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.vodafone.vodafoneplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused streaming apps (user confirmed)",
+      "reason": "Vodafone Play",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.viacom18.tv.voot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused streaming apps (user confirmed)",
+      "reason": "Voot TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jio.media.stb.ondemand",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused streaming apps (user confirmed)",
+      "reason": "JioCinema / Jio TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused streaming apps (user confirmed)",
+      "reason": "Google Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded / unused streaming apps (user confirmed)",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/oneplus-tv-y1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

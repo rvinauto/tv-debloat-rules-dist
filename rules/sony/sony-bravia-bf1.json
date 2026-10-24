@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-bf1",
+  "brand": "sony",
+  "title": "Sony BRAVIA BF1 (BRAVIA 2 II class, device BRAVIA_BF1_4K_A, MediaTek, 2.4 GB RAM, armeabi-v7a)",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "bf1"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA BF1 (BRAVIA 2 II class, device BRAVIA_BF1_4K_A, MediaTek, 2.4 GB RAM, armeabi-v7a)\nAndroid 12 (Google TV, API 31), firmware STT2.230811.001, security patch 2026-02-05\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-bf1/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-bf1/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep. A factory reset\nre-enables every package, so nothing needs undoing before one.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh, as above).\nKeep: Play Store and Play Services, Sony's update centre, the TV inputs and tuners\n(com.mediatek.dtv.tvinput.*, com.sony.dtv.tvinput.dvbtuner), com.sony.dtv.sonysystemservice,\ncom.sony.dtv.smartui (the Input menu), Sony and Android settings, Dolby audio, AirPlay, Chromecast, Gboard.\n\nQuirks on this firmware:\n- A plain `reboot` can lose a disable: pm disable-user is saved a few seconds later. Wait ~30 s,\nthen restart with `svc power reboot`. Check Home, Netflix, YouTube, Input and AirPlay after each group.\n- com.sony.dtv.applicationdisabler re-enables some packages at every boot (the IoT ones below,\nairplayapp, m2.devicecontrolservice). Leave them; disabling the disabler is not worth it.\n- Remote: Home sends KEYCODE_HOME. Input sends KEYCODE_TV_INPUT, which smartui opens system-wide,\nso INPUT_KEY_SERVICE isn't needed. OK never repeats while held, so long presses don't work.\n- `dumpsys meminfo` without `-t 90` times out on this set. The IP changed after most restarts:\nreserve one in the router.\n\nApplied group by group on 2026-10-19 (voice search kept). Stock vs after, ~15 min after boot:\nHome p90 frame time 31 -> 15 ms, janky frames 2.41% -> 0.07%, Home memory ~96 MB (with its helper)\n-> ~46 MB, MemAvailable 1.09 -> 1.14 GB.\ntracking / ads / promos",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV: recognises what's on screen for ad targeting (10 MB, always running)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.promos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony promotions",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Sony Select: promoted-app picks",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "shop demo mode",
+      "reason": "shop demo mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "shop demo mode",
+      "reason": "shop demo mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "shop demo mode",
+      "reason": "shop demo mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (reinstall or re-enable any time)",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (reinstall or re-enable any time)",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (reinstall or re-enable any time)",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sonypicturescore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (reinstall or re-enable any time)",
+      "reason": "Sony Pictures Core",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-bf1/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

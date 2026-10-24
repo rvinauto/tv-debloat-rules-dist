@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "id": "tcl-ak30a5",
+  "brand": "tcl",
+  "title": "TCL ak30a5 — Chinese-market TCL Android TV 9, Amlogic SoC, 1.5 GB RAM",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "ak30a5"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.tcl.cyberui",
+  "notes": "TCL ak30a5 — Chinese-market TCL Android TV 9, Amlogic SoC, 1.5 GB RAM\nAndroid 9 (PPR1.180610.011), build date 20230208, locale zh-CN, NO Google services at all\n(0 com.google.* packages, no Play Store — apps come from com.tcl.appmarket2 or a USB stick).\nLikely a good starting point for other 2020-2023 Chinese TCL sets on the same Amlogic firmware.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-ak30a5/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-ak30a5/debloat.txt com.tcl.cyberui\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.tcl.cyberui (a PERSISTENT priv-app — see the note below before disabling it).\nLive TV / HDMI: com.tcl.tv. There is NO standard TvInputManager on this firmware (`service list`\nhas no tv_input), so the launcher's Inputs menu opens TCL's own source panel instead:\nstartService(com.tcl.settings/com.tcl.insrc.ShowWindowService, action com.tcl.insrc.SHOW_WINDOW).\nKeep com.tcl.settings or that panel is gone. HDMI source ids: TV=2, AV1=3, HDMI1=8, HDMI2=9.\nKeep com.tcl.tv: it owns DTV/HDMI playback and the remote's source key (KEYCODE_TV_INPUT still\nopens the source panel over any launcher, cyberui or not).\nKeep com.sohu.inputmethod.sogou.tv: it is the ONLY input method on the TV. Disable it and there is\nno on-screen keyboard at all.\nKeep com.tcl.guard: 电视卫士 is also the only on-screen APK installer (应用安装, needs a USB stick).\nKeep com.tcl.ui_mediaCenter if you play anything from USB.\n\nKnown quirks on this firmware:\n- `pm install` is patched to refuse shell installs (\"install apk has be disabled from pm by\nsystem default\"), and PackageInstallerActivity is exported=false with its intent filters removed.\n`pm install-commit` is not gated though: an APK can still be installed by creating a\nPackageInstaller session from a shell-run app_process and committing that session.\n- APKs that declare android.intent.category.HOME are refused at parse time unless they are signed\nwith TCL's key: \"INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES: disable install launcher app not\nsignature by tcl\". A third-party launcher therefore cannot be installed on this model at all;\ncom.tcl.cyberui stays and only its ad/telemetry packages (this list) can be removed.\n- 电视卫士 → 应用安装, the only on-screen installer, stages the APK as a file without the .apk\nsuffix and fails with INSTALL_PARSE_FAILED_NOT_APK (\"Failed to parse .../my_app_session\") for\nevery package. Don't use it.\n- Installs also need roughly 600 MB free on /data or they fail with\nINSTALL_FAILED_INSUFFICIENT_STORAGE; `pm trim-caches 2000M` is usually enough.\n- Installed launcher version here is com.tcl.cyberui 7746 (7.7.46). The 灵控桌面 APKs circulating\nfor TCL sets are the same package at versionCode 7670 (7.6.70), i.e. a downgrade.\n- screensaver_components ships pointing at com.android.deskclock, which is not installed, so the\nTV has no working screensaver out of the box (and launcher/'s Clock can't be installed here).\n- /data/local/tmp is not writable by the shell user; push to /sdcard instead.\n- `screencap` cannot write to /data/local/tmp either, and returns an empty file while Live TV/HDMI\nis on screen (same as the G10). Press Home first.\n- No com.android.dreams.basic fallback screensaver. Also no TCL equivalent of `pm install`.\nTCL ads, telemetry, logging",
+  "packages": [
+    {
+      "package": "com.tcl.bootadservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "boots into a full-screen ad before Home",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "analytics/behaviour reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffkaraoke",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "karaoke",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffeducation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "kids/education content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tclmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamecenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "game store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.playskill",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "\"tips\" app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.appreciate.art",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "art-wallpaper screensaver content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "bundled browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.common.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "weather widget service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.wholenetsearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "global search",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "EULA nag",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded TCL content and services",
+      "reason": "TCL updater (the OTA package com.snm.upgrade is already",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tvhealthcheck",
+      "action": "disable",
+      "risk": "safe",
+      "group": "disabled at the factory on this model)",
+      "reason": "diagnostics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "disabled at the factory on this model)",
+      "reason": "verbose logging",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.iflytek.xiri.translate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "disabled at the factory on this model)",
+      "reason": "iFlytek translate",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-ak30a5/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "id": "tcl-65q650g",
+  "brand": "tcl",
+  "title": "TCL 65Q650G (US Q6 2023, reports as \"Smart TV\" / BeyondTV4), Android TV 11 (SDK 30), Realtek RTD2851",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "65q650g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 65Q650G (US Q6 2023, reports as \"Smart TV\" / BeyondTV4), Android TV 11 (SDK 30), Realtek RTD2851\n(client type TCL-NA-RTD51M), firmware V8-R51MT08-LF1V095, Google TV launcher\n(com.google.android.apps.tv.launcherx), 2 GB RAM, 32-bit userspace.\nList derived from examples/tcl-43c645 (same R51MT platform), checked against this unit's packages.\nSame firmware family as examples/tcl-65q550g (a different model, tested over Ethernet there).\n\nTested 2026-10-20 on a real unit, applied in three batches with a screenshot after each: Home, the\nremote's Input panel (com.tcl.suspension) and Live TV (com.tcl.tv/.TVActivity, all four HDMI ports in\nTvInputManager) kept working. Quirks: Git Bash rewrites /data/... paths for tools/tv.py --pull, so set\nMSYS_NO_PATHCONV=1; screencap to /sdcard fails here, use /data/local/tmp. Launcher installed with\ntools/tv.py --push + pm install, later with build-and-install.sh (b64push md5 matched). Reboot-checked: all\npackages stayed disabled, Home stayed on the new launcher, both key services re-bound.\n\nStock launcher: com.google.android.apps.tv.launcherx (disabled by build-and-install.sh). setupwraith claims\nHOME (priority 1) once it is off, so it is in group 1b. Check `dumpsys wifi | grep -o 'cname=[^ ]*'` first:\non this unit the Wi-Fi network in use belonged to android.uid.system, so disabling setupwraith kept it.\n\nRemote (Bluetooth BT_RC813_M1, /dev/input/event3, /system/usr/keylayout/Generic.kl):\n- Input (TV_INPUT) and the mic keep working without launcherx.\n- Netflix (242, TCL_NETFLIX), YouTube (245, TCL_YOUTUBE) and Prime Video (752, TCL_PRIMEVIDEO) do nothing\nonce launcherx is off: app_keys KEYCODE_TCL_NETFLIX:com.netflix.ninja, KEYCODE_TCL_YOUTUBE:\ncom.google.android.youtube.tv, KEYCODE_TCL_PRIMEVIDEO:com.amazon.amazonvideo.livingroom with\nINPUT_KEY_SERVICE=1 bring them back (getevent -l names Prime KEY_PRIMEVIDEO; its scancode is 752, not 365).\n- Gear (233, TCL_SET) also went dead; app_keys KEYCODE_TCL_SET did not catch it, settings_key_scancodes 233\nwith HOME_KEY_SERVICE=1 did.\n- TclAppBoot refuses to start the key services at boot until `appops set com.gathin.tvhome APP_AUTO_START allow`.\nAll verified with the real remote, also after a reboot. Live TV app: com.tcl.tv (live_tv_package, hidden_apps).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-65q650g/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-65q650g/debloat.txt com.google.android.apps.tv.launcherx\nKept by choice: voice (katniss, com.google.android.tv.assistant, com.tcl.assistant), Cast receiver\n(mediashell), firmware updater (com.tcl.versionUpdateApp), YouTube TV and YouTube Music.\nNever disable: com.tcl.providers.config com.tcl.initsetup com.tcl.factory.view com.tcl.system.server\ncom.tcl.tcl_bt_rcu_service com.tcl.autopair com.tcl.tvinput com.tcl.tv com.tcl.settings\ncom.tcl.suspension (Input panel) com.tcl.xian.StartandroidService com.tvos\n1. Telemetry, partner auto-installs, account and EULA nags",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "EULA screen, done after setup",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "reason": "1b. Google TV first-run wizard (claims HOME once the stock launcher is off)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tubitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.pluto.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "TCL Live FAST channels, also removes them from Live TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.plus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "TCL TV+ content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "TCL web-video / recommendation portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.espn.score_center",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "Works with Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "TGuard memory cleaner",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.android.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.keyhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. Unused apps (off by choice) and extras",
+      "reason": "2. Unused apps (off by choice) and extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-65q650g/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55ep640",
+  "brand": "tcl",
+  "title": "TCL 55EP640, Greece (ro.product.model BeyondTV, board RTD2851 / platform rtd285o), Android TV 11 (API 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55ep640"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 55EP640, Greece (ro.product.model BeyondTV, board RTD2851 / platform rtd285o), Android TV 11 (API 30),\nbuild PPR1.180610.011 AR04, fingerprint TCL/BeyondTV/BeyondTV:11/PPR1.180610.011/AR04, 32-bit (armeabi-v7a).\nSame hardware as examples/tcl-50p615 (AR05) and the same package set, plus com.tcl.dashboard (TCL IoT\ndashboard / giftbox promos, disabled as on examples/tcl-43p615).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55ep640/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55ep640/debloat.txt\nInstall the launcher BEFORE disabling the stock launcher (launcher/build-and-install.sh).\nStock launcher: com.google.android.tvlauncher. Other HOME claimants are only fallbacks:\ncom.tcl.keycustomfunctionservice/.FallbackHome and com.android.tv.settings FallbackHome.\nOne saved Wi-Fi network belongs to com.google.android.tungsten.setupwraith: leave it enabled (it is not\nin this list), or forget and re-join that network in Settings first.\nLive TV app: com.tcl.tv. Tuner and HDMI: com.tcl.tvinput (never disable either).\n\nAlready disabled when we started, left alone: the 14 uk.co.freeview.* apps, au.com.stan.and,\ncom.tcl.gallery, com.tcl.notereminder, com.tcl.smartalexa, tv.wuaki.apptv,\ncom.google.android.apps.nbu.smartconnect.tv, com.google.android.videos, com.google.android.play.games.\n\nTested 2026-10-21 on a real unit: applied in five batches with a screenshot after each (29/29 disabled at first,\nplus the stock launcher via launcher/build-and-install.sh), then rebooted once: nothing came back\nenabled. After the changes the launcher's Inputs menu (HDMI 1-3, AV, Live TV via TvInputManager; Live TV\nopens com.tcl.tv/.TVActivity), Wi-Fi, and every button on the real remote (Home, Input, Settings, app\nbuttons, Back) worked. Not yet lived with for days.\n\nDO NOT DISABLE (load-bearing on this firmware):\ncom.tcl.tv com.tcl.tvinput                          # Live TV, tuner, HDMI\ncom.tcl.keycustomfunctionservice                    # remote key handling, fallback home\ncom.tcl.inputmethod.international                   # default keyboard\ncom.tcl.settings com.tcl.initsetup com.tcl.factory.view com.tcl.providers.config\ncom.tcl.xian.StartandroidService                    # device authentication\ncom.tcl.partnercustomizer                           # carries the remote's TKey activity\ncom.tcl.systemserver com.tcl.autopair               # system service, BT remote pairing\ncom.tvos                                            # tvos framework resources\ncom.google.android.tungsten.setupwraith             # owns a saved Wi-Fi network on this unit\ncom.google.android.apps.mediashell                  # Chromecast (kept by choice)\ncom.tcl.miracast com.tcl.MultiScreenInteraction_TV  # Miracast / MagiConnect (kept by choice)\ncom.tcl.versionUpdateApp                            # TCL OTA updater (kept by choice)\ncom.google.android.tv.remote.service                # Google TV phone-app remote (kept by choice;\n# disabled at first, re-enabled the same day)\n1. Telemetry, analytics and attribution",
+  "packages": [
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL BI analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"send feedback\"",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "home-screen recommendation rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "one-time setup leftovers",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "promo/app-show service; re-enables partner packages at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_master",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TCL's alternate home (StartUpActivity, message receivers)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "pushes TCL content onto the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "\"TCL Channel\" web content feed",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "pushed messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "retail demo energy-label sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TGuard cleaner / device-use tracking",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TCL account",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TCL IoT dashboard, giftbox and MessageBox promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.copydatatotv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "phone-to-TV data migration",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "end-user agreement screens",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "USB media centre (only an LED strip on USB)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "Google Assistant / voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "Assistant LED service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TCL voice service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.micmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "2. TCL content, promos and background extras",
+      "reason": "TCL microphone manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "Spotify",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tunein.player",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "TuneIn",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hitv.explore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "\"File Manager\" (HiTV, Play-installed 2020)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "printing service",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "4. Apps, off by choice. Reinstall or re-enable as wanted.",
+      "reason": "stock \"colors\" screensaver",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "5. After the launcher is installed",
+      "reason": "stock launcher, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55ep640/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

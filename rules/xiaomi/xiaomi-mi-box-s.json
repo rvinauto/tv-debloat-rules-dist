@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mi-box-s",
+  "brand": "xiaomi",
+  "title": "Xiaomi Mi Box S (model MIBOX4, MDZ-22-AB, codename oneday, Amlogic gxl), Android TV 9 (SDK 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi Mi Box S (model MIBOX4, MDZ-22-AB, codename oneday, Amlogic gxl), Android TV 9 (SDK 28),\nfirmware PI.3933 (built 2021-09-28), security patch 2021-07-05, 2 GB RAM, 1920x1080. Indian unit:\nPatchWall arrived through Xiaomi's update service.\nFingerprint: Xiaomi/oneday/oneday:9/PI/3933:user/release-keys\n\nApply:   TV_HOST=<box ip> tools/disable.sh examples/xiaomi-mi-box-s/debloat.txt\nUndo:    TV_HOST=<box ip> tools/restore.sh examples/xiaomi-mi-box-s/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nA streaming box: no HDMI-in or tuner, so the Inputs menu has nothing to list; set live_tv_package empty in\nconfig.xml. Stock launcher: com.google.android.tvlauncher (the scripts' default).\n\nNotes from this box:\n- Leave alone: com.xiaomi.android.tvsetup.partnercustomizer (receives the remote's shortcut buttons as\nGLOBAL_BUTTON, and runs the remote-pairing steps of setup), mitv.service (Xiaomi TvServer, persistent),\ncom.google.android.tungsten.setupwraith (remote pairing), com.droidlogic* (Amlogic system, Bluetooth).\n- USB debugging alone opens network ADB on port 5555 (service.adb.tcp.port=5555).\n- USB debugging CUTS POWER to the USB port: with sys.usb.config=adb, /vendor/etc/init/hw/init.amlogic.usb.rc\nwrites 0xFDFFFFFF to register 0xc883443c and the port switches to ADB device mode, so a USB speaker or drive\ngoes dead; sys.usb.config=mtp (debugging off) writes 0xFD7FFFFF and powers it again. Turn debugging off when done.\n- cmd package set-home-activity needs the component on Android 9 (com.gathin.tvhome/.MainActivity).\n- Location is off, so Android 9 hides the Wi-Fi name from apps and the launcher's pill just says \"Wi-Fi\".\n- Remote (Vendor_2717_Product_32b9): the Netflix key still opens Netflix; BUTTON_2 opened Live Channels and\ndoes nothing once it is disabled; BUTTON_3/4 and ALL_APPS did nothing even on stock. No crashes either way.\n- Survives a reboot: nothing is re-enabled at boot, the launcher stays Home. Free RAM after boot went from\nabout 770 MB to 1.15 GB.\n- A process of the disabled stock launcher can linger until the next reboot; `am force-stop` clears it.\n\nSecond unit (same PI.3933 build), 2026-10-21. Details: docs/devices/xiaomi-mi-box-s.md\n- Every package below was present and disabled cleanly; nothing was re-enabled after a reboot.\n- Nothing was disabled beforehand: the \"already disabled\" apps at the bottom were all enabled there.\nGoogle Play Music (com.google.android.music, closed in 2020) was installed too.\n- The saved Wi-Fi belonged to android.uid.system, not setupwraith; setupwraith was not needed.\n- The Apps button (scancode 580, ALL_APPS) opens Home with the launcher's HomeKeyService\n(build-and-install -HomeKeyService). Home, Back, voice and Netflix work without it.\nXiaomi + Google telemetry and ad tracking",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Mi analytics: reads logs and app usage",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "tv.alphonso.alphonso_eula",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Alphonso ad tracking, reads app usage stats",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "Mi Channel rows on the home screen",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "Xiaomi web promos",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "PatchWall, content rows, promos, auto-installs",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.xioami.mibox3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PatchWall, content rows, promos, auto-installs",
+      "reason": "Play auto-install of partner apps (sic, \"xioami\")",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.updateservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Xiaomi background services",
+      "reason": "firmware and PatchWall updates, installs apps; re-enable to check for an update",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.mitv.download.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "its download helper",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: voice assistant (the mic button stops working)",
+      "reason": "Personal choice: voice assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.speech.pumpkin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: voice assistant (the mic button stops working)",
+      "reason": "Personal choice: voice assistant (the mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Personal choice: casting, mirroring and the phone remote",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.milinkservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: casting, mirroring and the phone remote",
+      "reason": "Mi cast (MiLink)",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Personal choice: casting, mirroring and the phone remote",
+      "reason": "Mi video player, used by MiLink; VLC opens video files instead",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tv",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Live Channels",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tv",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvlauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock Google TV launcher, replaced by launcher/",
+      "reason": "Stock Google TV launcher, replaced by launcher/",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tvlauncher",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Google TV / Android TV Remote phone app"
+    },
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "screen reader (was off)"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mi-box-s/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

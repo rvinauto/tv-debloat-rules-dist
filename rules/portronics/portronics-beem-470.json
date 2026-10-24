@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "id": "portronics-beem-470",
+  "brand": "portronics",
+  "title": "Portronics Beem 470 Smart LED Projector (Allwinner H713, sun50iw12p1), Android 11 (SDK 30)",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "portronics"
+    ],
+    "model_patterns": [
+      "470"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Portronics Beem 470 Smart LED Projector (Allwinner H713, sun50iw12p1), Android 11 (SDK 30)\nFirmware UI_Veng.projector.20250922.160824, 1 GB RAM, 1920x1080 panel.\nThe firmware reports the generic Allwinner \"ADT-3\" / \"adt3\" identity, so match on the build\nstring rather than ro.product.model.\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/portronics-beem-470/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/portronics-beem-470/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out anything you use.\n\nTested on a retail unit: Wi-Fi, HDMI input switching, Netflix, JioHotstar, Prime Video, VLC,\nSmartTube, Apple TV and the replacement launcher keep working. Re-enable the OTA packages before\nchecking for firmware updates. Casting/EShare packages (com.ecloud.*, com.eshare.*,\ncom.allshare.*) are deliberately left enabled.\n\nFirmware quirks worth knowing before you start:\n- The remote's HOME key is ignored until both setup flags are set; otherwise the firmware keeps\nreporting \"user setup is in progress\":\nsettings put secure user_setup_complete 1\nsettings put global device_provisioned 1\n- This firmware answers no ACTION_SETTINGS intent. With launcher/, set\nsettings_component=com.htc.htcsettings/com.htc.activity.HomeActivity in config.xml.\n- The stock launcher is com.htc.htclauncherhighenglishd08; re-enable it if you remove launcher/.\nStock HTC launcher and its infrastructure, replaced by launcher/",
+  "packages": [
+    {
+      "package": "com.htc.htclauncherhighenglishd08",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "stock Home; re-enable if the custom launcher is removed",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.htc.expandsdk",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "service used by the HTC launcher/theme stack",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.htc.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "stock screensaver; ClockDream replaces it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.htc.storeos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HTC app store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.htc.eventuploadservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "HTC telemetry, factory test and updates",
+      "reason": "usage/event uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.htc.htcotaupdate",
+      "action": "disable",
+      "risk": "caution",
+      "group": "HTC telemetry, factory test and updates",
+      "reason": "OTA; re-enable to check for firmware updates",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.htc.hyk_test",
+      "action": "disable",
+      "risk": "safe",
+      "group": "HTC telemetry, factory test and updates",
+      "reason": "factory test app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hysd.vafocus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "HTC telemetry, factory test and updates",
+      "reason": "vendor projector control/voice helper; see note below",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.awlivetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Live TV tuner UI; this model has no tuner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.TvdVideo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "stock USB video player; VLC covers playback",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.TvdFileManager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "stock file manager",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.ImageParser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "stock image viewer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.awlogsettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "log-capture settings",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.screenshot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Quick Settings screenshot tile",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.settingsassist",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "settings OTA activity; re-enable with the OTA packages",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.settingssetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "provisioning receiver; re-enable before a factory reset",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.provision",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "provisioning app; re-enable before a factory reset",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.theme.color",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Allwinner theme overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.theme.icon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Allwinner theme overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.softwinner.update",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Allwinner OTA; re-enable to check for firmware updates",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "android.rockchip.update.service",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Allwinner/Softwinner vendor apps not used on this model",
+      "reason": "Rockchip updater left in this Allwinner image",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.android.nfx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Re-enable if you use its accessibility/gesture or remote-key features.",
+      "reason": "vendor NfxAccessibilityService, not a typo for com.android.nfc",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock Google apps replaced here",
+      "reason": "replaced by SmartTube",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.searchlite.overlay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock Google apps replaced here",
+      "reason": "Stock Google apps replaced here",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.chromium.webview_shell",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock Google apps replaced here",
+      "reason": "WebView shell; the WebView provider stays installed",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mobisystems.office",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded office suite",
+      "reason": "Preloaded office suite",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.musicfx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dreams.basic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpaperbackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.wallpapercropper",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printservice.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.bips",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.htmlviewer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.egg",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.soundpicker",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.userdictionary",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.providers.blockednumber",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.cellbroadcastreceiver",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*cast*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.cellbroadcastservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*cast*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.nfc",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.bluetoothmidiservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*bluetooth*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.hotspot2.osulogin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.pacprocessor",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.proxyhandler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.backupconfirm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:*backup*",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.sharedstoragebackup",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.managedprovisioning",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.dynsystem",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "dynamic system updates, not used",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "AOSP apps and services with no use on a 1080p projector",
+      "reason": "AOSP apps and services with no use on a 1080p projector",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.android.se",
+      "why": "critical package (policy match 'com.android.se')",
+      "source_comment": ""
+    },
+    {
+      "package": "com.android.localtransport",
+      "why": "UAD-ng marks this package 'Unsafe' (can bootloop/break core function)",
+      "source_comment": ""
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/portronics-beem-470/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

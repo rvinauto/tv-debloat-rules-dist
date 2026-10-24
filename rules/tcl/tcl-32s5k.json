@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "id": "tcl-32s5k",
+  "brand": "tcl",
+  "title": "TCL 32S5K (32\" FHD QLED, S5K series), EU unit: device C06, product C06_2K_GB, model \"Smart TV\".",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "32s5k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "TCL 32S5K (32\" FHD QLED, S5K series), EU unit: device C06, product C06_2K_GB, model \"Smart TV\".\nAndroid TV 11 (SDK 30), build AR2101, TCL software V8-T221T05-LF1V361.000823, security patch 2025-03-05.\nMediaTek MT9221 (ro.board.platform mt5867), 918 MB RAM (low_ram=true), 8 GB ROM, ro.adb.secure=1.\n\nSame platform and build family as examples/tcl-40s5400a (that unit: LF1V325). This list is that\nlist, verified package by package against this unit first: all 22 entries present and enabled,\nnone missing, none already disabled.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-32s5k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-32s5k/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. Live TV app: com.tcl.tv (also plays HDMI).\nInputs come from com.tcl.tvinput.\n\nTESTING, honestly: applied in three rounds on 2026-10-20 and used for a few hours only, which is\nshorter than CONTRIBUTING.md asks. What was actually checked, each after a reboot: Netflix and\nYouTube open and play, HDMI input switching works, the Live TV source picker works, Wi-Fi survives,\npicture/sound settings open, the firmware update check still runs, the screensaver still starts.\nThe full list was also restored (tools/restore.sh) and re-applied once, so the undo path is tested\non this unit. I will report back if something breaks.\n\nMeasured effect on this unit, idle, settled, after reboot:\nMemAvailable 307 MB -> 363 MB with the stock launcher (+56 MB), 391 MB with launcher/ (+84 MB).\nThis TV is RAM-bound, not I/O-bound: 0% iowait, ~88% idle CPU, but ~330 MB of zram swap in use.\nEvery MB freed here is a MB less swapped, which is why debloating helps this set noticeably.\n\nUnit-specific notes (these differ from the 40S5400A list, check yours before copying):\n- The saved Wi-Fi network belongs to com.android.tv.settings, NOT setupwraith, so setupwraith is\nsafe to disable here and the network survives. disable.sh checks this for you; do not force it.\n- The photo screensaver (com.google.android.backdrop) must be swapped before it is disabled:\ntools/tv.py 'settings put secure screensaver_components com.android.dreams.basic/.Colors'\n(restore: com.google.android.backdrop/com.google.android.backdrop.Backdrop)\n- com.tcl.usercenter does NOT stay disabled. com.tcl.ttvs contains a service logging as\n\"OverSeasAppShow\" which reads /tclconfig/software/param/apps/app_EU_4K.json and re-enables it,\nat every boot and again whenever ttvs itself restarts. Disabling com.tcl.ttvs does not help:\nit is re-enabled too. /tclconfig is mounted ro and is not even readable from an adb shell.\nThe entry is left in the list because it does get disabled; it just does not stay that way.\n- On this set \"standby\" from the remote is a full power-down: the TV leaves the network entirely\nand cold-boots on the next power-on. There is no network wake, and nothing applied with adb that\nthe firmware re-asserts at boot will survive being switched off.\n\nPRE-EXISTING FIRMWARE BUG, not caused by debloating (verified by restoring every package to stock,\nrebooting, and reproducing it again):\ncom.android.tv.settings crashes every single time you leave the Settings app.\njava.lang.IllegalArgumentException: Service not registered:\ncom.tcl.android.tv.settings.accounts.TCLAccountManager$1\nat TCLAccountManager.destroyManager -> MainSettings.onDestroy\nIn TvSettings 1.3.0, destroyManager() calls unbindService() on the Activity context while\nbindRemoteServiceIfNeverBind() binds on the Application context, and it guards on mInstall\n(\"is the TCL User Center activity installed\") instead of isConnection, so it also double-unbinds.\nThe correctly written sibling method unbindRemoteServiceIfHasBind() is right there in the class.\nWorkaround while the TV stays on: disabling com.tcl.usercenter makes mInstall false and the bad\nbranch is skipped (verified, 0 crashes over repeated open/exit cycles). It does not survive a\npower cycle, ",
+  "packages": [
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account; re-enabled by ttvs, see notes above",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "TGuard cleaner/support",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "promo rows on the stock home",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL web-video portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store-demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto installer config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras",
+      "reason": "Google extras",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras",
+      "reason": "first-run wizard, setup already done (owns no Wi-Fi here)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "The home screen renders fine with tvrecommendations off.",
+      "reason": "The home screen renders fine with tvrecommendations off.",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Google search/voice; the stock home's search bar goes dead",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Google text-to-speech",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "photo screensaver, switch the screensaver first (see notes)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "USB media player, together with the next three",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.audioplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.imageplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "phone-app remote (casting does not need it)"
+    },
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-32s5k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

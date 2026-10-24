@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "id": "tcl-g08-us-google-tv",
+  "brand": "tcl",
+  "title": "TCL 75\" T7 Series 4K 144Hz QLED Google TV (75T7, device G08, model \"Smart TV Pro\", MediaTek tcl9618 / mt5896), US",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "g08"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 75\" T7 Series 4K 144Hz QLED Google TV (75T7, device G08, model \"Smart TV Pro\", MediaTek tcl9618 / mt5896), US\nAndroid 14 (Google TV), firmware UTT2.250416.001 AU16, product G08_4K_US. About 2.4 GB RAM.\nSame G08 board as examples/tcl-c755-google-tv, tcl-qm6k-google-tv and tcl-85rm7l-google-tv, on the US\nfirmware build. Those lists were the starting point; this one adds what the US set ships on top (streaming\npreloads and a few TCL extras) and the Android 14 ad and privacy services.\n\nTested 20-21 October 2026 on one set, 37 packages in all. The first 35 were disabled, the TV was rebooted and\nall 35 were still disabled afterwards. The last two (launcherx and setupwraith) were added later for a custom\nlauncher and the TV has not been rebooted since. That is about one day of use, not weeks. Everything was\ndisabled by hand with `pm disable-user --user 0` (one call each, in batches of ten or fewer), not with\ntools/disable.sh.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-g08-us-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-g08-us-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.tcl.tv.\nLeft enabled on purpose: com.tcl.tv, com.tcl.tvinput, com.tcl.suspension (the input menu), com.tcl.autopair,\ncom.tcl.systemserver, com.tcl.providers.config, com.tcl.initsetup, com.tcl.useragreement,\ncom.tcl.globalkeyoverlay, com.tcl.systemui.plugin, com.tcl.factory.view, com.tcl.gamebar (the game bar on\nthis 144 Hz gaming set), com.google.android.katniss (voice), Netflix, YouTube, Play Services and all\ncom.mediatek.* and com.dolby.* except the AirPlay ones.\nAlso left enabled, not tried: com.tcl.ttvs (analytics; the C755 list disables it as Samba TV ACR, and on\nsome TCL sets it is also the firmware updater), com.tcl.partnercustomizer, com.tcl.interactive,\ncom.tcl.smartlink.core, com.tcl.UpdatePeripheral, com.google.android.partnersetup.\n\nDifferences from the C755 list: com.tcl.dashboard, com.tcl.hearaid and com.tcl.t_solo are disabled here\n(the C755 list keeps them); everything under \"Streaming preloads\" is the US set's own.\nTCL promo, push messages and retail / hotel demo",
+  "packages": [
+    {
+      "package": "com.tcl.tv.plus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL TV+ free channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL pushed messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail-demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "hotel-mode portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL content pushed to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL Home panel and its promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "log capture",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "Privacy Sandbox",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "reason": "Telemetry, diagnostics and Android 14 ad / privacy services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "on-TV manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "hearing test / accessibility helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "Bluetooth \"listen alone\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "self-diagnosis",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Extras nobody asked for",
+      "reason": "Extras nobody asked for",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Extras nobody asked for",
+      "reason": "Extras nobody asked for",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Extras nobody asked for",
+      "reason": "Extras nobody asked for",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "TCL account",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "Extras nobody asked for",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Extras nobody asked for",
+      "reason": "TCL Live FAST channels (a Live TV input)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa and AirPlay, off by choice",
+      "reason": "Alexa and AirPlay, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.airplay2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa and AirPlay, off by choice",
+      "reason": "Alexa and AirPlay, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.AirplayAPK",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa and AirPlay, off by choice",
+      "reason": "Alexa and AirPlay, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.airplaydaemon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Alexa and AirPlay, off by choice",
+      "reason": "Alexa and AirPlay, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Streaming preloads on the US firmware, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hulu.livingroomplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Streaming preloads on the US firmware, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tubitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Streaming preloads on the US firmware, off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.wbd.stream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Max",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Google TV / Play Movies storefront",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvunplugged",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "YouTube TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Streaming preloads on the US firmware, off by choice",
+      "reason": "Streaming preloads on the US firmware, off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher, off once the new launcher is Home",
+      "reason": "Stock launcher, off once the new launcher is Home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock launcher, off once the new launcher is Home",
+      "reason": "setup wizard; its RecoveryActivity takes Home when launcherx is off",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-g08-us-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

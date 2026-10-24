@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "id": "philips-tpm191e",
+  "brand": "philips",
+  "title": "Philips TPM191E (TP Vision, device PH9M_EA_5599, MediaTek mt5887), Europe",
+  "android": "Android TV 12",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "tpm191e"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Philips TPM191E (TP Vision, device PH9M_EA_5599, MediaTek mt5887), Europe\nAndroid TV 12 (API 31), firmware STT2.230526.001, security patch 2025-11-01.\nFingerprint: Philips/PH9M_EA_5599/PH9M_EA_5599:12/STT2.230526.001/4215:user/release-keys\nAbout 2 GB RAM, armeabi-v7a. Vendor packages use the org.droidtv prefix.\n\nNot the same board as examples/philips-50pus8517 (PH1M_EA_9970A, Android 11) or\nexamples/philips-55pus7503 (TPM171E, Android 8); entries shared with those lists were checked\nagainst this TV's own `pm list packages`.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-tpm191e/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-tpm191e/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher\nThe uk.co.freeview.* packages and org.droidtv.freeviewplayers are disabled from the factory on\nthis unit, so they are not listed (restore.sh would turn them ON).\n\nKept on purpose: org.droidtv.amazonalexa (Alexa power on/off), com.google.android.apps.mediashell\n(Chromecast), org.droidtv.oad and com.easy.oad (firmware updates), org.droidtv.eum (see the\nphilips-50pus8517 list: xtv retries forever without it and the sources drawer dies).\n\nSecond unit (same model, firmware STT2.230526.001, Norway, on Ethernet): the whole list applied, with\nPrime Video, Assistant and Alexa off by choice. After one reboot every entry stayed disabled except\ncom.google.android.tvrecommendations, which came back enabled (batch 4). Left as is rather than disabled\nagain after each boot.\n\nThird unit: Philips 75PUH8265/96, Taiwan, on Ethernet, still on the ANDROID 9 firmware the 2020 sets\nshipped with: PTT1.181130.001 build 200260, security patch 2021-11-05. Same device PH9M_EA_5599,\nmodel TPM191E, MediaTek mt5887, about 2 GB RAM.\nFingerprint: Philips/PH9M_EA_5599/PH9M_EA_5599:9/PTT1.181130.001/200260:user/release-keys\n- The same 15 Freeview packages were disabled from the factory, on a Taiwanese set too.\n- Not installed on this firmware: com.google.android.music, com.phorus.playfi.softap,\norg.droidtv.fastip and org.droidtv.aurora (so the 8505 note on fastip does not apply here).\n- Disabled from this list: batch 1, batch 2, and batch 3 except dlna. org.droidtv.dlna was KEPT,\nfollowing examples/philips-75pus8505 (contentexplorer, \"Media\", binds it on this board).\ntvrecommendations (batch 4) was kept, so the notification panel stays.\n- Also disabled on this unit: org.droidtv.amazonalexa (kept above, unused here),\ncom.google.android.sss.authbridge, org.droidtv.nettvapps, org.droidtv.sticker, and the preloaded\nweb-app tiles nettvapp1814 (ARTE), 4655 (Deezer), 4771 (Divan.TV), 5326 (Toon Goggles),\n5512 (Fishing TV) and 20004410 (Couchplay Games). Labels read with `aapt2 dump badging`.\n- launcher/build-and-install.sh ran through on its own on Android 9: the first cold start answered\n`am start -W` with Status ok in 2.6 s, unlike the Android 12 timeout in the 8505 notes.\n- Idle-loop check after the debloat (philips-50pus8517 quirk 5 method, 30 s): 306 lines, nothing tied\nto a disabled package. Most of it was org.droidtv.ambihue driving paired Hue lights, plus\ntptvservice's ApplicationSwitchService about once a second.\n- Checked the same day; the set has not been restarted since, so persistence across a reboot is\nnot confirmed for this unit.\nBatch 1: telemetry and retail demo",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"DAC\" analytics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "metrics collector sharing candeebug's process",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.usagelogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "boot stats, remote keypress counts, panel telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.demome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Demo me\" retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Market Feedback Agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner referrer / attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "runs once at first setup, nothing afterwards",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Google Calendar sync; no calendar app installed",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "org.droidtv.nettvrecommender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotions",
+      "reason": "\"Top Picks\" content promotion row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotions",
+      "reason": "its headless backend; listed after the row on purpose",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettv.market",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: Philips promotions",
+      "reason": "\"Smart TV Collection\" app storefront; the Play Store stays",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "Assistant and voice search; the remote's mic button and \"Hey Google\" stop. Alexa is separate",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "Google Play Music, discontinued service",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "Batch 3: apps this owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.droidtv.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: apps this owner does not use",
+      "reason": "DLNA/UPnP server and renderer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.phorus.playfi.softap",
+      "action": "disable",
+      "risk": "safe",
+      "group": "# (AudioOutService logs \"PlayFi Enabled\" at boot), so left enabled",
+      "reason": "DTS Play-Fi soft access point",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "# (AudioOutService logs \"PlayFi Enabled\" at boot), so left enabled",
+      "reason": "\"Android TV Core Services\": recommendation rows, notification panel",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "TalkBack screen reader; keep if anyone needs it"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-tpm191e/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

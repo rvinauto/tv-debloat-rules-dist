@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "caxium-58-realtek-rtk2851p",
+  "brand": "caxium",
+  "title": "Caxium 58\" 147 cm UHD Smart TV (Realtek RTD285O, TopTech + Zeasn platform), Android TV 9 (API 28),",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "caxium"
+    ],
+    "model_patterns": [
+      "rtk2851p"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Caxium 58\" 147 cm UHD Smart TV (Realtek RTD285O, TopTech + Zeasn platform), Android TV 9 (API 28),\nbuild RTK2851P (Realtek/RealtekATV/RealtekATV:9/RTK2851P, userdebug), 1.5 GB RAM.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/caxium-58-realtek-rtk2851p/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/caxium-58-realtek-rtk2851p/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher is cn.zeasn.launcher.vstoresubclient.toptech (Zeasn). It is not in this list: disable it only\nonce a replacement Home is installed (launcher/build-and-install.sh with STOCK_LAUNCHER=<that package>).\ncom.android.tv.settings has a FallbackHome as the last resort. There is no Live TV app with a leanback entry.\n\nNotes from this TV:\n- Sideloading works: pm install of a package declaring category HOME succeeds (no verifier block).\n- The TV is Android 9 with the plain adb binary: it reported ro.adb.secure unset and ro.vendor.rtk.force_usb_adb=1,\nso port 5555 may give a shell to anyone on the LAN while ADB is on. Turn debugging off when done.\n- Inputs menu: nothing on this TV answers ACTION_VIEW on a passthrough input URI. com.toptech.tvmenu/.MainActivity\nanswers com.toptech.tv.action.TUNE, but only for an intent without a MIME type, and Android types a content: URI\nby asking its provider. A launcher intent that carries the type never matches; an explicit component does.\n- Kept in use: Netflix (the phone build, com.netflix.mediaclient), YouTube, YouTube Music, Chrome, EShare\ncast/AirPlay/DLNA (com.ecloud.*), the USB media browser (com.rtk.mediabrowser, com.hitv.explore), the Aptoide\nstore (Zeasn vstoresubclient).\n- Leave alone: com.toptech.tv.service (TV core, persistent), com.toptech.tvmenu (source/input menu),\ncom.toptech.tvfactory and factorytools (factory menus), all com.realtek.* (inputs, tuner, providers),\ncom.android.tv.settings, Play Store and Play Services, and com.mgoogle.android.gms (microG, runs next to them).\n- The saved Wi-Fi network belongs to android.uid.system, not to a setup wizard, so nothing here deletes it.\n- Netflix for TV (com.netflix.ninja) is not offered by Play on this build. Official 7.3.1 and 8.3.11 open but fail\nwith ui-800-3 / -121, and 13.2.1 crashes natively in libgibbon.so; the firmware is not Netflix-certified.\nContent, ads and auto-installs",
+  "packages": [
+    {
+      "package": "com.zeasn.services.general",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Zeasn services: SHOW_AD action, weather, YouTube/search shortcuts",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.realtek.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-installs of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.zeasn.deviceportal.asdprovider.toptech",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry and update check",
+      "reason": "Zeasn device portal; also OTA_PULL_CHECK, so no firmware update notices",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.avod.thirdpartyclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps the owner does not use",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.disney.disneyplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps the owner does not use",
+      "reason": "Preloaded apps the owner does not use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.spotify.tv.android",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps the owner does not use",
+      "reason": "Preloaded apps the owner does not use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.facebook.katana",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps the owner does not use",
+      "reason": "Preloaded apps the owner does not use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps the owner does not use",
+      "reason": "Preloaded apps the owner does not use",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/caxium-58-realtek-rtk2851p/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

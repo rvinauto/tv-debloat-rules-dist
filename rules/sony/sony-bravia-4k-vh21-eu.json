@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "id": "sony-bravia-4k-vh21-eu",
+  "brand": "sony",
+  "title": "Sony BRAVIA 4K VH21 (XR-55A80K, 2022 OLED, device BRAVIA_VH21, MediaTek mt5895), EU firmware",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "vh21"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Sony BRAVIA 4K VH21 (XR-55A80K, 2022 OLED, device BRAVIA_VH21, MediaTek mt5895), EU firmware\nAndroid 12 (Google TV, API 31), build BRAVIA_VH21_EU-user 12 STT2.230505.001.S136 682241, 3 GB RAM\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-bravia-4k-vh21-eu/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-bravia-4k-vh21-eu/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nSame device and build as sony-bravia-4k-vh21 (Australia); the EU firmware differs in its preloads\n(ARD, All 4, ITV, My5, iPlayer launchers, YouView, HD+, YouTube Music: all already disabled at the factory\non this set, so not in this list) and has no AU broadcaster apps.\nStock launcher: com.google.android.apps.tv.launcherx (Google TV). build-and-install disables it.\nLive TV / tuner app: com.sony.dtv.tvx. Keep the com.sony.dtv.tvinput.* services, tvapi, sonysystemservice,\nsonyvendorservice, imeproxy, settingsprovider, systemupdate/update, braviasync* and all com.mediatek.*:\nthey drive HDMI, the tuner, the Input overlay, Bravia Sync, updates and the remote's app buttons.\nKept by owner's choice: Netflix, YouTube, Apple TV, Chromecast built-in (mediashell), AirPlay/HomeKit,\nfirmware updates, and Sony IP control (com.sony.dtv.webapi.core): Home Assistant's Sony Bravia integration\nand other IP remotes need it; with it disabled HA reports the TV as off and every command fails.\ninteractivetvutil kept: it holds a TokenProvider other Sony apps may read.\n\nRemote: the Netflix, YouTube, Prime Video and Disney+ buttons are routed by Sony's sonyvendorservice, not by\nthe Google TV launcher, so they keep working after launcherx is disabled. YouTube, Prime Video and Disney+\nall arrive as keycode 196 (scancodes 485, 490, 491), so remapping one of them needs a scancode entry in\napp_keys (scan:490:<package>) with HOME_KEY_SERVICE=1; a keycode remap (or a keycode-only remapper app)\ntakes all three. KEYCODE_SETTINGS does nothing once launcherx is off; HomeKeyService brings it back.\nKEYCODE_TV_INPUT opens Sony's own input overlay, so INPUT_KEY_SERVICE is not needed here.\n\nsetupwraith owned the Wi-Fi network saved during first setup: forget and re-join it in Settings before\ndisabling setupwraith, or the TV drops off Wi-Fi. Other networks it still owns are deleted when it is disabled.\nReboot-checked: everything below stayed disabled. Applied 21 Oct 2026. If something breaks,\n`pm enable <package>` and please report it.\nACR viewing tracker",
+  "packages": [
+    {
+      "package": "tv.samba.ssm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV fingerprints what's on screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "Sony IDD usage-data agent",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "user context providers, boot receiver only",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "Qterics device agent",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "remote-support session service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "telemetry and remote support",
+      "reason": "telemetry and remote support",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sonyselect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Sony ads and recommendations",
+      "reason": "Sony Select app recommendations",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "demo / shop mode",
+      "reason": "demo / shop mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "voice assistant (off by choice; the remote's mic button stops working)",
+      "reason": "voice assistant (off by choice; the remote's mic button stops working)",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.voicesearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (off by choice; the remote's mic button stops working)",
+      "reason": "voice assistant (off by choice; the remote's mic button stops working)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.assistantadapter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "voice assistant (off by choice; the remote's mic button stops working)",
+      "reason": "voice assistant (off by choice; the remote's mic button stops working)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (off by choice)",
+      "reason": "Google TV movies (loses access to purchases in it)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (off by choice)",
+      "reason": "preloaded apps (off by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (off by choice)",
+      "reason": "Vewd (its integration package is already disabled at the factory)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "preloaded apps (off by choice)",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.hbbtvplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "HbbTV / red button",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonyericsson.dlna",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "DLNA media server/renderer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.huey.dlna.module",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "features not used (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.sony.huey.dlna.renderersettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "features not used (off by choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.uei.quicksetsdk.sony",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "UEI QuickSet: IR control of cable boxes/soundbars; HDMI-CEC unaffected",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.gestureapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "features not used (off by choice)",
+      "reason": "BRAVIA CAM gestures (no camera attached)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "features not used (off by choice)",
+      "reason": "Google text-to-speech: TalkBack and read-aloud stop working",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "factory reset. See the Wi-Fi note above first.",
+      "reason": "factory reset. See the Wi-Fi note above first.",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/sony-bravia-4k-vh21-eu/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

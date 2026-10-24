@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "id": "hisense-e5q-pro",
+  "brand": "hisense",
+  "title": "Hisense E5Q Pro (internal model \"VIDAA_TV\", MediaTek MT9653), VIDAA on Android 11, firmware 02.02.70.01",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "hisense"
+    ],
+    "model_patterns": [
+      "e5q"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "Hisense E5Q Pro (internal model \"VIDAA_TV\", MediaTek MT9653), VIDAA on Android 11, firmware 02.02.70.01\nSecurity patch 2022-09-05. China-market set: a VIDAA/Android hybrid with no Google TV launcher,\nso the stock home is com.jamdeo.tv.vod and the tuner app is com.jamdeo.tv.livetv; both are left\nalone here. The VIDAA UI keeps working; this list only removes the ad, telemetry, push and\npreloaded-content layer on top of it.\nSame VIDAA_TV / MT9653 / 02.02.70.01 build as examples/vidda-mt9653/, which goes further (it also\nswaps the launcher); this list is the conservative subset that keeps the stock home.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hisense-e5q-pro/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hisense-e5q-pro/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nApplied and lived with for a few days: no crashes, normal boot, and the inputs / HDMI-CEC and the\nSogou TV keyboard kept working. OTA (com.jamdeo.updateservice, com.hisense.usbupgrade,\ncom.hisense.playerupdate) is left enabled on purpose so firmware updates still arrive.\n\nAlso useful on this firmware, as an extra ad-block flag (not a package):\nsettings put global com.hisense.service.ad_block 1\nHisense advertising",
+  "packages": [
+    {
+      "package": "com.hisense.business.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.service.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "ad service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.platformreport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense telemetry and reporting",
+      "reason": "Hisense telemetry and reporting",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.logupload",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense telemetry and reporting",
+      "reason": "Hisense telemetry and reporting",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.service.message",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Hisense push messages",
+      "reason": "Hisense push messages",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.demonstrate",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Store, hotel and demo modes",
+      "reason": "Store, hotel and demo modes",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Store, hotel and demo modes",
+      "reason": "Store, hotel and demo modes",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.electronictutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "electronic manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.ar.baike",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "AR encyclopedia",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vision.aibook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "AI picture book",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.foodmanage",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "recipe app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.fitmirror",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "fitness mirror",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.videochat.social",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "preloaded video chat",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.hisense.tv.videoconference",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded content and gimmicks",
+      "reason": "video conferencing",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jamdeo.tv.fte",
+      "action": "disable",
+      "risk": "safe",
+      "group": "First-run setup and the ambience-photo screensaver",
+      "reason": "First-run setup and the ambience-photo screensaver",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vt.ambiencephoto",
+      "action": "disable",
+      "risk": "safe",
+      "group": "First-run setup and the ambience-photo screensaver",
+      "reason": "First-run setup and the ambience-photo screensaver",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.hisense.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Weather and calendar",
+      "reason": "Weather and calendar",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.jamdeo.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Weather and calendar",
+      "reason": "Weather and calendar",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hisense-e5q-pro/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

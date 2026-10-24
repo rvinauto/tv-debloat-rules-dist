@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "tcl-50c725k",
+  "brand": "tcl",
+  "title": "TCL 50C725K (reports as \"Smart TV Pro\", device BeyondTV4, product BeyondTV6, board RTD2851M, Realtek rtd288o), 2 GB RAM",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "50c725k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher;",
+  "notes": "TCL 50C725K (reports as \"Smart TV Pro\", device BeyondTV4, product BeyondTV6, board RTD2851M, Realtek rtd288o), 2 GB RAM\nAndroid TV 11 (SDK 30) with the older com.google.android.tvlauncher, build RP1A.200622.001, fingerprint\nTCL/BeyondTV6/BeyondTV4:11/RP1A.200622.001/AR10:user/release-keys.\nSame BeyondTV4 device as examples/tcl-65c725 and examples/tcl-55c725 (that one runs launcherx).\nApplied on a real unit on 2026-10-20/21 with launcher/ as Home; the list below survived a reboot.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-50c725k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-50c725k/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher; launcher/build-and-install.sh disables it, it is not listed.\nLive TV app: com.tcl.tv (kept; set live_tv_package to it in launcher config.xml). Inputs: com.tcl.tvinput (kept).\nNever disable (same platform as examples/tcl-43c645): com.tcl.providers.config com.tcl.initsetup\ncom.tcl.system.server com.tcl.tcl_bt_rcu_service com.tcl.autopair com.tcl.tvinput com.tcl.tv com.tcl.settings\ncom.tcl.inputmethod.international. Also kept: com.tcl.usercenter (TCL account), com.tcl.versionUpdateApp\n(firmware updater), com.tcl.miracast and com.google.android.apps.mediashell (Chromecast), com.tcl.MultiScreenInteraction_TV,\ncom.google.android.backdrop (screensaver), com.google.android.tungsten.setupwraith.\n\nTCL and Google content, ads, promos and telemetry",
+  "packages": [
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "pushes TCL content to the home screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "promotes apps in the TCL menu",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "store demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL notifications",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL analytics",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.notereminder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "silent installs of preloaded apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services not needed",
+      "reason": "Background services not needed",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services not needed",
+      "reason": "stock quick-settings panel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "TCL browser; also the biggest of these (~180 MB with data)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "Preloaded apps and by-choice extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "Preloaded apps and by-choice extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "Google voice assistant (~175 MB of RAM in use); off by choice",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "speech engine, only used by TalkBack",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "Preloaded apps and by-choice extras",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "streaming apps off by choice",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "au.com.stan.and",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and by-choice extras",
+      "reason": "Preloaded apps and by-choice extras",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "accessibility screen reader; off by choice"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-50c725k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "id": "master-g-mga3200",
+  "brand": "master",
+  "title": "Master-G MGA3200 (manufacturer SCBC, device R1, Realtek platform), Android TV 9 (API 28), 1.5 GB",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "master"
+    ],
+    "model_patterns": [
+      "mga3200"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Master-G MGA3200 (manufacturer SCBC, device R1, Realtek platform), Android TV 9 (API 28), 1.5 GB\nRAM, 1280x720 output. Firmware PTT1.201001.001 build 259 (2020-12-23), security patch 2020-11-05.\nThe OS itself reports model/device strings \"ATV R1\"/\"R1\" on this TV — same hardware:\nfingerprint MASTER-G/MASTER-G/R1:9/PTT1.201001.001/259:user/release-keys\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/master-g-mga3200/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/master-g-mga3200/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nSame SCBC platform and Realtek board family as examples/thomson-t32rtl6000/ and examples/sanyo-atv-r2/\n(SCBC, PTT1.x firmware branch).\n\nStock launcher: com.google.android.tvlauncher (restore.sh / build-and-install.sh defaults work).\nLive TV app: com.android.tv with the Realtek ISDB-T tuner stack (com.realtek.dtv, com.realtek.tv.isdb) —\nthe tuner must stay enabled or digital broadcast channels disappear.\nKept on purpose: GMS / Play / WebView / keyboard, remote/Bluetooth (com.apps.smartkey,\nbluetoothremote, fivekey, virtualkey, autopair, com.realtek.keyinterceptserver),\ncom.creative.fastscreen.tv (FastCast Miracast receiver — NOT ad bloat), and streaming apps left to taste.\n--- Telemetry, analytics, recommendation rows ---",
+  "packages": [
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.function.gdpr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.channels",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "the SCBC \"S-Channels\" content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.scbc.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "partner auto-install config for SCBC devices",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "--- Content/promo rows and partner auto-installs ---",
+      "reason": "--- Content/promo rows and partner auto-installs ---",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.vewd.core.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Preinstalled service and stores ---",
+      "reason": "--- Preinstalled service and stores ---",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Streaming apps off by choice (adjust to taste) ---",
+      "reason": "--- Streaming apps off by choice (adjust to taste) ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google add-ons ---",
+      "reason": "--- Google add-ons ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- Google add-ons ---",
+      "reason": "--- Google add-ons ---",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.eshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "retail store demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "--- OEM leftovers (factory/demo/test utilities, com.apps.*) ---",
+      "reason": "store promotional sticker overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.clear",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "reason": "background task killer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.networkspeed",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "reason": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.usbmediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "reason": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "reason": "Factory menus: leave alone, never open (as on sanyo-atv-r2)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/master-g-mga3200/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-ansp0",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-ANSP0 (codename jobs; 小米电视5 Pro 65\", China-market firmware), Android 9 (SDK 28),",
+  "android": "Android 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "ansp0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.mitv.tvhome",
+  "notes": "Xiaomi MiTV-ANSP0 (codename jobs; 小米电视5 Pro 65\", China-market firmware), Android 9 (SDK 28),\nfirmware 23.6.5.3226, Amlogic, 4 GB RAM, 1080p UI (320 dpi), 54 GB /data.\nStock launcher: com.mitv.tvhome (PatchWall, HOME activity .MainActivityUserMode) - KEEP IT ENABLED,\nsee \"Home\" below. Install with: STOCK_LAUNCHER=com.mitv.tvhome launcher/build-and-install.sh\n(build-and-install.sh already knows com.mitv.tvhome, so the argument is optional).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-ansp0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-ansp0/debloat.txt com.mitv.tvhome\nMore notes (settings intents, inputs, ADB, install blacklist): docs/devices/xiaomi-mitv-ansp0-jobs.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nNotes from this firmware:\n- Home: disabling com.mitv.tvhome drops HOME to com.android.tv.settings/.system.FallbackHome\n(priority -1000 in the manifest, but it still wins once nothing else is left), which shows a\nblack screen. Keeping PatchWall enabled and setting the new launcher as the preferred home\nworks, and survives a reboot; PatchWall is then never shown. Verified with\n`cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity`.\n- Standard settings intents DO resolve here: android.settings.SETTINGS ->\ncom.android.tv.settings/.MainSettings, android.settings.WIFI_SETTINGS ->\ncom.android.tv.settings/.connectivity.NetworkActivity. The launcher's pills need no fallback keys.\n- Inputs: com.droidlogic.tvinput registers the ports (Hdmi1InputService/HW5,\nHdmi2/HW6, Hdmi3/HW7, AV1InputService/HW1), but nothing answers ACTION_VIEW on the standard\nTvContract passthrough URI, so the launcher lists the ports without being able to switch them.\nThe TV app switches with EXTSRC_PLAY and an integer extra instead; see\ndocs/devices/xiaomi-mitv-ansp0-jobs.txt.\n- Network ADB (port 5555) closes on every reboot; re-enable it in\nSettings -> 账号与安全 (Account & Security) -> ADB 调试 after each power cycle.\n- `pm disable-user` is accepted for the shell user on this build (unlike MiTV-ANTL0, which needs\n`pm hide`).\n- mitv.service is the core MiTV service: do not touch it.\n- Voice: disabling voicecontrol, wakeupservice, the Mico MQTT service and the two Mi Home\npackages also stops an external Xiao Ai speaker from controlling the TV (its \"turn the TV\noff\" command). Verified both ways on this set; see the Voice group below.\n- com.xiaomi.mitv.settings is the vendor settings UI; the standard com.android.tv.settings app is\nalso present and answers the plain settings actions.\n- No Google apps at all. Content comes from CN streaming apps; casting (smartshare / miplay /\nwfdsinkhelperservice / duokan.airkan.tvbox / upnp) and the app store are deliberately kept.\n- com.mitv.care is disabled by the factory already.\n\nOwner's-choice removals NOT listed below (disabled here, re-enable in Settings > Apps if needed):\ncom.douyu.xl.douyutv (Douyu), net.cibntv.ott.sk (CIBN 4K), com.lutongnet.nldmxXiaomiChildren\n(children's training app) and one sideloaded tool.\nXiaomi telemetry / push / cloud control",
+  "packages": [
+    {
+      "package": "com.miui.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Mi analytics",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TV analytics",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "statistics upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tvqs",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "quality system: uploads crash/perf/dropbox entries",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.csi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"after-sales assistant\": satisfaction survey upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.cloudcontrol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "cloud control: starts on connectivity, pushes apps remotely",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.smspush",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "SMS push, useless on a TV",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Ads / promoted content",
+      "reason": "MiWebView promo container; also fetches the screensaver ads",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mitv.shoplugin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "TV shopping channel plugin (Taobao SDK)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.gitvdemo.video",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "GITV promo demo reel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.duokan.videodaily",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads / promoted content",
+      "reason": "video daily promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "\"TV Manager\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.gamecenter.sdk.service.mibox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Xiaomi background services",
+      "reason": "game centre SDK",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Mi Music",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Mi photo album",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "Media Explorer as a tile; USB browsing still works",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.screenrecorder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "screen recorder",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.calendar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "calendar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.alarmcenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "alarms",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.handbook",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "user handbook",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.tweather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps not used",
+      "reason": "weather",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.karaoke.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "karaoke",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvvideocall",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "MiTime video calls",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.eetv.litehome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "a second home screen (\"办公模式\" office mode)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.light",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "light-effect app (\"Symphony of Shadows\")",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.smartpanel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "smart-home panel",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.smarthome.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "Mi Home",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.voicecontrol",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "Xiao Ai voice control",
+      "uad": null,
+      "review_flags": [
+        "policy:*cec*"
+      ]
+    },
+    {
+      "package": "com.xiaomi.wakeupservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "voice wake-up",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mico.mqtt.service.application.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice: features this owner does not use (comment out what you do use)",
+      "reason": "Mico voice MQTT service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "settings put secure screensaver_enabled 1",
+      "reason": "settings put secure screensaver_enabled 1",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-ansp0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

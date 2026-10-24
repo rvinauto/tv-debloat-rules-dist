@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "id": "prismplus-q65-ultra-r10g",
+  "brand": "prismplus",
+  "title": "PRISM+ Q65 Ultra 2026 QLED 4K AI Google TV (device R10G, product PRISMPLUS_FFM, made by MOKA)",
+  "android": "Android TV 14",
+  "match": {
+    "brand_patterns": [
+      "prismplus"
+    ],
+    "model_patterns": [
+      "q65[-_ ]?r10g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "PRISM+ Q65 Ultra 2026 QLED 4K AI Google TV (device R10G, product PRISMPLUS_FFM, made by MOKA)\nAndroid TV 14 (Google TV), firmware UKR1.251010.001, Realtek RTD2875 SoC, RTD6748 platform\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/prismplus-q65-ultra-r10g/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/prismplus-q65-ultra-r10g/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (pass it to restore.sh, the default is wrong here).\nLive TV and inputs: keep com.realtek.dtv and com.realtek.tv.atv (needed for HDMI and the other inputs).\n\nTested on one set, disabled with pm disable-user --user 0 and lived with for a few days.\nChecked over adb on 2026-10-20: HDMI input, ARC audio to a soundbar and Home work. Nothing else verified.\nLauncher partner customization and Google partner setup",
+  "packages": [
+    {
+      "package": "com.realtek.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play partner auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.seraphic.media.tv.interactive.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded services",
+      "reason": "Preloaded services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded services",
+      "reason": "ambient mode screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.apps.scast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded services",
+      "reason": "likely screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.apps.wifihotspot",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded services",
+      "reason": "Preloaded services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mk.tv.meeting.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded services",
+      "reason": "Preloaded services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.esticker3",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded services",
+      "reason": "Preloaded services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.printspooler",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded services",
+      "reason": "Preloaded services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.dtmb",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "reason": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.tv.isdb",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "reason": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.tv.atsc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "reason": "Broadcast tuner apps not used here (DTMB, ISDB, ATSC)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.karaoke.userguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Karaoke",
+      "reason": "Karaoke",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.realtek.kara",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Karaoke",
+      "reason": "Karaoke",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.mk.gameui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.puresound",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.apps.usbmediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.wbd.stream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Max, off by choice",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/prismplus-q65-ultra-r10g/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

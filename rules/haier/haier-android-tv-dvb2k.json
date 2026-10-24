@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "id": "haier-android-tv-dvb2k",
+  "brand": "haier",
+  "title": "Haier Android TV DVB2K (ro.product.model, device broadway, product HaierATVT56DVB),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "haier"
+    ],
+    "model_patterns": [
+      "dvb2k"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Haier Android TV DVB2K (ro.product.model, device broadway, product HaierATVT56DVB),\nAndroid TV 11 (API 30), firmware RTMA.250416.179, armeabi-v7a, 1280x720 at 213 dpi, about 934 MB RAM.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/haier-android-tv-dvb2k/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/haier-android-tv-dvb2k/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (.MainActivity). The install script disables it\nafter the new launcher is running; it is not in this list.\nLive TV: com.mediatek.wwtv.tvcenter (.nav.TurnkeyUiMainActivity).\nSaved Wi-Fi networks on the test set were owned by android.uid.system, not setupwraith.\nsetupwraith is installed and its RecoveryActivity claims HOME, but it was not an active Home\ncandidate. Disabling only com.google.android.tvlauncher was enough for Home to land on the new launcher.\nSame-day test, not a multi-day soak.\n\nAlready disabled before this list, so they are not repeated here:\ncom.google.android.marvin.talkback, com.cltv.fast, com.google.android.youtube.tvmusic,\ncom.haier.apps.evoSmart, ru.haier.evo (also claims HOME), com.google.android.play.games.\n\nKEEP, even though the names look like bloat (components checked with dumpsys package):\n- com.haier.tv.hmagicboard, com.cvte.tv.hkcfac: GlobalKeyReceiver, remote hot keys.\n- com.example.bt_pair_tips, com.mediatek.autopair: Bluetooth remote pairing.\n- com.telink.lt.ota: remote (Telink BLE) firmware.\n- com.at.factory.*, com.cvte.tv.at, com.cvte.tv.fac.menu, com.cvte.tv.fac.aging, mediatek.factorymenu.ui: factory.\n- com.mediatek.wwtv.tvcenter, com.mediatek.tvinput, com.mediatek.tv.service, com.mediatek.wwtv.setupwizard,\ncom.mediatek.wwtv.mediaplayer (USB media), com.mediatek.androidbox (HaiCast / Miracast).\n- com.google.android.katniss (Assistant), com.google.android.apps.mediashell (Chromecast).\n- Streaming apps left installed: Netflix, Prime Video, YouTube, Hotstar, Sun NXT, Zee5 (com.graymatrix.did).\nContent recognition and retail demo",
+  "packages": [
+    {
+      "package": "tv.anoki.acr.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Anoki ACR",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail demo, HRetailDisplay_2K",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haierubic.usmartdevice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "Haier smart-device service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.yudee.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "Haier share service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.sharetv.webview",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "webview used by the share service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.apps",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "HaierApps_evoSmart promo",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.launcher.haiermatrix",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "Zeasn content launcher, not the system Home",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.haier.tvhousekeeper",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "TV housekeeper / cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cvte.haier.tv.appmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Haier telemetry, share, and content apps",
+      "reason": "boot receiver that manages Haier apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock-home recommendation rows and partner auto-install",
+      "reason": "recommendation and ad rows",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock-home recommendation rows and partner auto-install",
+      "reason": "Stock-home recommendation rows and partner auto-install",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock-home recommendation rows and partner auto-install",
+      "reason": "Stock-home recommendation rows and partner auto-install",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Stock-home recommendation rows and partner auto-install",
+      "reason": "Stock-home recommendation rows and partner auto-install",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.haier.hanyang",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Stock-home recommendation rows and partner auto-install",
+      "reason": "Haier auto-install stub",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/haier-android-tv-dvb2k/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

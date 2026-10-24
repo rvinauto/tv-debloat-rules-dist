@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "id": "xgimi-mogo-2",
+  "brand": "xgimi",
+  "title": "XGIMI MoGo 2 projector (model MoGo, device xgimiapollo, product pokemon), Android TV 11 (SDK 30),",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "xgimi"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "XGIMI MoGo 2 projector (model MoGo, device xgimiapollo, product pokemon), Android TV 11 (SDK 30),\nbuild RTT0.211222.001 / 2.13.192 release-keys, security patch 2024-06-05.\n\nApply:   TV_HOST=<projector ip> tools/disable.sh examples/xgimi-mogo-2/debloat.txt\nUndo:    TV_HOST=<projector ip> tools/restore.sh examples/xgimi-mogo-2/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (not in this list: the launcher script disables it\nand restore.sh brings it back). Applied on a real unit on 2026-10-19/20 and rebooted twice; in daily\nuse for about a day when this was written, so treat it as a short-test list.\n\nNotes:\n- ADB: Developer options -> USB debugging AND Network debugging (both, or port 5555 stays closed).\n- Short list on purpose: only packages found on this firmware and actually disabled are here.\n- The XGIMI hardware and input services were all left enabled (auto keystone, ToF autofocus, HDMI\ninput player, Bluetooth remote, key handling), as on examples/xgimi-horizon-s-pro; see its header.\n- Voice (com.google.android.katniss) is NOT disabled here: the remote's mic button works with it.\n- The Play Store reports the Netflix TV app (com.netflix.ninja) as \"not compatible\" on this model.\nNetflix's regular Android app (com.netflix.mediaclient) installs and runs, browser-style.\nTelemetry, bug reports and feedback",
+  "packages": [
+    {
+      "package": "com.xgimi.datareporter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "XGIMI usage reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "XGIMI bug report uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Google feedback",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.ted.android.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads",
+      "reason": "TED",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.doubanfm",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloads",
+      "reason": "XGIMI music app, speaker-mode screen",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice",
+      "reason": "Chromecast built-in; re-enable to cast from phones",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice",
+      "reason": "Google phone-to-TV connect service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xgimi.upgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice",
+      "reason": "XGIMI firmware updater; re-enable to receive updates",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xgimi-mogo-2/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

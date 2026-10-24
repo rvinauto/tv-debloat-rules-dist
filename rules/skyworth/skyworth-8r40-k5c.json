@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "id": "skyworth-8r40-k5c",
+  "brand": "skyworth",
+  "title": "Skyworth / Coocaa 8R40_K5C (Realtek rtd285x, 1 GB RAM, 32-bit), Android 8.0 (API 26), build OPR6.170623.012",
+  "android": "Android 8.0",
+  "match": {
+    "brand_patterns": [
+      "skyworth"
+    ],
+    "model_patterns": [
+      "8r40[-_ ]?k5c"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.tianci.movieplatform",
+  "notes": "Skyworth / Coocaa 8R40_K5C (Realtek rtd285x, 1 GB RAM, 32-bit), Android 8.0 (API 26), build OPR6.170623.012\nMainland China domestic firmware (com.tianci.* / com.coocaa.* family), NOT the Google-TV\nSkyworth in examples/skyworth-sw-22sa (that one is com.smartdevice.*, Android 14).\nStock launcher: com.tianci.movieplatform (hardcoded in /system/pcfg, DO NOT DISABLE).\nLive TV / System UI: com.skyworth.tv (DO NOT DISABLE).\nIf you pass package names to tools/restore.sh or launcher/build-and-install.sh, use the two above.\n\nApply:    TV_HOST=<tv ip> tools/disable.sh examples/skyworth-8r40-k5c/debloat.txt\nUndo:     TV_HOST=<tv ip> tools/restore.sh examples/skyworth-8r40-k5c/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nCRITICAL SAFETY TRAPS (READ BEFORE USING). Full details: docs/devices/skyworth-8r40-k5c.md\n1. The ONLY ADB toggle lives inside Settings > 基本设置 > 设备信息 (About this TV) > 更多信息.\nThat page crashes if any of these are disabled:\ncom.tianci.de\ncom.skyworthdigital.stb.dataprovider\ncom.coocaa.sky.ccapi\nA crashed About page means ADB can never be re-enabled: factory reset is the only way out.\nBEFORE debloating, install Activity Launcher (de.szalkowski.activitylauncher.oss) and confirm you\ncan open com.tianci.setting/.factorysetting.FactorySetting (action coocaa.intent.action.TIANCI_FACTORY).\nApply in small batches and re-open the About page after each batch.\n2. DO NOT DISABLE com.tianci.movieplatform (stock launcher) or any other current launcher.\nHOME is hardcoded in read-only /system/pcfg and no package declares category HOME, so disabling\nthe launcher gives a black screen on boot (sys.boot_completed never set).\n3. Do not touch persist.service.homepage.* props. Setting persist.service.homepage.switch 0 stopped\nadbd from starting after reboot on the reporter's unit.\n\nBoot ad (not a package, run once over ADB, survives reboot):\ntools/tv.py 'setprop persist.sys.bootvideo.time 1'\nBoot ads and autostart queue (disabled from the factory on many units, zero risk)",
+  "packages": [
+    {
+      "package": "com.tianci.ad",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Coocaa ad engine (boot ad, started by bootQueue.xml at ~5 s)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.push",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Boot push notifications (bootQueue.xml, ~1.2 s)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.appstore",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Coocaa App Store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.ipc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Tianci IPC helper",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.autoinstaller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Background APK auto-install service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tianci.user",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Account management",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.baidu.oases",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Baidu Oases / security scanner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.mall",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Shopping portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.activecenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Activity / promotions center",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.app_browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Built-in lightweight web browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.messageprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "System message popups",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.tvpitv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "PiTV aggregation service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.coocaa.theme.child",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Children's mode theme",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.icoolme.tv.weather",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Weather preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.skyworth.blockchain",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Blockchain preload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.skyworth.smarthome_tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Commercial bloatware and unused features",
+      "reason": "Smart home dashboard",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/skyworth-8r40-k5c/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

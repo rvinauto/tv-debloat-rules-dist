@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55s470g",
+  "brand": "tcl",
+  "title": "TCL 55S470G (S4 class Google TV, US; device G10, product G10_4K_US_NF, Realtek), 1.8 GB RAM",
+  "android": "Android 12",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55s470g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 55S470G (S4 class Google TV, US; device G10, product G10_4K_US_NF, Realtek), 1.8 GB RAM\nAndroid 12 (Google TV), firmware STT2.230203.001, incremental AS50 -- same build as tcl-g10-google-tv\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-55s470g/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-55s470g/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.tcl.tv.\nKeep: com.tcl.tv, com.tcl.tvinput, com.tcl.dashboard, com.tcl.suspension, com.tcl.autopair,\ncom.tcl.systemserver, com.tcl.providers.config, com.tcl.initsetup, com.tcl.useragreement,\ncom.tcl.factory.view, com.tcl.globalkeyoverlay and all com.realtek.*.\n\nUnlike the G10 units in tcl-g10-google-tv, nothing shipped disabled on this one: Samba TV,\nlogkit and ttvs were all enabled. com.tcl.ttvs is KEPT here on purpose: besides Samba ACR and TCL\nBI analytics it hosts the firmware updater (versionUpdateApp SystemUpdateService) and T-Cast.\nDisable it only if you don't want TV firmware updates. Opt out in Settings > Privacy > Samba\nInteractive TV, and untick every entry under Manage providers there too (unticking the main switch\nleaves those ticked).\n\nKept by choice: Netflix, YouTube, Prime Video, Disney+, Apple TV, Paramount+, Tubi, TCLtv+,\nTCL Live (com.tcl.channelplus), AirPlay, firmware updates.\nNo separate Miracast package on this firmware.\nBatch 1: tracking and analytics",
+  "packages": [
+    {
+      "package": "tv.samba.ssm.ui",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Samba TV ACR front end (the frame service lives in ttvs, see above); re-enabled at every boot while ttvs is enabled, so also opt out in Settings",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartlink.core",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "bundles a silent app installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "TCL push messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 2: TCL content, ads and promos",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "Batch 3: retail demo, hotel mode, preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "Batch 3: retail demo, hotel mode, preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "Batch 3: retail demo, hotel mode, preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "Batch 3: retail demo, hotel mode, preloads",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "re-enable for the console game-mode overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "re-enable to play media from USB drives",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "re-enable to update a TCL soundbar",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 3: retail demo, hotel mode, preloads",
+      "reason": "Batch 3: retail demo, hotel mode, preloads",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: background services (off by choice: voice, Chromecast)",
+      "reason": "TGuard cleaner / app manager",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 4: background services (off by choice: voice, Chromecast)",
+      "reason": "ambient mode screensaver (shows promos); screensaver moved to com.android.dreams.basic",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: background services (off by choice: voice, Chromecast)",
+      "reason": "Google Assistant voice search",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 4: background services (off by choice: voice, Chromecast)",
+      "reason": "Chromecast built-in",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 5: preloaded apps (off by choice)",
+      "reason": "Batch 5: preloaded apps (off by choice)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 5: preloaded apps (off by choice)",
+      "reason": "Google TV app (purchases/rentals)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Batch 5: preloaded apps (off by choice)",
+      "reason": "Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Batch 5: preloaded apps (off by choice)",
+      "reason": "Batch 5: preloaded apps (off by choice)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": ""
+    },
+    {
+      "package": "com.google.android.tv.remote.service",
+      "why": "critical package (policy match 'com.google.android.tv.remote.service')",
+      "source_comment": "Google TV phone-app remote (the physical remote is unaffected)"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55s470g/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

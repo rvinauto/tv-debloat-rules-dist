@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "id": "tcl-55p638",
+  "brand": "tcl",
+  "title": "TCL 55P638 (reports \"Smart TV\", device BeyondTV4), Android TV 11.",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "55p638"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL 55P638 (reports \"Smart TV\", device BeyondTV4), Android TV 11.\nBuild RP1A.200622.001 release-keys.\nPackage persistence and CleanYourTV Home verified after reboot on 2026-10-21.\nBrowseHere was disabled afterward; the owner confirmed normal TV operation.\n\nApply: TV_HOST=<tv ip> tools/disable.sh examples/tcl-55p638/debloat.txt\nRestore: TV_HOST=<tv ip> tools/restore.sh examples/tcl-55p638/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out anything you use.\nDisable setupwraith before launcherx; launcher replacement works on this TV.\nThis list leaves launcherx enabled; launcher/build-and-install.sh handles the Home switch.\nCheck saved Wi-Fi ownership before disabling setupwraith on another TV.\nGoogle TV home and setup",
+  "packages": [
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.overseasappshow",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.notereminder",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "firmware-dependent TCL service; inherited disabled state",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL analytics, logging, content feeds, promos and optional vendor services",
+      "reason": "optional private-listening feature",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Voice assistants — off by choice",
+      "reason": "Voice assistants — off by choice",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants — off by choice",
+      "reason": "Voice assistants — off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.assistant",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants — off by choice",
+      "reason": "Voice assistants — off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice assistants — off by choice",
+      "reason": "Voice assistants — off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "Google extras / preload configuration",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "Google extras / preload configuration",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "Google extras / preload configuration",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "Google extras / preload configuration",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "Google extras / preload configuration",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google extras / preload configuration",
+      "reason": "disabled by owner choice; not proven telemetry-only",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google extras / preload configuration",
+      "reason": "Google calendar sync",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "au.com.stan.and",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused streaming apps — off by choice",
+      "reason": "Unused streaming apps — off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused streaming apps — off by choice",
+      "reason": "Unused streaming apps — off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused streaming apps — off by choice",
+      "reason": "Unused streaming apps — off by choice",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "tv.wuaki.apptv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused streaming apps — off by choice",
+      "reason": "Unused streaming apps — off by choice",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.browser",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional apps — off by choice",
+      "reason": "BrowseHere; disabled and owner-tested",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.magiconnectfree",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional apps — off by choice",
+      "reason": "MagiConnect / T-Cast phone integration",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.chromium.webview_shell",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional apps — off by choice",
+      "reason": "test browser, NOT the system WebView provider",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Optional apps — off by choice",
+      "reason": "TCL gallery",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "screen reader; no accessibility service was active"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-55p638/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

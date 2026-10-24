@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-mssp0",
+  "brand": "xiaomi",
+  "title": "Xiaomi MiTV-MSSP0 / Xiaomi Mi TV 4A 32 (32-inch, codename amelie).",
+  "android": "Android TV 9",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "mssp0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Xiaomi MiTV-MSSP0 / Xiaomi Mi TV 4A 32 (32-inch, codename amelie).\nAndroid TV 9 (SDK 28), firmware PI.5926 release-keys (incremental 5926), platform m5621.\nApplied on 2026-10-19; these packages were still disabled on the same set on 2026-10-21.\n\nApply: TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-mssp0/debloat.txt\nUndo:  TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-mssp0/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher. It is deliberately NOT listed here;\nlauncher/build-and-install.sh handles its cutover after the replacement Home is installed.\nLive TV: com.mediatek.wwtv.tvcenter, kept enabled along with the TV input services.\nGboard, Bluetooth, the phone remote service and firmware update settings were left alone.\n\nOwner choices and checks:\n- Assistant, Gallery and the Xiaomi media browser are disabled by owner choice.\nKeep their packages enabled if you use those features.\n- Before disabling Backdrop, install the launcher and select its Clock screensaver:\nTV_HOST=<tv ip> tools/tv.py 'settings put secure screensaver_components com.gathin.tvhome/.ClockDream'\n- Home, clock and navigation were checked on the TV. The initial setup passed a reboot and\nrollback/reapply check on 2026-10-19; Gallery and the media browser were disabled later that day.\n- The input picker opened an HDMI session, but no connected source was available to test A/V.\n- This is not the MiTV-MOOQ1 / tarzan or MiTV-MSSP3 / machuca firmware; do not merge their lists.\nXiaomi telemetry and Google TV bug-report uploader",
+  "packages": [
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tv.bugreportsender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Promotional content and stock-home recommendation feeds",
+      "reason": "Promotional content and stock-home recommendation feeds",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.floatingframe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Promotional content and stock-home recommendation feeds",
+      "reason": "Promotional content and stock-home recommendation feeds",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Promotional content and stock-home recommendation feeds",
+      "reason": "Promotional content and stock-home recommendation feeds",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.leanbacklauncher.recommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Promotional content and stock-home recommendation feeds",
+      "reason": "Promotional content and stock-home recommendation feeds",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Assistant - off by owner choice",
+      "reason": "Google Assistant; voice search is lost",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "com.google.android.speech.pumpkin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Assistant - off by owner choice",
+      "reason": "Assistant speech models",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.mediaexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused preloaded apps - off by owner choice",
+      "reason": "Xiaomi USB/media file browser; keep if used",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Unused preloaded apps - off by owner choice",
+      "reason": "Xiaomi photo gallery",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Original photo screensaver, replaced by the launcher's Clock (see above)",
+      "reason": "Original photo screensaver, replaced by the launcher's Clock (see above)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-mssp0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

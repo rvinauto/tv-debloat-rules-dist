@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "id": "philips-65oled706",
+  "brand": "philips",
+  "title": "Philips 65OLED706/12 (65\" 4K OLED, 3-sided Ambilight), France",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "philips"
+    ],
+    "model_patterns": [
+      "65oled706"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Philips 65OLED706/12 (65\" 4K OLED, 3-sided Ambilight), France\nAndroid TV 11 (SDK 30), firmware RTT2.211108.001 build 21029, security patch 2025-10-01, board PH1M_EA_9970A\nro.product.model=2021/22 Philips UHD Android TV  ro.product.device=PH1M_EA_9970A\nFingerprint: Philips/PH1M_EA_9970A/PH1M_EA_9970A:11/RTT2.211108.001/21029:user/release-keys\nMediaTek MT5895, 2.7 GB RAM, 1920x1080 UI. Connected over Ethernet.\n\nSame board AND same firmware build as examples/philips-50pus8517 and examples/philips-55oled707. Read the\n50PUS8517 quirks and its DO NOT DISABLE block first: they apply here as written, and nothing in that block is\ndisabled below (xtv, eum, aurora, playtv, nettvbrowser, browser engine, Ambilight, remote, firmware update...).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/philips-65oled706/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/philips-65oled706/debloat.txt com.google.android.tvlauncher\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher\nLive TV app:    org.droidtv.playtv (set live_tv_package to it; the Inputs menu then lists HDMI 1-4, the analog\ninputs and Live TV, and switching to an HDMI input opens it in playtv)\n\nWhat this unit adds to the 50PUS8517 / 55OLED707 notes:\n\n1. Already disabled at the factory on this French unit: the UK Freeview apps (uk.co.freeview.*,\norg.droidtv.freeviewplayers), Apple TV, YouTube Music AND org.droidtv.aurora. The 50PUS8517 notes say a\ndisabled aurora leaves xtv retrying every 201 ms; on this unit an idle 30 s log shows 0 handleConnectAurora\nand 0 connectCotextService lines, so aurora was left as the factory set it.\n2. Packages the earlier lists do not have, checked with `dumpsys package` (none launched):\norg.droidtv.astrahdplus (HD+ German satellite info pages), io.mimi.tvapp + io.mimi.sdk.service (Mimi\nhearing-personalised sound), org.droidtv.dropboxprovider (Dropbox in Media). All three disabled cleanly;\nsound, Media and live TV unaffected. Not touched: org.droidtv.fastip (IP channel installer; the 75PUS8505\nnotes say SOURCES dies without it), org.droidtv.sam / csm (service menus), dukservice, usbbreakin, factory.\n3. tools/tv.py (adb_shell) gets no answer until it is accepted at the TV's own \"Allow USB debugging?\" prompt,\neven with the same key the stock adb already uses; tools/theme.sh hangs on it until then. The stock adb works.\n4. OLED screensaver: tvsystemui draws a moving Philips logo over everything after about 5 minutes of a still\npicture, and once it is up it stays on top of the launcher's own idle clock. home_idle_clock_minutes must\ntherefore be 4 or less here; with the clock already up (it moves every minute) the logo did not come back\nin more than 7 minutes. Injected keys over adb do not dismiss the logo, and the shell cannot write to the\nremote's input device on this firmware (sendevent: Permission denied), so test it with the real remote.\n5. The TV powers on to the last source in use: switched off from Home it comes back on Home, switched off on\nan HDMI input it comes back on that input. Nothing to fix.\n6. Chromecast (mediashell) re-enables itself, as on the 50PUS8517: left out.\n\nVerified with the real remote after the list and the launcher: channel change, TV guide, SOURCES drawer and\nHDMI switching, sound and Ambilight all work; Home opens the replacement launcher. After a reboot, waiting\n15 s first (quirk 1), all 26 packages were still disabled and nothing came back. Free memory at idle on Home:\nabout 780 MB stock, about 1.1 GB with this list and the launcher.\n\nKept on purpose (owner's choice): Google Assistant (katniss), Play-Fi, IP control, DLNA, YouTube, Prime Video.\nTP Vision + Google telemetry. Disable candeebug and gel together (gel runs in candeebug's process).",
+  "packages": [
+    {
+      "package": "org.droidtv.candeebug",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"DAC\" analytics uploader",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.gel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "metrics collector",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.usagelogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "usage and panel telemetry",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvrecommender",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Top Picks\" row",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.recommendation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "org.droidtv.nettv.market",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"Collection Smart TV\" app store",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.nettvapps",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "app gallery preload installer",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tpv.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Play auto-install of partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.astrahdplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "HD+ (German satellite operator) info pages",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.m7opapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "M7 satellite operator promo; keep if you use one of those operators",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.demome",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.amazonalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Features this owner does not use. Check each against your own setup.",
+      "reason": "Alexa bridge; channel zapping and the guide still work without it",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "io.mimi.tvapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Features this owner does not use. Check each against your own setup.",
+      "reason": "Mimi hearing-personalised sound",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "io.mimi.sdk.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Features this owner does not use. Check each against your own setup.",
+      "reason": "its audio service; sound unaffected when both are off",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "org.droidtv.dropboxprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Features this owner does not use. Check each against your own setup.",
+      "reason": "Dropbox source in Media",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.onetimeinitializer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "Google setup leftovers and unused apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "policy:*ime*",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.sss.authbridge",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "set-up-from-phone helper",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "no calendar app on the TV",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "Google setup leftovers and unused apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "Google TV / Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.netflix.ninja",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "owner's choice (no subscription)",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Google setup leftovers and unused apps",
+      "reason": "recommendation rows and the system notification panel",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.google.android.marvin.talkback",
+      "why": "critical package (policy match 'com.google.android.marvin.talkback')",
+      "source_comment": "keep if anyone needs the screen reader"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/philips-65oled706/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

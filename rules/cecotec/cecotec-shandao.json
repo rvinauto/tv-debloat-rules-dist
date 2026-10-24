@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "id": "cecotec-shandao",
+  "brand": "cecotec",
+  "title": "Cecotec VQU10065S (65\" QLED, product no. 02605, Vestel-built in Turkiye, codename \"shandao\"),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "cecotec"
+    ],
+    "model_patterns": [],
+    "confidence": "manual-only"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Cecotec VQU10065S (65\" QLED, product no. 02605, Vestel-built in Turkiye, codename \"shandao\"),\nAndroid 14 (API 34), firmware UKNV.260304.001, 1.8 GB RAM, MediaTek platform.\nro.product.manufacturer = vestel, ro.product.model = \"Android TV\".\nUK-market firmware: every uk.co.freeview.* package already ships disabled.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/cecotec-shandao/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/cecotec-shandao/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the scripts' default, not Google TV launcherx).\nOnly com.android.tv.settings/.system.FallbackHome also claims HOME.\n\nKEEP, even though the names look like bloat:\n- com.mediatek.android.leanbacklauncher.partnercustomizer: provides the tvlauncher.widget provider.\nDisabling it crash-loops com.mediatek.tv.service after a reboot on MediaTek sets and kills the\nInput key and other remote hotkeys (see examples/chiq-ai-pont). Left enabled here.\n- com.google.android.tungsten.setupwraith: may own the saved Wi-Fi network; disabling it deletes\nthe network and takes the TV off Wi-Fi and ADB.\n- com.mediatek.tv.service, com.mediatek.tvinput, com.mediatek.wwtv.tvcenter (Live TV and the\nsource menu), com.mediatek.autopair (Bluetooth remote pairing).\ncom.mediatek.wwtv.mediaplayer was in this KEEP list and has moved to the disable list below:\nit is the USB media player, not an input driver. tools/disable.sh still skips it, because it\nasks for TV_INPUT_HARDWARE and the guard reads that as the HDMI/AV/tuner layer. On this set\nthat is a false positive: the permission is requested, nothing implements a TvInputService.\nWhat settles it is which packages actually serve that service:\npm query-services --components -a android.media.tv.TvInputService\nHere that lists only com.mediatek.tvinput (tuner, HDMI, VGA, composite, component, SCART) and\ncom.mediatek.tv.service, both kept. Disabled by hand and reboot-tested: all seven inputs and\nthe source panel still work. Use TVINPUT_ALLOW=1 to disable it, and check your own inputs\nafter a reboot before trusting this on another model.\n- com.vestel.tv.service, com.vestel.tv.keycontroller (remote keys), com.vestel.tv.backlight,\ncom.vestel.tv.eib (the E-User Manual app).\n- com.android.devicelockcontroller is a PROTECTED package on this firmware: pm refuses it with\nSecurityException \"Cannot disable a protected package\". Not in the list.\n- com.dolby.android.audio.service, com.android.tv.settings, com.android.vending,\ncom.google.android.gms, com.google.android.gsf, com.google.android.inputmethod.latin.\n\nOwner's choices: Netflix, Prime Video, Spotify, Twitch, YouTube and Chromecast built-in\nall stay enabled. The Coocaa AirPlay app is off by choice. io.github.jqssun.airplay (the repo\nREADME's AirPlay answer) installs and runs correctly on this hardware: it registers\n_airplay._tcp and _raop._tcp through NsdManager and listens on 7000. It is useless on a managed\nnetwork that isolates clients, though, because mDNS never reaches the other devices. Check with\n`arp -n <tv ip>`: a placeholder MAC means proxy ARP and no AirPlay discovery, whatever you install.\nVestel telemetry, logging and \"cleaner\"",
+  "packages": [
+    {
+      "package": "com.vestel.vestelreporter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vestel reporter: INTERNET + BOOT_COMPLETED, no UI",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vestel.smartlogger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Vestel logging service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vestel.tv.speedup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"speed up\" cleaner, holds READ_LOGS + DUMP + INTERNET",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.vestel.smartcenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "no icon, no UI, 75 MB resident: holds GET_TASKS",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "Privacy Sandbox ad services",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "on-device ad personalisation",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "federated learning for the above",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "partner/OEM attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "Google feedback reporter",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "feedback consent prompts",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.vestel.medusa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Google ads, personalisation and feedback",
+      "reason": "Vestel auto-install stub (preloads apps at setup)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and retail demo",
+      "reason": "YouTube Music",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and retail demo",
+      "reason": "Google TV / Play Movies store",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and retail demo",
+      "reason": "Play Games",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.katniss",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and retail demo",
+      "reason": "Google Assistant and voice search: 285 MB across two",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.katniss"
+      ]
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "mediashell, tv.remote.service and GMS, all left enabled.",
+      "reason": "shop-floor retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.tv.freeviewplay",
+      "action": "disable",
+      "risk": "safe",
+      "group": "mediashell, tv.remote.service and GMS, all left enabled.",
+      "reason": "Freeview Play (UK only, useless outside the UK)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.smartdevice.tv.aircast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "mediashell, tv.remote.service and GMS, all left enabled.",
+      "reason": "Coocaa iCast AirPlay/mirroring app, starts at boot.",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.google.android.backdrop",
+      "action": "disable",
+      "risk": "safe",
+      "group": "no receiver works on a client-isolated network.",
+      "reason": "Google aerial screensaver",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "no receiver works on a client-isolated network.",
+      "reason": "launcher recommendation rows. Only safe",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.mediatek.wwtv.mediaplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "MediaTek extras",
+      "reason": "MediaTek's USB media player. Skipped by the",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.android.healthconnect.controller",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Dead weight on a TV",
+      "reason": "Health Connect",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.health.connect.backuprestore",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "Health Connect backup",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*backup*"
+      ]
+    },
+    {
+      "package": "com.android.managedprovisioning",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "enterprise work-profile provisioning",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.dynsystem",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "Dynamic System Updates",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.android.cts.ctsshim",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Dead weight on a TV",
+      "reason": "Android test shim",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.cts.priv.ctsshim",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "Android test shim",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.syncadapters.calendar",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "calendar sync",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:*sync*"
+      ]
+    },
+    {
+      "package": "com.google.android.tts",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Dead weight on a TV",
+      "reason": "Google text-to-speech. Only accessibility reads",
+      "uad": "Advanced",
+      "review_flags": [
+        "policy:com.google.android.tts"
+      ]
+    },
+    {
+      "package": "com.android.settings.intelligence",
+      "action": "disable",
+      "risk": "caution",
+      "group": "microphone, so it idles. Keep it if you use Talkback.",
+      "reason": "the search box inside Settings. The menus keep",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "package": "com.android.se",
+      "why": "critical package (policy match 'com.android.se')",
+      "source_comment": "Secure Element (eSIM, NFC payments). This TV has"
+    }
+  ],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/cecotec-shandao/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

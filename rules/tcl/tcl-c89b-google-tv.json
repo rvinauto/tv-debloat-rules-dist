@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "id": "tcl-c89b-google-tv",
+  "brand": "tcl",
+  "title": "TCL C89B 85\" Google TV, 2024 (device G08, model \"Smart TV Pro\", MediaTek tcl9618), a local variant of the C855",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "c89b"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL C89B 85\" Google TV, 2024 (device G08, model \"Smart TV Pro\", MediaTek tcl9618), a local variant of the C855\nAndroid 14 (Google TV), firmware UTT2.250416.001 AU02, product G08_4K_GB. Same product and build as\nexamples/tcl-85rm7l-google-tv; that list was the starting point.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-c89b-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-c89b-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nTheme:   TV_HOST=<tv ip> tools/theme.sh examples/tcl-c89b-google-tv   (config.json: Live TV, remote keys)\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nTested 2026-10-21 on one set on Ethernet, applied in batches with screenshots between them: Home, the\nInputs menu (HDMI 1-4 and Live TV), the Chromecast, AirPlay and Miracast processes, and the remote's\ngear, Netflix, Prime Video and YouTube buttons worked; the disabled set was identical after a reboot,\nand HomeKeyService bound on its own after another once AUTO_START was saved. One day of use, not weeks.\n\nConnection: USB debugging alone opens port 5555 on Ethernet. Wireless debugging switches itself back off\nthere: Android only enables it on Wi-Fi.\n\nLauncher, in this order: launcher/build-and-install.sh with STOCK_LAUNCHER=none (installs it, then stops\nwith an error because Home stays on launcherx), then this list (setupwraith is listed before launcherx, so the wizard never gets Home;\nit owned no saved network here), then enable HomeKeyService with the settings command\nbuild-and-install.sh runs for HOME_KEY_SERVICE=1.\nTclAppBoot blocks HomeKeyService at every boot until the launcher has AUTO_START, saved to disk:\nTV_HOST=<tv ip> tools/venv/bin/python -I tools/tv.py 'appops set com.gathin.tvhome AUTO_START allow; appops write-settings'\n\nRemote (BT_RC933_U1): every TCL button arrives on scancode 240 and TCL's own key table picks the keycode,\nso config.json matches keycodes: gear 83, Netflix 4062, Prime Video 4099, YouTube 190 (BUTTON_3). The\nowner pointed 190 at SmartTube (org.smarttube.stable). The Input button works without a service. Info,\nTV and LIST are Live TV keys and do nothing on Home.\n\nKept: Chromecast, AirPlay, Miracast, Google Assistant (katniss), com.google.android.tv.remote.service (the\nremote's mic), the USB media player and gallery, com.tcl.tv, com.tcl.suspension, and Netflix, Prime\nVideo and Disney+.\nTCL tracking and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Samba TV ACR, TCL BI analytics, Alexa core, T-Cast server",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.magiconnectfree",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "T-Cast app (nothing to talk to without ttvs)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL push messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL recommendation browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.dashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "\"TCL HOME\": TCL's panel for messagebox and usercenter",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo",
+      "reason": "Retail demo",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and services",
+      "reason": "TCL \"cleaner\" / app manager",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "TCL soundbar firmware updates",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "partner attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by the owner's choice",
+      "reason": "game mode / VRR overlay",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.hearaid",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by the owner's choice",
+      "reason": "hearing test",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by the owner's choice",
+      "reason": "Bluetooth \"listen alone\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by the owner's choice",
+      "reason": "Google TV / Play Movies storefront",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.adservices.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android 14 ad and privacy services (as in examples/tcl-g08-us-google-tv)",
+      "reason": "Privacy Sandbox",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.android.federatedcompute.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android 14 ad and privacy services (as in examples/tcl-g08-us-google-tv)",
+      "reason": "Android 14 ad and privacy services (as in examples/tcl-g08-us-google-tv)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.ondevicepersonalization.services",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Android 14 ad and privacy services (as in examples/tcl-g08-us-google-tv)",
+      "reason": "Android 14 ad and privacy services (as in examples/tcl-g08-us-google-tv)",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "com.android.dreams.basic/.Colors before disabling it.",
+      "reason": "com.android.dreams.basic/.Colors before disabling it.",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "For the custom launcher, after it is installed; setupwraith first",
+      "reason": "setup wizard; claims Home once launcherx is off",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.tv.launcherx",
+      "action": "disable",
+      "risk": "caution",
+      "group": "For the custom launcher, after it is installed; setupwraith first",
+      "reason": "stock Google TV home",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.tv.launcherx",
+        "uad:Expert"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-c89b-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

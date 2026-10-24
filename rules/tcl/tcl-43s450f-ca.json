@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "id": "tcl-43s450f-ca",
+  "brand": "tcl",
+  "title": "TCL 43S450F-CA (TCL S4 Fire TV Edition, Amazon model AFTDEC012E, codename ginza), Fire OS 8.1.8.5 (RS8185/3885),",
+  "android": "Fire OS 8.1.8.5",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "43s450f"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": null,
+  "notes": "TCL 43S450F-CA (TCL S4 Fire TV Edition, Amazon model AFTDEC012E, codename ginza), Fire OS 8.1.8.5 (RS8185/3885),\nAndroid 11 (SDK 30), MediaTek, ATSC tuner, 1.8 GB RAM, Canada. Spanish UI.\nSame firmware line as hisense-fire-tv-aftcibfbd1 (Fire OS 8.0 TV) and amazon-fire-tv-stick-4k-2023 (Fire OS 8.1.8.5).\n\nFIRE OS: DEBLOAT ONLY. Home is com.amazon.tv.launcher/.ui.HomeActivity_vNext (priority 950), with\ncom.amazon.firehomestarter (priority 1) behind it; both are protected on Fire OS 8, so launcher/ does not take Home.\nHDMI input switching is reserved to Amazon-signed apps (com.amazon.tv.permission.TUNE_INPUT).\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-43s450f-ca/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-43s450f-ca/debloat.txt com.amazon.tv.launcher\nEverything is DISABLED for user 0, never uninstalled. Comment out any line you want to keep.\n\nKept on purpose (owner's choice): Prime Video (com.amazon.firebat, tv.support, imp, ottssocompanionapp), Amazon Music\n(bueller.music), Luna (gamehub), Alexa voice and its services (vizzini, aria, alexa*, aca, aiondec, audiohome,\nrtcsessioncontroller, spotify.mediabrowserservice, androidskillconnectioncapability), AirPlay, Miracast (cast.sink),\nDIAL casting (dialservice, whisperplay, whisperlink, awvflingreceiver), OTA updates (device.software.ota*,\ntv.forcedotaupdater.v2), Tubi, Pluto TV, Netflix, YouTube, Spotify, Stremio, Nuvio, NordVPN, Downloader.\nAlways kept: Live TV and tuner (tv.livetv, mediatek.livetv, mediatek.dtv.tvinput.*, tv.channelscan, franktvinput),\nsettings, quick settings, IME, remote/Bluetooth, Appstore (venezia), com.amazon.tv.oobe, com.amazon.tv.matter\n(Matter casting), com.amazon.providers.contentsupport (switches the TTS engine Alexa uses), accessibility (logan).\nApplied 2026-10-21 in four batches with a screenshot after each, then rebooted: all 45 stayed disabled, Home and\nYouTube work. Alexa was kept, so nothing came back at boot.\nThe hero banner on Home is the launcher's own feed and stays; the recommendation rows under it are gone.\nLooked at and left alone, role unclear: com.amazon.ale, katoch, spiderpork, tv.arc, securitysyncclient, device.details,\ntv.fss, neodelegate, sharingservice proxy, cpl, tifobserver, connectivitydiag, neopactservice, dpcclient, mediatek.*.\nAmazon telemetry, metrics, logs, usage reporting",
+  "packages": [
+    {
+      "package": "com.amazon.client.metrics.api",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.neo.minerva.logcat",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.wirelessmetrics.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfcollection",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.perfc",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.dp.logger",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.ceviche",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "data collection pipelines",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.developer.dataservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "content personalization data for third-party apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.device.telemetry.emitter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.livedeviceservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.privacypassservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.wifilocker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "uploads Wi-Fi passwords to Amazon",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.acr",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Automatic Content Recognition (what is on screen, HDMI included)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.audiolatencymeasurer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.kso.blackbird",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "launcher ad sync / bidding",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.sneakpeek",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "sponsored \"Sneak Peek\" autoplay previews",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.hybridadidservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "advertising ID",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.media.recommendations",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "sponsored and recommendation rows",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.easyupgrade",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "\"upgrade your Fire TV\" promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.shoptv.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "Shop on Fire TV",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.hedwig",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "Fire TV Channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.democontent.provider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "retail demo content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.systemnotices",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "Ads, sponsored rows, recommendations, promos, shopping",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tv.releasenotes",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "\"what's new\" popups",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.uxnotification",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "UX notification popups",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.earlyaccess",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Ads, sponsored rows, recommendations, promos, shopping",
+      "reason": "early-access / preview program stub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.bueller.photos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Amazon Photos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tahoe",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Amazon Kids",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.minitv.android.app",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "miniTV stub",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.cloud9",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Silk browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.website_launcher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "opens websites in Silk",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.amazon.naatyam",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Preloaded apps and tutorials (owner's choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.tmm.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "remote tutorial",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.storm.lightning.tutorial",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "remote app tutorial",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "ca.bellmedia.cravetv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Crave",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.cbs.ca",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Paramount+ / CBS",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.wbd.stream",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Max",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.apple.atve.amazon.appletv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and tutorials (owner's choice)",
+      "reason": "Apple TV app (AirPlay is separate and stays)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.whisperjoin.middleware.v2.np",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "frustration-free setup of other Amazon devices",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.ffsprovisioneeclient",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.amazon.ods.kindleconnect",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "\"show on Fire TV\" from Echo / Fire tablet",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.smarthomemapviewapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "smart home dashboard",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.tv.mattercohost",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "Matter smart-home controller (com.amazon.tv.matter stays for casting)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.ftv.screensaver",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Other Amazon devices, smart home, screensaver (owner's choice)",
+      "reason": "Amazon Photos screensaver",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-43s450f-ca/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

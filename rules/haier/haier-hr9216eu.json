@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "id": "haier-hr9216eu",
+  "brand": "haier",
+  "title": "Haier MatrixTV GE (ro.product.model \"Haier MatrixTV GE\", product HR9216EU, device haeundae),",
+  "android": "Google TV 14",
+  "match": {
+    "brand_patterns": [
+      "haier"
+    ],
+    "model_patterns": [
+      "hr9216eu"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Haier MatrixTV GE (ro.product.model \"Haier MatrixTV GE\", product HR9216EU, device haeundae),\nGoogle TV 14 (API 34), firmware UKN6.260116.152, MediaTek (CVTE-family board: com.cvte.tv.at,\ncom.cvte.autobacklight present), 1920x1080 panel, UI rendered at 1280x720 (wm size override), 213 dpi.\nTested on 23 October 2026 on one set, including two reboots.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/haier-hr9216eu/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/haier-hr9216eu/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx (.home.HomeActivity).\nLive TV: com.mediatek.wwtv.tvcenter (.nav.TurnkeyUiMainActivity).\nAlready disabled from the factory on the test set: com.mediatek.wwtv.tvcenter.plus, com.wbd.stream,\nin.startv.hotstar.dplus.tv, com.iqiyi.i18n.tv, com.truedmp.idtv, com.tencent.qqlivei18n,\ncom.netflix.ninja, com.amazon.amazonvideo.livingroom. Netflix was re-enabled by owner choice; the\nother streaming apps stayed off.\n\nsetupwraith owns the saved Wi-Fi on a freshly set-up unit: the network's creator was\ncom.google.android.tungsten.setupwraith (dumpsys wifi cname=), so disabling it deletes the network\nand takes the TV off Wi-Fi and ADB. Forget and re-join the network first (then cname=android.uid.system);\n`cmd wifi forget-network 0` from the shell works when the TV's own Forget menu does not take.\ndisable.sh refuses setupwraith until that is done.\n\nThis firmware re-enables two of its own packages at every boot (seen on two reboots):\ncom.haier.oemtabprovider and com.haier.launcher.haiermatrix. Both are inert with the stock home\ndisabled (the Haier tab they feed is launcherx's), so leave them or disable them again after a boot.\n\nThe remote's gear button sends KEY_UNKNOWN, scancode 240 on /dev/input/event3 (\"HaierTV-RC Keyboard\");\nput 240 in settings_key_scancodes in launcher config.xml before building, HOME_KEY_SERVICE=1 on the install\nline. That service costs the volume ramp on this set too (one step per press while bound) - the same\nall-or-nothing key-filter trade as docs/devices/tcl-55p71b-g09-key-repeat.md, here on Google TV 14.\nNetflix / YouTube / Input / Live TV / voice buttons all work with no helper (Haier's own\nGlobalKeyReceiver services answer them).\n\nPort 5555 opens with `adb tcpip 5555` but does not survive a reboot (setprop persist.adb.tcp.port is\nrefused). Wireless debugging (_adb-tls-connect._tcp) survives and re-advertises on mDNS; reopen 5555\nthrough it when the repo's tools (tv.py over 5555) are needed again.\n\nKEEP, even though the names look like bloat (components checked with dumpsys package):\n- com.haier.appmanager.dispatcher, com.haier.hkcfac, com.haier.tv.hmagicboard: global key receivers\n(remote hot keys; hmagicboard also sound settings).\n- com.mediatek.autopair, com.haier.bt_pair_tips: Bluetooth remote pairing.\n- com.google.android.tv.googletvremotepairer (+ its mediatek overlay): remote pairing activities.\n- com.telink.lt: remote (Telink BLE) firmware, also claims HOME at priority 0.\n- com.cvte.tv.at, com.cvte.autobacklight, com.at.factory.androidtvaidlservice, mediatek.factorymenu.ui:\nfactory / backlight - never disable, never open.\n- com.mediatek.wwtv.tvcenter, com.mediatek.tvinput, com.mediatek.tv.service, com.mediatek.wwtv.setupwizard,\ncom.mediatek.wwtv.setup.customization, com.google.android.tv.inputplayer, com.mediatek.wwtv.mediaplayer,\ncom.mediatek.androidbox (HaiCast / Miracast), com.mstar.android.tv.disclaimercustomization.\n- com.cltv.hybrid: iwedia channel-list UI (claims generic VIEW channel intents alongside tvcenter).\n- com.google.android.katniss (Assistant), com.google.android.apps.mediashell (Chromecast): kept by\nowner choice; disable if you use neither.\nHaier content, ads, IoT, cleaner, e-manual",
+  "packages": [
+    {
+      "package": "com.haierubic.usmartdevice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Haier smart-device / IoT service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.oemtabprovider",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "the \"Haier\" tab on the Google TV home (re-enabled at boot)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.apps",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "Haier promo content app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.launcher.haiermatrix",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Zeasn content launcher, not the system Home (re-enabled at boot)",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.haier.tvhousekeeper",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "\"TV housekeeper\" cleaner",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.haier.emanual9603",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, partner rows, preloads, retail demo",
+      "reason": "Google usage feedback",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "tv.anoki.acr.anokiacroptin",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, partner rows, preloads, retail demo",
+      "reason": "Anoki ACR opt-in (content recognition)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.android.leanbacklauncher.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Telemetry, partner rows, preloads, retail demo",
+      "reason": "partner rows on the stock home",
+      "uad": null,
+      "review_flags": [
+        "policy:*launcher*"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, partner rows, preloads, retail demo",
+      "reason": "preloaded",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "fusion.android.tv.demo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Telemetry, partner rows, preloads, retail demo",
+      "reason": "retail demo mode",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "By owner choice",
+      "reason": "YouTube Music, not used",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "By owner choice",
+      "reason": "Google TV ambient / AI screensaver, not wanted",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "By owner choice",
+      "reason": "By owner choice",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/haier-hr9216eu/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

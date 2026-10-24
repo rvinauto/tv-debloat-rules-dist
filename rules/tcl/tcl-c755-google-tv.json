@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "id": "tcl-c755-google-tv",
+  "brand": "tcl",
+  "title": "TCL 75\" C755 QD-Mini LED Google TV, 2024, Australia (device G08, model \"Smart TV Pro\", MediaTek tcl9618 / mt5896)",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "c755"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "TCL 75\" C755 QD-Mini LED Google TV, 2024, Australia (device G08, model \"Smart TV Pro\", MediaTek tcl9618 / mt5896)\nAndroid 14 (Google TV), firmware UTT2.250416.001 AU02, product G08_4K_GB. About 2.4 GB RAM.\nSame G08 board as examples/tcl-qm6k-google-tv; that list was the starting point.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-c755-google-tv/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-c755-google-tv/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.apps.tv.launcherx. Live TV / HDMI app: com.tcl.tv.\nKeep: com.tcl.tv, com.tcl.tvinput, com.tcl.dashboard, com.tcl.suspension, com.tcl.autopair,\ncom.tcl.systemserver, com.tcl.providers.config, com.tcl.initsetup, com.tcl.useragreement,\ncom.tcl.globalkeyoverlay, com.tcl.systemui.plugin, com.tcl.factory.view, com.tcl.inputmethod.international\n(the keyboard), com.tcl.eva, com.tcl.hearaid (sound/accessibility + TCL wireless speakers),\ncom.tcl.t_solo, tv.mopa.ginga (broadcast middleware) and all com.mediatek.* except AirPlay.\nFirmware updates arrive through Google Play Services (no separate TCL updater on this set).\nAlso keep com.google.android.tv.remote.service: despite the name (\"phone-app remote\") it holds\nAtvSearchAssistantService, which carries the Bluetooth remote's mic button. Disabled, the mic did nothing.\nKeep com.tcl.suspension too: it IS the source panel the remote's Input button opens.\n\nApplied and verified on a real unit on 2026-10-20: Wi-Fi, HDMI switching (Inputs menu), Assistant,\nDisney+/Netflix playback with AdGuard Private DNS, and the launcher's clock screensaver all worked.\n\nKnown quirks on this firmware:\n- The remote (BT_RC833_A1) sends KEYCODE_TV_INPUT for Input, and TCL's input policy hands it to\ncom.tcl.suspension before accessibility services see it, so INPUT_KEY_SERVICE=1 can't redirect it.\nThe Input button keeps opening TCL's source panel; the launcher's Inputs pill opens the glass menu.\n- With com.tcl.interactive disabled, com.tcl.tv logs \"tias_sdk getService failure\" ~10x/s for a few\nseconds when the TV player starts, then stops. CPU on HDMI measured the same (~23%) with it on or off.\n- Disabling dreamx: set screensaver_components to com.gathin.tvhome/.ClockDream first.\nTCL tracking and analytics",
+  "packages": [
+    {
+      "package": "com.tcl.ttvs",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "Samba TV ACR viewing tracking, TCL \"BI\" analytics, Alexa core, T-Cast",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log capture and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "TCL account sign-in nags",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.channelplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL Live FAST channels",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.tv.tclhome_passive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "pushes TCL content to the home screen at boot",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.partnercustomizer",
+      "action": "disable",
+      "risk": "caution",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL tweaks to Google TV home rows",
+      "uad": null,
+      "review_flags": [
+        "policy:*partnercustomizer*"
+      ]
+    },
+    {
+      "package": "com.tcl.interactive",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL TIAS background service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL push messages and promos",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "TCL content, ads and promos",
+      "reason": "TCL movie/show recommendation browser",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.exhibit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.hotelmenu",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Retail demo / hotel mode",
+      "reason": "Retail demo / hotel mode",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.ocean.instructions",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "e-manual",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.smartalexa",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Alexa",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Preloaded apps and services",
+      "reason": "TCL \"cleaner\" / app manager",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "silently installs partner apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "partner attribution",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Preloaded apps and services",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "au.com.stan.and",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps and services",
+      "reason": "Stan",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "Chromecast",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.airplay2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "AirPlay, together with the next two lines",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mediatek.AirplayAPK",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mediatek.airplaydaemon",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.miracast",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "Miracast screen mirroring",
+      "uad": null,
+      "review_flags": [
+        "policy:*cast*"
+      ]
+    },
+    {
+      "package": "com.tcl.magiconnectfree",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "TCL T-Cast / Magiconnect phone mirroring",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gamebar",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "game mode / VRR overlay for consoles",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "USB media player",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "USB photo gallery + TCL screensaver",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "TCL soundbar firmware updates",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.tv.dreamx",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "ambient screensaver (promos); switch screensaver_components first",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "reason": "Off by choice on this unit (casting, mirroring and extras not used here)",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-c755-google-tv/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

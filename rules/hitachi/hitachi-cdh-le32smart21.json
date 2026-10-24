@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "id": "hitachi-cdh-le32smart21",
+  "brand": "hitachi",
+  "title": "Hitachi CDH-LE32SMART21 (32\", Latin America / Argentina; TCL-built: device C06, product C06_2K_GB,",
+  "android": "Android TV 11",
+  "match": {
+    "brand_patterns": [
+      "hitachi"
+    ],
+    "model_patterns": [
+      "le32smart21"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.tvlauncher",
+  "notes": "Hitachi CDH-LE32SMART21 (32\", Latin America / Argentina; TCL-built: device C06, product C06_2K_GB,\nmodel \"Smart TV\", TCL client type HIT-LA-MT9221-01), Android TV 11 (API 30), build AR2101,\nTCL software V8-T221T01-LF1V030, fingerprint TCL/C06_2K_GB/C06:11/AR2101/AR14:user/release-keys.\nMediaTek MT9221 (ro.board.platform mt5867), 1280x720 panel, about 920 MB RAM (ro.config.low_ram=true),\n2.5 GB /data. Same platform and firmware family as examples/tcl-40s5400a; read that list too.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/hitachi-cdh-le32smart21/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/hitachi-cdh-le32smart21/debloat.txt\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nStock launcher: com.google.android.tvlauncher (the scripts' default). The only other HOME claimant is\ncom.android.tv.settings/.system.FallbackHome; setupwraith does not claim HOME on this firmware.\nLive TV app: com.tcl.tv (its TVActivity has a leanback entry, so launcher/ needs no live_tv_action).\nInputs come from com.tcl.tvinput: the tuner (TDTVInputService) and three passthrough inputs\n(HDMI 1, HDMI 2, AV).\nlauncher/ config used: live_tv_package com.tcl.tv; hidden_apps com.tcl.partnercustomizer (TKey Channel\ntile) and com.tcl.suspension (Quick Panel tile). HDMI 1, HDMI 2, AV and Live TV all show up in the\nInputs menu; switching to HDMI 2 was confirmed on screen.\n\nApplied in batches on one real unit on 2026-10-19, each batch checked with screenshots. Tested on one\nday only (shorter than CONTRIBUTING.md asks); I will report back if anything breaks.\nChecked after the full list: launcher/ (v2.3) installed with pm install and is Home after a reboot;\nNetflix and YouTube open and play; Settings and Wi-Fi are fine; the remote's real Home, Input and Back\nbuttons all work; the firmware updater opens (Settings > Device Preferences > About > Software update >\nNetwork update > System update shows the version and a check button). No accessibility helper is involved.\nMemory: MemAvailable about 373 MB after boot on launcher/ vs about 248 MB on the stock home after debloat.\n\nAd-blocking Private DNS was also enabled and validated (dns.adguard-dns.com); YouTube still plays,\nits own ads are not blocked. Undo: tools/tv.py 'settings put global private_dns_mode opportunistic'\n\nKnown quirks on this firmware:\n- screencap -p on stdout is corrupted by MediaTek log lines (\"Init wrapper sys mutex successful\").\nSave to /sdcard and pull the file instead.\n- Screenshots are empty while Netflix, an HDMI input or the ttvs update screen is shown.\n- Storage: /data was 93% full (190 MB free) and sys_storage_threshold_percentage is 10, so about 270 MB\nis reserved and pm install failed with \"Requested internal only, but not enough space\".\n`pm trim-caches 4G` freed about 100 MB, not enough. Uninstalling user-installed apps the owner did not\nwant (Crossy Road, Max, Crunchyroll, DirecTV GO) freed about 470 MB. Those are not in this list.\n- INSTALL_FAILED_VERIFICATION_FAILURE is not a firmware sideload block here:\n1) with this little RAM, the com.tcl.guard memory manager (TGuard) kills com.android.vending in the\nmiddle of verification (logcat \"tguard-kill-systemApp\"), which fails the install. Force-stop\napps / `am kill-all`, or install right after a reboot.\n2) installing only base.apk of a split app is rejected by Play Protect for the missing splits; that\nis not a valid sideload test. The 272 KB launcher APK installed fine.\n- com.tcl.guard runs as a persistent system process (*PERS*, uid 1000). `pm disable-user` succeeds but\nthe process still starts at boot, so the disable does not stop the memory manager. It stays in the\nlist for the UI/cleaner parts.\n- Opening Settings' About page directly (am start -a android.settings.DEVICE_INFO_SETTINGS) and then\nSoftware update crashes TvSettings (ClassCastException AboutActivity -> MainSettings in\ncom.tcl.android.tv.settings.update.SoftwareUpdateFragment). Enter through the main Settings menu.\nNot caus",
+  "packages": [
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "partner-app auto installer config",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.partnersetup",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tvrecommendations",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content, ads and promos",
+      "reason": "Content, ads and promos",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.waterfall.overseas",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and promos",
+      "reason": "TCL Channel web-video portal",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.messagebox",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and promos",
+      "reason": "TCL messages/popups, carries a ttvs receiver (see quirks)",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.esticker",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and promos",
+      "reason": "store-demo sticker",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and promos",
+      "reason": "Content, ads and promos",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.guard",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Background services",
+      "reason": "TGuard UI/cleaner; the memory manager still runs (see quirks)",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.google.android.apps.nbu.smartconnect.tv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "data-saver VPN",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.t_solo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Background services",
+      "reason": "TCL Bluetooth \"listen alone\"",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.amazon.amazonvideo.livingroom",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Prime Video",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.apps.mediashell",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Chromecast receiver",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.apps.mediashell",
+        "uad:Expert"
+      ]
+    },
+    {
+      "package": "com.tcl.ui_mediaCenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "USB media player, together with the next three",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.audioplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.tcl.imageplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.videos",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Play Movies",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Off by choice on this unit: comment out what you use",
+      "reason": "Off by choice on this unit: comment out what you use",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/hitachi-cdh-le32smart21/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

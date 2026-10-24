@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "id": "xiaomi-mitv-moeu0",
+  "brand": "xiaomi",
+  "title": "Xiaomi TV S Mini LED 75 2025, MiTV-MOEU0 (codename ladybird), Google TV / Android 14 (SDK 34),",
+  "android": "Android 14",
+  "match": {
+    "brand_patterns": [
+      "xiaomi"
+    ],
+    "model_patterns": [
+      "moeu0"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.google.android.apps.tv.launcherx",
+  "notes": "Xiaomi TV S Mini LED 75 2025, MiTV-MOEU0 (codename ladybird), Google TV / Android 14 (SDK 34),\nfirmware UKN1.240806.017.V816.0.25.12.1.ULBMIXM. MediaTek chipset, ro.adb.secure=1.\nStock launcher: com.google.android.apps.tv.launcherx. Live TV app: com.mitv.livetv, which the\nlauncher's Inputs menu hands HDMI 1-3 and Live TV to.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/xiaomi-mitv-moeu0/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/xiaomi-mitv-moeu0/debloat.txt com.google.android.apps.tv.launcherx\nEverything is DISABLED for user 0, not uninstalled. Comment out any line you want to keep.\n\nTested: disabled in batches of 1-7 with a screenshot after each, launcher from launcher/ installed\nand owning Home, Inputs switches to HDMI (com.mitv.livetv comes up), Prime Video plays. A first-day\nreport, not the few days of living with it that CONTRIBUTING.md asks for.\n\nSideloading works, including apps that claim HOME, so the launcher half is possible.\nHOME: setupwraith/.RecoveryActivity claims Home next to launcherx, so it is disabled below. On this\nunit the saved Wi-Fi network belonged to android.uid.system, not setupwraith; check with\n`dumpsys wifi | grep -o 'cname=[^ ]*'` before disabling it (disable.sh does).\n\nRemote buttons the stock launcher answered, which do nothing once it is disabled\n(build-and-install.sh with INPUT_KEY_SERVICE=1 HOME_KEY_SERVICE=1):\nSettings/gear  keycode 176 (KEYCODE_SETTINGS)    settings_key_keycodes: 176\nYouTube        keycode 190 (KEYCODE_BUTTON_3)    app_keys: 190:com.google.android.youtube.tv\nApps           keycode 284 (KEYCODE_ALL_APPS)    HomeKeyService\nXiaomi TV+     keycode 192 (KEYCODE_BUTTON_5)    free once mitvplus is off, for app_keys\nNetflix, Prime Video and Input kept working without changes.\n\nDO NOT DISABLE on this model, checked with dumpsys on the unit:\nmitv.service                 AccessibilityKeyService, TvServer, global key receiver\ncom.mitv.overseaservice      Bluetooth remote service and the Netflix key\ncom.mediatek.tv.agent        power, timers, global hotkeys, TV remote service agent\ncom.mediatek.extservice      picture quality, CEC, audio, capture\ncom.mitv.livetv              Live TV and HDMI playback\ncom.xiaomi.tvqs.overseas.y24 quick settings panel\ncom.mi.bluetooth             remote pairing\nKept by request: Chromecast (mediashell), Google Assistant (katniss), AirPlay and Miracast\n(com.mediatek.AirplayAPK, com.xiaomi.mitv.smartshare, com.xiaomi.wfdsinkhelperservice), firmware\nupdates (com.mitv.upgrader, com.xiaomi.mitv.updateservice, com.mediatek.tv.systemupdater).\nTelemetry",
+  "packages": [
+    {
+      "package": "com.miui.tv.analytics",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.statistic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.android.tv.feedbackconsent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.feedback",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "listed in source debloat.txt",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.michannel",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "recommendation channels, Firebase",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.mitvplus",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "Xiaomi TV+ promo banners",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.mitv.tvhome.oemtab",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "Content, ads and recommendations",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.tvhome.atv",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "banner tiles",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.xm.webcontent",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Content, ads and recommendations",
+      "reason": "Content, ads and recommendations",
+      "uad": "Expert",
+      "review_flags": [
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.manualhelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "Content, ads and recommendations",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "android.autoinstalls.config.google.gtvpai",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content, ads and recommendations",
+      "reason": "Play auto-installs",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.xiaomi.mitv.tvmanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Cleaner with Firebase analytics",
+      "reason": "Cleaner with Firebase analytics",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.youtube.tvmusic",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.play.games",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Recommended",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mimusic2",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.gallery",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.mitv.videoplayer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": "Advanced",
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.xiaomi.mitv.mediaexplorer",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Preloaded apps",
+      "reason": "Preloaded apps",
+      "uad": null,
+      "review_flags": [
+        "no-reason-in-source"
+      ]
+    },
+    {
+      "package": "com.google.android.tungsten.setupwraith",
+      "action": "disable",
+      "risk": "caution",
+      "group": "Setup wizard; takes Home once launcherx is off",
+      "reason": "Setup wizard; takes Home once launcherx is off",
+      "uad": "Expert",
+      "review_flags": [
+        "policy:com.google.android.tungsten.setupwraith",
+        "uad:Expert",
+        "no-reason-in-source"
+      ]
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/xiaomi-mitv-moeu0/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}

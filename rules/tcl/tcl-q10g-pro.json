@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "tcl-q10g-pro",
+  "brand": "tcl",
+  "title": "TCL 55Q10G Pro (China), device tcl_mt5879_cn / product tcl_mt5879_cn_db, MediaTek MT9952,",
+  "android": "Android 11",
+  "match": {
+    "brand_patterns": [
+      "tcl"
+    ],
+    "model_patterns": [
+      "q10g"
+    ],
+    "confidence": "slug-derived"
+  },
+  "stock_launcher": "com.tcl.cyberui",
+  "notes": "TCL 55Q10G Pro (China), device tcl_mt5879_cn / product tcl_mt5879_cn_db, MediaTek MT9952,\nAndroid 11 (SDK 30), build RQ3A.210705.001 / 2026012200 (2026-01-22), 3.5 GB RAM.\n32-bit only: ro.product.cpu.abilist = armeabi-v7a,armeabi. No Google services — apps come from\ncom.tcl.appmarket2 or a USB stick. Likely a starting point for other 2026 China MT5879 sets.\n\nApply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-q10g-pro/debloat.txt\nUndo:    TV_HOST=<tv ip> tools/restore.sh examples/tcl-q10g-pro/debloat.txt com.tcl.cyberui\nEverything is DISABLED, not uninstalled. Comment out any line you want to keep.\n\nADB, read this before anything else: there is no \"Build number\" tap seven times on this firmware\nand no ADB row in developer options. Settings → About this device (关于本机) → Device info (本机信息),\nthen press UP DOWN LEFT RIGHT on the remote; the ADB toggle appears at the bottom. The sequence\noften has to be repeated two or three times before it fires — a single pass looks like it did\nnothing, so keep going instead of assuming the path is wrong. Once on, it stays on across\nreboots:\npersist.adb.tcp.port=5555, persist.service.adb.enable=1.\n\nStock launcher: com.tcl.cyberui — the only activity that resolves MAIN+HOME, so never disable it\n(no HOME handler means a black screen on boot). A third-party launcher cannot be installed here:\nthe refusal is a package verification step, not a parse error (see tcl-ak30a5 for the older\nAndroid 9 variant). Any APK declaring android.intent.category.HOME fails with\nINSTALL_FAILED_VERIFICATION_FAILURE and logs:\nOverseasAppConfig: Verifying begin\nverifier: fetch signature info from: com.tcl.cyberui\nverifier: signature does not match for tcl <pkg>, will not be installed!\nThe gate is com.android.packageinstaller → verifier/InstallStrategyManager → LauncherStrategy,\nwhich allows a HOME package only if it is in that strategy's package list, or is signed with\ncom.tcl.cyberui's key and carries <meta-data com.tcl.app.type=\"com.tcl.ui\">. The list is TCL's\nInstallConfig, readable with `content query --uri content://com.tcl.providers.config/all`\n(project_id=InstallConfig) and not writable from the shell.\n\nSideloading is blocked for everything else too, not just launchers. On this unit `adb install`,\n`pm install`, `pm install-commit` and launching the exported InstallStart activity by hand all\nend in INSTALL_FAILED_VERIFICATION_FAILURE — including an APK signed by TCL itself, and with\n`-i com.tcl.appmarket2` spoofing the store as installer. Apps arrive through the TCL app store\n(com.tcl.appmarket2) or a USB stick via 电视卫士. Don't spend an afternoon on adb install.\n\nLive TV app: com.tcl.tv — keep it, it owns DTV/HDMI playback and the remote's source key.\nKept on purpose:\ncom.tcl.guard                 电视卫士; on this firmware the USB install path is the remaining\nway to sideload, so keep it\ncom.tcl.appmarket2            TCL app store, the other install channel\ncom.sohu.inputmethod.sogou.tv the only input method; disable it and there is no keyboard at all\ncom.tcl.ui_mediaCenter        USB playback; the whole Media Center app goes with it\ncom.tcl.settings, com.tcl.systemserver, com.tcl.ttvs (holds DEVICE_ADMIN_ENABLED)\n\nApplied on a real unit and re-checked after a full reboot (`reboot`, not standby): Home, the\nsource panel (HDMI 1-4 plus TV/AV/cast), Media Center, the app store, 电视卫士 and Settings all\nstill worked, with no entries in the crash buffer and no ANRs. Memory available went from 1.97 GB\nto 2.24 GB. Voice and TCL account services are off by choice, noted per group below.\n\nExpected in logcat afterwards, harmless: `Unable to start service ... com.tcl.usercenter` about\nevery 20 seconds. The bind fails immediately and starts no process.\n\nAd and telemetry reporting",
+  "packages": [
+    {
+      "package": "com.tcl.bootadservice",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "full-screen ad before Home",
+      "uad": null,
+      "review_flags": [
+        "policy:*ota*"
+      ]
+    },
+    {
+      "package": "com.tcl.profilemanager",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "audience / profile reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.bi",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "analytics and behaviour reporting",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.xian.StartandroidService",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "background reporting service",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.logkit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "log collection and upload",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.recognize.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "screen recognition; also receives PackageInstall.renew and",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.appreciate.art",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "art-wallpaper / screensaver promo content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.atomic.servicecenter",
+      "action": "disable",
+      "risk": "caution",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "home-screen recommendation cards (plugin host)",
+      "uad": null,
+      "review_flags": [
+        "policy:*cec*"
+      ]
+    },
+    {
+      "package": "com.tcl.c2dm.client",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "TCL push, long-lived connection",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.wholenetsearch",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "whole-net search; results carry VOD promotions",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.playskill",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "\"tips\" promo app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.repairguide",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "repair-guide app",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.useragreement",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "user-agreement popup",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "android.autoinstalls.config.tcl.device",
+      "action": "disable",
+      "risk": "safe",
+      "group": "PACKAGE_REMOVED, so it is a silent-install channel",
+      "reason": "first-boot auto-install of preloaded apps",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffeducation",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps that carry their own promo surfaces",
+      "reason": "kids / education content",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.ffkaraoke",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps that carry their own promo surfaces",
+      "reason": "karaoke",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.versionUpdateApp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps that carry their own promo surfaces",
+      "reason": "system OTA and app auto-update",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.UpdatePeripheral",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps that carry their own promo surfaces",
+      "reason": "peripheral firmware OTA; ~210 MB resident, the top RSS here",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.usercenter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Content apps that carry their own promo surfaces",
+      "reason": "account / wallet / VIP + XMPP; re-enable to sign in",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.tcl.walleve",
+      "action": "disable",
+      "risk": "safe",
+      "group": "Voice, off by choice — the remote's voice key does nothing afterwards",
+      "reason": "iFlytek voice engine; registers an AccessibilityService",
+      "uad": null,
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "auto-checked",
+    "by": "import_cleanyourtv.py",
+    "date": "2026-10-24",
+    "comment": "Imported from CleanYourTV examples; checked against policy/critical.json and UAD-ng. Not yet human-reviewed for this repo."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/Gathin23/cleanyourtv/blob/cc4c7c596c089c4a16f39480fef75c3349469bf9/examples/tcl-q10g-pro/debloat.txt",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json",
+      "used_for": "cross-check removal level",
+      "license": "GPL-3.0 (data referenced, not copied)"
+    }
+  ]
+}
