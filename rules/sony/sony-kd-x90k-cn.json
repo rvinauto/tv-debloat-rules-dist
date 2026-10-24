@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "id": "sony-kd-x90k-cn",
+  "brand": "sony",
+  "title": "Sony KD-X90K (BRAVIA 4K VH21), Android TV 12, China firmware",
+  "android": "Android TV 12",
+  "match": {
+    "brand_patterns": [
+      "sony"
+    ],
+    "model_patterns": [
+      "^BRAVIA 4K VH21$",
+      "^BRAVIA_VH21$"
+    ],
+    "confidence": "verified"
+  },
+  "stock_launcher": null,
+  "notes": "Fingerprint Sony/BRAVIA_VH21_M_CN/BRAVIA_VH21:12/STT2.230505.001.S136. 44 packages from `pm list packages -d` on the maintainer's TV. All disabled; HOME, remote, HDMI-CEC, volume, standby verified OK. Disable only.",
+  "packages": [
+    {
+      "package": "com.dangbei.TVHomeLauncher",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "user:caution"
+      ]
+    },
+    {
+      "package": "com.hpplay.happyplay.aw",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.jd.smartservicetwo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.ktcp.tvvideo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.qterics.da.product",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dangbeimarket",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.adminpassword",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.deviceadminsettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.frameworkextension",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.hotelmode",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.importexport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.ipcontrolsettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntime.normal",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntime.privilege",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntimeextension.bpk",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.noderuntimeextension.node_20_11_1",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.b2b.prosettings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.rs232csupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.softap",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.vendorprotocol",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.b2b.webappruntimedrm",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*ime*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.customersupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.da.service",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.demosystemsupport",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.distancealert",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.ecodashboard",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Advanced",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.gestureapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.helpguidecontents",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.kidsprofileadapter",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.livingfit",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.multiscreendemo",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.mysony",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.notificationcenter",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Recommended",
+      "review_flags": [
+        "user:caution"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.osat.music",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.fwupdate",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "policy:*update*"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.sensingcamera.settings",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sensingfusionservice",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smarthelp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Recommended",
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.smartmediaapp",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.sonybugreportsys",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sony.dtv.usercontext",
+      "action": "disable",
+      "risk": "caution",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": [
+        "user:caution"
+      ]
+    },
+    {
+      "package": "com.sony.dtv.videochatrecord",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": null,
+      "review_flags": []
+    },
+    {
+      "package": "com.sonyericsson.idd.agent",
+      "action": "disable",
+      "risk": "safe",
+      "group": "",
+      "reason": "在用户的 X90K 上已停用并验证",
+      "uad": "Recommended",
+      "review_flags": []
+    }
+  ],
+  "rejected": [],
+  "review": {
+    "status": "tested-on-device",
+    "by": "yuyu",
+    "date": "2026-10",
+    "comment": "user device yuyu, tested 2026-10 on own X90K; all 44 disabled and TV HOME/remote/HDMI-CEC/volume/standby verified OK"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/rvinauto/tv-debloat-rules/blob/main/rules/sony/sony-kd-x90k-cn.json",
+      "note": "user device yuyu, tested 2026-10 on own X90K (pm list packages -d)"
+    }
+  ]
+}

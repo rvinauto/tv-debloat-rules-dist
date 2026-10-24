@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
  "repo": "rvinauto/tv-debloat-rules-dist",
- "generated": "2026-10-24T05:27:58Z",
- "source_commit": "0e64f72",
+ "generated": "2026-10-24T06:46:27Z",
+ "source_commit": "34edfa1",
  "models": [
   {
    "id": "acer-ar55ar2851udpro",
@@ -3439,6 +3439,31 @@
     "dangerous": 0
    },
    "rejected": 1
+  },
+  {
+   "id": "sony-kd-x90k-cn",
+   "brand": "sony",
+   "title": "Sony KD-X90K (BRAVIA 4K VH21), Android TV 12, China firmware",
+   "android": "Android TV 12",
+   "match": {
+    "brand_patterns": [
+     "sony"
+    ],
+    "model_patterns": [
+     "^BRAVIA 4K VH21$",
+     "^BRAVIA_VH21$"
+    ],
+    "confidence": "verified"
+   },
+   "path": "rules/sony/sony-kd-x90k-cn.json",
+   "sha256": "6d0dc0fc6a26975211a086306f2ffa4df7f483d3efee54a73a079aa5fe0d09b9",
+   "review": "tested-on-device",
+   "counts": {
+    "safe": 35,
+    "caution": 9,
+    "dangerous": 0
+   },
+   "rejected": 0
   },
   {
    "id": "sony-x9000h-cn",
