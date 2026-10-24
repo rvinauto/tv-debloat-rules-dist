@@ -1,0 +1,589 @@
+{
+ "schema_version": 1,
+ "source_commit": "c4c70d0",
+ "guides": [
+  {
+   "id": "xiaomi",
+   "brand": "小米 / Redmi 电视、小米盒子",
+   "aliases": [
+    "xiaomi",
+    "redmi",
+    "mitv",
+    "mibox"
+   ],
+   "region": "cn",
+   "order": 10,
+   "steps": [
+    "设置 → 关于 → 产品型号：用遥控器连续按「确认」约 7 次，直到提示「您已成为开发者」/开发者模式",
+    "返回 设置 → 账号与安全 → ADB调试：选「允许」",
+    "电脑连接时电视会弹出授权框，选「允许」（建议勾选一律允许）"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络（或 关于 → 网络信息）查看 IP",
+   "quirks": [
+    "社区反馈：ADB 开关每次重启后可能自动关闭，需要重新打开",
+    "部分新版系统在 设置 → 更多设置 → 开发者选项 里叫「USB调试/网络调试」"
+   ],
+   "confidence": "high",
+   "sources": [
+    {
+     "url": "https://www.mi.com/global/support/article/KA-06513/",
+     "title": "小米官方：How to turn on the Mi TV and Mi Box developer options / ADB debug",
+     "type": "official"
+    },
+    {
+     "url": "https://github.com/shmilee/mitv-notes",
+     "title": "shmilee/mitv-notes",
+     "type": "community"
+    },
+    {
+     "url": "https://juejin.cn/post/7344571269554274367",
+     "title": "掘金：小米电视 root 的准备工作（ADB 重启后自动关闭）",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "hisense",
+   "brand": "海信 / Vidda（VIDAA 系统）",
+   "aliases": [
+    "hisense",
+    "vidda",
+    "vidaa"
+   ],
+   "region": "cn",
+   "order": 20,
+   "steps": [
+    "先试：我的应用 → VIDAA助手 → 设置 → 电视调试授权（如果有）",
+    "不行再试工厂模式（风险较高，只改下面提到的项）：设置 → 声音 → 高级设置 → 声音平衡（灰色时先把声音模式设为标准/影院、音效设为 DTS 或关）",
+    "选中「声音平衡」，按 OK、菜单 交替各 3 次（有数字键的老机型输入 1969），出现左上角 M 即进入工厂模式",
+    "工厂菜单 → 选项 → To Fac：把 U 改成 M，关机再开机",
+    "设置 → 关于 → 本机信息：连续按「菜单」4 次，弹出原生安卓设置 → 关于 → 版本号 连按 7 次 → 系统 → 高级 → 开发者选项 → 打开 USB调试"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 → 网络信息 查看 IP",
+   "quirks": [
+    "不同系统版本差别很大，社区教程互相矛盾，请以你电视实际菜单为准",
+    "工厂模式里不要改其他参数，改错可能需要售后",
+    "用完建议把 To Fac 改回 U"
+   ],
+   "confidence": "low",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-1239474-1-1.html",
+     "title": "ZNDS：海信Vidda X55/X65/X75/X85 打开ADB图文教程（2023）",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1251785-1-1.html",
+     "title": "ZNDS：2024各品牌电视打开ADB调试方法汇总",
+     "type": "community"
+    },
+    {
+     "url": "https://developer.baidu.com/article/details/2871072",
+     "title": "百度开发者中心：海信VIDDA进入工厂模式及开启ADB",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "tcl",
+   "brand": "TCL / 雷鸟",
+   "aliases": [
+    "tcl",
+    "ffalcon",
+    "雷鸟"
+   ],
+   "region": "cn",
+   "order": 30,
+   "steps": [
+    "设置 → 系统（或 通用）→ 系统信息 / 本机信息",
+    "在这个页面用遥控器依次按：上 → 下 → 左 → 右（顺序不能错）",
+    "弹出 ADB 开关后打开",
+    "海外/Google TV 机型：设置 → 系统 → 关于 → Android TV OS 版本 连按 7 次 → 开发者选项 → USB 调试"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 关于 → 网络信息 查看 IP",
+   "quirks": [
+    "安装时报 INSTALL_FAILED_VERIFICATION_FAILURE：社区做法是 adb shell settings put global verifier_verify_adb_installs 0 和 package_verifier_enable 0",
+    "老款有数字键的：显示 → 专业设定 → 对比度 上输入 1950 进工厂菜单 → Other → ADB（仅老机型）"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://blog.coderfan.org/android-tv-ffalcon-6-2024-customize-diy.html",
+     "title": "FranzKafka Blog：雷鸟鹏6-24款 开启ADB",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1255988-1-1.html",
+     "title": "ZNDS：雷鸟电视安装灵控桌面（上下左右开ADB）",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1270973-1-1.html",
+     "title": "ZNDS：2026各品牌电视打开ADB调试方法汇总",
+     "type": "community"
+    },
+    {
+     "url": "https://www.tcl.com/au/en/support-tv/faq/37654",
+     "title": "TCL 澳洲官方 FAQ：How can I turn on USB debugging?",
+     "type": "official"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "skyworth",
+   "brand": "创维 / 酷开",
+   "aliases": [
+    "skyworth",
+    "coocaa",
+    "酷开"
+   ],
+   "region": "cn",
+   "order": 40,
+   "steps": [
+    "设置 → 本机信息（关于电视）",
+    "在此页面用遥控器缓慢输入：上 上 下 下 左 右 左 右，进入工厂菜单",
+    "通用设置 或 高级设置 → ADB开关 → 开（部分机型要密码 123456）",
+    "部分机型需断电重启后生效",
+    "新机型也可试：关于电视 → 软件版本号 连按 7 次 → 开发者选项 → USB 调试"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 查看 IP",
+   "quirks": [
+    "工厂菜单里只改 ADB，其他项不要动",
+    "创维盒子：设置 → 账户安全 → adb 模式"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-77403-1-1.html",
+     "title": "ZNDS：酷开电视如何开启ADB",
+     "type": "community"
+    },
+    {
+     "url": "https://quicktvui.com/zh-CN/guide/device/skyworth.html",
+     "title": "QuickTVUI：Skyworth 设备",
+     "type": "community"
+    },
+    {
+     "url": "https://www.4k123.com/thread-62507-1-1.html",
+     "title": "4K123：创维酷开进入工厂模式打开ADB",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1251785-1-1.html",
+     "title": "ZNDS：2024各品牌电视打开ADB调试方法汇总",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "sony-cn",
+   "brand": "索尼（国行 BRAVIA，Android TV / Google TV）",
+   "aliases": [
+    "sony",
+    "bravia"
+   ],
+   "region": "cn",
+   "order": 50,
+   "steps": [
+    "设置 → 系统（或 设备偏好设置）→ 关于 → 版本（Android TV OS 版本）：连按 7 次，提示已成为开发者",
+    "返回 设置 → 系统 / 设备偏好设置 → 开发者选项 → 打开 USB 调试（有「网络调试」也一并打开）",
+    "电脑连接时电视弹窗选「允许」"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络和互联网 → 当前网络 查看 IP",
+   "quirks": [
+    "本项目在 KD-X90K 国行（Android 12）上实测：打开 USB 调试后可直接 adb connect IP:5555",
+    "安全和限制 里可能还要允许「未知来源」"
+   ],
+   "confidence": "high",
+   "tested_on_device": "KD-X90K (BRAVIA_VH21, Android 12)",
+   "sources": [
+    {
+     "url": "https://helpguide.sony.net/tv/nusltn3/v1/en-003/contents/TP1002274403.html",
+     "title": "Sony Help Guide: System",
+     "type": "official"
+    },
+    {
+     "url": "https://www.zhiyunge.cn/android/tv/5030",
+     "title": "知云阁：各品牌电视开启ADB（索尼）",
+     "type": "community"
+    },
+    {
+     "url": "https://developer.android.com/studio/debug/dev-options",
+     "title": "Android Developers: Configure on-device developer options",
+     "type": "official"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "changhong",
+   "brand": "长虹 / CHiQ",
+   "aliases": [
+    "changhong",
+    "chiq"
+   ],
+   "region": "cn",
+   "order": 60,
+   "steps": [
+    "先试：设置 → 关于电视 → 版本号 连按 7 次 → 开发者选项 → USB 调试",
+    "老机型工程模式：按「节目源」选任一信号源（如 HDMI1），快速按 菜单 + 0816；或 设置 → 情景模式 → 标准模式 → 上 右 右 → 0816",
+    "在工程菜单里找 ADB 开关（很多机型没有）"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 查看 IP",
+   "quirks": [
+    "大量社区反馈：新机型（如 D7U、65D8K）工程模式里没有 ADB 开关，可能无法使用本工具",
+    "系统可能限制第三方安装"
+   ],
+   "confidence": "low",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-646632-1-1.html",
+     "title": "ZNDS：长虹智能电视打开ADB调试",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1232409-1-1.html",
+     "title": "ZNDS：长虹D7U 无ADB选项",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1246743-1-1.html",
+     "title": "ZNDS：工厂模式下没有ADB开关",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "konka",
+   "brand": "康佳",
+   "aliases": [
+    "konka"
+   ],
+   "region": "cn",
+   "order": 70,
+   "steps": [
+    "在 TV 界面按「菜单」，用遥控器输入 2008，出现 Factory Menu",
+    "高级设置 → ADB（密码 123456）；或 其它设置 → Adbd Enable 改为 1（机型不同）",
+    "断电重启生效",
+    "新机型可先试：关于 → 版本号 连按 7 次 → 开发者选项"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 查看 IP",
+   "quirks": [
+    "资料主要针对 2014 年前后的 K1/U1 系列老机型，新机型可能不适用"
+   ],
+   "confidence": "low",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-646692-1-1.html",
+     "title": "ZNDS：康佳智能电视打开ADB调试",
+     "type": "community"
+    },
+    {
+     "url": "https://jingyan.baidu.com/article/a17d528535bc80c199c8f226.html",
+     "title": "百度经验：康佳电视进入工厂模式（55K1T）",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "huawei-honor",
+   "brand": "华为智慧屏 / 荣耀智慧屏（HarmonyOS）",
+   "aliases": [
+    "huawei",
+    "honor",
+    "harmonyos"
+   ],
+   "region": "cn",
+   "order": 80,
+   "steps": [
+    "华为官方只给出：华为应用中心、华为分享、智慧生活 App、U盘 安装第三方应用",
+    "开发者调试用的是 HarmonyOS 的 hdc 工具，不是 adb，本工具不支持"
+   ],
+   "connect": {
+    "method": "none"
+   },
+   "ip_hint": "设置 → 网络与连接 查看 IP",
+   "quirks": [
+    "本工具（基于 ADB）一般无法连接华为/荣耀智慧屏，建议用 U 盘安装：全部应用 → 媒体中心 → U盘 → 文件",
+    "官方说明：智慧生活 App 方式不支持荣耀智慧屏"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://consumer.huawei.com/cn/support/content/zh-cn01089258/",
+     "title": "华为官网：华为智慧屏如何安装/卸载第三方应用",
+     "type": "official"
+    },
+    {
+     "url": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/hdc",
+     "title": "华为开发者：hdc",
+     "type": "official"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "dangbei",
+   "brand": "当贝盒子 / 当贝投影",
+   "aliases": [
+    "dangbei"
+   ],
+   "region": "cn",
+   "order": 90,
+   "steps": [
+    "设置 → 系统 → 关于 → 软件版本：连按确认 5–7 次，提示开发者选项已开启",
+    "返回 → 开发者选项 → 打开「USB 调试（安全设置）」",
+    "设置入口被隐藏的老机型：需要原生「安卓设置/Droid设置」才能进入版本号（社区方法，部分固件已失效）"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 查看 IP",
+   "quirks": [
+    "社区反馈部分固件（如当贝 X3）旧方法已不可用"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-1257829-1-1.html",
+     "title": "ZNDS：电视盒子ADB模式开启教程（创维/小米/天猫/当贝/泰捷/极光）",
+     "type": "community"
+    },
+    {
+     "url": "https://www.znds.com/tv-1212168-1-1.html",
+     "title": "ZNDS：当贝盒子Z1 Pro打开开发者选项",
+     "type": "community"
+    },
+    {
+     "url": "https://www.touying.com/t-36289-1.html",
+     "title": "投影网：当贝投影仪开启ADB",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "tmall-box",
+   "brand": "天猫魔盒 / 其他国内盒子（泰捷、腾讯极光）",
+   "aliases": [
+    "tmall",
+    "magicbox",
+    "tencent"
+   ],
+   "region": "cn",
+   "order": 100,
+   "steps": [
+    "天猫魔盒：我的 → 系统设置 → 通用设置 → 开发者模式 → 远程调试模式：开",
+    "腾讯极光盒子：设置 → 账户安全 → adb 模式",
+    "泰捷盒子：设置 → 安全与隐私 → adb 调试：允许"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "设置 → 网络 查看 IP",
+   "quirks": [
+    "仅一篇社区汇总来源，菜单可能随系统升级变化",
+    "芒果盒子、极米投影：未找到可靠来源，请先试 Android 通用方法（关于 → 版本号 连按 7 次）"
+   ],
+   "confidence": "low",
+   "sources": [
+    {
+     "url": "https://www.znds.com/tv-1257829-1-1.html",
+     "title": "ZNDS：电视盒子ADB模式开启教程（创维/小米/天猫/当贝/泰捷/极光）",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "android-tv",
+   "brand": "通用 Android TV / Google TV（含 Chromecast with Google TV、小米海外版、飞利浦、夏普等）",
+   "aliases": [
+    "google",
+    "chromecast",
+    "philips",
+    "sharp",
+    "xiaomi-global",
+    "androidtv"
+   ],
+   "region": "intl",
+   "order": 200,
+   "steps": [
+    "Settings → System（或 Device Preferences）→ About → Android TV OS build / Build：连按 7 次，提示 You are now a developer",
+    "返回 → Developer options → 打开 USB debugging（有 Network debugging / ADB over network 也打开）",
+    "首次连接时电视弹出 Allow USB debugging?，勾选 Always allow 并确定"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555,
+    "alt": "Android 13+ 的电视可能只有「无线调试」，需要配对码：adb pair IP:端口，再 adb connect"
+   },
+   "ip_hint": "Settings → Network & Internet → 当前网络（飞利浦：Wireless and networks → View network settings）",
+   "quirks": [
+    "Android TV 11/12 不支持配对码无线调试，只能用经典 5555 网络调试",
+    "只开 USB 调试不一定开启网络 ADB，要看固件是否有 Network debugging"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://developer.android.com/studio/debug/dev-options",
+     "title": "Android Developers: Configure on-device developer options",
+     "type": "official"
+    },
+    {
+     "url": "https://developer.android.com/tools/adb",
+     "title": "Android Developers: adb（TV 需 Android 13+ 才支持配对码无线调试）",
+     "type": "official"
+    },
+    {
+     "url": "https://www.vystv.nl/en/how-to/enable-developer-options-android-tv/",
+     "title": "VYS TV: Enable developer options on Android TV（含飞利浦 IP 路径）",
+     "type": "community"
+    },
+    {
+     "url": "https://tvslim.app/guide/",
+     "title": "TV Slim: Turn on ADB on Android TV / Google TV",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "sony-intl",
+   "brand": "Sony BRAVIA（海外版）",
+   "aliases": [
+    "sony-intl"
+   ],
+   "region": "intl",
+   "order": 210,
+   "steps": [
+    "Settings → System → About → Android TV OS build：连按 7 次",
+    "Settings → System → Developer options → USB debugging 打开",
+    "连接时在电视上允许"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "Settings → Network & Internet",
+   "quirks": [
+    "同国行步骤，仅菜单为英文"
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://helpguide.sony.net/tv/nusltn3/v1/en-003/contents/TP1002274403.html",
+     "title": "Sony Help Guide: System",
+     "type": "official"
+    },
+    {
+     "url": "https://natnt.com/guides/connect/",
+     "title": "NATNT Guide: Sony Android TV / Google TV",
+     "type": "community"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "nvidia-shield",
+   "brand": "NVIDIA SHIELD TV",
+   "aliases": [
+    "shield",
+    "nvidia"
+   ],
+   "region": "intl",
+   "order": 220,
+   "steps": [
+    "Settings → Device Preferences → About → Build：连按 7 次",
+    "Settings → Device Preferences → Developer options → Network debugging 打开（会显示 IP）",
+    "adb connect 显示的 IP，在 SHIELD 上允许"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "Network debugging 开关下方直接显示 IP",
+   "quirks": [],
+   "confidence": "medium",
+   "sources": [
+    {
+     "url": "https://blog.differentpla.net/blog/2022/05/10/nvidia-shield-adb/",
+     "title": "Roger's Blog: Enable Network Debugging on nVidia Shield",
+     "type": "community"
+    },
+    {
+     "url": "https://docs.nvidia.com/gameworks/content/devices/shield_device_main.htm",
+     "title": "NVIDIA SHIELD docs",
+     "type": "official"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  },
+  {
+   "id": "fire-tv",
+   "brand": "Amazon Fire TV",
+   "aliases": [
+    "firetv",
+    "amazon"
+   ],
+   "region": "intl",
+   "order": 230,
+   "steps": [
+    "Settings → Device（或 My Fire TV）→ Developer Options → 打开 ADB Debugging 和 Apps from Unknown Sources",
+    "没有 Developer Options：Settings → My Fire TV → About → Your TV 上按遥控器确认键 7 次",
+    "首次连接在电视上允许（勾选 Always allow）"
+   ],
+   "connect": {
+    "method": "tcp",
+    "port": 5555
+   },
+   "ip_hint": "Settings → My Fire TV → About → Network（不是 Settings → Network）",
+   "quirks": [],
+   "confidence": "high",
+   "sources": [
+    {
+     "url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html",
+     "title": "Amazon: Connect to Fire TV Through ADB",
+     "type": "official"
+    }
+   ],
+   "verified_date": "2026-10-24"
+  }
+ ]
+}

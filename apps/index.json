@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-24T11:31:20Z",
- "source_commit": "a6b79fd",
+ "generated": "2026-10-24T11:56:26Z",
+ "source_commit": "c4c70d0",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -21,7 +21,10 @@
    "verified": {
     "date": "2026-10-24",
     "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
-   }
+   },
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/cleanyourtv-launcher-2.6-vc9-10b49d66.apk"
+   ]
   },
   {
    "id": "smarttube-stable-armv7",
@@ -41,7 +44,10 @@
    "verified": {
     "date": "2026-10-24",
     "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
-   }
+   },
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.68_armeabi-v7a-2130b23b.apk"
+   ]
   },
   {
    "id": "just-player",
@@ -61,7 +67,10 @@
    "verified": {
     "date": "2026-10-24",
     "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
-   }
+   },
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/just-player-0.217-f85156d4.apk"
+   ]
   },
   {
    "id": "webhtv-leanback-armv7",
@@ -75,6 +84,7 @@
    "version_code": 560,
    "apk_url": "https://github.com/webhtv/webhtv/releases/download/v5.6.0-202609241253/leanback-armeabi_v7a.apk",
    "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/webhtv-leanback-armeabi_v7a-5.6.0-202609241253-7cf89bab.apk",
     "https://github.com/rvinauto/tv-debloat-rules-dist/releases/download/apps-20261024/webhtv-leanback-armeabi_v7a-5.6.0-202609241253.apk",
     "https://github.com/webhtv/webhtv/releases/download/v5.6.0-202609241253/leanback-armeabi_v7a.apk"
    ],
