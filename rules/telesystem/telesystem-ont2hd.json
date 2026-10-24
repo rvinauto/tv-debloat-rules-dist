@@ -9,8 +9,10 @@
       "telesystem"
     ],
     "model_patterns": [
-      "ont2hd"
+      "^(?:.*[ _-])?ont2hd$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

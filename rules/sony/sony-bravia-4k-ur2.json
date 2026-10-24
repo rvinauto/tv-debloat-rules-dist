@@ -9,8 +9,12 @@
       "sony"
     ],
     "model_patterns": [
-      "ur2"
+      "^(?:.*[ _-])?ur2$"
     ],
+    "device_patterns": [
+      "^BRAVIA_UR2_4K$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

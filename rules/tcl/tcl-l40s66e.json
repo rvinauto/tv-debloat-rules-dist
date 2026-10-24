@@ -9,8 +9,12 @@
       "tcl"
     ],
     "model_patterns": [
-      "l40s66e"
+      "^(?:.*[ _-])?l40s66e$"
     ],
+    "device_patterns": [
+      "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

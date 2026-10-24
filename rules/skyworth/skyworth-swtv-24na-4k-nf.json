@@ -9,8 +9,12 @@
       "skyworth"
     ],
     "model_patterns": [
-      "24na"
+      "^(?:.*[ _-])?24na$"
     ],
+    "device_patterns": [
+      "^eleonas$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx;",

@@ -9,8 +9,12 @@
       "prismplus"
     ],
     "model_patterns": [
-      "q65[-_ ]?r10g"
+      "^(?:.*[ _-])?q65[-_ ]?r10g$"
     ],
+    "device_patterns": [
+      "^R10G$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,7 +9,11 @@
       "sony"
     ],
     "model_patterns": [
-      "ae2"
+      "^(?:.*[ _-])?ae2$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+      "^BRAVIA_AE2_NA$"
     ],
     "confidence": "slug-derived"
   },

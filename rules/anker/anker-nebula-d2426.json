@@ -9,8 +9,12 @@
       "anker"
     ],
     "model_patterns": [
-      "d2426"
+      "^(?:.*[ _-])?d2426$"
     ],
+    "device_patterns": [
+      "^baekdu$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

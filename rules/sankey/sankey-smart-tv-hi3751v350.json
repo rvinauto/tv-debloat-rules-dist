@@ -9,8 +9,10 @@
       "sankey"
     ],
     "model_patterns": [
-      "hi3751v350"
+      "^(?:.*[ _-])?hi3751v350$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.cvte.tv.launcher.space",

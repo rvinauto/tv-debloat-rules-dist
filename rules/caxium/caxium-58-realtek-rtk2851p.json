@@ -9,8 +9,10 @@
       "caxium"
     ],
     "model_patterns": [
-      "rtk2851p"
+      "^(?:.*[ _-])?rtk2851p$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

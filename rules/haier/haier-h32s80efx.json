@@ -9,8 +9,12 @@
       "haier"
     ],
     "model_patterns": [
-      "h32s80efx"
+      "^(?:.*[ _-])?h32s80efx$"
     ],
+    "device_patterns": [
+      "^deto$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,8 +9,10 @@
       "xiaomi"
     ],
     "model_patterns": [
-      "ansp0"
+      "^(?:.*[ _-])?ansp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.mitv.tvhome",

@@ -9,8 +9,10 @@
       "philips"
     ],
     "model_patterns": [
-      "65pml9506"
+      "^(?:.*[ _-])?65pml9506$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

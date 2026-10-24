@@ -9,7 +9,13 @@
       "sony"
     ],
     "model_patterns": [
-      "vh21"
+      "^(?:.*[ _-])?vh21$"
+    ],
+    "device_patterns": [
+      "^BRAVIA_VH21$"
+    ],
+    "product_patterns": [
+      "^BRAVIA_VH21_EU$"
     ],
     "confidence": "slug-derived"
   },

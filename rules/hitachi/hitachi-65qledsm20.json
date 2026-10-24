@@ -9,8 +9,10 @@
       "hitachi"
     ],
     "model_patterns": [
-      "65qledsm20"
+      "^(?:.*[ _-])?65qledsm20$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

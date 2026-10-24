@@ -9,8 +9,10 @@
       "jmgo"
     ],
     "model_patterns": [
-      "n1s"
+      "^(?:.*[ _-])?n1s$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,8 +9,10 @@
       "epson"
     ],
     "model_patterns": [
-      "ls800"
+      "^(?:.*[ _-])?ls800$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

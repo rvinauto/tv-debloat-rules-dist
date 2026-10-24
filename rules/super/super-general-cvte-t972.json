@@ -9,8 +9,10 @@
       "super"
     ],
     "model_patterns": [
-      "t972"
+      "^(?:.*[ _-])?t972$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

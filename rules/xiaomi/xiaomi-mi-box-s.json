@@ -9,6 +9,10 @@
       "xiaomi"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^mode$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": "com.google.android.tvlauncher",

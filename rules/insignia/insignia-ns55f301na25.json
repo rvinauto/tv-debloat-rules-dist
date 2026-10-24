@@ -9,8 +9,10 @@
       "insignia"
     ],
     "model_patterns": [
-      "ns55f301na25"
+      "^(?:.*[ _-])?ns55f301na25$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

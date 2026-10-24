@@ -9,8 +9,12 @@
       "nokia"
     ],
     "model_patterns": [
-      "8000"
+      "^(?:.*[ _-])?8000$"
     ],
+    "device_patterns": [
+      "^HND$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

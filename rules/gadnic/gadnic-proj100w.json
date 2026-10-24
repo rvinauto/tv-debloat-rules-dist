@@ -9,8 +9,12 @@
       "gadnic"
     ],
     "model_patterns": [
-      "proj100w"
+      "^(?:.*[ _-])?proj100w$"
     ],
+    "device_patterns": [
+      "^YYT$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

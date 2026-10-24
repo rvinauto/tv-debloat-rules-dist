@@ -9,8 +9,12 @@
       "peaq"
     ],
     "model_patterns": [
-      "ptv43aqu[-_ ]?5023c"
+      "^(?:.*[ _-])?ptv43aqu[-_ ]?5023c$"
     ],
+    "device_patterns": [
+      "^dundas$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

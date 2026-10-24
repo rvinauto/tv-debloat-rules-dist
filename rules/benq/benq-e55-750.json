@@ -9,8 +9,10 @@
       "benq"
     ],
     "model_patterns": [
-      "e55[-_ ]?750"
+      "^(?:.*[ _-])?e55[-_ ]?750$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

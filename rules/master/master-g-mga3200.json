@@ -9,8 +9,12 @@
       "master"
     ],
     "model_patterns": [
-      "mga3200"
+      "^(?:.*[ _-])?mga3200$"
     ],
+    "device_patterns": [
+      "^R1$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

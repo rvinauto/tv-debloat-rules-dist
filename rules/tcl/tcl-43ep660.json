@@ -9,8 +9,10 @@
       "tcl"
     ],
     "model_patterns": [
-      "43ep660"
+      "^(?:.*[ _-])?43ep660$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

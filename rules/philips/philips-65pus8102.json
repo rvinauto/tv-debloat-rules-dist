@@ -9,8 +9,12 @@
       "philips"
     ],
     "model_patterns": [
-      "65pus8102"
+      "^(?:.*[ _-])?65pus8102$"
     ],
+    "device_patterns": [
+      "^PH7M_EU_5596$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

@@ -9,8 +9,12 @@
       "hisense"
     ],
     "model_patterns": [
-      "65d62qh"
+      "^(?:.*[ _-])?65d62qh$"
     ],
+    "device_patterns": [
+      "^MT9653$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

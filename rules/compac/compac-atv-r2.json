@@ -9,6 +9,10 @@
       "compac"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^R2$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": null,

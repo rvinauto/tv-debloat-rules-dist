@@ -9,8 +9,10 @@
       "sankey"
     ],
     "model_patterns": [
-      "smart2ktvse"
+      "^(?:.*[ _-])?smart2ktvse$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

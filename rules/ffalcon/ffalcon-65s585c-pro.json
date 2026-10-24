@@ -9,8 +9,12 @@
       "ffalcon"
     ],
     "model_patterns": [
-      "65s585c"
+      "^(?:.*[ _-])?65s585c$"
     ],
+    "device_patterns": [
+      "^tcl_mt5879_cn$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.tcl.cyberui",

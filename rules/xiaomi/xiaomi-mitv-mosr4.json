@@ -9,8 +9,10 @@
       "xiaomi"
     ],
     "model_patterns": [
-      "mosr4"
+      "^(?:.*[ _-])?mosr4$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

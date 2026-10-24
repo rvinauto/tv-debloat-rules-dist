@@ -9,8 +9,10 @@
       "amazon"
     ],
     "model_patterns": [
-      "2021"
+      "^(?:.*[ _-])?2021$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

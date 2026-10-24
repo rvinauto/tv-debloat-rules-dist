@@ -9,8 +9,12 @@
       "sony"
     ],
     "model_patterns": [
-      "tl2"
+      "^(?:.*[ _-])?tl2$"
     ],
+    "device_patterns": [
+      "^OD0M_EA_T32$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

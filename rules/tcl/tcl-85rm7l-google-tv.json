@@ -9,8 +9,12 @@
       "tcl"
     ],
     "model_patterns": [
-      "85rm7l"
+      "^(?:.*[ _-])?85rm7l$"
     ],
+    "device_patterns": [
+      "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

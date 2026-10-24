@@ -9,8 +9,10 @@
       "sony"
     ],
     "model_patterns": [
-      "65x80j"
+      "^(?:.*[ _-])?65x80j$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,8 +9,10 @@
       "redmi"
     ],
     "model_patterns": [
-      "antl0"
+      "^(?:.*[ _-])?antl0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

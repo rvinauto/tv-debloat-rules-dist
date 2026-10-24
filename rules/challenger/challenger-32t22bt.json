@@ -9,8 +9,12 @@
       "challenger"
     ],
     "model_patterns": [
-      "32t22bt"
+      "^(?:.*[ _-])?32t22bt$"
     ],
+    "device_patterns": [
+      "^cvt_mt5863_col$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.cvte.tv.launcher",

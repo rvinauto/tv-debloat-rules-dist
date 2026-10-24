@@ -9,6 +9,8 @@
       "mtc"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": null,

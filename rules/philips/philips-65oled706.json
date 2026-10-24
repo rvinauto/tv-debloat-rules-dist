@@ -9,8 +9,10 @@
       "philips"
     ],
     "model_patterns": [
-      "65oled706"
+      "^(?:.*[ _-])?65oled706$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

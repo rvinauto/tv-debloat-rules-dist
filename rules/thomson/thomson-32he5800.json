@@ -9,8 +9,10 @@
       "thomson"
     ],
     "model_patterns": [
-      "32he5800"
+      "^(?:.*[ _-])?32he5800$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

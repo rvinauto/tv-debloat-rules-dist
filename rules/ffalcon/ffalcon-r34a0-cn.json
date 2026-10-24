@@ -9,8 +9,10 @@
       "ffalcon"
     ],
     "model_patterns": [
-      "r34a0"
+      "^(?:.*[ _-])?r34a0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

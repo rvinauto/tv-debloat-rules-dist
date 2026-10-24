@@ -9,8 +9,12 @@
       "dialog"
     ],
     "model_patterns": [
-      "sei103dl"
+      "^(?:.*[ _-])?sei103dl$"
     ],
+    "device_patterns": [
+      "^SEI103$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.dialog.tv",

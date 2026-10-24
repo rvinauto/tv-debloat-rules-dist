@@ -9,8 +9,12 @@
       "skyworth"
     ],
     "model_patterns": [
-      "22sa"
+      "^(?:.*[ _-])?22sa$"
     ],
+    "device_patterns": [
+      "^SW6H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

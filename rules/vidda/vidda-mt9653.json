@@ -9,8 +9,12 @@
       "vidda"
     ],
     "model_patterns": [
-      "mt9653"
+      "^(?:.*[ _-])?mt9653$"
     ],
+    "device_patterns": [
+      "^MT9653$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.jamdeo.tv.vod",

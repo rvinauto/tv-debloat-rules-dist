@@ -9,8 +9,12 @@
       "kogan"
     ],
     "model_patterns": [
-      "gtvu65kg"
+      "^(?:.*[ _-])?gtvu65kg$"
     ],
+    "device_patterns": [
+      "^dangni$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

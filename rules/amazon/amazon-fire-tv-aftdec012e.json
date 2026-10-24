@@ -9,8 +9,10 @@
       "amazon"
     ],
     "model_patterns": [
-      "aftdec012e"
+      "^(?:.*[ _-])?aftdec012e$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

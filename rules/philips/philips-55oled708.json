@@ -9,8 +9,10 @@
       "philips"
     ],
     "model_patterns": [
-      "55oled708"
+      "^(?:.*[ _-])?55oled708$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

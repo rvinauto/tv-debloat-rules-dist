@@ -9,8 +9,12 @@
       "anker"
     ],
     "model_patterns": [
-      "d2140"
+      "^(?:.*[ _-])?d2140$"
     ],
+    "device_patterns": [
+      "^D2140\\-Cosmos$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

@@ -9,8 +9,12 @@
       "kalley"
     ],
     "model_patterns": [
-      "43g200"
+      "^(?:.*[ _-])?43g200$"
     ],
+    "device_patterns": [
+      "^R3_GTV$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

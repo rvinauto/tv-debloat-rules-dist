@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
  "repo": "rvinauto/tv-debloat-rules-dist",
- "generated": "2026-10-24T06:46:27Z",
- "source_commit": "34edfa1",
+ "generated": "2026-10-24T08:36:28Z",
+ "source_commit": "4a9f695",
  "models": [
   {
    "id": "acer-ar55ar2851udpro",
@@ -14,12 +14,16 @@
      "acer"
     ],
     "model_patterns": [
-     "ar55ar2851udpro"
+     "^(?:.*[ _-])?ar55ar2851udpro$"
     ],
+    "device_patterns": [
+     "^R4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/acer/acer-ar55ar2851udpro.json",
-   "sha256": "d9b6731057175e143b3dc7cd8d7b4c721ef98fc7d72c05f8ae52d3ea28bee4e0",
+   "sha256": "af53358177f91e067e1b6dec925064758ef29384e40fcf62448ba9d807474d35",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -38,10 +42,14 @@
      "aipro2k"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^dongnae$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/aipro2k/aipro2k.json",
-   "sha256": "51625cb0599c78b8802df0b80e533022963ba46ce1c59ff4ee9614fc8805fdc6",
+   "sha256": "feb817b5c9f6e70b3007cddba833fdfaae2ba756234210d12d1a9ebcfc5eebcc",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -60,10 +68,14 @@
      "aiwa"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^osaka$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/aiwa/aiwa-ai-pont-sa.json",
-   "sha256": "0d1fcaf5240049ef285521c7048bf1e162a3a949eff8758bca7874e8299f0069",
+   "sha256": "57259676600e3a0fcfe901ec407669980c24c07b8cfdfd994ac43cab2597ca22",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -82,12 +94,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "aftdec012e"
+     "^(?:.*[ _-])?aftdec012e$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-aftdec012e.json",
-   "sha256": "8b340e0158e03d2925192c082c18b8c850dd9ef58c2d75acda9ac82b9df2283b",
+   "sha256": "b838d432ea2bfb156e94947285592369f8de1b6d1016819dc39d811f02cf910f",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -106,12 +120,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "afteu014"
+     "^(?:.*[ _-])?afteu014$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-afteu014.json",
-   "sha256": "a1d58fbd653c13f07b985fd2e13689172df543cc4ffe83f716d68b2d8ca6fd3c",
+   "sha256": "30345c1529876f6782e737c8380593751f97efcee75bae6e4e348cab015cfe77",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -130,12 +146,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "afttiff43"
+     "^(?:.*[ _-])?afttiff43$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-afttiff43.json",
-   "sha256": "d20a24bce9111cf23bddfe7d0e2d9cfee168b3541670c46dce1b3a4745246956",
+   "sha256": "40853ec9c35d83e77ee6244bddd094e8c4a9fc73ad2d0e222edda6e150034aa6",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -154,12 +172,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "2018"
+     "^(?:.*[ _-])?2018$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-stick-4k-2018.json",
-   "sha256": "dde0d1c4a55cd974a526741baee1877a458e40d7469d44e38e2e7326e5dd38cd",
+   "sha256": "78eb7012ce4d9e28e895339cf6edd1c13632b4ee5e6b6b8cac8461ee82e5b3ca",
    "review": "auto-checked",
    "counts": {
     "safe": 60,
@@ -178,12 +198,16 @@
      "amazon"
     ],
     "model_patterns": [
-     "2023"
+     "^(?:.*[ _-])?2023$"
     ],
+    "device_patterns": [
+     "^name$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-stick-4k-2023.json",
-   "sha256": "1e58bf4bb89f2d8ed459599ba2a10336a642f1516e04916ea76eaec670ed1098",
+   "sha256": "89dc8598679a961529897b6d2baefd392473bce36c82a4f5ecd85f2017216631",
    "review": "auto-checked",
    "counts": {
     "safe": 54,
@@ -202,12 +226,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "2021"
+     "^(?:.*[ _-])?2021$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-stick-4k-max-2021.json",
-   "sha256": "bf72e1623bdcb16eae3e2952591fef461c73f5926798d3e280b6d68f4ad43d6d",
+   "sha256": "7c794d41325579a7b2e5da26ea0fb13c7a811ae87c48e491d953f43e64b31163",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -226,12 +252,14 @@
      "amazon"
     ],
     "model_patterns": [
-     "2020"
+     "^(?:.*[ _-])?2020$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/amazon/amazon-fire-tv-stick-lite-2020.json",
-   "sha256": "60a3b3bea4dd4d09573237247147d3d60a1a07abaf55e517a23b1924bf03edc1",
+   "sha256": "9de8c85f30798b9cac6b5e181e463495e8a7a76f8efabd8040bd128d01ab3df0",
    "review": "auto-checked",
    "counts": {
     "safe": 48,
@@ -250,12 +278,16 @@
      "anker"
     ],
     "model_patterns": [
-     "d2140"
+     "^(?:.*[ _-])?d2140$"
     ],
+    "device_patterns": [
+     "^D2140\\-Cosmos$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/anker/anker-nebula-d2140.json",
-   "sha256": "8f2d76743df0a8b408d3f6b35b8d83765cc1a05e979e7c6e208667b5318cd3a6",
+   "sha256": "ff42f99e06aae8f02b8dc97eb7e257a7e6ce6827743964d88d9c5bc5255e9457",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -274,12 +306,16 @@
      "anker"
     ],
     "model_patterns": [
-     "d2426"
+     "^(?:.*[ _-])?d2426$"
     ],
+    "device_patterns": [
+     "^baekdu$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/anker/anker-nebula-d2426.json",
-   "sha256": "2fa054a4cb219a00a04799f92a58770e4e7bce5e804a847af0f6afb46318a360",
+   "sha256": "cf25e77b1864b25f0f6b5851d275dd76f734fd1ea9191b0466e80930eed88614",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -298,12 +334,14 @@
      "artel"
     ],
     "model_patterns": [
-     "mt5863"
+     "^(?:.*[ _-])?mt5863$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/artel/artel-cvte-mt5863.json",
-   "sha256": "bb930da67ca7d2330f6001576e93d712507b630f8787776f8e682ee439530715",
+   "sha256": "5f7a2ac3d5f2c3c7d17daab4419c10729ed8d705cbfc252f8ca99773dd496818",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -322,12 +360,14 @@
      "benq"
     ],
     "model_patterns": [
-     "e55[-_ ]?735"
+     "^(?:.*[ _-])?e55[-_ ]?735$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/benq/benq-e55-735.json",
-   "sha256": "bddf94f4311bb463cfc01a2419fbc0849c522434354c852373d653c3ff23277f",
+   "sha256": "afbe2c57d2d5c2b31b4477fb1b5aae841a724f46661bbeb8b36e5b654e748331",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -346,12 +386,14 @@
      "benq"
     ],
     "model_patterns": [
-     "e55[-_ ]?750"
+     "^(?:.*[ _-])?e55[-_ ]?750$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/benq/benq-e55-750.json",
-   "sha256": "9418862bb13fd1b7501d31092cee4e132bed10ec1bfd71af6ccdb9b98362fb4c",
+   "sha256": "a5e8ddad0165ed551dafc69613db2fd7a48f09b28c1c19d4f5287a34cb855d35",
    "review": "auto-checked",
    "counts": {
     "safe": 6,
@@ -370,12 +412,16 @@
      "benq"
     ],
     "model_patterns": [
-     "gv32"
+     "^(?:.*[ _-])?gv32$"
     ],
+    "device_patterns": [
+     "^himalaya$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/benq/benq-gv32.json",
-   "sha256": "1dc3721600c202a5a7170b9113d302aead463db08c378f4db5d4c1000f20f256",
+   "sha256": "10f2e7f244cb9d7a869ff265b5bdb64d1045a82d63e378f458d778a3de7f09c2",
    "review": "auto-checked",
    "counts": {
     "safe": 6,
@@ -394,10 +440,14 @@
      "byintek"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^YYT$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/byintek/byintek-t5-max.json",
-   "sha256": "c922b7f0f55c0f518eeae8ce27b8ad1057f6ce64ac481cebf247b282967697cb",
+   "sha256": "e2f913f5b1fd73031bf65bed4a0131cc31dd0d4a69da036dfe6c960a13e34ac1",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -416,10 +466,12 @@
      "byintek"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/byintek/byintek-u4.json",
-   "sha256": "da75f35230153b5a733859a2799fd4d6e07aae1222f95ade313968304ecb9a43",
+   "sha256": "0929404e1f7955cd2e0b295a712632b1051d9e5de9622fdf7f0ab7da7919b015",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -438,12 +490,14 @@
      "caxium"
     ],
     "model_patterns": [
-     "rtk2851p"
+     "^(?:.*[ _-])?rtk2851p$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/caxium/caxium-58-realtek-rtk2851p.json",
-   "sha256": "6aa38944439af06b4e0c50f135d6481da714e046e1d6735e3914754009f26909",
+   "sha256": "524278d3901920ee86e02897cdad9c1d576975bc66ede9439b93c22b2d6a050a",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -462,10 +516,12 @@
      "cecotec"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/cecotec/cecotec-shandao.json",
-   "sha256": "eca83c447ca2928c849b30e514033ef02aef5ce294ceb7a451adeccae2fc75d4",
+   "sha256": "7fa9fcb25e6b4bae3ca1c2dd63655bc1496375da979ba914a020212191eef81f",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -484,12 +540,16 @@
      "challenger"
     ],
     "model_patterns": [
-     "32t22bt"
+     "^(?:.*[ _-])?32t22bt$"
     ],
+    "device_patterns": [
+     "^cvt_mt5863_col$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/challenger/challenger-32t22bt.json",
-   "sha256": "0356891a6cbc1ccf206a13f3c474231b92c39d7a7724c3d2dae9a4a69f2159d2",
+   "sha256": "99062f3451ec719e708984dfb9a295a8aad1d2447f7d4c8ca3d09a380b233f47",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -508,10 +568,12 @@
      "chiq"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/chiq/chiq-ai-pont.json",
-   "sha256": "39a734256535ed1d777fe625edc8f7ba15c89d8c2245ba5263413fffface3258",
+   "sha256": "f817a494514db96211909862c5a4a555e5cabd7cf51e28445fad7fa105fcad31",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -530,12 +592,16 @@
      "chiq"
     ],
     "model_patterns": [
-     "gtvu65"
+     "^(?:.*[ _-])?gtvu65$"
     ],
+    "device_patterns": [
+     "^dangni$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/chiq/chiq-gtvu65.json",
-   "sha256": "c507cefa532bc175df99c74ce84afaca8ec593d7bc8d48d912d6a0346e45d568",
+   "sha256": "1621376fd80fb87f779a9fd0433075370c59ba73bfe5555f222704bd572eb75a",
    "review": "auto-checked",
    "counts": {
     "safe": 8,
@@ -554,10 +620,14 @@
      "compac"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^R2$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/compac/compac-atv-r2.json",
-   "sha256": "6a89d4a04eb9adc3205ceb50f10c4ee619932feb0aae82ca77dd2559879ad57c",
+   "sha256": "d323eb16d214dbc9a62cdff50e2a7f993968df35d560a17da74154afe367d80c",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -576,12 +646,14 @@
      "coocaa"
     ],
     "model_patterns": [
-     "90p3d"
+     "^(?:.*[ _-])?90p3d$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/coocaa/coocaa-k3-pro-90p3d-max.json",
-   "sha256": "d19cd106a2f794b3dfed74dafb52f4da457e75d053b1b8c2616d24ba090eb637",
+   "sha256": "4d59b355a6a5dbbc7d06abedb198e7a0b0b82d64b1b55761da9ad40401496ef8",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -600,12 +672,16 @@
      "dialog"
     ],
     "model_patterns": [
-     "sei103dl"
+     "^(?:.*[ _-])?sei103dl$"
     ],
+    "device_patterns": [
+     "^SEI103$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/dialog/dialog-viu-sei103dl.json",
-   "sha256": "631a0be426055c2b2f4142eec36896cff24734eb2fcaacb5ee2e56c8c2a0026b",
+   "sha256": "9ce1af944f1a913819f1dc82d9ade384e1009968cbe4edd5672045235a74ede9",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -624,10 +700,12 @@
      "eko"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/eko/eko-2k-google-tv-tennoji.json",
-   "sha256": "65498cd15cfc4288df7f053afbcf0a85c0271a5adfd3b0d8afc70f330b60e36e",
+   "sha256": "964f5cbfc95fab77f3f425ed304e342a411b4b0b80fb392cefe85d1097189fc5",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -646,12 +724,14 @@
      "epson"
     ],
     "model_patterns": [
-     "ls800"
+     "^(?:.*[ _-])?ls800$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/epson/epson-ls800.json",
-   "sha256": "cba265ed63505f208ca8d6e311c2827299a4abf4c10d0f120ebdfe3708f88017",
+   "sha256": "cd018cfb73ef0c381301f44890bf17a3bf2ed4416f831e31d83edcdcf65d1051",
    "review": "auto-checked",
    "counts": {
     "safe": 8,
@@ -670,12 +750,16 @@
      "ffalcon"
     ],
     "model_patterns": [
-     "65s585c"
+     "^(?:.*[ _-])?65s585c$"
     ],
+    "device_patterns": [
+     "^tcl_mt5879_cn$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/ffalcon/ffalcon-65s585c-pro.json",
-   "sha256": "5fc75a0df4786a17fa1058136efb8ca4622c8cd34264e47fdf4e0efd3cc8a11e",
+   "sha256": "c1a9bb54364f59ce1bd06e6b6eda412d239cdf0f7a9153b6e67d206ee464bc62",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -694,12 +778,14 @@
      "ffalcon"
     ],
     "model_patterns": [
-     "r34a0"
+     "^(?:.*[ _-])?r34a0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/ffalcon/ffalcon-r34a0-cn.json",
-   "sha256": "3415c483563b0fd69a2f2198c3a0ee65f9d506fdcca2a90ec179ea8ced7ced21",
+   "sha256": "3fe6bfcc5fd5f13bba61a36518fe8bb5a269b8889fbd30f6629fdfd89c08d7a0",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -718,10 +804,12 @@
      "formovie"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/formovie/formovie-laser-4k-hanlla.json",
-   "sha256": "f55c7cde08ae4907224719cdc820bdc1009ae648ff8bc1ed89504ed2cadf2988",
+   "sha256": "62e65576b9f095c91e34ed5258d52ef701605d9939c80629ad62cfaf803c5bb5",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -740,12 +828,16 @@
      "formovie"
     ],
     "model_patterns": [
-     "mprojm05"
+     "^(?:.*[ _-])?mprojm05$"
     ],
+    "device_patterns": [
+     "^eva$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/formovie/formovie-mprojm05.json",
-   "sha256": "ef902e6fe7aa747ee200069a5fcb1fecf7397da1e595d05990dd535f0c3fbe4e",
+   "sha256": "1b2466521444f7285ede04cb68361cff6e63a2e2e24770d4d15550273bc2b0d4",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -764,10 +856,12 @@
      "freebox"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/freebox/freebox-player-pop.json",
-   "sha256": "3241f121fccdd84a6993a9d8fa4aef38650f8299d2134fa8dba0f73ebefe0b6a",
+   "sha256": "ed219b43f71236b3fb442a83b2b7fcd4f996a6775039b0395ec58223d65e79fd",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -786,12 +880,16 @@
      "gadnic"
     ],
     "model_patterns": [
-     "proj100w"
+     "^(?:.*[ _-])?proj100w$"
     ],
+    "device_patterns": [
+     "^YYT$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/gadnic/gadnic-proj100w.json",
-   "sha256": "a997d47cb0a601f7dd8b094604d7472f52dfd193c18c4dffa5be25a00890d9f7",
+   "sha256": "bb8bf53b1d913d1531eee9e865dc037d0d63c28f3ef4252e2459c5762bde3c5a",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -810,10 +908,14 @@
      "google"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^sabrina$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/google/google-chromecast-gtv-4k.json",
-   "sha256": "7785f6d4b899e3f8519f4a1a8166bc4a0b10ad3038205034ea4abdd35d05f1b8",
+   "sha256": "f50379272ce69e8b1bb0455059e34b8b776d4bc8ac88e3f5f46b21601bedefe6",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -832,10 +934,14 @@
      "google"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^boreal$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/google/google-chromecast-gtv-hd.json",
-   "sha256": "08b3001b12e5d83b18b97f3d34f1c553c8fbd9b15166265215e55d16982ac453",
+   "sha256": "f08290bdd5a4d5f01dd694db8bec0f3d476010513130455274e98b3826c7cea9",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -854,10 +960,14 @@
      "google"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^kirkwood$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/google/google-tv-streamer-4k-kirkwood.json",
-   "sha256": "214f10e51d8db609076639916cb23bafee6ac84f4e70162952b27b9a9811b0ab",
+   "sha256": "732206b57467da207e126b16b890da0f6da243747f247a2e2ae99beb01fb1a8a",
    "review": "auto-checked",
    "counts": {
     "safe": 8,
@@ -876,10 +986,12 @@
      "grundig"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/grundig/grundig-kunyang.json",
-   "sha256": "7cd9c2b1e26ac73f182f03110d001da9fcb1e64a8f160c69f941f73485da5173",
+   "sha256": "f8de23a94212fead8dc19f61688f67fc2e29c13583d2cc3efc8044f73b2a754f",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -898,12 +1010,16 @@
      "haier"
     ],
     "model_patterns": [
-     "dvb2k"
+     "^(?:.*[ _-])?dvb2k$"
     ],
+    "device_patterns": [
+     "^broadway$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/haier/haier-android-tv-dvb2k.json",
-   "sha256": "3ea8dae9a3fe59ef8774796b07bc426be7918b42b73c5edf3a463a332e74d2fc",
+   "sha256": "580bbc9767766dbf23a300b63a740bd666e66558785af81efd8bede4ce2761a9",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -922,12 +1038,16 @@
      "haier"
     ],
     "model_patterns": [
-     "h32s80efx"
+     "^(?:.*[ _-])?h32s80efx$"
     ],
+    "device_patterns": [
+     "^deto$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/haier/haier-h32s80efx.json",
-   "sha256": "d2396260af9dbb29aac48f98f08ca58bf6d3b1927424c4b5986e0c199b39f040",
+   "sha256": "6dd061a9a9f090430c1d0afd08f87d7298b6388b5f1697781ef0bc97f3fe7dc9",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -946,12 +1066,16 @@
      "haier"
     ],
     "model_patterns": [
-     "hr9216eu"
+     "^(?:.*[ _-])?hr9216eu$"
     ],
+    "device_patterns": [
+     "^haeundae$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/haier/haier-hr9216eu.json",
-   "sha256": "01aedd0bd33c1358e83b7890692c9afb2f12f1d0fddec3f56ceb5609d6203872",
+   "sha256": "036bd8e98df124f865f7088e39d48aa124382f8d2919456a4e02374a181ceb81",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -970,12 +1094,16 @@
      "hisense"
     ],
     "model_patterns": [
-     "65d62qh"
+     "^(?:.*[ _-])?65d62qh$"
     ],
+    "device_patterns": [
+     "^MT9653$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-65d62qh.json",
-   "sha256": "a038078a3a467d4b53cb06d5d26b92dcc77e64d35a604a9c129ead10e7584821",
+   "sha256": "93a81cf09f8c30e1a2b3ffdc5d7e1b842e187e2961c0f35231534e1f88db036d",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -994,12 +1122,14 @@
      "hisense"
     ],
     "model_patterns": [
-     "e5q"
+     "^(?:.*[ _-])?e5q$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-e5q-pro.json",
-   "sha256": "6177b216b5b60c269776203af82cbc6e463183221e0ffa9680c00d32570aa9e7",
+   "sha256": "1f93de4e9e936e5703c1b5690b51d0c678cbc70fe5f0c37a1113dc5661323df6",
    "review": "auto-checked",
    "counts": {
     "safe": 18,
@@ -1018,12 +1148,14 @@
      "hisense"
     ],
     "model_patterns": [
-     "aftcibfbd1"
+     "^(?:.*[ _-])?aftcibfbd1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-fire-tv-aftcibfbd1.json",
-   "sha256": "9be0534b13cda9c410e8ac5e8addd0d54f5974745d73bf281633e4e73f7fcf47",
+   "sha256": "26b2b681b6615f5395cd1b8f1dc769a4c8eb93a8fc4973dd6589b70922ab2961",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -1042,12 +1174,16 @@
      "hisense"
     ],
     "model_patterns": [
-     "hg9"
+     "^(?:.*[ _-])?hg9$"
     ],
+    "device_patterns": [
+     "^laohushan$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-hg9.json",
-   "sha256": "83e92743e515a61ebaf015d7b0cff2408f705899edebd8b0e6ea66de7d78efbf",
+   "sha256": "910524b5e0493edaeaba76614d09764e20ddfdaecbb41ef09a58902c56ae8339",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -1066,12 +1202,16 @@
      "hisense"
     ],
     "model_patterns": [
-     "android11"
+     "^(?:.*[ _-])?android11$"
     ],
+    "device_patterns": [
+     "^xiaoyushan$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-hismarttv-a4-android11.json",
-   "sha256": "29ac13aa88e2242bdc68923b283494b72fe8374bf98fe608ca14d1de9002a1f3",
+   "sha256": "a9a47f8c7a01c16a1329c1afcb9ebe14d2b1011127347a1310344ebd8d7ecf18",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -1090,10 +1230,14 @@
      "hisense"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^xiaoyushan$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/hisense/hisense-hismarttv-a4.json",
-   "sha256": "4ce61eb24da470b8569925104fee6adc9f517d37c7b44703ea60f804aeebb741",
+   "sha256": "c2fdee762f2419123fcf35aba43f273622c5339d8c98bcb91f1770c5a1ce3c84",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -1112,12 +1256,16 @@
      "hisense"
     ],
     "model_patterns": [
-     "android11"
+     "^(?:.*[ _-])?android11$"
     ],
+    "device_patterns": [
+     "^songshan$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-smarttv-4k-ffm-android11.json",
-   "sha256": "a24aeb3ed4c4a93650aeb3db19a49489262596ff4f5f5d79287638037532db98",
+   "sha256": "eb6691a0340294c38dbf6ca268af0c104f5ad8a797018689a7cb38950ca7608c",
    "review": "auto-checked",
    "counts": {
     "safe": 4,
@@ -1136,10 +1284,14 @@
      "hisense"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^lushan$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/hisense/hisense-smarttv-4k-ffm-lushan.json",
-   "sha256": "4502c005318e119d04721470c38df6a266aca1f873b526f8be8d1502b5a02d33",
+   "sha256": "425c004e0561191613e45a0a1ed19db4c45e97cdc0114b06f8f1926505edfb30",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -1158,10 +1310,14 @@
      "hisense"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^huangshan$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/hisense/hisense-smarttv-4k-ffm.json",
-   "sha256": "2f42f7b7cb5956296cb45fe0712e5d6b56f952cd33b86fdcb545674d9fae01ad",
+   "sha256": "715bd4b47b5dda599c7a528845e5d6e4fe5c75fc9d92ec2a8d590e53d1a77031",
    "review": "auto-checked",
    "counts": {
     "safe": 33,
@@ -1180,12 +1336,16 @@
      "hisense"
     ],
     "model_patterns": [
-     "u75"
+     "^(?:.*[ _-])?u75$"
     ],
+    "device_patterns": [
+     "^hengshan$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hisense/hisense-u75-hengshan.json",
-   "sha256": "d890b0f0886309366dc096c5b473557cbf472905f534383ca90acbd9733efc3e",
+   "sha256": "5c8c2c0996f44bb4ff72a708c2dac93f8f00f8c2a209de14c8dcfcb05b0562b0",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -1204,12 +1364,14 @@
      "hitachi"
     ],
     "model_patterns": [
-     "65qledsm20"
+     "^(?:.*[ _-])?65qledsm20$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hitachi/hitachi-65qledsm20.json",
-   "sha256": "fa509fca811d24016361d4963c9acb4b20782798472ed1ad63cb83a87b71f5f3",
+   "sha256": "75a13f66dc9c9efea623fb5709e6812cdd31ab0c39231854551c3c67898473ca",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -1228,12 +1390,16 @@
      "hitachi"
     ],
     "model_patterns": [
-     "le32smart21"
+     "^(?:.*[ _-])?le32smart21$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hitachi/hitachi-cdh-le32smart21.json",
-   "sha256": "a522c4870ae72b4cddc0f9af7321a2e10c5c0c40f34e77d3fda93e01e8553957",
+   "sha256": "9558acf88f86f41ac15e294ba5ee5dad5b72bf18ba2b972850b43b95b98b9c90",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -1252,12 +1418,14 @@
      "hotack"
     ],
     "model_patterns": [
-     "smart2kpjt"
+     "^(?:.*[ _-])?smart2kpjt$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/hotack/hotack-smart2kpjt.json",
-   "sha256": "aec4d26ae774e71c41862a3e135d029351621ad52c5f1eccd58ae17493065d5b",
+   "sha256": "cbb7e1aed017a0237b5e302e4033f6bce41c4739840cc408c631b439bd339db5",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -1276,10 +1444,14 @@
      "inclo"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^khardi$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/inclo/inclo-google-tv-4k.json",
-   "sha256": "04c316d0b1af35730b0e8706132aa7591e672546cb0f882cc4fb2ea3b183fd2d",
+   "sha256": "3791f384694f0fa9256aeabcbb364699924ee7982c4c259449076cf4e5e09816",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -1298,12 +1470,14 @@
      "insignia"
     ],
     "model_patterns": [
-     "ns55f301na25"
+     "^(?:.*[ _-])?ns55f301na25$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/insignia/insignia-ns55f301na25.json",
-   "sha256": "38e37443d31d4fc20f18f8bcede2bde9733a744e72dccb4278bb784a05be8908",
+   "sha256": "db4c5cf97cc6690e26a6b14a967b47adf2d8284d65e5c66060f8ad987df5c809",
    "review": "auto-checked",
    "counts": {
     "safe": 87,
@@ -1322,12 +1496,14 @@
      "jmgo"
     ],
     "model_patterns": [
-     "n1s"
+     "^(?:.*[ _-])?n1s$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/jmgo/jmgo-n1s-holan.json",
-   "sha256": "5d16957101a965f933a54e8dfda8083c9f4c6c6b10ef3eea4d061e9a7f71faf7",
+   "sha256": "835504170ed2d09d74f7df768786d7c78c43c867880b881346814796cc54db3d",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -1346,10 +1522,14 @@
      "jvc"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^menlo$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/jvc/jvc-android-tv-menlo.json",
-   "sha256": "798de466208698692e55e5452f3bd4a4c33f8ad1312e9d73071d6dde617d53b8",
+   "sha256": "8eb5f369fbff2809676304b10a5e68d854412d097f7cacbf9bd61513b89ed661",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -1368,12 +1548,16 @@
      "kalley"
     ],
     "model_patterns": [
-     "43g200"
+     "^(?:.*[ _-])?43g200$"
     ],
+    "device_patterns": [
+     "^R3_GTV$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/kalley/kalley-43g200.json",
-   "sha256": "78e6f6407aa535a9cecbd4a993a1aa8d970f78eb951954eff6d59ba872c27cb8",
+   "sha256": "6bfddb149c11e84a9e29aa4f4d16a4b4fc1aa7ff3a58390b18a062f56ff1a5db",
    "review": "auto-checked",
    "counts": {
     "safe": 6,
@@ -1392,12 +1576,16 @@
      "kalley"
     ],
     "model_patterns": [
-     "r10g"
+     "^(?:.*[ _-])?r10g$"
     ],
+    "device_patterns": [
+     "^R10G$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/kalley/kalley-r10g.json",
-   "sha256": "6251dc4e9b6af548340e4fd296c4b1436be23ca36314e648ffe19e1fa2d02229",
+   "sha256": "436aea8e5d9e1ac4a7c688e3c76867135f7e59b6bb288961f33cb5e7dee1f4b7",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -1416,12 +1604,16 @@
      "karbonn"
     ],
     "model_patterns": [
-     "20ae"
+     "^(?:.*[ _-])?20ae$"
     ],
+    "device_patterns": [
+     "^SW4H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/karbonn/karbonn-swtv-20ae.json",
-   "sha256": "9e298b69e351a08962f0a8ae87ee93c10dce8ccc4eade804181a68ed01d9761f",
+   "sha256": "ce2c07d910d1064ec311710e039870c0be556cef4b2a10dd61301a57fb66c382",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -1440,12 +1632,16 @@
      "kogan"
     ],
     "model_patterns": [
-     "gtvu65kg"
+     "^(?:.*[ _-])?gtvu65kg$"
     ],
+    "device_patterns": [
+     "^dangni$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/kogan/kogan-gtvu65kg.json",
-   "sha256": "1d76c0ca83824d41084d209aa16a617d07e6aa36c8911090dee11a72c3181bdb",
+   "sha256": "b5cb4cf8cfbc23c11caa09b2bd3b5352356ca6c18e03c3e20c60a90e41401d34",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -1464,10 +1660,14 @@
      "ktc"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^hongkong$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/ktc/ktc-4k-smart-tv-hongkong.json",
-   "sha256": "f62dfa15c4348fe8178d99566b67274ab79adaf2f80f85623435e18905053f2a",
+   "sha256": "19bd316667ca04b9bc013e9543481e2a64af8898416a45a780d9972c493de458",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -1486,12 +1686,16 @@
      "liberton"
     ],
     "model_patterns": [
-     "24h01at"
+     "^(?:.*[ _-])?24h01at$"
     ],
+    "device_patterns": [
+     "^redwood$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/liberton/liberton-ltv-24h01at.json",
-   "sha256": "7fefb9ccd6658daabf6cdaa4337b117733a34c498d04da98497daedd959dae97",
+   "sha256": "a4f379b1efec07c08d71ae05163ff0532fd87c955abab5055dddd3cd2cbf3680",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -1510,10 +1714,14 @@
      "lumio"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^khardi$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/lumio/lumio-vision-7.json",
-   "sha256": "6f4876b8b5efd13affef2cd0f2b0f07214891d4d50509b3c409a03a2ea9394aa",
+   "sha256": "b55638de08197845082c2efe6cbac1c5370a55bdf34afa818b4fe18f0588f733",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -1532,12 +1740,16 @@
      "magcubic"
     ],
     "model_patterns": [
-     "hy300"
+     "^(?:.*[ _-])?hy300$"
     ],
+    "device_patterns": [
+     "^adt3$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/magcubic/magcubic-hy300-pro.json",
-   "sha256": "a018a5211be3a4bd22e86f4c605c30ff2672fa68224c870e70e03d2ad9562312",
+   "sha256": "7957e57d18f5f20245c1d922c07760e4a8c56e18e7e6171c29944483adbb327d",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -1556,12 +1768,16 @@
      "master"
     ],
     "model_patterns": [
-     "mga3200"
+     "^(?:.*[ _-])?mga3200$"
     ],
+    "device_patterns": [
+     "^R1$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/master/master-g-mga3200.json",
-   "sha256": "94bea49050f4d347db0bd414d5d6757eccb9cb3cd538e255af775b2a3ba958c1",
+   "sha256": "84109535760b3a71805fa0f4b8ceb4f15fdba04831032501d606812f22a2f0ed",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -1580,12 +1796,16 @@
      "motorola"
     ],
     "model_patterns": [
-     "mt4310"
+     "^(?:.*[ _-])?mt4310$"
     ],
+    "device_patterns": [
+     "^hayward$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/motorola/motorola-mt4310.json",
-   "sha256": "d15e76e3cc96064aa6bbab147ae428cc0d3e3231cd405c98ab38314b1d2de15e",
+   "sha256": "bcc72c9303c9afe7039593cf1b1262f6d920b1e38f8112b2c2eae6d8b5fb11ff",
    "review": "auto-checked",
    "counts": {
     "safe": 6,
@@ -1604,12 +1824,16 @@
      "motorola"
     ],
     "model_patterns": [
-     "24ae"
+     "^(?:.*[ _-])?24ae$"
     ],
+    "device_patterns": [
+     "^beomil$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/motorola/motorola-swtv-24ae-fhd.json",
-   "sha256": "666c72cbe6bd0d43851436229e74d2cbc7acc9e01d33d6a54c7cbfbce5531ede",
+   "sha256": "25f24e8fc6d981b77ab890e62c2856e63f9681871a29f94a93511f0e4629e043",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -1628,10 +1852,12 @@
      "mtc"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/mtc/mtc-uk-2k-android-tv.json",
-   "sha256": "593f46aea061b7432a4f13046a580e1ac8cade13e58e1af91e3076fb3dd86840",
+   "sha256": "6d7c9b2cecf3caead39954eb3dafd02171758c0b32c76436ba7c5875f223fb85",
    "review": "auto-checked",
    "counts": {
     "safe": 4,
@@ -1650,10 +1876,12 @@
      "noblex"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/noblex/noblex-shinjuku.json",
-   "sha256": "622acc341ed6193c3f234bdef90b1a6ee38c24ca4b2bde624d245acc9ee4c5e7",
+   "sha256": "831d3d23d6f394e92ebcf8ae57da9cf61dbdb3a41eb16abb5fe12c07a8565c92",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -1672,12 +1900,16 @@
      "nokia"
     ],
     "model_patterns": [
-     "8000"
+     "^(?:.*[ _-])?8000$"
     ],
+    "device_patterns": [
+     "^HND$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/nokia/nokia-streaming-box-8000.json",
-   "sha256": "59a9cc14768f8b32255ec6508d77742a18f8aaee7042d91e7cd7c352921f76fb",
+   "sha256": "90692c4baf78dd63f9025cf6475b43b9d2cf80d946d85c35a67c3fc6ac8b4ef3",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -1696,12 +1928,16 @@
      "nokia"
     ],
     "model_patterns": [
-     "8010"
+     "^(?:.*[ _-])?8010$"
     ],
+    "device_patterns": [
+     "^YYJ$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/nokia/nokia-streaming-box-8010.json",
-   "sha256": "7612761e9b0fad653a6c93d838cb3069a2aa32224b9e13520f179dd3297cadbc",
+   "sha256": "8843e007e566290a03ad315e272da0dd61295f389f2215c5526a2438f5d80601",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -1720,12 +1956,14 @@
      "nvidia"
     ],
     "model_patterns": [
-     "2019"
+     "^(?:.*[ _-])?2019$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/nvidia/nvidia-shield-tv-2019.json",
-   "sha256": "547a8a3976996fb0fc2f82dd5a35abd2a6d495bbe8158c8d848b142d806427b5",
+   "sha256": "1c54199c18411643b050875e01a6571ebfa42dd9c90be37bb09b32d9eee1a07b",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -1744,12 +1982,14 @@
      "nvidia"
     ],
     "model_patterns": [
-     "2019"
+     "^(?:.*[ _-])?2019$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/nvidia/nvidia-shield-tv-pro-2019.json",
-   "sha256": "056bf61004e555556865440f95061aea45a3ee5da6e9d6c0cb8d6eb7ea31c0b7",
+   "sha256": "afe14b9aa06f7d2e1109893a0a37431e01f08315ffbde6a09acec1d0e4bdc8ce",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -1768,10 +2008,14 @@
      "ok"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^ikebukuro$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/ok/ok-ai-pont-ikebukuro.json",
-   "sha256": "fb85fc0d574a09d522b24de56e4446957aebe53a7c40a854a99c768b4c2f7d01",
+   "sha256": "a9a0b855e36db249850c3efaab8680c1e266f435d143cac705276b10f2b600b3",
    "review": "auto-checked",
    "counts": {
     "safe": 18,
@@ -1790,10 +2034,12 @@
      "oneplus"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/oneplus/oneplus-tv-cebu.json",
-   "sha256": "86e0163b839b8231cf640ad27e10f2180812b9061220bfee04911f6ea238a441",
+   "sha256": "b012f8c177d3bda86c2c52b89f6703d9c3b2d112e910cfce7dbadc5ded7f06ba",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -1812,10 +2058,12 @@
      "oneplus"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/oneplus/oneplus-tv-dubai.json",
-   "sha256": "bba889004a584d9492f350714cdb57064a5c823471c464fed820a74674a91e99",
+   "sha256": "bd917328172dc94f5691e58662ccfde8d133ff1a6571c3037cb686a0ced35b1a",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -1834,10 +2082,12 @@
      "oneplus"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/oneplus/oneplus-tv-y1.json",
-   "sha256": "f02d2943f2c1cde2a034ae6e60d263450d0c19855c84d4f9af0dc33fbfaa82b7",
+   "sha256": "2a474043e07a850454770e9dd1287810d1f94d2f23a474d9660fb6b2ecac0263",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -1856,12 +2106,16 @@
      "onn"
     ],
     "model_patterns": [
-     "2025"
+     "^(?:.*[ _-])?2025$"
     ],
+    "device_patterns": [
+     "^coffey$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/onn/onn-4k-plus-2025.json",
-   "sha256": "bd68e3d0fce5236576d5a21f35bf129798b90cd9f7ba41a45e1370e589291325",
+   "sha256": "fbf788c2c7ab67120702e94921b192cb898dcace8275c20c0072aa7f155c3efa",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -1880,12 +2134,16 @@
      "onn"
     ],
     "model_patterns": [
-     "2023"
+     "^(?:.*[ _-])?2023$"
     ],
+    "device_patterns": [
+     "^YOC$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/onn/onn-4k-streaming-box-2023.json",
-   "sha256": "283504833df5c2f66c410c5fdcf629e793f71b313a1d8a822930df02bb9ebcda",
+   "sha256": "eaf7e9528a7b8d3385e779365a9f0f4086801687f03492a6714cc8c19beea04c",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -1904,12 +2162,16 @@
      "panasonic"
     ],
     "model_patterns": [
-     "4ktv[-_ ]?0su"
+     "^(?:.*[ _-])?4ktv[-_ ]?0su$"
     ],
+    "device_patterns": [
+     "^SW4H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/panasonic/panasonic-4ktv-0su.json",
-   "sha256": "8e0c9df9d1149953a16b577416e7c9f4e2eb52cd3ffbfa73212661c3e4bbc7ed",
+   "sha256": "4c565782ef3e37714373150000de06ed4bf77486f58a6c823f2f04896c046024",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -1928,12 +2190,14 @@
      "panasonic"
     ],
     "model_patterns": [
-     "4ktv"
+     "^(?:.*[ _-])?4ktv$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/panasonic/panasonic-4ktv-jup.json",
-   "sha256": "d7d86811fb138689dd9bfcd182bd83cecbcd3490f75f8647757f43a3cb365c22",
+   "sha256": "d0c279a4991feb49fe999476881f009ca390f42bb83fcf14036257857fcbdd1e",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -1952,12 +2216,14 @@
      "panasonic"
     ],
     "model_patterns": [
-     "40hs550k"
+     "^(?:.*[ _-])?40hs550k$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/panasonic/panasonic-th-40hs550k.json",
-   "sha256": "2ed416966a3406b97c73fe74559ad08556e3ef83d73f6a46a416d7a347f3f768",
+   "sha256": "6ffd166996896d51f21cbe24a5098969c8c5215ee0e6f1f1d3f019f6540d579e",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -1976,12 +2242,16 @@
      "peaq"
     ],
     "model_patterns": [
-     "ptv43aqu[-_ ]?5023c"
+     "^(?:.*[ _-])?ptv43aqu[-_ ]?5023c$"
     ],
+    "device_patterns": [
+     "^dundas$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/peaq/peaq-ptv43aqu-5023c.json",
-   "sha256": "678f33e4af1b59e75f4d880fc7b8692c10d847b96eac49eecdd29226c12cf318",
+   "sha256": "25e4ba627b10f82d769218b9aa30de1c5802b0c6a4ddb960a77ec30f371def93",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -2000,12 +2270,14 @@
      "philips"
     ],
     "model_patterns": [
-     "50pud7406"
+     "^(?:.*[ _-])?50pud7406$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-50pud7406.json",
-   "sha256": "667629f0c2f11f7f26ae0c028c8945e3be8666a88725375af108e416945313e4",
+   "sha256": "668ae625c2a42c01382dae4ec35657fd2abbfa1e9021dec38f59020e11181695",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -2024,12 +2296,14 @@
      "philips"
     ],
     "model_patterns": [
-     "50pus8517"
+     "^(?:.*[ _-])?50pus8517$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-50pus8517.json",
-   "sha256": "4a7b8a902a7c7231efbea936716b1f5d681b06f9107f2943eca310628a5aa919",
+   "sha256": "8a2613fe12709c7ac054998ce8c3758638c871ed187273919f56aa0e431d03c6",
    "review": "auto-checked",
    "counts": {
     "safe": 36,
@@ -2048,12 +2322,14 @@
      "philips"
     ],
     "model_patterns": [
-     "55oled707"
+     "^(?:.*[ _-])?55oled707$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-55oled707.json",
-   "sha256": "5dcc07902705a5d5a1a4ba78b2607a17da99ebda4a21d4d147e86d8072c244c4",
+   "sha256": "b43b20b404dc0214734fa55822d1c9bf24216dbf9d25aeab71d91d2e94586b50",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -2072,12 +2348,14 @@
      "philips"
     ],
     "model_patterns": [
-     "55oled708"
+     "^(?:.*[ _-])?55oled708$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-55oled708.json",
-   "sha256": "e5005279ed3edb14af56f194e93aa692c43ca42bed46c50241b076af78a16709",
+   "sha256": "b901916052c2eb8ddd755cda5e630bf0c1df05060a15b6cee8ca7e3457f41b9c",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -2096,12 +2374,16 @@
      "philips"
     ],
     "model_patterns": [
-     "55pus7503"
+     "^(?:.*[ _-])?55pus7503$"
     ],
+    "device_patterns": [
+     "^PH7M_EU_5596$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-55pus7503.json",
-   "sha256": "de5e2cfb0dd62a93435e52bd5415dfbec3d5af316496342c85b2fda3925f9ff8",
+   "sha256": "72a7f4ee34d7f410054185c78ac06c140215b0630dc10daa311413a4b18b4ec3",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -2120,12 +2402,14 @@
      "philips"
     ],
     "model_patterns": [
-     "65oled706"
+     "^(?:.*[ _-])?65oled706$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-65oled706.json",
-   "sha256": "29c813cddeb153ad9e6379295fc5febe3ef33a28dd6079461ec75b02cc32e5ef",
+   "sha256": "4d39e02f09419b4158669caae0196190387c40aec8838d60128e3161ab98c6a5",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -2144,12 +2428,14 @@
      "philips"
     ],
     "model_patterns": [
-     "65pml9506"
+     "^(?:.*[ _-])?65pml9506$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-65pml9506.json",
-   "sha256": "f8397c28cd4377302f54257a5f523f9f015c156671c90be91369805c829daf83",
+   "sha256": "941e1dd20cffff518d6590e015f214a7a01dd68ecd83dba71f227c0797748a53",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -2168,12 +2454,16 @@
      "philips"
     ],
     "model_patterns": [
-     "65pus8102"
+     "^(?:.*[ _-])?65pus8102$"
     ],
+    "device_patterns": [
+     "^PH7M_EU_5596$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-65pus8102.json",
-   "sha256": "3e62d983b75f13409d3062d0bd6498e3758389bbc2f86d8b26dcc2a870b31a5b",
+   "sha256": "25b06cd11dc537920d7a5558ec26dac5bc6574b3ddc16a081a092e46773f0a37",
    "review": "auto-checked",
    "counts": {
     "safe": 31,
@@ -2192,12 +2482,14 @@
      "philips"
     ],
     "model_patterns": [
-     "65pus9435"
+     "^(?:.*[ _-])?65pus9435$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-65pus9435.json",
-   "sha256": "7b9cd6020d882fcbcde02d4dca542a4663a5f49844f4d990586f27e3058ef23d",
+   "sha256": "bdc89dc0b9ec80314d3358e4e8eb45c3753f309b3d9297a06d14f4063c117918",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -2216,12 +2508,14 @@
      "philips"
     ],
     "model_patterns": [
-     "75pus8505"
+     "^(?:.*[ _-])?75pus8505$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-75pus8505.json",
-   "sha256": "f4ca8f47f03e3c53d3f9286d883d2a0f5695dcaa958d4da48104f4ac9f3c869d",
+   "sha256": "14c296720adcefacb792b322bb4b0d6a4ac29a0af4409ee46044a174d2a96f18",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -2240,12 +2534,16 @@
      "philips"
     ],
     "model_patterns": [
-     "ta7"
+     "^(?:.*[ _-])?ta7$"
     ],
+    "device_patterns": [
+     "^PH3M_AL_T32$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-google-tv-ta7.json",
-   "sha256": "73658c57e0a7b36adb80be330315a4ec40b97a01923987fde349aee26b0967cb",
+   "sha256": "acf1ae5b34b2942e28ae52c8dc788299894d60e0da6b41f5d35ec7151bd495de",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -2264,12 +2562,16 @@
      "philips"
     ],
     "model_patterns": [
-     "r8g"
+     "^(?:.*[ _-])?r8g$"
     ],
+    "device_patterns": [
+     "^whitefield$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-r8g-google-tv.json",
-   "sha256": "77953ab4ba11ee1e5a70fe59bb0a9031947a14bb5d3baca854204a510c9b07f5",
+   "sha256": "7e3891b6e09ff9806ebe3c3b2683229d9b24b562c2cefec23fc3c428125869d4",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -2288,10 +2590,14 @@
      "philips"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^eleonas$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/philips/philips-smart-4k-google-tv.json",
-   "sha256": "c7cb7cffd1864a9dd9df1eab2c03c4de19183eb919bdf9f9d5178ad7f85300a8",
+   "sha256": "fbd93eea92e2c21ef56c7318e8d4824397cbf311a9c4ddaebafb1be55d9bb55f",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -2310,12 +2616,16 @@
      "philips"
     ],
     "model_patterns": [
-     "tpm191e"
+     "^(?:.*[ _-])?tpm191e$"
     ],
+    "device_patterns": [
+     "^PH9M_EA_5599$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/philips/philips-tpm191e.json",
-   "sha256": "d8759dbb60d85222aa7207ef0ccd37b683af6a0391542b2b2074a24ec6b375da",
+   "sha256": "15b1b0c7d73e2d97ac6f6e42b2996723319654553bbde617bc26e337cc2b7b70",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -2334,10 +2644,12 @@
      "polytron"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/polytron/polytron-2k-hayward.json",
-   "sha256": "7550e970598d37bc5a13886fd59c0edd160d0074d37c558f47c2aef945a29f76",
+   "sha256": "3989027d97c5e4da79e5e687c5f99e6be6601ace714d5f8c28e5d88482f1773e",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -2356,12 +2668,14 @@
      "portronics"
     ],
     "model_patterns": [
-     "470"
+     "^(?:.*[ _-])?470$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/portronics/portronics-beem-470.json",
-   "sha256": "5a9f3c033e7798bb41500f62712cab2bd36d8bcf5e8050a2213bb670fa2936d8",
+   "sha256": "bd439c0e0a7c4643b72e292adb7ea1272e490bcdc08cb4662a992956ff06aec2",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -2380,12 +2694,16 @@
      "prismplus"
     ],
     "model_patterns": [
-     "q65[-_ ]?r10g"
+     "^(?:.*[ _-])?q65[-_ ]?r10g$"
     ],
+    "device_patterns": [
+     "^R10G$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/prismplus/prismplus-q65-ultra-r10g.json",
-   "sha256": "32ef2bd31205813adb409421ac61926a07af6891ed9ef087debfef0e78fa24e8",
+   "sha256": "f6f512a2865d8d9da84aa457b0fa68a4df9dabf7679152513874890efbbabd80",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -2404,10 +2722,14 @@
      "rca"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^redwood$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/rca/rca-ai-pont.json",
-   "sha256": "4381cb9c4bf20313a5040a6308065eab5073049937a5f2850c467532e6e144bb",
+   "sha256": "cd608c03b09f5e5811a91904cbd112329d1e5d5778e51c874eb8ea72a5b69dbd",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -2426,12 +2748,14 @@
      "rca"
     ],
     "model_patterns": [
-     "rc50a21s[-_ ]?4ksm"
+     "^(?:.*[ _-])?rc50a21s[-_ ]?4ksm$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/rca/rca-rc50a21s-4ksm.json",
-   "sha256": "d8d119b71bd06406a3712947821c13d44684beb865827edbf72d863077b5436c",
+   "sha256": "8217cef1e5db005a88067fae6eca98103a88462773d1a7cfd3cb82951173c991",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -2450,12 +2774,14 @@
      "redmi"
     ],
     "model_patterns": [
-     "antl0"
+     "^(?:.*[ _-])?antl0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/redmi/redmi-mitv-antl0.json",
-   "sha256": "2a86f086c1d1bca0246c7b53570f4cf635005cd2d8f874cb67ce217eb5d45741",
+   "sha256": "cf79c2260ccd1350f215b5f164f7348c52038c8a1d63f8afe2933844874138a2",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -2474,12 +2800,14 @@
      "redmi"
     ],
     "model_patterns": [
-     "mftp0"
+     "^(?:.*[ _-])?mftp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/redmi/redmi-mitv-mftp0.json",
-   "sha256": "bc04c13a7d8816e7e3830a25899d8b125aca25f57d2ae9be44054561e8e40c42",
+   "sha256": "8e3271de7328d790bda4def766f2ef22793f1fb223fba6289a43316333e6d7ff",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -2498,12 +2826,14 @@
      "rocktek"
     ],
     "model_patterns": [
-     "gb1"
+     "^(?:.*[ _-])?gb1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/rocktek/rocktek-gb1.json",
-   "sha256": "4d2d3f6c08969e575cb46af4ac2ea4b4d9375cafbe62142a12ddb5226110e544",
+   "sha256": "348d3e27556c29c1e83e29bc7ed0218a0a76cab4028b0e3f68115cc013c1bd3c",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -2522,12 +2852,14 @@
      "sankey"
     ],
     "model_patterns": [
-     "hi3751v350"
+     "^(?:.*[ _-])?hi3751v350$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sankey/sankey-smart-tv-hi3751v350.json",
-   "sha256": "32656187f05701b28d506e10445145b41f7020f57dccdc992fda0c4aa4e775b2",
+   "sha256": "bb20fe491e761d3ade52d4851c83743b4249cf5c9cbd5cf3aa28967f6d05e495",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -2546,12 +2878,14 @@
      "sankey"
     ],
     "model_patterns": [
-     "smart2ktvse"
+     "^(?:.*[ _-])?smart2ktvse$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sankey/sankey-smart2ktvse.json",
-   "sha256": "35fc62a6cefd379c6ee75911894845e21f59c5112d65650910a71a4234222e03",
+   "sha256": "dbc8bb9e057ae5c83deee57ea60ee4ba01efdb6fe3f886de218274e415435d5e",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -2570,10 +2904,14 @@
      "sanyo"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^R2$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/sanyo/sanyo-atv-r2.json",
-   "sha256": "d8303e22d35e0cd531f83ca8ca90b21b598dcccbb5aa6513aed14aac7619c560",
+   "sha256": "10d17a0590bf9492524b67fe946cfa50baae479e331ab01b5269a1696ee5a147",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -2592,12 +2930,14 @@
      "sber"
     ],
     "model_patterns": [
-     "at30a6"
+     "^(?:.*[ _-])?at30a6$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sber/sber-salute-tv-at30a6.json",
-   "sha256": "3f61453c1ee576443ba5ae725e6f76b55c25de00871d2123b299aac17fc6c4e9",
+   "sha256": "fccbce9bd20b2db94dd16468b57cec47106871d9517e3a09cb2e9ee259eb706c",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -2616,12 +2956,16 @@
      "sharp"
     ],
     "model_patterns": [
-     "c32gh3000i"
+     "^(?:.*[ _-])?c32gh3000i$"
     ],
+    "device_patterns": [
+     "^beomil$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sharp/sharp-2t-c32gh3000i.json",
-   "sha256": "9ea69b8dff050efc0417239119f3e31ad05c9035e827d8d6251679f41e036128",
+   "sha256": "be2e59de6781f73b370f8893d9313502da35a1e16264412c3dfda050db17e1d6",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -2640,12 +2984,16 @@
      "sharp"
     ],
     "model_patterns": [
-     "tve21f"
+     "^(?:.*[ _-])?tve21f$"
     ],
+    "device_patterns": [
+     "^banqiao$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sharp/sharp-aquos-tve21f.json",
-   "sha256": "9ad19afb9edbfa87b66e4f69f25467ca908de2d1d0c87d06700896ab1ef7f79b",
+   "sha256": "2c3306900681a63a46dee649cfd5a8758808ed8434196850e8b44c1a0350ae57",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -2664,12 +3012,14 @@
      "skyworth"
     ],
     "model_patterns": [
-     "65a3f"
+     "^(?:.*[ _-])?65a3f$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-65a3f.json",
-   "sha256": "d29ed6bf212d6c6df4b89dda1dcf635801da003edd5c7d9e2aa03ab989367662",
+   "sha256": "045d05bd22cc7da876b89c72d88d463b0234fa1dd9cdf4ea548e4925df54dc91",
    "review": "auto-checked",
    "counts": {
     "safe": 8,
@@ -2688,12 +3038,14 @@
      "skyworth"
     ],
     "model_patterns": [
-     "7s60"
+     "^(?:.*[ _-])?7s60$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-7s60-a5.json",
-   "sha256": "0d7cb0dce8bef4724414874c1aa5bdcda06ebefdf4d919d1b8dea27b02708a56",
+   "sha256": "b6d194d83e3496585f3112a1c525702ffaf86a50098b844123b2b349b57822da",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -2712,12 +3064,14 @@
      "skyworth"
     ],
     "model_patterns": [
-     "8r40[-_ ]?k5c"
+     "^(?:.*[ _-])?8r40[-_ ]?k5c$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-8r40-k5c.json",
-   "sha256": "fe53cf38a4e82c77933055eef95836ca0e6f46b65ee6fd3cc8e2b04976c11028",
+   "sha256": "f9f14b64315578579620a41854d7f5881f27a9efd568c4c3b5a417d65c55b76e",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -2736,12 +3090,16 @@
      "skyworth"
     ],
     "model_patterns": [
-     "22sa"
+     "^(?:.*[ _-])?22sa$"
     ],
+    "device_patterns": [
+     "^SW6H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-sw-22sa.json",
-   "sha256": "736cb7bc82557a13b386a43727c1c1fdcff0a33479c7576a8817287f5a2bc0b1",
+   "sha256": "404f97a6e418f7cdda7bad644c29b75f1323b5f531a348d684533470fa69054d",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -2760,12 +3118,16 @@
      "skyworth"
     ],
     "model_patterns": [
-     "21ae"
+     "^(?:.*[ _-])?21ae$"
     ],
+    "device_patterns": [
+     "^sunnyvale$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-swtv-21ae.json",
-   "sha256": "4ebc8b58b6fcde5cb9e66af1e259aec2b9cb6cb9e3367955e9ba9ebc0ebd7569",
+   "sha256": "d0078af358d5446934513890d8dfb35bb65f13e4633355861fa38d9fb9716fe3",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -2784,12 +3146,14 @@
      "skyworth"
     ],
     "model_patterns": [
-     "22ae"
+     "^(?:.*[ _-])?22ae$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-swtv-22ae-fhd.json",
-   "sha256": "3bb47a9918bc5c8fb07ccc3f52c89804e9b305f80c96d6871653549b701b70b5",
+   "sha256": "74c4ce459e07a5df703bcc1bdf1f40fb157699e73b05ac4b63332a3fae7700ee",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -2808,12 +3172,16 @@
      "skyworth"
     ],
     "model_patterns": [
-     "24ae"
+     "^(?:.*[ _-])?24ae$"
     ],
+    "device_patterns": [
+     "^eleonas$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-swtv-24ae-4k-nf.json",
-   "sha256": "8c148c4ce55981c2c055bb645511b2f6984e9be6d9a2dea8b2b04bed6f189f1b",
+   "sha256": "9d53f1b0bdcd2665dd0e8277101129e82ac79af3713cd07652805d0a1fbcc022",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -2832,12 +3200,16 @@
      "skyworth"
     ],
     "model_patterns": [
-     "24na"
+     "^(?:.*[ _-])?24na$"
     ],
+    "device_patterns": [
+     "^eleonas$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/skyworth/skyworth-swtv-24na-4k-nf.json",
-   "sha256": "848486e8c98aea3bff7cc5d78733e990e2679f0a2299ee88855bba2a05ed4574",
+   "sha256": "5e5a543609a4c6365b11e0daa1fa1e92eb00ace58bb6578152cec2a7e81f4e75",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -2856,10 +3228,12 @@
      "sony"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/sony/sony-bravia-4k-gb-us.json",
-   "sha256": "0868220940e9ef5f8f01f43a9aa03e8525c218120dcb934e9830ad894df1747e",
+   "sha256": "08eb2cf8e83b0ee8b78369be7078410cacca6b515d1fcb68625699190d02537d",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -2878,10 +3252,14 @@
      "sony"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^BRAVIA_ATV2_EU$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/sony/sony-bravia-4k-gb.json",
-   "sha256": "c68e7c8a03bb7310abe5f35436e55d3a14d0cdf63704f2429bbe8ffa1360982b",
+   "sha256": "6619cdf04a23966936037f9fbb4f971f42d94855a20a3d6870446a9e399842a9",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -2900,12 +3278,16 @@
      "sony"
     ],
     "model_patterns": [
-     "ur2"
+     "^(?:.*[ _-])?ur2$"
     ],
+    "device_patterns": [
+     "^BRAVIA_UR2_4K$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-ur2.json",
-   "sha256": "b1bed889bc97bb8c8eb26091054ec5ba3b4434a8f7cf1c2bd061c2e6b35c48d9",
+   "sha256": "dc39b34c5bdcc9aab85611f9bfd8988b24b1eb56138aff73b70b13aed326b0c1",
    "review": "auto-checked",
    "counts": {
     "safe": 38,
@@ -2924,12 +3306,16 @@
      "sony"
     ],
     "model_patterns": [
-     "ur3"
+     "^(?:.*[ _-])?ur3$"
     ],
+    "device_patterns": [
+     "^BRAVIA_UR3$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-ur3.json",
-   "sha256": "0586d0ee7a7d2dc4ba3ada97b1e8a2f4082345e0b9dfb2d82f4ec7b2ff9e1c03",
+   "sha256": "c5c8043ea77878d68c2afda448338a91f2bc20f32bc41399be7a826b7b8f0a87",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -2948,12 +3334,18 @@
      "sony"
     ],
     "model_patterns": [
-     "vh1"
+     "^(?:.*[ _-])?vh1$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH1$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH1_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-vh1.json",
-   "sha256": "def3213542fc3905bb02ea67377d19084cd823f38d6d235124d8a86dcaef0806",
+   "sha256": "02de49d039e8dd7411e4433706108a6785a8a76651259bf19d277607340c698c",
    "review": "auto-checked",
    "counts": {
     "safe": 33,
@@ -2972,12 +3364,18 @@
      "sony"
     ],
     "model_patterns": [
-     "vh2"
+     "^(?:.*[ _-])?vh2$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH2$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH2_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-vh2.json",
-   "sha256": "a05a67ef9cd744dd237b1b6d39be39f9f4db2b9aac17f4f5a0bc1fa64b2440bc",
+   "sha256": "7d4d8360d193b4b67fdac665743bc70a0fc6140c9b6b3daffd91b919664c1469",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -2996,12 +3394,18 @@
      "sony"
     ],
     "model_patterns": [
-     "vh21"
+     "^(?:.*[ _-])?vh21$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH21$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH21_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-vh21-eu.json",
-   "sha256": "0b77514b020453548f6dc540059b17c16ec0766a1d808e3dba53b5c272c28dab",
+   "sha256": "b5bb642a8603d333923f0eb477921103bfcf388a555a837ddf81c82692291cd9",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -3020,12 +3424,18 @@
      "sony"
     ],
     "model_patterns": [
-     "vh21"
+     "^(?:.*[ _-])?vh21$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH21$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH21_M_PA$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-vh21.json",
-   "sha256": "c4459101f672caa23ddcaa887ce710e895a18cc2b84589ac640ae1b62a16c242",
+   "sha256": "2f8926d153d9a536c00c184a3851836fdbefb477b73d50b343675771a234fbc4",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -3044,10 +3454,14 @@
      "sony"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^BRAVIA_AE3$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/sony/sony-bravia-9-ii.json",
-   "sha256": "8b92229f3ee43cf2de2b28c9e654ad0f6813f262632123d23e8cb322cb4539e7",
+   "sha256": "fcd6039beec7fccca2544853d0f3fd6ededcb2507956abf60d916b7789f62992",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -3066,12 +3480,18 @@
      "sony"
     ],
     "model_patterns": [
-     "ae1"
+     "^(?:.*[ _-])?ae1$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_AE_M6L$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_AE1_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-ae1.json",
-   "sha256": "d05469971b9b55af2431f91711f434e20eca6307f3d53a1fa62d1f482f95562a",
+   "sha256": "f5a89ef3d6f2f8b4d13eb19266528e4da01ce05c6e686fdedba21e0105421f90",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -3090,12 +3510,16 @@
      "sony"
     ],
     "model_patterns": [
-     "ae2"
+     "^(?:.*[ _-])?ae2$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+     "^BRAVIA_AE2_NA$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-ae2.json",
-   "sha256": "858a6cfc560c06a2bcb5ee6000f6c6321a2b4dfab9df354eeffc13891d5b6be7",
+   "sha256": "3900e88dc6e9eb986e78761ecc45f6f081eb1ec3318f4b4b9e2a95d93881f24d",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -3114,12 +3538,16 @@
      "sony"
     ],
     "model_patterns": [
-     "bf1"
+     "^(?:.*[ _-])?bf1$"
     ],
+    "device_patterns": [
+     "^BRAVIA_BF1_4K_A$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-bf1.json",
-   "sha256": "2e9fcafeaab4d3a99d82e16fb46dfb35bd2baec6d643bdc2eb5c6ef1121d7552",
+   "sha256": "250867a0ce565509bba764a50cdf3a4f384041102d5e5365957014d1819b6ebf",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -3138,12 +3566,16 @@
      "sony"
     ],
     "model_patterns": [
-     "tl2"
+     "^(?:.*[ _-])?tl2$"
     ],
+    "device_patterns": [
+     "^OD0M_EA_T32$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-tl2.json",
-   "sha256": "e22d8511adb27e2cda43a5e2263ade98f03def6221c250be3353eb7cff32d59c",
+   "sha256": "2c5459ba622bf1f23aeb192d814e18a46c8cbb34b9595712914360a833cbaa4e",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -3162,12 +3594,16 @@
      "sony"
     ],
     "model_patterns": [
-     "vu31"
+     "^(?:.*[ _-])?vu31$"
     ],
+    "device_patterns": [
+     "^BRAVIA_VU31_4K$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-vu31.json",
-   "sha256": "9d2d5b6c1399cc846b814162ccd3112b659e68451d476bc00e0f463b1523b106",
+   "sha256": "e0ab40d069c54d9340876b005f71bfafb8de38fca43e264a3943a353854a0d4f",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -3186,12 +3622,18 @@
      "sony"
     ],
     "model_patterns": [
-     "43x80l"
+     "^(?:.*[ _-])?43x80l$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH22$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH22_M_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-43x80l.json",
-   "sha256": "ecd5eebb9b72b9a4695bc807f7a3a0ad059fe2c45077f79c833a2542a65bfc7c",
+   "sha256": "a533c91f71b0f055f9806bf2b443f4b614a2f05f73524ed84d52747430f878d7",
    "review": "auto-checked",
    "counts": {
     "safe": 34,
@@ -3210,12 +3652,18 @@
      "sony"
     ],
     "model_patterns": [
-     "49x8307c"
+     "^(?:.*[ _-])?49x8307c$"
+    ],
+    "device_patterns": [
+     "^SVP\\-DTV15$"
+    ],
+    "product_patterns": [
+     "^SVP4KDTV15_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-49x8307c.json",
-   "sha256": "6c8d0028a3824ec9783e9b99e10da970d7650078d774d1fc6da9493c923656f0",
+   "sha256": "175070774d574a1e97d92cbf7aaaa022f6642bdbc92413aa917855a6ef34f14d",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -3234,12 +3682,18 @@
      "sony"
     ],
     "model_patterns": [
-     "55x8000c"
+     "^(?:.*[ _-])?55x8000c$"
+    ],
+    "device_patterns": [
+     "^SVP\\-DTV15$"
+    ],
+    "product_patterns": [
+     "^SVP4KDTV15_CN$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55x8000c.json",
-   "sha256": "5529cd43e5fb691cb847d1662bdc7609747cebbbdaa140325e77d6eb519e0005",
+   "sha256": "edd4ab2bf7e84f41bb8f40411984bef5b46b3e569fdb6af01e7705e000e7cae4",
    "review": "auto-checked",
    "counts": {
     "safe": 39,
@@ -3258,12 +3712,18 @@
      "sony"
     ],
     "model_patterns": [
-     "55x8509c"
+     "^(?:.*[ _-])?55x8509c$"
+    ],
+    "device_patterns": [
+     "^SVP\\-DTV15$"
+    ],
+    "product_patterns": [
+     "^SVP4KDTV15_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55x8509c.json",
-   "sha256": "11d63d71d4f7e82c1e749b80ebe13aa00ed0174f1bd42a0f559e2252f6d60192",
+   "sha256": "f5eeddc7e2b5702968847c0a9b9b0310f79f494fa6765f6876a1c3958f79b2cf",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -3282,12 +3742,18 @@
      "sony"
     ],
     "model_patterns": [
-     "55x85j"
+     "^(?:.*[ _-])?55x85j$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH2$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH2_SA$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55x85j.json",
-   "sha256": "4c039a3f4f85f6a515218437bab8761573bab4fee0e640c9b9a50a17243dec4c",
+   "sha256": "308b0accd0680f03c77c5dde49216a7c60ac21d7ecbda24d6c8572b5d4821ec4",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -3306,12 +3772,14 @@
      "sony"
     ],
     "model_patterns": [
-     "55xe8596"
+     "^(?:.*[ _-])?55xe8596$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55xe8596.json",
-   "sha256": "1f38235957b0282cd2cd92d21403e6f80b679f767175b26ff7f275b5e7bfdc57",
+   "sha256": "633b8fdeb5fd43874d579dbae16cc78b4ee683f188b139d5233407253c374b23",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -3330,12 +3798,14 @@
      "sony"
     ],
     "model_patterns": [
-     "55xf7596"
+     "^(?:.*[ _-])?55xf7596$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55xf7596.json",
-   "sha256": "3f9402eb959db73b89a7bda6f9306ff0435f4015958bb94f1ec4b1f659e49aad",
+   "sha256": "90d6bc7e5524798bebafdb0a17da73b6a7660e4ec4b7196c03b42806bbfc72db",
    "review": "auto-checked",
    "counts": {
     "safe": 31,
@@ -3354,12 +3824,14 @@
      "sony"
     ],
     "model_patterns": [
-     "55xf8096"
+     "^(?:.*[ _-])?55xf8096$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-55xf8096.json",
-   "sha256": "3908bd5f3e8d75374476f20fcd48ef27342dd93e604fb237385621ae0718515e",
+   "sha256": "f5f0308b4304c2a11d2f955ab8f4c7d2be6529892efdffb4350ded0780202acf",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -3378,12 +3850,14 @@
      "sony"
     ],
     "model_patterns": [
-     "65x80j"
+     "^(?:.*[ _-])?65x80j$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-65x80j.json",
-   "sha256": "6d23127daa89559312972719cc074d83b3dd28dee7e2e8eb09cb61244ceb0d67",
+   "sha256": "2a5a3be5935b73795d15462cc65cab9e39ae5e3f5f4a2963247b464aff8d98cc",
    "review": "auto-checked",
    "counts": {
     "safe": 31,
@@ -3402,12 +3876,18 @@
      "sony"
     ],
     "model_patterns": [
-     "65x82l"
+     "^(?:.*[ _-])?65x82l$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH22$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH22_M_PA$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-65x82l.json",
-   "sha256": "4c9303edc6795527cc814a018abe3768fc4f942e60d0fe528b535c52ed302bcd",
+   "sha256": "0044b907d533ab80af1bc04c6eacd4b926665b4cd3ae661aa2a8d477ce656c16",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -3426,12 +3906,16 @@
      "sony"
     ],
     "model_patterns": [
-     "65x9300d"
+     "^(?:.*[ _-])?65x9300d$"
     ],
+    "device_patterns": [
+     "^names$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-kd-65x9300d.json",
-   "sha256": "b922c335c6a1f1221933513af00144890a40737ca569b459ae3d11bd2591bc8a",
+   "sha256": "82d5be1d82300ce6e9f4487556d4c0f7686782c754a59c1dd649b8180098985a",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -3450,13 +3934,18 @@
      "sony"
     ],
     "model_patterns": [
-     "^BRAVIA 4K VH21$",
+     "^BRAVIA 4K VH21$"
+    ],
+    "device_patterns": [
      "^BRAVIA_VH21$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH21_M_CN$"
     ],
     "confidence": "verified"
    },
    "path": "rules/sony/sony-kd-x90k-cn.json",
-   "sha256": "6d0dc0fc6a26975211a086306f2ffa4df7f483d3efee54a73a079aa5fe0d09b9",
+   "sha256": "430567a45d74f41e21dcf9e7e2dc5ecf4fffb5bff6f0899bdc812876dd9f1084",
    "review": "tested-on-device",
    "counts": {
     "safe": 35,
@@ -3475,12 +3964,16 @@
      "sony"
     ],
     "model_patterns": [
-     "x9000h"
+     "^(?:.*[ _-])?x9000h$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+     "^BRAVIA_VH1_CN$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-x9000h-cn.json",
-   "sha256": "0bbc04c30409fb78bb516bc91c046bbbb4a144f77d7ddd7bf65f2d6e78eae105",
+   "sha256": "1288e57ec9120e705ff1b90c0da3d1f482339b327b8f9b549d1874184a54d68f",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -3499,12 +3992,16 @@
      "sony"
     ],
     "model_patterns": [
-     "55x850c"
+     "^(?:.*[ _-])?55x850c$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+     "^SVP4KDTV15_UC$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xbr-55x850c.json",
-   "sha256": "23555a515c9999a1f50064013a7bbcf307ab522c3b4d9b943f5fa458732bd156",
+   "sha256": "1bdbb2df38096a0e23e06fb3ba7166ea3375bc3a9994fe131fdd869d060e90e3",
    "review": "auto-checked",
    "counts": {
     "safe": 32,
@@ -3523,12 +4020,14 @@
      "sony"
     ],
     "model_patterns": [
-     "55x850d"
+     "^(?:.*[ _-])?55x850d$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xbr-55x850d.json",
-   "sha256": "62097a19ed3c9db453ac412a472c643e5ba3a56a9082a23f4d4ad95173d8f17c",
+   "sha256": "d44db380c2ff3afe378675c149d221fae8683b70754aa7fdc1d16075cd148db6",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -3547,12 +4046,14 @@
      "sony"
     ],
     "model_patterns": [
-     "65x900f"
+     "^(?:.*[ _-])?65x900f$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xbr-65x900f.json",
-   "sha256": "722237c124c6fde9e3604e461c96fce844143574bd4918716fb8bed6b74a84f0",
+   "sha256": "1375eaa357bc15db08c177c104044559b729c43d45d011e40c81b89b7ad4c231",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -3571,12 +4072,14 @@
      "sony"
     ],
     "model_patterns": [
-     "x900e"
+     "^(?:.*[ _-])?x900e$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xbr-x900e.json",
-   "sha256": "0b290373f2f6db9578045c98d5edbd6d928695b01ecd24ef247c49ee3956ad0a",
+   "sha256": "4fc3458ee276dbe061d75693f9c35a9db74d78da347a7b67cec1784a83ee7f0c",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -3595,12 +4098,18 @@
      "sony"
     ],
     "model_patterns": [
-     "65a80j"
+     "^(?:.*[ _-])?65a80j$"
+    ],
+    "device_patterns": [
+     "^BRAVIA_VH2$"
+    ],
+    "product_patterns": [
+     "^BRAVIA_VH2_EU$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xr-65a80j.json",
-   "sha256": "872adac0ebd9c26b46416024aed77cdf98a5740e8b54f2de92d9822d444c9485",
+   "sha256": "5c2948af9a4ce3051199c6b4f70608e5bc7861143632249eb52fbaa4a9022c61",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -3619,12 +4128,16 @@
      "sony"
     ],
     "model_patterns": [
-     "65x90j"
+     "^(?:.*[ _-])?65x90j$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+     "^BRAVIA_VH2_M_CN$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xr-65x90j-cn.json",
-   "sha256": "7bb313ce70b4cd98049780965df18cda0cb99737a9cbace3df24318053073d2d",
+   "sha256": "92ac6cbb289696de03479233575cecbaec65f3b436b7d8b554c0464c567cb652",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -3643,12 +4156,14 @@
      "stellamore"
     ],
     "model_patterns": [
-     "t950s"
+     "^(?:.*[ _-])?t950s$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/stellamore/stellamore-t950s.json",
-   "sha256": "fa689ec20bbd205ae3f83dface09784ae34d2569d7faa925f874813688be5000",
+   "sha256": "7449552ecbc2cbe86d318680dd69994d7bbf19ee0566cc7ffa00856794a5edcf",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -3667,12 +4182,14 @@
      "super"
     ],
     "model_patterns": [
-     "t972"
+     "^(?:.*[ _-])?t972$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/super/super-general-cvte-t972.json",
-   "sha256": "29517edbde1533d4e9d9bcd12ee74cb82880cc96ca791f0475dd82f86f280228",
+   "sha256": "b5fa316fa8937e345b4d646a427f951cd24620bd01ef210b0913583c090cbed2",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -3691,12 +4208,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "32l5a"
+     "^(?:.*[ _-])?32l5a$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-32l5a.json",
-   "sha256": "b202f90e5e9e7f4641b602dbe21ab88f9b38ad98acbc59e0ffa7bb5f78547855",
+   "sha256": "8b6be9832660a21ed26a3ae7e6237bf130c452e6bf7b9b1e6f908abd4046a1c6",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -3715,12 +4236,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "32s5400a"
+     "^(?:.*[ _-])?32s5400a$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-32s5400a.json",
-   "sha256": "e23bb9366f15e7a320c58ba632eb0a74e1a631b09d4fb27a0e6235b87482d766",
+   "sha256": "8d31f2e5f78b3df0dc038a6c39f2d18fb2165828eb4100461ad59a1b72a5be51",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -3739,12 +4264,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "32s5k"
+     "^(?:.*[ _-])?32s5k$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-32s5k.json",
-   "sha256": "55a3b38fa5ac9d021f1cd4b5a1943aaa2d3e3825c04e76227efd2a647b721a2b",
+   "sha256": "20974630aeffd00679bf128e8d952dcfbbfcc5704b707ad1ff9bab3be6e327df",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -3763,12 +4292,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "40s5400a"
+     "^(?:.*[ _-])?40s5400a$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-40s5400a.json",
-   "sha256": "d0ea697a328b9e2336dda695f2a1ea7910bc82eeba3e7186d9b4f908e863fef9",
+   "sha256": "4e8b985a3c2c7f5ba52cc64a11610bebdd6fbfc2cf13eca3c16e7fabdb56f256",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -3787,12 +4320,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "43c645"
+     "^(?:.*[ _-])?43c645$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43c645.json",
-   "sha256": "4658b17c497af3613be35e28abb68ba558ca7be2d1f01d8d3716389fad3a069a",
+   "sha256": "b0335418ebcd1fc18b0d4384043903b5a7c55c3eb2ee5240dfdc5a6b6c19b6d7",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -3811,12 +4348,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "43ep660"
+     "^(?:.*[ _-])?43ep660$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43ep660.json",
-   "sha256": "15c4aab1ed276bad48f9bfea879b2be87c91c46c99e30acdbfb540f8bd697379",
+   "sha256": "3e2f4d0f154903673ba1744fd9d4eb0a24e3773887b768cebff3413d4b10dfaf",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -3835,12 +4374,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "43p615"
+     "^(?:.*[ _-])?43p615$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43p615.json",
-   "sha256": "e0368bb6ead3a698d2db3dbcfdc8c19a5d5e578fca6392c829aeb5fb49cb433e",
+   "sha256": "796e7e156aae3fcee427fdc760acfd5925807eca3fe8770e2d9d772f691038be",
    "review": "auto-checked",
    "counts": {
     "safe": 36,
@@ -3859,12 +4400,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "43s450f"
+     "^(?:.*[ _-])?43s450f$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43s450f-ca.json",
-   "sha256": "3bfc6e7af97c13c8302296cd4bb5336de5c56e6ae9f92e93ba3127b18e047a59",
+   "sha256": "5c0173d474ade30fdfd6ad729775e7d8ee5a185559c494f84aac7c5aee304965",
    "review": "auto-checked",
    "counts": {
     "safe": 44,
@@ -3883,12 +4426,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "43s5400a"
+     "^(?:.*[ _-])?43s5400a$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43s5400a.json",
-   "sha256": "e973ccf9e5ce177a2d48bfbb6c342471a6b4be134aebb6f7001e228798a1c7b1",
+   "sha256": "67427563f29aebd81d6ee1fed9ca34f6cc2ef43fec104ac3aeaa3586c9e97a9d",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -3907,12 +4454,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "43s5k"
+     "^(?:.*[ _-])?43s5k$"
     ],
+    "device_patterns": [
+     "^G13$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-43s5k.json",
-   "sha256": "441bae409b9fd4ef261307448064ef91f514acb496967c7181b41575dc932afe",
+   "sha256": "6dba9aadd483d0691e9b7ac838deffd96da934f55b2ad65b0fa8a8fe9e2f7704",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -3931,12 +4482,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "50c725k"
+     "^(?:.*[ _-])?50c725k$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-50c725k.json",
-   "sha256": "3462c02fd363bd1479e86264c604882ede49203df2deaf35fb1f3a104d3b35b1",
+   "sha256": "afad93c65f211ecb9b4ff1deaed6bad565ff4bd387ba8ed44ae6a6f35a42fef7",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -3955,12 +4510,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "50dp660"
+     "^(?:.*[ _-])?50dp660$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-50dp660.json",
-   "sha256": "fd99e11a609ce75781203a9b3dd6ed8b89ddcd71c5073c4b95e03ee020bf8740",
+   "sha256": "a971f013eb31ac9594686b1024a4fd6a505117e1d1ef40c96b901b357397cd7b",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -3979,12 +4536,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "50ep680"
+     "^(?:.*[ _-])?50ep680$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-50ep680.json",
-   "sha256": "8269f7b3a54c0a99ec8ccb7e1405fc8eb4fdd9490cb648de8eead1ff457fc1f8",
+   "sha256": "92465b2608349d32c80c5b3eee99a601a14c6b0bf68ab78afdec2a66815d6f57",
    "review": "auto-checked",
    "counts": {
     "safe": 43,
@@ -4003,12 +4562,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "50p615"
+     "^(?:.*[ _-])?50p615$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-50p615.json",
-   "sha256": "8f826f9069a7fbc24ccdba132caedf67fc92c7639f3ff73fffb62a1563d26afc",
+   "sha256": "f853150b12e30375d20d93dec7215ec5745039226395d030a9b540154c94740b",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -4027,12 +4588,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "50p735"
+     "^(?:.*[ _-])?50p735$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-50p735.json",
-   "sha256": "26b4fdaa7b4454c9a87d2932d2d62b05a2c8c885cb040779b833a20e97d45bce",
+   "sha256": "878ffd6205db1c9ec3097e80beca4375598cecd21b326b60f6f999d8dca395ff",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -4051,12 +4614,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55c715"
+     "^(?:.*[ _-])?55c715$"
     ],
+    "device_patterns": [
+     "^BeyondTV$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55c715.json",
-   "sha256": "94b929a8819ded3fab5442aef03b491949db30a43abec472072836036f5fdc98",
+   "sha256": "bdb0b73797d3b4f6b543669cb3db12dc8c2493eccc95832a840708af5ee1367d",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -4075,12 +4642,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55c725"
+     "^(?:.*[ _-])?55c725$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55c725.json",
-   "sha256": "ae618b1ae16070629258acc858ee3f8afb04ea4ca6532e4c253f718117ed327a",
+   "sha256": "978d302088d14951f2f258c2656dad151f64e64eafff1132abacba3603cc2f09",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4099,12 +4670,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55c745"
+     "^(?:.*[ _-])?55c745$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55c745.json",
-   "sha256": "ad781d842cb9d9ef85b484482de770deb394fb84616a08bd3919e3b6703de024",
+   "sha256": "f73bb207f1fa203d7247a570b35bda4cfa3211894de85afcc183321e1dbb3c4f",
    "review": "auto-checked",
    "counts": {
     "safe": 44,
@@ -4123,12 +4698,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55c7k"
+     "^(?:.*[ _-])?55c7k$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55c7k-uk.json",
-   "sha256": "bec585f5ba35465382fe1955283ea0ba81e712b94b9b5ced1b5b70acd11864e3",
+   "sha256": "292de59f4a129cdc3684d2a0a50dd303e60f2a022b275fc08c40a33d5b040bd5",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -4147,12 +4726,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55c815"
+     "^(?:.*[ _-])?55c815$"
     ],
+    "device_patterns": [
+     "^BeyondTV$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55c815.json",
-   "sha256": "0783619ab0f643905d7292fa381b3b3f3073b6997cbe306ef91fb48fd263f840",
+   "sha256": "fd1935268764ff7ee71e739a14b1a5c757986f499b55224ee5509d466a485585",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -4171,12 +4754,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "55ep640"
+     "^(?:.*[ _-])?55ep640$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55ep640.json",
-   "sha256": "983109398a655c5eb7c065656c101c80b0e31c2f9fb0beea6af8657f1122511c",
+   "sha256": "baa37002a14410e6dced10837fa18e94d0500fccf3fb678cb2b0f03a826180d4",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -4195,12 +4780,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55p638"
+     "^(?:.*[ _-])?55p638$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55p638.json",
-   "sha256": "8b76fb4d4afe0f7cc1e1fc840d01d7e358b10740c56fa3198d10c36878dcd7c7",
+   "sha256": "ddfa87ad1d9eab27d35fe32de887697e2dd4d01f017a5649adcced61f7056724",
    "review": "auto-checked",
    "counts": {
     "safe": 30,
@@ -4219,12 +4808,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55p7k"
+     "^(?:.*[ _-])?55p7k$"
     ],
+    "device_patterns": [
+     "^G10$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55p7k.json",
-   "sha256": "352bdce813716a781c297b5f542f404f45862ed7f4766d95613331d5820b64c4",
+   "sha256": "17db7ab64a98e1ae85a3f62e518dc0e8f6b324dc5851805b6eb9f0f5ae10443c",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -4243,12 +4836,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55p8ls"
+     "^(?:.*[ _-])?55p8ls$"
     ],
+    "device_patterns": [
+     "^G10$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55p8ls.json",
-   "sha256": "2195975821bceeec17417b32fccc30f0fcf2676240afcd826ed7189596eee993",
+   "sha256": "1de386fcbe5392cd1230ea785c5bfbb4a0946711503f086cf51e0d479ebc1725",
    "review": "auto-checked",
    "counts": {
     "safe": 25,
@@ -4267,12 +4864,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55s470g"
+     "^(?:.*[ _-])?55s470g$"
     ],
+    "device_patterns": [
+     "^G10$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55s470g.json",
-   "sha256": "0fe0d22b01e7c4156498c87b8a47e328ac9dadffbdae4fce5680807e91b273a5",
+   "sha256": "4ebea5ca8ce937087cf48e8e20b4480c172e964e5276bbd18e9864c7cf4a5bd2",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4291,12 +4892,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "55s546"
+     "^(?:.*[ _-])?55s546$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-55s546-us.json",
-   "sha256": "af8c3664260c9fcd11dcdbf5a01feb239f686e81009a39d97c1f546d809826cf",
+   "sha256": "f997c6f6d930aad2be1f1aae8c8fd64276409e89d5a3dbbfde972665a290284f",
    "review": "auto-checked",
    "counts": {
     "safe": 18,
@@ -4315,12 +4920,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "58s571f"
+     "^(?:.*[ _-])?58s571f$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-58s571f-fire-tv.json",
-   "sha256": "8302009f75170f6b42498fa58af8b02b283520a6bcb8f32ac442cbd4fcb38589",
+   "sha256": "a68196f87649ac81bd6c4d6adbb758231ee5788d9306f1a20b1f9e7f01f3da63",
    "review": "auto-checked",
    "counts": {
     "safe": 31,
@@ -4339,12 +4946,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "65c725"
+     "^(?:.*[ _-])?65c725$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65c725.json",
-   "sha256": "b20f5804a0476b324ef3a8cd2ec9461ad3d15e9fa5d1604b2203e7e297a45c59",
+   "sha256": "db6cf45c54ba08f678f5c2faaccff57ec491d5db92168312bf550f09e219ad2b",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -4363,12 +4974,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "65c735"
+     "^(?:.*[ _-])?65c735$"
     ],
+    "device_patterns": [
+     "^G05$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65c735.json",
-   "sha256": "4236f146c6f13f44b3f0540372679d81ad6bccb42e938e191c89fa13fe457706",
+   "sha256": "39e182214da715d8f8c70fb1351623265c6768c4f25f03a62f8daaf363635b7a",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -4387,12 +5002,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "65c7k"
+     "^(?:.*[ _-])?65c7k$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65c7k-google-tv.json",
-   "sha256": "fdbd171a8bffe2be383d5c7c2be411db68bd0a52c78f00d70b9fa51d9a5f952b",
+   "sha256": "ef45e11910d7cd2f20420e3d24fb7cc621f807b9b1ae7aa51fa82fd1fdbc1213",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4411,12 +5030,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "65c7l"
+     "^(?:.*[ _-])?65c7l$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65c7l-google-tv.json",
-   "sha256": "cd272290e3dcdc14660f47e67a094016e680ffee4ba2701f4d78090b0da6b357",
+   "sha256": "00b9a78b4456225ddb2ff8173623bf2a97b2d3e1e69c38ef511860678c663a91",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4435,12 +5058,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "65q550g"
+     "^(?:.*[ _-])?65q550g$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65q550g.json",
-   "sha256": "48abd5711d97111bb38d0a52634b3f2ee36d677762fe233d2981ce23e9a9e449",
+   "sha256": "f5f4cd234e98dfb32fc448262d6c9908c9dd62ddbb75c55c926554f7ceee0005",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -4459,12 +5084,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "65q650g"
+     "^(?:.*[ _-])?65q650g$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-65q650g.json",
-   "sha256": "1fcff30858cf5217ba883f08d94cfbcaa5acaac6b26cf064c694261e84303ae3",
+   "sha256": "dc745a59a5a5f859b0e5da1a7ac18ae599174c9782c8ed2f3c4fb0d783c54716",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -4483,12 +5110,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "85rm7l"
+     "^(?:.*[ _-])?85rm7l$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-85rm7l-google-tv.json",
-   "sha256": "d893bfb8e51994704a8140d3337f4be89cd56f54c90e4af44669fb901e7d4cb3",
+   "sha256": "d2ca948e4e875310536a2199a509eaeb5500b576f4de3296d0506836ea442f78",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -4507,12 +5138,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "ak30a5"
+     "^(?:.*[ _-])?ak30a5$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-ak30a5.json",
-   "sha256": "1804ebe564d42e89ed83371576680f130c4a3e5b6e60db4967911ec38e6771a2",
+   "sha256": "c12a55a856eb0254f0f0e60ba66b98251de7818c8e8d9488cdd6da3d7cfb9319",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -4531,10 +5164,12 @@
      "tcl"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/tcl/tcl-beyondtv-pl.json",
-   "sha256": "19bb348d1bb40f3753daa5e2508ffb8e908e0a48f9ee93652a12493b983027d7",
+   "sha256": "50e7a4a9466de5c29fbc5ee2f3f54d09e1d836fea97376597eea91760bdddcfa",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -4553,12 +5188,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "rt2851"
+     "^(?:.*[ _-])?rt2851$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-beyondtv-rt2851.json",
-   "sha256": "4aec6542517b2a07de1559ce38549288f1887016dd0e298ac58aef79b82a01ea",
+   "sha256": "aff6cf3b92ef7478cc282837f4aac3f4a0b85d1ceb28b3f373902d4e4f26dda0",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -4577,10 +5214,12 @@
      "tcl"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/tcl/tcl-beyondtv.json",
-   "sha256": "b428f4dcb8aef32ff593ecf4fcc149417871afd2f05d420a00a02e81cf8b0027",
+   "sha256": "8385b59a8b18c4d66dbcd0456cadf1ac2607541009712beae215b3f5379e419d",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -4599,12 +5238,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "beyondtv2"
+     "^(?:.*[ _-])?beyondtv2$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-beyondtv2-android-11.json",
-   "sha256": "e348027f9ddbbadbdad7556e9f24b5fa1a5e522e2e37a09368bfff3c1b05ccc6",
+   "sha256": "b5406636a908a9879ee206094ddfa08386fa380632cbc10d10067e60a7a41e2c",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -4623,12 +5264,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "beyondtv2"
+     "^(?:.*[ _-])?beyondtv2$"
     ],
+    "device_patterns": [
+     "^rebooted$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-beyondtv2-latin-america.json",
-   "sha256": "f69e89a5d217605f7f0b2f24d0b4483d1f2cfa98218716c8f23931796d2b6a32",
+   "sha256": "25fb18c671a0472e779507e7fcba0e5d16063e327790d4ab35a49d17691babaf",
    "review": "auto-checked",
    "counts": {
     "safe": 2,
@@ -4647,12 +5292,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "c755"
+     "^(?:.*[ _-])?c755$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-c755-google-tv.json",
-   "sha256": "11f0c5544d7deefbd4e88379e2cc38d041179b53d9fab224b5b08b17545fddd8",
+   "sha256": "e322c330d112f80c40069891bb7bb4abd3debcec3f030024dc90d490cec60b0d",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -4671,12 +5320,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "c845x2"
+     "^(?:.*[ _-])?c845x2$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-c845x2-google-tv.json",
-   "sha256": "b488193f49001416b520fcaacb428015d02309861823b0c231d3baf4b0df534c",
+   "sha256": "9fef0567210f16033862ff8f856668037bb40624c5b16267a630fe2bcc0eec25",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -4695,12 +5348,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "c89b"
+     "^(?:.*[ _-])?c89b$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-c89b-google-tv.json",
-   "sha256": "7438e3c6602d5f6411d0f92b37bf0f70218d1bd64dc990e8e1567863549f4de9",
+   "sha256": "728cec0f79d854d6b8dd479aa36cb892c3d263253f69404423d7c1cf53861865",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -4719,12 +5376,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g03"
+     "^(?:.*[ _-])?g03$"
     ],
+    "device_patterns": [
+     "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g03-google-tv.json",
-   "sha256": "5a293c4d00e7bba8f390e12e60ba1df11c21483005a95ab9caa79719fd15d86a",
+   "sha256": "1b79a9791ef6675276d432524ff7fb5fce5d1ab534a4e6e828c71f630b990a35",
    "review": "auto-checked",
    "counts": {
     "safe": 32,
@@ -4743,12 +5404,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g05"
+     "^(?:.*[ _-])?g05$"
     ],
+    "device_patterns": [
+     "^G05$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g05-google-tv.json",
-   "sha256": "021e89a8d951946c3db341e402211312abf2d89b2cd0688133c1cba6de466989",
+   "sha256": "28796e8be71cc732d8ba04ddef4e2a8937a2ed0a1fbfbb82f4ff01651ed3cd8d",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4767,12 +5432,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g07"
+     "^(?:.*[ _-])?g07$"
     ],
+    "device_patterns": [
+     "^G07$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g07-google-tv.json",
-   "sha256": "4c4039cb7de63b21485fe88dbb36f58f941e422366dae553e19c5be8fec58517",
+   "sha256": "386ab82a6ec03982b13b2b23c48586757fdc02858ca40e2cf9d7fa0814d68fa4",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -4791,12 +5460,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g08[-_ ]?android12"
+     "^(?:.*[ _-])?g08[-_ ]?android12$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g08-au-android12.json",
-   "sha256": "b3969e7880a59335a69fde37fc43b61f5114e790d02ed20175221f414eae20cc",
+   "sha256": "c0785027b7916ff113c76c64a54f19028fb5547159165de145d0293ab63cb36b",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -4815,12 +5488,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g08[-_ ]?android12"
+     "^(?:.*[ _-])?g08[-_ ]?android12$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g08-eu-android12.json",
-   "sha256": "65a8fe1dcd99a444978dd8c50bfcfc660053d293842cf8b13b02a28373f74df2",
+   "sha256": "9c63d645453a36c4c1c7522b28448493621fab9780c578f75eb91d5bd7cb4da5",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -4839,12 +5516,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g08"
+     "^(?:.*[ _-])?g08$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g08-us-google-tv.json",
-   "sha256": "b5df3c76cdd89529435e9f6dcd7b1e23d6b5876fec26c6c95f944bf0632b54f3",
+   "sha256": "f9e983cfdaac3fc8dff6febc609dc209b9e321dcc1f074e9e5cd2edc10477545",
    "review": "auto-checked",
    "counts": {
     "safe": 32,
@@ -4863,12 +5544,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g09"
+     "^(?:.*[ _-])?g09$"
     ],
+    "device_patterns": [
+     "^G09$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g09-google-tv.json",
-   "sha256": "8bf4b384383473d6f19c430f6c5802452f39ddb21ff963bb74ac3a47a5d39879",
+   "sha256": "7d6d505bab2a0034d050bfb8c5c6b2d124dff841a3351dcad84591a9f9d5463f",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -4887,12 +5572,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "g10"
+     "^(?:.*[ _-])?g10$"
     ],
+    "device_patterns": [
+     "^G10$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-g10-google-tv.json",
-   "sha256": "f9803cd485f80c055a6e83213e49132a533d79ff8374c39c81e4155962b29ab1",
+   "sha256": "6a1e339731f8a2587c48dd238bb469291ed2d53011b2fae5755cc20e70accfe8",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -4911,12 +5600,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "l40s66e"
+     "^(?:.*[ _-])?l40s66e$"
     ],
+    "device_patterns": [
+     "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-l40s66e.json",
-   "sha256": "0bef0ee02383c5b5af04859eb7ecb274caefb084e99800a7115c1397f9f990f5",
+   "sha256": "840b2c7b7628b07fd11ec963fb2fb573b82dbde1be00f08096ab366cd011819d",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -4935,12 +5628,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "mt9655[-_ ]?android14"
+     "^(?:.*[ _-])?mt9655[-_ ]?android14$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+     "^tcl9655_cn_an64$"
     ],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-mt9655-cn-android14.json",
-   "sha256": "a1898906f470e85083a2fef1de875ced9798b62eda1a592630b98790fe7c4a77",
+   "sha256": "319aebad9b9da10857057e43164215e147beaabf2f039d004bd8d713daee714e",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -4959,12 +5656,14 @@
      "tcl"
     ],
     "model_patterns": [
-     "q10g"
+     "^(?:.*[ _-])?q10g$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-q10g-pro.json",
-   "sha256": "69d37b9f4c71438cf5523a43f7a6a543cbb63ed3a4659d0f216dc63248e791e0",
+   "sha256": "0d83af8b58687629a4420f3fdc3febafdd7ca1f8f4a16ccfaada293fbaaf96ac",
    "review": "auto-checked",
    "counts": {
     "safe": 18,
@@ -4983,12 +5682,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "q7c"
+     "^(?:.*[ _-])?q7c$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-q7c-google-tv.json",
-   "sha256": "c865dab5fc96431024a90f54394cbb6222e1d89c683fc09a6ba9d906d2cee253",
+   "sha256": "8f8196655460d47ad1cdf8172af44e5c6d0f65d07d0fe162f2b9b44e533353f7",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -5007,12 +5710,16 @@
      "tcl"
     ],
     "model_patterns": [
-     "qm6k"
+     "^(?:.*[ _-])?qm6k$"
     ],
+    "device_patterns": [
+     "^G08$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tcl/tcl-qm6k-google-tv.json",
-   "sha256": "940270982a807ff53dc8d3ced6f21b92aebdd22b8d15b1157ac86c3333936c7e",
+   "sha256": "b0ac63dafaff0fa14160ccd97db9227f09550c53d65c8e1ab5c5b82ff53c4666",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -5031,10 +5738,12 @@
      "tcl"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/tcl/tcl-uniontv-latin-america.json",
-   "sha256": "a4b726b87080f610fee86382f0f99b5790cfdbaab774978e6f8f0bd0cab6c251",
+   "sha256": "ef1b372f9619ff407ce1dc6762cd9a2aebf8ec45c67dd74b7474358c6136b658",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -5053,12 +5762,14 @@
      "telesystem"
     ],
     "model_patterns": [
-     "ont2hd"
+     "^(?:.*[ _-])?ont2hd$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/telesystem/telesystem-ont2hd.json",
-   "sha256": "ecd3a8a77e93a0f7db68bea9b2959dd48e47d9dd6c69129bf2ef86794fa587de",
+   "sha256": "f98dd4584f32afddc5fd6b1fb2e3f1fb08ea5e34d08e45f5f96afc7438cd9e74",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -5077,12 +5788,14 @@
      "thomson"
     ],
     "model_patterns": [
-     "32he5800"
+     "^(?:.*[ _-])?32he5800$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/thomson/thomson-32he5800.json",
-   "sha256": "beb81ac4d0ed238feabcb3cd50baec28307bf34fd226aaeeeff6808bbe721fee",
+   "sha256": "b9026101dc3ec46f3e27db75152aff7a6ac09e575f4d0fbad907273b8beb6280",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -5101,12 +5814,16 @@
      "thomson"
     ],
     "model_patterns": [
-     "43rt1055"
+     "^(?:.*[ _-])?43rt1055$"
     ],
+    "device_patterns": [
+     "^sauve$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/thomson/thomson-43rt1055.json",
-   "sha256": "f5fb5921bd68aaa801bd96ca748eb72979d514f0308da1983f93be70add7c748",
+   "sha256": "86dfd6ab4ddce16a87517b298cf4f79c384cae5d98883f4dba09ebabca860fd6",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -5125,12 +5842,16 @@
      "thomson"
     ],
     "model_patterns": [
-     "sw6h"
+     "^(?:.*[ _-])?sw6h$"
     ],
+    "device_patterns": [
+     "^SW6H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/thomson/thomson-sppl-4k-sw6h.json",
-   "sha256": "6854455f93eafca4e856e6392704684f2b017d67c198ef70d4714af619be27c4",
+   "sha256": "952302df93c8571e7e1c3bf7547a3fe034cbb55f46dfa5cab9c2cde547e97676",
    "review": "auto-checked",
    "counts": {
     "safe": 18,
@@ -5149,12 +5870,14 @@
      "thomson"
     ],
     "model_patterns": [
-     "t32rtl6000"
+     "^(?:.*[ _-])?t32rtl6000$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/thomson/thomson-t32rtl6000.json",
-   "sha256": "ecc121aa636dbc4d5e8f2f08ddcd7077345e8adb174cdbd240ccdfcb16055c6c",
+   "sha256": "e4d9503b2ce8a73c8611d5280c195c5db577186510029af1bf76087213388660",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -5173,10 +5896,14 @@
      "tivo"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^SEI400TV$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/tivo/tivo-stream-4k.json",
-   "sha256": "d0689688c9ddfbc705a0266ab6e1b4caaf89744a2869032cd5286dd2511a3ff1",
+   "sha256": "f6b88122b459cc5da64d53f05f86681a67ec29555553c029804350e8c15df54b",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -5195,12 +5922,14 @@
      "tornado"
     ],
     "model_patterns": [
-     "65ua1400e"
+     "^(?:.*[ _-])?65ua1400e$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/tornado/tornado-65ua1400e.json",
-   "sha256": "db99d776a53d33e14e83d0e2a172d144e8dceab7d237698a520e46e9e44f5fff",
+   "sha256": "1c2ce7863d9ce43d6f76eb8be6eabc123a0da4c393d6924adef8241273270c33",
    "review": "auto-checked",
    "counts": {
     "safe": 9,
@@ -5219,10 +5948,12 @@
      "toshiba"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/toshiba/toshiba-cosmos-android-tv.json",
-   "sha256": "28448eb85baac2ba9129321f6b851c5ad70a411c4afc9194f2d32a59604671a5",
+   "sha256": "ca77768951bf4658be2780d1588b7824ea08b39ca17dfb19f0f2f84154bdb021",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -5241,12 +5972,14 @@
      "toshiba"
     ],
     "model_patterns": [
-     "aftha004"
+     "^(?:.*[ _-])?aftha004$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/toshiba/toshiba-fire-tv-aftha004.json",
-   "sha256": "d20e67e230c603083519ac2a175b270c8689ec1104f51a11c22f834d8fe12953",
+   "sha256": "f18c1d1d470241d6f6aa8036bf9132b8a0722db74ebaedeb6b9ef519139bb8cd",
    "review": "auto-checked",
    "counts": {
     "safe": 34,
@@ -5265,12 +5998,14 @@
      "turkcell"
     ],
     "model_patterns": [
-     "dv6069y"
+     "^(?:.*[ _-])?dv6069y$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/turkcell/turkcell-tv-plus-4k-box-dv6069y.json",
-   "sha256": "c87a4cedbe1851dd7642ae3ba377f5c940845837d0f48d408107ef200c61682b",
+   "sha256": "753d128467b9a54cf70b009e1d4f76546294270c5878bf299fec21ce7d40441d",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -5289,10 +6024,12 @@
      "verizon"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/verizon/verizon-stream-tv.json",
-   "sha256": "8628aa88ffb2ffad7ab8d10de4eb693bc7360b51bc4d1da441e959dc368c8c78",
+   "sha256": "44650303b308ba08edbfe55767b8a1ffa95f1e9896ae7e80f99126a057db2c11",
    "review": "auto-checked",
    "counts": {
     "safe": 8,
@@ -5311,12 +6048,16 @@
      "vidda"
     ],
     "model_patterns": [
-     "mt9653"
+     "^(?:.*[ _-])?mt9653$"
     ],
+    "device_patterns": [
+     "^MT9653$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/vidda/vidda-mt9653.json",
-   "sha256": "096be895f0664a3602add9b80118ac45ebd7fd622a97426adda912c0fc4ee136",
+   "sha256": "11813bfbf06fc01c570e5ef8f9b89d3a212fb25b10ed4f6ccc842fd9d064c5ea",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -5335,12 +6076,14 @@
      "vision"
     ],
     "model_patterns": [
-     "2024vision43stv"
+     "^(?:.*[ _-])?2024vision43stv$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/vision/vision-2024vision43stv.json",
-   "sha256": "35c949a824653f5153f4870d8d090621598c052b4188628b5859f08f327e9f80",
+   "sha256": "2ff660ffafe64f7d54f951bfc501a69dffce02d0992bd4e7f91f74829d18da69",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -5359,10 +6102,14 @@
      "vu"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^lushan$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/vu/vu-4k-lushan.json",
-   "sha256": "ce06ca2a23501485eac608ca51277fccd41311c453fd0162517f8f042e43c5b5",
+   "sha256": "0542171c0068aa80ad2d1ceaaa35f3b5fe20a526c66a0f0520e05cdcb8267935",
    "review": "auto-checked",
    "counts": {
     "safe": 11,
@@ -5381,10 +6128,14 @@
      "vu"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^hamamatsucho$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/vu/vu-premium-fhd-43-hamamatsucho.json",
-   "sha256": "39b5465f7ed16ae1b1f7758d5144bed9c51cb49757da117bd748e3500b240467",
+   "sha256": "e1952621c51edce7adbeec2b72c0d3a9db6c7fb8eadb3a43b9ec061b58b4edf1",
    "review": "auto-checked",
    "counts": {
     "safe": 3,
@@ -5403,10 +6154,14 @@
      "wanbo"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^YYT$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/wanbo/wanbo-x5-pro.json",
-   "sha256": "5b30b0bdbfa8b180fe54592383d98ebdbd50c20f243a1899fc4df261de3b489b",
+   "sha256": "3ab95bdb0f64031edc492fbb9b38a647349669382d35ef9ebbc8fad1f03176c1",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -5425,10 +6180,14 @@
      "xgimi"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^xgimigalileo$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xgimi/xgimi-horizon-s-pro.json",
-   "sha256": "0dc86022229063f8d4075d5f5cf28e823eaae253d1cecaf4a45a9784eb875550",
+   "sha256": "c71191a8bf82aa305bc4c88430dd131723160795f2de10ba52fd1d13b14e49ec",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -5447,10 +6206,14 @@
      "xgimi"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^xgimiapollo$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xgimi/xgimi-mogo-2.json",
-   "sha256": "2697ccefdd2df636c6be864e9e75854acd3dfc5bce00edbe517cc3968d1cd334",
+   "sha256": "54922eca9d238c6d28d93ede084f236edf26f35484c2121d89eb6a4e103fe24c",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -5469,10 +6232,14 @@
      "xgimi"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^altai$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xgimi/xgimi-mogo-3-pro.json",
-   "sha256": "8a92168966b6d30c808ae6cdf64e1259e63849d002c434d49b6a5428abbd6cf2",
+   "sha256": "4e106868dc4362f353ce772e82f398a2f9301d18d2e644f9077e22625e3da3c4",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -5491,10 +6258,12 @@
      "xiaomi"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xiaomi/xiaomi-mi-box-3.json",
-   "sha256": "4d78d3af3c5e4674036cd3f68d0fb97f26fb45616fc9c2dd6f93b84657ee2b81",
+   "sha256": "9ca6c8073b6d438652c1be1d96e702077d57de74c122aa667865645a3c0a3b5d",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -5513,12 +6282,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "2nd"
+     "^(?:.*[ _-])?2nd$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mi-box-s-2nd-gen.json",
-   "sha256": "8a26ba3ba3f1d5d0b62c7610d4508d8a9c5a7836c480d6a87e44dee79c91d602",
+   "sha256": "12cb9426b37dcbc96d69e1b91a09f9070c51d7126d0c7b6ebc83e2e97a92d343",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -5537,10 +6308,14 @@
      "xiaomi"
     ],
     "model_patterns": [],
+    "device_patterns": [
+     "^mode$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xiaomi/xiaomi-mi-box-s.json",
-   "sha256": "6a2ed597533d768589c729788738659a2ae74222a45a338e89c0027afc502ecd",
+   "sha256": "17f051daceaebd6a939d08f7f9859606b7ec41efd07afadf2f982a2986b9e1d5",
    "review": "auto-checked",
    "counts": {
     "safe": 12,
@@ -5559,10 +6334,12 @@
      "xiaomi"
     ],
     "model_patterns": [],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "manual-only"
    },
    "path": "rules/xiaomi/xiaomi-mi-tv-4a.json",
-   "sha256": "82d2cdc05b19e693ec73e88837aea41c1c02aa29e3f101b3d3a0bdc6f5d1b260",
+   "sha256": "9295b19cf9adad1e5fc8cd6defaecc0dbfa07968fa1d2a5774e6ad7960f55580",
    "review": "auto-checked",
    "counts": {
     "safe": 16,
@@ -5581,12 +6358,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "aesp0"
+     "^(?:.*[ _-])?aesp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-aesp0.json",
-   "sha256": "58401eba59719bf12c71170feb9193bb137d133b7adacf2e5515b0a60d99f83e",
+   "sha256": "92c8ec7c2423cde1f06aba78a956cfb0fbdfc77b66966075ccacdaed04d46bbc",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -5605,12 +6384,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "afmu0"
+     "^(?:.*[ _-])?afmu0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-afmu0.json",
-   "sha256": "18edc2691f67d4af18b332416a48806852e36a7ee9a4f9aa08626d7188e47b8a",
+   "sha256": "03a238f2c9eda65f86f7862332877b6a1e293cb4b94ccaba158d8b54646427bf",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -5629,12 +6410,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "afmu1"
+     "^(?:.*[ _-])?afmu1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-afmu1.json",
-   "sha256": "2a907555257bfb8014fce253739c598166009ac532843b1bd3b34830208a5b11",
+   "sha256": "1c93bd83e0fe56abca287574d52cf92786b10317990d0008a75046027f823607",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -5653,12 +6436,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "ansp0"
+     "^(?:.*[ _-])?ansp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-ansp0.json",
-   "sha256": "46c322fa238cb6bceb39eb097205db26c88dbaac1ae3d4d1476c5be1bb442077",
+   "sha256": "29157cabaceb622966bfc8180a443200d4b5367f006e0d902a77395a972dc664",
    "review": "auto-checked",
    "counts": {
     "safe": 29,
@@ -5677,12 +6462,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "astp0"
+     "^(?:.*[ _-])?astp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-astp0.json",
-   "sha256": "aa6b42a253b6a5a49e1b9cd3aa693bc42fcdfa12739f5fedb61c9dee5030a962",
+   "sha256": "4f0861f388fa596f244ab070c21745ffd913779ae354d90792bec9ad8a709e23",
    "review": "auto-checked",
    "counts": {
     "safe": 35,
@@ -5701,12 +6488,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "astp1"
+     "^(?:.*[ _-])?astp1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-astp1.json",
-   "sha256": "0016d7a2b19e2b3d5129fdf4fdf920dbb4363f8e86b94d6951b69f1b8f844a7d",
+   "sha256": "07c17e48926884cca6ca8460d435d16633a3314f092176230eee8266f9633e48",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -5725,12 +6514,16 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "astr0"
+     "^(?:.*[ _-])?astr0$"
     ],
+    "device_patterns": [
+     "^doc$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-astr0.json",
-   "sha256": "302c3e53a71e7a0b033f774ad261e76796d4d58c041d0438a3500f0b60be793a",
+   "sha256": "8ed36229d2590014ed2508c62f478d5f048ac8354b20db857bc135fd958cd237",
    "review": "auto-checked",
    "counts": {
     "safe": 25,
@@ -5749,12 +6542,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "axfr1"
+     "^(?:.*[ _-])?axfr1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-axfr1.json",
-   "sha256": "86dd9f5f4c94586d2dd380f7ee67a13bc8586e289bd51402ebc8a63d45c04d63",
+   "sha256": "e6cd5ec90f4dc5007cbc72ee5a83ebe384199a8175489c2a9708d130f1b6217d",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -5773,12 +6568,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "axso0"
+     "^(?:.*[ _-])?axso0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-axso0.json",
-   "sha256": "86d882c05a6da2bde20339cd622fdf1ba83715eebb75af3e21ba5831d4374dda",
+   "sha256": "72ddb3b3aeb6b58d8ce61493fc49bf4498450c1405e2949ee12f050e707f6a5b",
    "review": "auto-checked",
    "counts": {
     "safe": 27,
@@ -5797,12 +6594,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "axso2"
+     "^(?:.*[ _-])?axso2$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-axso2.json",
-   "sha256": "1a8cf114632a53ed99fbe53fc0911b99d616a8162a9c90cec786cfc8c993df75",
+   "sha256": "a593e2bcc578f161e5ff08ad6807023c2afbed3b2a644237a2b7af149073a5e6",
    "review": "auto-checked",
    "counts": {
     "safe": 26,
@@ -5821,12 +6620,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "ayfr0"
+     "^(?:.*[ _-])?ayfr0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-ayfr0.json",
-   "sha256": "e1915d5f34743706a3807efa334fe2a4df430f1910aee5c772f8434adb16d26f",
+   "sha256": "98da9f45460d3e4e4904ea4d193357db8870778f2bd17bedd2ad9b24a1ab3312",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -5845,12 +6646,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mffu0"
+     "^(?:.*[ _-])?mffu0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mffu0.json",
-   "sha256": "e369d1a790e8d56ea82a533c38f02ec78a79ee87678ba4139aa339c944d5eda9",
+   "sha256": "33842e5aa6cbaf07e77a72cf6eb18154d0f0a9c2190265ea1bfd7ee37d2261af",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -5869,12 +6672,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mftr0"
+     "^(?:.*[ _-])?mftr0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mftr0.json",
-   "sha256": "9bb6171b41afe454f2524f64edb49aa4ea9abdc72b7fbe21db766d91719b0664",
+   "sha256": "8564cae10c4ffa7b2cab33a9b6134b9433e065fe3a7339965819099d481497c7",
    "review": "auto-checked",
    "counts": {
     "safe": 21,
@@ -5893,12 +6698,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "moeu0"
+     "^(?:.*[ _-])?moeu0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-moeu0.json",
-   "sha256": "4d104e7f7df1319598627155d5a837eb58dc9e29e110c5e29d708a15a214ca65",
+   "sha256": "ab205f162883d1320026fc96a3ee03ffed190a4c0a4570684fa7202d98cbe0b0",
    "review": "auto-checked",
    "counts": {
     "safe": 17,
@@ -5917,12 +6724,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mooq0"
+     "^(?:.*[ _-])?mooq0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mooq0.json",
-   "sha256": "13c9ea85811b9ba61ded74adf9ed1d249f8b8585f4426b8bd5a553ffb4d30959",
+   "sha256": "dbd03f02d4b35baa6131d15bfa63d8ca27efc8d4a884420b0816ecbff15e3ba6",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -5941,12 +6750,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mooq2"
+     "^(?:.*[ _-])?mooq2$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mooq2.json",
-   "sha256": "1a903c0971eb225a3fff5de9ad57e1d4a2d2bb14735af79aed2a2af18547342c",
+   "sha256": "1eeed00f1cccc7ec48c210af87266e9023c512223f2bbdfe023de1d94be0dfa4",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -5965,12 +6776,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "moor2"
+     "^(?:.*[ _-])?moor2$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-moor2.json",
-   "sha256": "94332e8f6c08da4dd96198e9792eb60a8055864269106aecad09baaa4d8d0878",
+   "sha256": "d61b33a0f0dfa52a254f4c443f8f099136c1770896ab74058186023687e168c7",
    "review": "auto-checked",
    "counts": {
     "safe": 20,
@@ -5989,12 +6802,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mosr4"
+     "^(?:.*[ _-])?mosr4$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mosr4.json",
-   "sha256": "d288e8e585b982a6d89f049cd94f6d24f7fc07b96f559bcba09853d99e8ff6e5",
+   "sha256": "d5d4554da0bf34a4f5317a3ea7ab89451bbc61f6d3cd4dc688ef0eb7a34c0f26",
    "review": "auto-checked",
    "counts": {
     "safe": 23,
@@ -6013,12 +6828,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mssp0"
+     "^(?:.*[ _-])?mssp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mssp0.json",
-   "sha256": "d28e7e9458d9fa9403bf1dbb63eacdc841a53babba94e7b048a842572f3049b9",
+   "sha256": "f62a65251d4038676aec9949c326acd717d718aec0fbfc8e7e7a98766ad70a74",
    "review": "auto-checked",
    "counts": {
     "safe": 7,
@@ -6037,12 +6854,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mssp1"
+     "^(?:.*[ _-])?mssp1$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mssp1.json",
-   "sha256": "9816c5b526aedf863283f410d50349a606014023191ea2e4099c19bfcb7b05a8",
+   "sha256": "20a57f8fcc613b04a9a4712b8f2eb74145c6d131317ce0b4583441152dad8669",
    "review": "auto-checked",
    "counts": {
     "safe": 5,
@@ -6061,12 +6880,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mssp2"
+     "^(?:.*[ _-])?mssp2$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mssp2.json",
-   "sha256": "aa348d956ef590d3d736a8f856dad2fe75229cee24ea554bef094fe01ce6c803",
+   "sha256": "ce97c7c5057a488ef341c76a5e9612d7427e2456a19a3aeeafc9521473e1471c",
    "review": "auto-checked",
    "counts": {
     "safe": 10,
@@ -6085,12 +6906,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mssp3[-_ ]?android9"
+     "^(?:.*[ _-])?mssp3[-_ ]?android9$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mssp3-android9.json",
-   "sha256": "db4565b14b85c3c584e71097b85fdfbcffccc74b2db8788d4f1c82c1db02637a",
+   "sha256": "24f2e88765518e23ae6d05a8447705bda8ef44fa283486b61262bde9b8bd1f13",
    "review": "auto-checked",
    "counts": {
     "safe": 14,
@@ -6109,12 +6932,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mssp3"
+     "^(?:.*[ _-])?mssp3$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mssp3.json",
-   "sha256": "905b96b7e7ee97b616ecc5549446d72094b617298904250b3601e0b9c43f93a6",
+   "sha256": "53d41c5d8b48542f8403628bae204ffa358e9f127fccd8ff9caa0c414db00a01",
    "review": "auto-checked",
    "counts": {
     "safe": 19,
@@ -6133,12 +6958,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "mteq0"
+     "^(?:.*[ _-])?mteq0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mteq0.json",
-   "sha256": "6b8919f801ef253a380000d3ad23e9ef8cffc778b977e11f9d626b4ffe6606ef",
+   "sha256": "c3eb43c95c05ae93ab97ddf836506fb77dd8740cbe989f0c90f652fce5c5018f",
    "review": "auto-checked",
    "counts": {
     "safe": 48,
@@ -6157,12 +6984,14 @@
      "xiaomi"
     ],
     "model_patterns": [
-     "2026"
+     "^(?:.*[ _-])?2026$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-tv-a-pro-2026.json",
-   "sha256": "b17b03ecb9d90f334a92e3dd7e2a4c422740df2dede17e71a2abc8b4ba7a2cbb",
+   "sha256": "0a5cb0af3bf48d6c4d9a3cfcf0f2d85c4485155701cf4eb7a138d863d1d1028f",
    "review": "auto-checked",
    "counts": {
     "safe": 15,

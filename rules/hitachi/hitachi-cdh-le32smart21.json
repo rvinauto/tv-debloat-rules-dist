@@ -9,8 +9,12 @@
       "hitachi"
     ],
     "model_patterns": [
-      "le32smart21"
+      "^(?:.*[ _-])?le32smart21$"
     ],
+    "device_patterns": [
+      "^C06$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

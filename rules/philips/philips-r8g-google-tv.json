@@ -9,8 +9,12 @@
       "philips"
     ],
     "model_patterns": [
-      "r8g"
+      "^(?:.*[ _-])?r8g$"
     ],
+    "device_patterns": [
+      "^whitefield$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,8 +9,12 @@
       "motorola"
     ],
     "model_patterns": [
-      "24ae"
+      "^(?:.*[ _-])?24ae$"
     ],
+    "device_patterns": [
+      "^beomil$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

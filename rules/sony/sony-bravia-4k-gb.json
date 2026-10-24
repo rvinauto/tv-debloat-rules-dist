@@ -9,6 +9,10 @@
       "sony"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^BRAVIA_ATV2_EU$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": null,

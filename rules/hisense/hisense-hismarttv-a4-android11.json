@@ -9,8 +9,12 @@
       "hisense"
     ],
     "model_patterns": [
-      "android11"
+      "^(?:.*[ _-])?android11$"
     ],
+    "device_patterns": [
+      "^xiaoyushan$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

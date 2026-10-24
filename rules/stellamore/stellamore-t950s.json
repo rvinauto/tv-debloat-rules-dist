@@ -9,8 +9,10 @@
       "stellamore"
     ],
     "model_patterns": [
-      "t950s"
+      "^(?:.*[ _-])?t950s$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

@@ -9,8 +9,12 @@
       "haier"
     ],
     "model_patterns": [
-      "dvb2k"
+      "^(?:.*[ _-])?dvb2k$"
     ],
+    "device_patterns": [
+      "^broadway$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

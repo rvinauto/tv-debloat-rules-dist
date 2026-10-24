@@ -9,6 +9,10 @@
       "ktc"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^hongkong$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": null,

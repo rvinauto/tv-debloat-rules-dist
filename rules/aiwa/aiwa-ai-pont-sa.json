@@ -9,6 +9,10 @@
       "aiwa"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^osaka$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

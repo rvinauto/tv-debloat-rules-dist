@@ -9,8 +9,12 @@
       "haier"
     ],
     "model_patterns": [
-      "hr9216eu"
+      "^(?:.*[ _-])?hr9216eu$"
     ],
+    "device_patterns": [
+      "^haeundae$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

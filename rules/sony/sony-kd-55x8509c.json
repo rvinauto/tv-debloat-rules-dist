@@ -9,7 +9,13 @@
       "sony"
     ],
     "model_patterns": [
-      "55x8509c"
+      "^(?:.*[ _-])?55x8509c$"
+    ],
+    "device_patterns": [
+      "^SVP\\-DTV15$"
+    ],
+    "product_patterns": [
+      "^SVP4KDTV15_EU$"
     ],
     "confidence": "slug-derived"
   },

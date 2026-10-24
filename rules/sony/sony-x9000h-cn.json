@@ -9,7 +9,11 @@
       "sony"
     ],
     "model_patterns": [
-      "x9000h"
+      "^(?:.*[ _-])?x9000h$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+      "^BRAVIA_VH1_CN$"
     ],
     "confidence": "slug-derived"
   },

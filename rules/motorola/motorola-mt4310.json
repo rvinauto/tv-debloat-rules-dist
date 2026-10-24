@@ -9,8 +9,12 @@
       "motorola"
     ],
     "model_patterns": [
-      "mt4310"
+      "^(?:.*[ _-])?mt4310$"
     ],
+    "device_patterns": [
+      "^hayward$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

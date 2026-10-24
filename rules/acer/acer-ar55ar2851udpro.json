@@ -9,8 +9,12 @@
       "acer"
     ],
     "model_patterns": [
-      "ar55ar2851udpro"
+      "^(?:.*[ _-])?ar55ar2851udpro$"
     ],
+    "device_patterns": [
+      "^R4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

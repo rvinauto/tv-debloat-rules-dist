@@ -9,8 +9,10 @@
       "amazon"
     ],
     "model_patterns": [
-      "2018"
+      "^(?:.*[ _-])?2018$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

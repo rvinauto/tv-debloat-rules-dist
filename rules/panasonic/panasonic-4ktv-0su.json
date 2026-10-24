@@ -9,8 +9,12 @@
       "panasonic"
     ],
     "model_patterns": [
-      "4ktv[-_ ]?0su"
+      "^(?:.*[ _-])?4ktv[-_ ]?0su$"
     ],
+    "device_patterns": [
+      "^SW4H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

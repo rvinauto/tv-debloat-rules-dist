@@ -9,8 +9,10 @@
       "vision"
     ],
     "model_patterns": [
-      "2024vision43stv"
+      "^(?:.*[ _-])?2024vision43stv$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

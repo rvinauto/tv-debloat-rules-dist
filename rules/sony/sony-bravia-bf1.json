@@ -9,8 +9,12 @@
       "sony"
     ],
     "model_patterns": [
-      "bf1"
+      "^(?:.*[ _-])?bf1$"
     ],
+    "device_patterns": [
+      "^BRAVIA_BF1_4K_A$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

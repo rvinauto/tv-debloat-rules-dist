@@ -9,8 +9,12 @@
       "philips"
     ],
     "model_patterns": [
-      "tpm191e"
+      "^(?:.*[ _-])?tpm191e$"
     ],
+    "device_patterns": [
+      "^PH9M_EA_5599$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

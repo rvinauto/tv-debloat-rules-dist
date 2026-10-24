@@ -9,6 +9,10 @@
       "google"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^sabrina$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

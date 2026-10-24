@@ -9,8 +9,10 @@
       "sony"
     ],
     "model_patterns": [
-      "55xe8596"
+      "^(?:.*[ _-])?55xe8596$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

@@ -9,8 +9,10 @@
       "tcl"
     ],
     "model_patterns": [
-      "50p735"
+      "^(?:.*[ _-])?50p735$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

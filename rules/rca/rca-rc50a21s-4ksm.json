@@ -9,8 +9,10 @@
       "rca"
     ],
     "model_patterns": [
-      "rc50a21s[-_ ]?4ksm"
+      "^(?:.*[ _-])?rc50a21s[-_ ]?4ksm$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.zeasn.rca.toptech",

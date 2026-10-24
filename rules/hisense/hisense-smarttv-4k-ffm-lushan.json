@@ -9,6 +9,10 @@
       "hisense"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^lushan$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

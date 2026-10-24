@@ -9,8 +9,10 @@
       "xiaomi"
     ],
     "model_patterns": [
-      "2026"
+      "^(?:.*[ _-])?2026$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

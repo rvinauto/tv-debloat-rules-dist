@@ -9,8 +9,10 @@
       "turkcell"
     ],
     "model_patterns": [
-      "dv6069y"
+      "^(?:.*[ _-])?dv6069y$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

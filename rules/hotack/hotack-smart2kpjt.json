@@ -9,8 +9,10 @@
       "hotack"
     ],
     "model_patterns": [
-      "smart2kpjt"
+      "^(?:.*[ _-])?smart2kpjt$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.zeasn.whaleos.launcher3",

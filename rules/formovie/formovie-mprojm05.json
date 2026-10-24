@@ -9,8 +9,12 @@
       "formovie"
     ],
     "model_patterns": [
-      "mprojm05"
+      "^(?:.*[ _-])?mprojm05$"
     ],
+    "device_patterns": [
+      "^eva$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

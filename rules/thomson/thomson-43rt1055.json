@@ -9,8 +9,12 @@
       "thomson"
     ],
     "model_patterns": [
-      "43rt1055"
+      "^(?:.*[ _-])?43rt1055$"
     ],
+    "device_patterns": [
+      "^sauve$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

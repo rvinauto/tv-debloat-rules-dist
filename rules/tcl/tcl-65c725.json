@@ -9,8 +9,12 @@
       "tcl"
     ],
     "model_patterns": [
-      "65c725"
+      "^(?:.*[ _-])?65c725$"
     ],
+    "device_patterns": [
+      "^BeyondTV4$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

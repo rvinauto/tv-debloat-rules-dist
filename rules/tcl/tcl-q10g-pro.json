@@ -9,8 +9,10 @@
       "tcl"
     ],
     "model_patterns": [
-      "q10g"
+      "^(?:.*[ _-])?q10g$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.tcl.cyberui",

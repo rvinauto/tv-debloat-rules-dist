@@ -9,8 +9,10 @@
       "skyworth"
     ],
     "model_patterns": [
-      "22ae"
+      "^(?:.*[ _-])?22ae$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

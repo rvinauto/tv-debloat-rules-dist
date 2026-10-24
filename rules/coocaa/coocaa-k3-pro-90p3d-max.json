@@ -9,8 +9,10 @@
       "coocaa"
     ],
     "model_patterns": [
-      "90p3d"
+      "^(?:.*[ _-])?90p3d$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

@@ -9,8 +9,10 @@
       "skyworth"
     ],
     "model_patterns": [
-      "8r40[-_ ]?k5c"
+      "^(?:.*[ _-])?8r40[-_ ]?k5c$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.tianci.movieplatform",

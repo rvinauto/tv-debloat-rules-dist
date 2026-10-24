@@ -9,6 +9,10 @@
       "rca"
     ],
     "model_patterns": [],
+    "device_patterns": [
+      "^redwood$"
+    ],
+    "product_patterns": [],
     "confidence": "manual-only"
   },
   "stock_launcher": "com.google.android.tvlauncher",

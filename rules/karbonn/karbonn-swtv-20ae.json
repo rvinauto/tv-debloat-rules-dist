@@ -9,8 +9,12 @@
       "karbonn"
     ],
     "model_patterns": [
-      "20ae"
+      "^(?:.*[ _-])?20ae$"
     ],
+    "device_patterns": [
+      "^SW4H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

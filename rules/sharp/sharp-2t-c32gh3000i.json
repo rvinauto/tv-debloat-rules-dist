@@ -9,8 +9,12 @@
       "sharp"
     ],
     "model_patterns": [
-      "c32gh3000i"
+      "^(?:.*[ _-])?c32gh3000i$"
     ],
+    "device_patterns": [
+      "^beomil$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

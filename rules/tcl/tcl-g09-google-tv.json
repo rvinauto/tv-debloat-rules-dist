@@ -9,8 +9,12 @@
       "tcl"
     ],
     "model_patterns": [
-      "g09"
+      "^(?:.*[ _-])?g09$"
     ],
+    "device_patterns": [
+      "^G09$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

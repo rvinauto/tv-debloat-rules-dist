@@ -9,8 +9,10 @@
       "redmi"
     ],
     "model_patterns": [
-      "mftp0"
+      "^(?:.*[ _-])?mftp0$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.mitv.tvhome",

@@ -9,8 +9,10 @@
       "tcl"
     ],
     "model_patterns": [
-      "ak30a5"
+      "^(?:.*[ _-])?ak30a5$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.tcl.cyberui",

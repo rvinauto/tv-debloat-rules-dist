@@ -9,7 +9,13 @@
       "sony"
     ],
     "model_patterns": [
-      "vh2"
+      "^(?:.*[ _-])?vh2$"
+    ],
+    "device_patterns": [
+      "^BRAVIA_VH2$"
+    ],
+    "product_patterns": [
+      "^BRAVIA_VH2_EU$"
     ],
     "confidence": "slug-derived"
   },

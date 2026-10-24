@@ -9,8 +9,10 @@
       "panasonic"
     ],
     "model_patterns": [
-      "40hs550k"
+      "^(?:.*[ _-])?40hs550k$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

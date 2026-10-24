@@ -9,8 +9,10 @@
       "artel"
     ],
     "model_patterns": [
-      "mt5863"
+      "^(?:.*[ _-])?mt5863$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.cvte.tv.launcher",

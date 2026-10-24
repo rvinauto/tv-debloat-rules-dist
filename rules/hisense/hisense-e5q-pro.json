@@ -9,8 +9,10 @@
       "hisense"
     ],
     "model_patterns": [
-      "e5q"
+      "^(?:.*[ _-])?e5q$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

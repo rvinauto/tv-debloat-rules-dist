@@ -9,7 +9,13 @@
       "sony"
     ],
     "model_patterns": [
-      "65x82l"
+      "^(?:.*[ _-])?65x82l$"
+    ],
+    "device_patterns": [
+      "^BRAVIA_VH22$"
+    ],
+    "product_patterns": [
+      "^BRAVIA_VH22_M_PA$"
     ],
     "confidence": "slug-derived"
   },

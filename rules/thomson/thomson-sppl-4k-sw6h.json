@@ -9,8 +9,12 @@
       "thomson"
     ],
     "model_patterns": [
-      "sw6h"
+      "^(?:.*[ _-])?sw6h$"
     ],
+    "device_patterns": [
+      "^SW6H$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

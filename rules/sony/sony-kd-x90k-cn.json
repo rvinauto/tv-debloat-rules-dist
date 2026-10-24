@@ -9,8 +9,13 @@
       "sony"
     ],
     "model_patterns": [
-      "^BRAVIA 4K VH21$",
+      "^BRAVIA 4K VH21$"
+    ],
+    "device_patterns": [
       "^BRAVIA_VH21$"
+    ],
+    "product_patterns": [
+      "^BRAVIA_VH21_M_CN$"
     ],
     "confidence": "verified"
   },

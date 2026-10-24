@@ -9,7 +9,11 @@
       "tcl"
     ],
     "model_patterns": [
-      "mt9655[-_ ]?android14"
+      "^(?:.*[ _-])?mt9655[-_ ]?android14$"
+    ],
+    "device_patterns": [],
+    "product_patterns": [
+      "^tcl9655_cn_an64$"
     ],
     "confidence": "slug-derived"
   },

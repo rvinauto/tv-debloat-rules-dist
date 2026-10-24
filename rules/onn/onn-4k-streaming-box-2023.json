@@ -9,8 +9,12 @@
       "onn"
     ],
     "model_patterns": [
-      "2023"
+      "^(?:.*[ _-])?2023$"
     ],
+    "device_patterns": [
+      "^YOC$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.apps.tv.launcherx",

@@ -9,8 +9,10 @@
       "philips"
     ],
     "model_patterns": [
-      "50pud7406"
+      "^(?:.*[ _-])?50pud7406$"
     ],
+    "device_patterns": [],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",

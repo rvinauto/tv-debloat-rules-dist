@@ -9,8 +9,12 @@
       "nokia"
     ],
     "model_patterns": [
-      "8010"
+      "^(?:.*[ _-])?8010$"
     ],
+    "device_patterns": [
+      "^YYJ$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": null,

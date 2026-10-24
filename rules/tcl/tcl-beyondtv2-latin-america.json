@@ -9,8 +9,12 @@
       "tcl"
     ],
     "model_patterns": [
-      "beyondtv2"
+      "^(?:.*[ _-])?beyondtv2$"
     ],
+    "device_patterns": [
+      "^rebooted$"
+    ],
+    "product_patterns": [],
     "confidence": "slug-derived"
   },
   "stock_launcher": "com.google.android.tvlauncher",
