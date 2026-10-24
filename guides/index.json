@@ -1,6 +1,7 @@
 {
  "schema_version": 1,
- "source_commit": "c4c70d0",
+ "generated": "2026-10-24T12:05:38Z",
+ "source_commit": "65ef9b8",
  "guides": [
   {
    "id": "xiaomi",
