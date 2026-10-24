@@ -1,0 +1,67 @@
+{
+ "schema_version": 1,
+ "generated": "2026-10-24T11:21:12Z",
+ "source_commit": "9fbee50",
+ "apps": [
+  {
+   "id": "cleanyourtv-launcher",
+   "name": "CleanYourTV 桌面",
+   "package": "com.gathin.tvhome",
+   "category": "桌面",
+   "source_url": "https://github.com/rvinauto/cleanyourtv/releases/tag/v2.6",
+   "version": "2.6",
+   "version_code": 9,
+   "apk_url": "https://github.com/rvinauto/cleanyourtv/releases/download/v2.6/CleanYourTV-X90K-v2.6-vc9.apk",
+   "sha256": "10b49d66a8c2fbceb4e4f1b061bb5eaead4e71ebd4fdf773ff82032da8e19b11",
+   "size": 501979,
+   "abi": "全部",
+   "min_sdk": 26,
+   "license": "MIT",
+   "notes": "本项目的电视桌面（Bing/影视壁纸），X90K 上真机验证",
+   "verified": {
+    "date": "2026-10-24",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+   }
+  },
+  {
+   "id": "smarttube-stable-armv7",
+   "name": "SmartTube",
+   "package": "org.smarttube.stable",
+   "category": "视频",
+   "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.68s",
+   "version": "32.68",
+   "version_code": 2458,
+   "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.68s/SmartTube_stable_32.68_armeabi-v7a.apk",
+   "sha256": "2130b23b17ed5cfd324baec81750a2be22059212b6ee17449f21cae2cb3a60d9",
+   "size": 25135011,
+   "abi": "armeabi-v7a",
+   "min_sdk": 17,
+   "license": "MIT",
+   "notes": "开源无广告 YouTube 电视客户端（需能访问 YouTube）。armeabi-v7a 版适合大多数电视",
+   "verified": {
+    "date": "2026-10-24",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+   }
+  },
+  {
+   "id": "just-player",
+   "name": "Just Player",
+   "package": "com.brouken.player",
+   "category": "播放器",
+   "source_url": "https://github.com/moneytoo/Player/releases/tag/v0.217",
+   "version": "0.217",
+   "version_code": 217,
+   "apk_url": "https://github.com/moneytoo/Player/releases/download/v0.217/Just.Player.v0.217.apk",
+   "sha256": "f85156d4748c6263a6af0b13682fb54fbe1dd12a1ed1e8fa3710def548259b74",
+   "size": 51778873,
+   "abi": "全部",
+   "min_sdk": 23,
+   "license": "Unlicense",
+   "notes": "开源本地/网络视频播放器（ExoPlayer），支持 U 盘、局域网",
+   "verified": {
+    "date": "2026-10-24",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+   }
+  }
+ ]
+}
