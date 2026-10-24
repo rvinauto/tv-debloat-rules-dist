@@ -1,0 +1,6 @@
+{
+ "schema_version": 1,
+ "note": "Public GitHub accelerator proxies, prefix style (proxy + full github URL). Untrusted: app verifies APK sha256 and rule-file sha256. Tested 2026-10-24 from box; ordered by reliability.",
+ "tested": "2026-10-24",
+ "proxies": ["https://gh-proxy.com/", "https://gh.llkk.cc/", "https://ghfast.top/"]
+}
