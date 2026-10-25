@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-25T11:42:47Z",
- "source_commit": "75f6e0b",
+ "generated": "2026-10-25T11:43:07Z",
+ "source_commit": "264e36c",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -43,39 +43,40 @@
    "name": "Aerial 桌面（最新版）",
    "package": "app.orchard.tv",
    "category": "桌面",
-   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.37",
-   "version": "1.37",
-   "version_code": 39,
-   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.37/aerial-standard.apk",
-   "sha256": "4ae9275d8467af421ee98805dc1bfca1b817034d55009292ec41fa66000c96b4",
-   "size": 2747515,
+   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.49",
+   "version": "1.49",
+   "version_code": 57,
+   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.49/aerial-standard.apk",
+   "sha256": "01e4ab0c458aaa4f7295b983fe84fd61378bc82840d6b49ce8412fc7505b50a1",
+   "size": 2908495,
    "abi": "全部",
    "min_sdk": 21,
    "license": "MIT",
-   "notes": "第三方开源桌面（standard 版，带 HOME）。我们只负责安装，不授予额外权限、不开启无障碍",
+   "notes": "第三方开源桌面（standard 版，带 HOME）。我们只负责安装，不授予额外权限、不开启无障碍 新增「读取应用使用情况」权限 PACKAGE_USAGE_STATS，我们不会授予。",
    "launcher_preset": true,
    "launcher_default": false,
-   "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。",
+   "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。 新增「读取应用使用情况」权限 PACKAGE_USAGE_STATS，我们不会授予。",
    "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。",
    "source": {
     "repo": "https://github.com/pengchujin/aerial-tv",
     "author": "pengchujin",
     "license": "MIT",
-    "tag": "v1.37",
+    "tag": "v1.49",
     "variant": "standard"
    },
    "sensitive_permissions": [
     "BIND_ACCESSIBILITY_SERVICE",
-    "WRITE_SECURE_SETTINGS",
     "BIND_NOTIFICATION_LISTENER_SERVICE",
-    "DUMP"
+    "DUMP",
+    "PACKAGE_USAGE_STATS",
+    "WRITE_SECURE_SETTINGS"
    ],
    "verified": {
     "date": "2026-10-25",
-    "method": "downloaded from GitHub release; sha256 computed; aapt badging: app.orchard.tv vc39 minSdk21, HOME+LEANBACK_LAUNCHER, ABI arm64-v8a/armeabi-v7a/x86/x86_64"
+    "method": "auto-update: GitHub latest release; sha256 computed (= asset digest when provided); aapt package/versionCode checked; TV build (LEANBACK_LAUNCHER); signer unchanged; HOME present"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.37-4ae9275d.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.49-01e4ab0c.apk"
    ],
    "compat_attribution": {
     "source": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md#已验证的电视",
@@ -272,11 +273,26 @@
      "BIND_ACCESSIBILITY_SERVICE",
      "BIND_NOTIFICATION_LISTENER_SERVICE",
      "DUMP",
+     "PACKAGE_USAGE_STATS",
      "SYSTEM_ALERT_WINDOW",
      "WRITE_SECURE_SETTINGS",
      "WRITE_SETTINGS"
     ],
     "sensitive_policy": "record"
+   },
+   "new_permissions": [
+    "PACKAGE_USAGE_STATS"
+   ],
+   "previous": {
+    "version": "1.37",
+    "version_code": 39,
+    "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.37/aerial-standard.apk",
+    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.37",
+    "sha256": "4ae9275d8467af421ee98805dc1bfca1b817034d55009292ec41fa66000c96b4",
+    "size": 2747515,
+    "mirrors": [
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.37-4ae9275d.apk"
+    ]
    }
   },
   {
