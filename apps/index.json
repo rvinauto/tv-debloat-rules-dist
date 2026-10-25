@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-25T09:21:45Z",
- "source_commit": "fda4723",
+ "generated": "2026-10-25T09:58:35Z",
+ "source_commit": "1aed0eb",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -35,7 +35,8 @@
     "upstream": "https://github.com/Gathin23/cleanyourtv",
     "upstream_author": "Gathin23",
     "license": "MIT"
-   }
+   },
+   "releases_url": "https://github.com/rvinauto/cleanyourtv/releases"
   },
   {
    "id": "aerial-tv-standard",
@@ -73,7 +74,9 @@
     "date": "2026-10-25",
     "method": "downloaded from GitHub release; sha256 computed; aapt badging: app.orchard.tv vc39 minSdk21, HOME+LEANBACK_LAUNCHER, ABI arm64-v8a/armeabi-v7a/x86/x86_64"
    },
-   "mirrors": [],
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.37-4ae9275d.apk"
+   ],
    "compat_attribution": {
     "source": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md#已验证的电视",
     "author": "pengchujin",
@@ -256,7 +259,24 @@
      ]
     }
    ],
-   "compat_x90k": "索尼 X90K（BRAVIA VH21）不在 aerial 的列表里；最接近的是 A80J / BRAVIA VH1，VH21 上未测试"
+   "compat_x90k": "索尼 X90K（BRAVIA VH21）不在 aerial 的列表里；最接近的是 A80J / BRAVIA VH1，VH21 上未测试",
+   "releases_url": "https://github.com/pengchujin/aerial-tv/releases",
+   "signer_sha256": "e08962dceaab534210f4725ecb71e3d0906d60dc9da9f2c5fa3b1759874d6685",
+   "auto_update": {
+    "repo": "pengchujin/aerial-tv",
+    "asset": "^aerial-standard\\.apk$",
+    "mirror_name": "aerial-tv-standard-v{version}-{sha8}.apk",
+    "require_home": true,
+    "allowed_sensitive": [
+     "ACCESS_FINE_LOCATION",
+     "BIND_ACCESSIBILITY_SERVICE",
+     "BIND_NOTIFICATION_LISTENER_SERVICE",
+     "DUMP",
+     "SYSTEM_ALERT_WINDOW",
+     "WRITE_SECURE_SETTINGS",
+     "WRITE_SETTINGS"
+    ]
+   }
   },
   {
    "id": "smarttube-stable-armv7",
@@ -279,7 +299,19 @@
    },
    "mirrors": [
     "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.68_armeabi-v7a-2130b23b.apk"
-   ]
+   ],
+   "releases_url": "https://github.com/yuliskov/SmartTube/releases",
+   "signer_sha256": "109735aa24fe85e2e1623ebb3b1ecc4bf4263f4c6374e4411d646bfa2eda482a",
+   "auto_update": {
+    "repo": "yuliskov/SmartTube",
+    "asset": "^SmartTube_stable_[0-9.]+_armeabi-v7a\\.apk$",
+    "mirror_name": "SmartTube_stable_{version}_armeabi-v7a-{sha8}.apk",
+    "allowed_sensitive": [
+     "DUMP",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
+   }
   },
   {
    "id": "just-player",
@@ -302,7 +334,18 @@
    },
    "mirrors": [
     "https://orrvtvbox.20090212.xyz/rvbox/apps/just-player-0.217-f85156d4.apk"
-   ]
+   ],
+   "releases_url": "https://github.com/moneytoo/Player/releases",
+   "signer_sha256": "3cb97dba57d3d0bc190bae5f1f3a841643bcd9399bc31028ce25775d93d0109d",
+   "auto_update": {
+    "repo": "moneytoo/Player",
+    "asset": "^Just\\.Player\\.v[0-9.]+\\.apk$",
+    "mirror_name": "just-player-{version}-{sha8}.apk",
+    "allowed_sensitive": [
+     "DUMP",
+     "WRITE_SETTINGS"
+    ]
+   }
   },
   {
    "id": "webhtv-leanback-armv7",
@@ -330,6 +373,19 @@
    "verified": {
     "date": "2026-10-24",
     "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest + v2 signer parsed; source Action.java/Server.java checked"
+   },
+   "releases_url": "https://github.com/webhtv/webhtv/releases",
+   "auto_update": {
+    "repo": "webhtv/webhtv",
+    "asset": "^leanback-armeabi_v7a\\.apk$",
+    "mirror_name": "webhtv-leanback-armeabi_v7a-{tag_noV}-{sha8}.apk",
+    "allowed_sensitive": [
+     "CAMERA",
+     "DUMP",
+     "MANAGE_EXTERNAL_STORAGE",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
    }
   }
  ]
