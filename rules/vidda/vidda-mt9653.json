@@ -294,5 +294,19 @@
       "used_for": "cross-check removal level",
       "license": "GPL-3.0 (data referenced, not copied)"
     }
+  ],
+  "launcher_compat": [
+    {
+      "launcher": "aerial-tv",
+      "package": "app.orchard.tv",
+      "models": "Vidda、海信、雷鸟鹤 6 2025 Ultra",
+      "android": "",
+      "result": "能装但开机进不了 Aerial（VIDAA 需改系统属性；信号源可能为空）",
+      "flavor": "",
+      "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/hisense-vidaa.md",
+      "license": "MIT",
+      "author": "pengchujin",
+      "status": "reported by aerial-tv, not verified by us（aerial-tv 报告，CleanYourTV 未验证）"
+    }
   ]
 }

@@ -254,5 +254,19 @@
       "used_for": "cross-check removal level",
       "license": "GPL-3.0 (data referenced, not copied)"
     }
+  ],
+  "launcher_compat": [
+    {
+      "launcher": "aerial-tv",
+      "package": "app.orchard.tv",
+      "models": "MiTV-MFTR0 / Redmi X65 2026",
+      "android": "14",
+      "result": "日常使用（作者自测）。小米会锁 HOME：set-home-activity 返回成功但不生效，作者改用无障碍守护",
+      "flavor": "standard",
+      "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/xiaomi-mitv-mftr0.md",
+      "license": "MIT",
+      "author": "pengchujin",
+      "status": "reported by aerial-tv, not verified by us（aerial-tv 报告，CleanYourTV 未验证）"
+    }
   ]
 }

@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
  "repo": "rvinauto/tv-debloat-rules-dist",
- "generated": "2026-10-25T09:18:06Z",
- "source_commit": "8e0f78e",
+ "generated": "2026-10-25T09:21:45Z",
+ "source_commit": "fda4723",
  "models": [
   {
    "id": "acer-ar55ar2851udpro",
@@ -653,7 +653,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/coocaa/coocaa-k3-pro-90p3d-max.json",
-   "sha256": "4d59b355a6a5dbbc7d06abedb198e7a0b0b82d64b1b55761da9ad40401496ef8",
+   "sha256": "11c8fce43a585035ac89a1261a002b23b63d6170552c814973ced749bc3e05b5",
    "review": "auto-checked",
    "counts": {
     "safe": 22,
@@ -2807,7 +2807,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/redmi/redmi-mitv-mftp0.json",
-   "sha256": "8e3271de7328d790bda4def766f2ef22793f1fb223fba6289a43316333e6d7ff",
+   "sha256": "a7cf8b2625c84f11a3c7bea26f21c2478a53513d3f371ae3b49adf87bac2065f",
    "review": "auto-checked",
    "counts": {
     "safe": 15,
@@ -3345,7 +3345,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-bravia-4k-vh1.json",
-   "sha256": "02de49d039e8dd7411e4433706108a6785a8a76651259bf19d277607340c698c",
+   "sha256": "4a25d4eb286db65ed5fea950f9f33564e9db3bebe5b6c371ace6f00cd063d7ad",
    "review": "auto-checked",
    "counts": {
     "safe": 33,
@@ -4109,7 +4109,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/sony/sony-xr-65a80j.json",
-   "sha256": "5c2948af9a4ce3051199c6b4f70608e5bc7861143632249eb52fbaa4a9022c61",
+   "sha256": "61d19f00b82da41a410a34a833eb63962c53eb388722fe9d61b25995f41e9727",
    "review": "auto-checked",
    "counts": {
     "safe": 28,
@@ -6057,7 +6057,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/vidda/vidda-mt9653.json",
-   "sha256": "11813bfbf06fc01c570e5ef8f9b89d3a212fb25b10ed4f6ccc842fd9d064c5ea",
+   "sha256": "fd2cac800b780247c4e207c27962bfffd61ec1f50a1ecf30bfc2387837110d7c",
    "review": "auto-checked",
    "counts": {
     "safe": 24,
@@ -6469,7 +6469,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-astp0.json",
-   "sha256": "4f0861f388fa596f244ab070c21745ffd913779ae354d90792bec9ad8a709e23",
+   "sha256": "e1de3301bd1b0f222f6c2b4c6b2ff38fa986acdae67b8b011a493039ece924d8",
    "review": "auto-checked",
    "counts": {
     "safe": 35,
@@ -6653,7 +6653,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mffu0.json",
-   "sha256": "33842e5aa6cbaf07e77a72cf6eb18154d0f0a9c2190265ea1bfd7ee37d2261af",
+   "sha256": "f4134c497cb0c72a104e9c69e31b93fba4821396f4c949649b54ffdb8f1d0fbd",
    "review": "auto-checked",
    "counts": {
     "safe": 13,
@@ -6679,7 +6679,7 @@
     "confidence": "slug-derived"
    },
    "path": "rules/xiaomi/xiaomi-mitv-mftr0.json",
-   "sha256": "8564cae10c4ffa7b2cab33a9b6134b9433e065fe3a7339965819099d481497c7",
+   "sha256": "9dad8ca868b742712e6cc921d10018b874457279f2cd3a827397dc9712ccca64",
    "review": "auto-checked",
    "counts": {
     "safe": 21,

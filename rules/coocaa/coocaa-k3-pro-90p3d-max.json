@@ -245,5 +245,19 @@
       "used_for": "cross-check removal level",
       "license": "GPL-3.0 (data referenced, not copied)"
     }
+  ],
+  "launcher_compat": [
+    {
+      "launcher": "aerial-tv",
+      "package": "app.orchard.tv",
+      "models": "K3 Pro",
+      "android": "11",
+      "result": "用户验证",
+      "flavor": "",
+      "source_url": "https://github.com/pengchujin/aerial-tv/issues/43",
+      "license": "MIT",
+      "author": "pengchujin",
+      "status": "reported by aerial-tv, not verified by us（aerial-tv 报告，CleanYourTV 未验证）"
+    }
   ]
 }

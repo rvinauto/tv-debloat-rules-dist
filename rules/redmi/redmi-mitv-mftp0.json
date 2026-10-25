@@ -182,5 +182,19 @@
       "used_for": "cross-check removal level",
       "license": "GPL-3.0 (data referenced, not copied)"
     }
+  ],
+  "launcher_compat": [
+    {
+      "launcher": "aerial-tv",
+      "package": "app.orchard.tv",
+      "models": "MiTV-MFTP0",
+      "android": "9",
+      "result": "能安装、开机自启；升级后守护会掉",
+      "flavor": "standard",
+      "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/xiaomi-mitv-mftp0.md",
+      "license": "MIT",
+      "author": "pengchujin",
+      "status": "reported by aerial-tv, not verified by us（aerial-tv 报告，CleanYourTV 未验证）"
+    }
   ]
 }
