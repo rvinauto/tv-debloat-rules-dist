@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-24T12:15:47Z",
- "source_commit": "f8df8a7",
+ "generated": "2026-10-25T09:18:06Z",
+ "source_commit": "8e0f78e",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -24,7 +24,56 @@
    },
    "mirrors": [
     "https://orrvtvbox.20090212.xyz/rvbox/apps/cleanyourtv-launcher-2.6-vc9-10b49d66.apk"
-   ]
+   ],
+   "launcher_preset": true,
+   "launcher_default": true,
+   "description": "CleanYourTV 默认桌面：没有广告、没有推荐流，仿 Apple TV 的简洁主页。壁纸可以选必应每日一图或电影剧照，下方是玻璃风格的常用应用栏，带设置菜单。体积小，免 root，可以随时换回原来的桌面。",
+   "description_long": "一块干净的电视主页，用来替换满屏广告和推荐的原厂桌面。\n- 不放广告和推荐内容，主页上只有你装的应用\n- 仿 Apple TV 的布局，下方是玻璃风格的常用应用栏\n- 在线壁纸：必应每日精选，也可以换成电影剧照\n- 设置菜单里可以调整壁纸和显示方式\n- 体积小，不用 root，不会卸载任何系统应用\n- 想换回来时，在电视上按主页键选回原来的桌面就行\n当前版本 v2.6，开源项目 CleanYourTV 的定制版。",
+   "source": {
+    "repo": "https://github.com/rvinauto/cleanyourtv",
+    "author": "rvinauto（fork）",
+    "upstream": "https://github.com/Gathin23/cleanyourtv",
+    "upstream_author": "Gathin23",
+    "license": "MIT"
+   }
+  },
+  {
+   "id": "aerial-tv-standard",
+   "name": "Aerial 桌面",
+   "package": "app.orchard.tv",
+   "category": "桌面",
+   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.37",
+   "version": "1.37",
+   "version_code": 39,
+   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.37/aerial-standard.apk",
+   "sha256": "4ae9275d8467af421ee98805dc1bfca1b817034d55009292ec41fa66000c96b4",
+   "size": 2747515,
+   "abi": "全部",
+   "min_sdk": 21,
+   "license": "MIT",
+   "notes": "第三方开源桌面（standard 版，带 HOME）。我们只负责安装，不授予额外权限、不开启无障碍",
+   "launcher_preset": true,
+   "launcher_default": false,
+   "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。",
+   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。",
+   "source": {
+    "repo": "https://github.com/pengchujin/aerial-tv",
+    "author": "pengchujin",
+    "license": "MIT",
+    "tag": "v1.37",
+    "variant": "standard"
+   },
+   "sensitive_permissions": [
+    "BIND_ACCESSIBILITY_SERVICE",
+    "WRITE_SECURE_SETTINGS",
+    "BIND_NOTIFICATION_LISTENER_SERVICE",
+    "DUMP"
+   ],
+   "verified": {
+    "date": "2026-10-25",
+    "method": "downloaded from GitHub release; sha256 computed; aapt badging: app.orchard.tv vc39 minSdk21, HOME+LEANBACK_LAUNCHER, ABI arm64-v8a/armeabi-v7a/x86/x86_64"
+   },
+   "mirrors": []
   },
   {
    "id": "smarttube-stable-armv7",
