@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-25T12:10:27Z",
- "source_commit": "ceb5841",
+ "generated": "2026-10-25T12:25:35Z",
+ "source_commit": "1601a38",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -28,10 +28,10 @@
    "launcher_preset": true,
    "launcher_default": true,
    "description": "CleanYourTV 默认桌面：没有广告、没有推荐流，仿 Apple TV 的简洁主页。壁纸可以选必应每日一图或电影剧照，下方是玻璃风格的常用应用栏，带设置菜单。体积小，免 root，可以随时换回原来的桌面。",
-   "description_long": "一块干净的电视主页，用来替换满屏广告和推荐的原厂桌面。\n- 不放广告和推荐内容，主页上只有你装的应用\n- 仿 Apple TV 的布局，下方是玻璃风格的常用应用栏\n- 在线壁纸：必应每日精选，也可以换成电影剧照\n- 设置菜单里可以调整壁纸和显示方式\n- 体积小，不用 root，不会卸载任何系统应用\n- 想换回来时，在电视上按主页键选回原来的桌面就行\n当前版本 v2.6，开源项目 CleanYourTV 的定制版。",
+   "description_long": "一块干净的电视主页，用来替换满屏广告和推荐的原厂桌面。\n- 不放广告和推荐内容，主页上只有你装的应用\n- 仿 Apple TV 的布局，下方是玻璃风格的常用应用栏\n- 在线壁纸：必应每日精选，也可以换成电影剧照\n- 设置菜单里可以调整壁纸和显示方式\n- 体积小，不用 root，不会卸载任何系统应用\n- 想换回来时，在电视上按主页键选回原来的桌面就行\n当前版本 v2.6，开源项目 CleanYourTV 的定制版。\n\n设置方法（按 v2.6 源码整理）：\n1. 设为默认桌面：在本 app 的「桌面选择」页点「设为默认…」；或者在电视上按遥控器主页键，如果弹出桌面选择，选「主屏幕」（CleanYourTV 桌面在中文系统里叫这个名字）。有的电视不弹选择框，那就用「设为默认…」。\n2. 打开桌面设置：在主页最下面一排常用应用上按「上」键，焦点会移到顶部按钮栏；移到右上角的「设置」按钮按 OK（长按 OK 也可以），弹出菜单里选「简洁桌面设置」。同一个菜单里还有「调整应用顺序」和「电视系统设置」。\n3. 换壁纸：在「简洁桌面设置」里选「在线壁纸：开/关」这一行，再选「壁纸类型」，可以选「风景（必应）」、「影视（TMDB）」（电影剧照）或「混合」。同一个列表里还能开关在线壁纸、换来源、调切换间隔，以及「立即刷新」。壁纸类型只对内置来源生效，自定义地址不行。\n4. 想换回原来的桌面：按主页键选原来的桌面，或者在本 app 里把原来的桌面设为默认。",
    "source": {
     "repo": "https://github.com/rvinauto/cleanyourtv",
-    "author": "rvinauto（fork）",
+    "author": "rvinauto",
     "upstream": "https://github.com/Gathin23/cleanyourtv",
     "upstream_author": "Gathin23",
     "license": "MIT"
@@ -56,7 +56,7 @@
    "launcher_preset": true,
    "launcher_default": false,
    "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。 新增「读取应用使用情况」权限 PACKAGE_USAGE_STATS，我们不会授予。",
-   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。",
+   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是最新的 standard 版（自动更新；声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。\n\n设置方法（摘自 aerial-tv README）：\n- 整理：在应用上长按 OK（或按菜单键），可以移动、放进文件夹、隐藏、卸载；也可以用手机扫电视上的二维码来整理。\n- 控制中心：在第一排按「上」键到右上角打开，里面有信号源、网络、设置、音量、亮度和个性化；壁纸（必应、内置、手机传图、航拍）和屏保都在这里改。\n- 设为默认：原生 Android TV 上直接设成默认桌面就行（本 app 的「设为默认…」或按主页键选 Aerial）。国产电视（小米、TCL 等）经常锁定自家桌面，README 的做法是开无障碍守护并授予权限，CleanYourTV 不会替你做这一步，所以在这类电视上按主页键可能还会回到原桌面。\n- 只装了 APK 时：「我的应用」里有 Aerial 图标（1.32 起），打开后会提示怎么设为主屏幕。\n- 还原：按主页键选回原桌面，或者用 README「还原」一节的命令。\n- 升级：1.32 起，有新版本时控制中心会出现「有新版本」，点进去选「下载并安装」。",
    "source": {
     "repo": "https://github.com/pengchujin/aerial-tv",
     "author": "pengchujin",
@@ -313,7 +313,7 @@
    "launcher_preset": true,
    "launcher_default": false,
    "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。 稳定版，权限较少。",
-   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。",
+   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。\n\n设置方法（摘自 aerial-tv README）：\n- 整理：在应用上长按 OK（或按菜单键），可以移动、放进文件夹、隐藏、卸载；也可以用手机扫电视上的二维码来整理。\n- 控制中心：在第一排按「上」键到右上角打开，里面有信号源、网络、设置、音量、亮度和个性化；壁纸（必应、内置、手机传图、航拍）和屏保都在这里改。\n- 设为默认：原生 Android TV 上直接设成默认桌面就行（本 app 的「设为默认…」或按主页键选 Aerial）。国产电视（小米、TCL 等）经常锁定自家桌面，README 的做法是开无障碍守护并授予权限，CleanYourTV 不会替你做这一步，所以在这类电视上按主页键可能还会回到原桌面。\n- 只装了 APK 时：「我的应用」里有 Aerial 图标（1.32 起），打开后会提示怎么设为主屏幕。\n- 还原：按主页键选回原桌面，或者用 README「还原」一节的命令。\n- 这个版本固定在 v1.37，不会自动更新。",
    "source": {
     "repo": "https://github.com/pengchujin/aerial-tv",
     "author": "pengchujin",
