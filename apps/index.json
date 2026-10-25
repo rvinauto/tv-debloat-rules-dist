@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-10-25T10:03:18Z",
- "source_commit": "3d388fc",
+ "generated": "2026-10-25T11:42:47Z",
+ "source_commit": "75f6e0b",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -40,7 +40,7 @@
   },
   {
    "id": "aerial-tv-standard",
-   "name": "Aerial 桌面",
+   "name": "Aerial 桌面（最新版）",
    "package": "app.orchard.tv",
    "category": "桌面",
    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.37",
@@ -275,8 +275,235 @@
      "SYSTEM_ALERT_WINDOW",
      "WRITE_SECURE_SETTINGS",
      "WRITE_SETTINGS"
-    ]
+    ],
+    "sensitive_policy": "record"
    }
+  },
+  {
+   "id": "aerial-tv-standard-v137",
+   "name": "Aerial 桌面（v1.37 稳定版）",
+   "package": "app.orchard.tv",
+   "category": "桌面",
+   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.37",
+   "version": "1.37",
+   "version_code": 39,
+   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.37/aerial-standard.apk",
+   "sha256": "4ae9275d8467af421ee98805dc1bfca1b817034d55009292ec41fa66000c96b4",
+   "size": 2747515,
+   "abi": "全部",
+   "min_sdk": 21,
+   "license": "MIT",
+   "notes": "第三方开源桌面（standard 版，带 HOME）。我们只负责安装，不授予额外权限、不开启无障碍。稳定版，权限较少（固定在 v1.37，不自动更新）",
+   "launcher_preset": true,
+   "launcher_default": false,
+   "description": "Aerial：仿 Apple TV 的开源电视桌面，没有广告和推荐流，带航拍屏保和必应壁纸。我们只负责安装，不授予额外权限，也不开启无障碍。 稳定版，权限较少。",
+   "description_long": "Aerial 是 pengchujin 开源（MIT）的 Android TV 桌面，参照 Apple TV 设计。\n- 没有广告、没有推荐流，只有你的应用、壁纸和航拍屏保\n- 首页玻璃底板放常用应用，支持文件夹、隐藏、排序\n- 屏保可播 Apple TV 航拍影片，也能换成照片或时钟\n这里收录的是 v1.37 standard 版（声明了 HOME，可作为默认桌面）。\n注意：它声明了无障碍服务、修改安全设置等权限，用于防止桌面被系统换回。CleanYourTV 只安装，不会授予这些权限，也不会开启无障碍；需要的话请自行在电视上决定。",
+   "source": {
+    "repo": "https://github.com/pengchujin/aerial-tv",
+    "author": "pengchujin",
+    "license": "MIT",
+    "tag": "v1.37",
+    "variant": "standard"
+   },
+   "sensitive_permissions": [
+    "BIND_ACCESSIBILITY_SERVICE",
+    "WRITE_SECURE_SETTINGS",
+    "BIND_NOTIFICATION_LISTENER_SERVICE",
+    "DUMP"
+   ],
+   "verified": {
+    "date": "2026-10-25",
+    "method": "downloaded from GitHub release; sha256 computed; aapt badging: app.orchard.tv vc39 minSdk21, HOME+LEANBACK_LAUNCHER, ABI arm64-v8a/armeabi-v7a/x86/x86_64"
+   },
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.37-4ae9275d.apk"
+   ],
+   "compat_attribution": {
+    "source": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md#已验证的电视",
+    "author": "pengchujin",
+    "license": "MIT",
+    "note": "以下为 aerial-tv 项目报告的结果，CleanYourTV 未验证"
+   },
+   "compat": [
+    {
+     "brand": "小米",
+     "keys": [
+      "xiaomi",
+      "redmi",
+      "mitv"
+     ],
+     "models": "MiTV-MFTR0 / Redmi X65 2026",
+     "android": "14",
+     "result": "日常使用（作者自测）。小米会锁 HOME：set-home-activity 返回成功但不生效，作者改用无障碍守护",
+     "flavor": "standard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/xiaomi-mitv-mftr0.md",
+     "rule_ids": [
+      "xiaomi-mitv-mftr0"
+     ]
+    },
+    {
+     "brand": "小米",
+     "keys": [
+      "xiaomi",
+      "mitv"
+     ],
+     "models": "MiTV-MFFU0",
+     "android": "14",
+     "result": "能安装、开机自启；HOME 锁定同 MFTR0",
+     "flavor": "standard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/xiaomi-mitv-mffu0.md",
+     "rule_ids": [
+      "xiaomi-mitv-mffu0"
+     ]
+    },
+    {
+     "brand": "小米",
+     "keys": [
+      "xiaomi",
+      "mitv"
+     ],
+     "models": "MiTV-ASTP0 / NSOP0",
+     "android": "9",
+     "result": "用户验证",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/issues/48",
+     "rule_ids": [
+      "xiaomi-mitv-astp0"
+     ]
+    },
+    {
+     "brand": "小米",
+     "keys": [
+      "xiaomi",
+      "redmi",
+      "mitv"
+     ],
+     "models": "MiTV-MFTP0",
+     "android": "9",
+     "result": "能安装、开机自启；升级后守护会掉",
+     "flavor": "standard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/xiaomi-mitv-mftp0.md",
+     "rule_ids": [
+      "redmi-mitv-mftp0"
+     ]
+    },
+    {
+     "brand": "TCL",
+     "keys": [
+      "tcl"
+     ],
+     "models": "TCL MT5879 国行",
+     "android": "11",
+     "result": "日常使用，但只能装 guard 版：系统校验会拒绝 adb 安装和声明 HOME 的第三方应用（standard 版装不上）",
+     "flavor": "guard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/tcl-mt5879-cn.md",
+     "rule_ids": []
+    },
+    {
+     "brand": "索尼",
+     "keys": [
+      "sony",
+      "bravia"
+     ],
+     "models": "A80J 国行 / BRAVIA VH1",
+     "android": "10 / 12",
+     "result": "用户验证",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/issues/16",
+     "rule_ids": [
+      "sony-bravia-4k-vh1",
+      "sony-xr-65a80j"
+     ]
+    },
+    {
+     "brand": "创维酷开",
+     "keys": [
+      "skyworth",
+      "coocaa"
+     ],
+     "models": "K3 Pro",
+     "android": "11",
+     "result": "用户验证",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/issues/43",
+     "rule_ids": [
+      "coocaa-k3-pro-90p3d-max"
+     ]
+    },
+    {
+     "brand": "康佳",
+     "keys": [
+      "konka",
+      "kktv"
+     ],
+     "models": "KKTV U86V9",
+     "android": "9",
+     "result": "主页键、开机自启、信号源可用；亮度调不了；首次安装需鼠标操作",
+     "flavor": "standard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/konka-kktv-u86v9.md",
+     "rule_ids": []
+    },
+    {
+     "brand": "OPPO",
+     "keys": [
+      "oppo"
+     ],
+     "models": "OPPO K9",
+     "android": "9",
+     "result": "系统只允许固定包名当桌面，要改包名才能装",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/oppo-coloros-tv.md",
+     "rule_ids": []
+    },
+    {
+     "brand": "其他",
+     "keys": [
+      "konka",
+      "pptv",
+      "xgimi",
+      "tencent"
+     ],
+     "models": "康佳 2861、PPTV K55U27、极米 m7642、腾讯极光盒子 7S",
+     "android": "5–9",
+     "result": "用户验证，各有小问题",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md",
+     "rule_ids": []
+    },
+    {
+     "brand": "雷鸟",
+     "keys": [
+      "tcl",
+      "ffalcon"
+     ],
+     "models": "雷鸟 55S595C Ultra（MT9655）",
+     "android": "11",
+     "result": "能装，但接管不了 HOME（拿不到 ADB 授权）",
+     "flavor": "guard",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/tcl-mt9655-cn.md",
+     "rule_ids": []
+    },
+    {
+     "brand": "海信/Vidda",
+     "keys": [
+      "hisense",
+      "vidda",
+      "vidaa"
+     ],
+     "models": "Vidda、海信、雷鸟鹤 6 2025 Ultra",
+     "android": "",
+     "result": "能装但开机进不了 Aerial（VIDAA 需改系统属性；信号源可能为空）",
+     "flavor": "",
+     "source_url": "https://github.com/pengchujin/aerial-tv/blob/v1.37/docs/devices/hisense-vidaa.md",
+     "rule_ids": [
+      "vidda-mt9653"
+     ]
+    }
+   ],
+   "compat_x90k": "索尼 X90K（BRAVIA VH21）不在 aerial 的列表里；最接近的是 A80J / BRAVIA VH1，VH21 上未测试",
+   "releases_url": "https://github.com/pengchujin/aerial-tv/releases",
+   "signer_sha256": "e08962dceaab534210f4725ecb71e3d0906d60dc9da9f2c5fa3b1759874d6685",
+   "pinned": true
   },
   {
    "id": "smarttube-stable-armv7",
