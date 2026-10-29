@@ -1,34 +1,34 @@
 {
  "schema_version": 1,
- "generated": "2026-10-28T08:37:30Z",
- "source_commit": "799e637",
+ "generated": "2026-10-29T00:42:18Z",
+ "source_commit": "ac0009e",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
    "name": "CleanYourTV 桌面",
    "package": "com.gathin.tvhome",
    "category": "桌面",
-   "source_url": "https://github.com/rvinauto/cleanyourtv/releases/tag/v2.6",
-   "version": "2.6",
-   "version_code": 9,
-   "apk_url": "https://github.com/rvinauto/cleanyourtv/releases/download/v2.6/CleanYourTV-X90K-v2.6-vc9.apk",
-   "sha256": "10b49d66a8c2fbceb4e4f1b061bb5eaead4e71ebd4fdf773ff82032da8e19b11",
-   "size": 501979,
+   "source_url": "https://github.com/rvinauto/cleanyourtv/releases/tag/v2.6.1",
+   "version": "2.6.1",
+   "version_code": 11,
+   "apk_url": "https://github.com/rvinauto/cleanyourtv/releases/download/v2.6.1/CleanYourTV-X90K-v2.6.1-vc11.apk",
+   "sha256": "0e199fd8f7bb08cf40788a4d4dd0f544c232f51c2b6cd76721b8d7e6b1b5b619",
+   "size": 501967,
    "abi": "全部",
    "min_sdk": 26,
    "license": "MIT",
    "notes": "本项目的电视桌面（Bing/影视壁纸），X90K 上真机验证",
    "verified": {
-    "date": "2026-10-24",
-    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+    "date": "2026-10-29",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; aapt2 badging com.gathin.tvhome vc11 2.6.1; signer unchanged"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/cleanyourtv-launcher-2.6-vc9-10b49d66.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/cleanyourtv-launcher-2.6.1-vc11-0e199fd8.apk"
    ],
    "launcher_preset": true,
    "launcher_default": true,
    "description": "CleanYourTV 默认桌面：没有广告、没有推荐流，仿 Apple TV 的简洁主页。壁纸可以选必应每日一图或电影剧照，下方是玻璃风格的常用应用栏，带设置菜单。体积小，免 root，可以随时换回原来的桌面。",
-   "description_long": "一块干净的电视主页，用来替换满屏广告和推荐的原厂桌面。\n- 不放广告和推荐内容，主页上只有你装的应用\n- 仿 Apple TV 的布局，下方是玻璃风格的常用应用栏\n- 在线壁纸：必应每日精选，也可以换成电影剧照\n- 设置菜单里可以调整壁纸和显示方式\n- 体积小，不用 root，不会卸载任何系统应用\n- 想换回来时，在电视上按主页键选回原来的桌面就行\n当前版本 v2.6，开源项目 CleanYourTV 的定制版。\n\n设置方法（按 v2.6 源码整理）：\n1. 设为默认桌面：在本 app 的「桌面选择」页点「设为默认…」；或者在电视上按遥控器主页键，如果弹出桌面选择，选「主屏幕」（CleanYourTV 桌面在中文系统里叫这个名字）。有的电视不弹选择框，那就用「设为默认…」。\n2. 打开桌面设置：在主页最下面一排常用应用上按「上」键，焦点会移到顶部按钮栏；移到右上角的「设置」按钮按 OK（长按 OK 也可以），弹出菜单里选「简洁桌面设置」。同一个菜单里还有「调整应用顺序」和「电视系统设置」。\n3. 换壁纸：在「简洁桌面设置」里选「在线壁纸：开/关」这一行，再选「壁纸类型」，可以选「风景（必应）」、「影视（TMDB）」（电影剧照）或「混合」。同一个列表里还能开关在线壁纸、换来源、调切换间隔，以及「立即刷新」。壁纸类型只对内置来源生效，自定义地址不行。\n4. 想换回原来的桌面：按主页键选原来的桌面，或者在本 app 里把原来的桌面设为默认。",
+   "description_long": "一块干净的电视主页，用来替换满屏广告和推荐的原厂桌面。\n- 不放广告和推荐内容，主页上只有你装的应用\n- 仿 Apple TV 的布局，下方是玻璃风格的常用应用栏\n- 在线壁纸：必应每日精选，也可以换成电影剧照\n- 设置菜单里可以调整壁纸和显示方式\n- 体积小，不用 root，不会卸载任何系统应用\n- 想换回来时，在电视上按主页键选回原来的桌面就行\n当前版本 v2.6.1，开源项目 CleanYourTV 的定制版。\n\n设置方法（按 v2.6 源码整理）：\n1. 设为默认桌面：在本 app 的「桌面选择」页点「设为默认…」；或者在电视上按遥控器主页键，如果弹出桌面选择，选「主屏幕」（CleanYourTV 桌面在中文系统里叫这个名字）。有的电视不弹选择框，那就用「设为默认…」。\n2. 打开桌面设置：在主页最下面一排常用应用上按「上」键，焦点会移到顶部按钮栏；移到右上角的「设置」按钮按 OK（长按 OK 也可以），弹出菜单里选「简洁桌面设置」。同一个菜单里还有「调整应用顺序」和「电视系统设置」。\n3. 换壁纸：在「简洁桌面设置」里选「在线壁纸：开/关」这一行，再选「壁纸类型」，可以选「风景（必应）」、「影视（TMDB）」（电影剧照）或「混合」。同一个列表里还能开关在线壁纸、换来源、调切换间隔，以及「立即刷新」。壁纸类型只对内置来源生效，自定义地址不行。\n4. 想换回原来的桌面：按主页键选原来的桌面，或者在本 app 里把原来的桌面设为默认。",
    "source": {
     "repo": "https://github.com/rvinauto/cleanyourtv",
     "author": "rvinauto",
@@ -36,7 +36,18 @@
     "upstream_author": "Gathin23",
     "license": "MIT"
    },
-   "releases_url": "https://github.com/rvinauto/cleanyourtv/releases"
+   "releases_url": "https://github.com/rvinauto/cleanyourtv/releases",
+   "previous": {
+    "version": "2.6",
+    "version_code": 9,
+    "apk_url": "https://github.com/rvinauto/cleanyourtv/releases/download/v2.6/CleanYourTV-X90K-v2.6-vc9.apk",
+    "source_url": "https://github.com/rvinauto/cleanyourtv/releases/tag/v2.6",
+    "sha256": "10b49d66a8c2fbceb4e4f1b061bb5eaead4e71ebd4fdf773ff82032da8e19b11",
+    "size": 501979,
+    "mirrors": [
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/cleanyourtv-launcher-2.6-vc9-10b49d66.apk"
+    ]
+   }
   },
   {
    "id": "aerial-tv-standard",
