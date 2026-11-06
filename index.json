@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
  "repo": "rvinauto/tv-debloat-rules-dist",
- "generated": "2026-11-05T09:32:23Z",
- "source_commit": "af2ac5c",
+ "generated": "2026-11-06T09:27:08Z",
+ "source_commit": "2f62787",
  "models": [
   {
    "id": "acer-ar55ar2851udpro",

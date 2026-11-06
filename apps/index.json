@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-05T09:32:23Z",
- "source_commit": "af2ac5c",
+ "generated": "2026-11-06T09:27:08Z",
+ "source_commit": "2f62787",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -54,12 +54,12 @@
    "name": "Aerial 桌面（最新版）",
    "package": "app.orchard.tv",
    "category": "桌面",
-   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.85",
-   "version": "1.85",
-   "version_code": 116,
-   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.85/aerial-standard.apk",
-   "sha256": "7f54d745007154dd298c0f3b0df940e7e4c6ca0c946abf78a1d170a686b0c4d3",
-   "size": 3155516,
+   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.86",
+   "version": "1.86",
+   "version_code": 118,
+   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.86/aerial-standard.apk",
+   "sha256": "a301b3a09891a31926e43e627830b9896245ac5822695fb80a19be4fde448bab",
+   "size": 3159642,
    "abi": "全部",
    "min_sdk": 21,
    "license": "MIT",
@@ -72,7 +72,7 @@
     "repo": "https://github.com/pengchujin/aerial-tv",
     "author": "pengchujin",
     "license": "MIT",
-    "tag": "v1.85",
+    "tag": "v1.86",
     "variant": "standard"
    },
    "sensitive_permissions": [
@@ -83,11 +83,11 @@
     "WRITE_SECURE_SETTINGS"
    ],
    "verified": {
-    "date": "2026-11-05",
+    "date": "2026-11-06",
     "method": "auto-update: GitHub latest release; sha256 computed (= asset digest when provided); aapt package/versionCode checked; TV build (LEANBACK_LAUNCHER); signer unchanged; HOME present"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.85-7f54d745.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.86-a301b3a0.apk"
    ],
    "compat_attribution": {
     "source": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md#已验证的电视",
@@ -295,14 +295,14 @@
     "PACKAGE_USAGE_STATS"
    ],
    "previous": {
-    "version": "1.83",
-    "version_code": 112,
-    "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.83/aerial-standard.apk",
-    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.83",
-    "sha256": "37aa7208b75d88c4ca15b10bab1ecba08041482955690e2c8fd02ce74b7fe6a8",
-    "size": 3143905,
+    "version": "1.85",
+    "version_code": 116,
+    "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v1.85/aerial-standard.apk",
+    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v1.85",
+    "sha256": "7f54d745007154dd298c0f3b0df940e7e4c6ca0c946abf78a1d170a686b0c4d3",
+    "size": 3155516,
     "mirrors": [
-     "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.83-37aa7208.apk"
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v1.85-7f54d745.apk"
     ]
    }
   },
@@ -537,22 +537,22 @@
    "name": "SmartTube",
    "package": "org.smarttube.stable",
    "category": "视频",
-   "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.68s",
-   "version": "32.68",
-   "version_code": 2458,
-   "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.68s/SmartTube_stable_32.68_armeabi-v7a.apk",
-   "sha256": "2130b23b17ed5cfd324baec81750a2be22059212b6ee17449f21cae2cb3a60d9",
-   "size": 25135011,
+   "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.70s",
+   "version": "32.70",
+   "version_code": 2460,
+   "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.70s/SmartTube_stable_32.70_armeabi-v7a.apk",
+   "sha256": "2cbdd3f5a7ecf6942ef5add05e56c18f746580af8716336ef6a7ccbe7521aa14",
+   "size": 25517330,
    "abi": "armeabi-v7a",
    "min_sdk": 17,
    "license": "MIT",
    "notes": "开源无广告 YouTube 电视客户端（需能访问 YouTube）。armeabi-v7a 版适合大多数电视",
    "verified": {
-    "date": "2026-10-24",
-    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; manifest parsed"
+    "date": "2026-11-06",
+    "method": "auto-update: GitHub latest release; sha256 computed (= asset digest when provided); aapt package/versionCode checked; TV build (LEANBACK_LAUNCHER); signer unchanged"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.68_armeabi-v7a-2130b23b.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.70_armeabi-v7a-2cbdd3f5.apk"
    ],
    "releases_url": "https://github.com/yuliskov/SmartTube/releases",
    "signer_sha256": "109735aa24fe85e2e1623ebb3b1ecc4bf4263f4c6374e4411d646bfa2eda482a",
@@ -564,6 +564,17 @@
      "DUMP",
      "RECORD_AUDIO",
      "SYSTEM_ALERT_WINDOW"
+    ]
+   },
+   "previous": {
+    "version": "32.68",
+    "version_code": 2458,
+    "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.68s/SmartTube_stable_32.68_armeabi-v7a.apk",
+    "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.68s",
+    "sha256": "2130b23b17ed5cfd324baec81750a2be22059212b6ee17449f21cae2cb3a60d9",
+    "size": 25135011,
+    "mirrors": [
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.68_armeabi-v7a-2130b23b.apk"
     ]
    }
   },
