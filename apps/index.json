@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-06T09:27:08Z",
- "source_commit": "2f62787",
+ "generated": "2026-11-07T08:50:29Z",
+ "source_commit": "fd1e0bb",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -537,22 +537,22 @@
    "name": "SmartTube",
    "package": "org.smarttube.stable",
    "category": "视频",
-   "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.70s",
-   "version": "32.70",
-   "version_code": 2460,
-   "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.70s/SmartTube_stable_32.70_armeabi-v7a.apk",
-   "sha256": "2cbdd3f5a7ecf6942ef5add05e56c18f746580af8716336ef6a7ccbe7521aa14",
-   "size": 25517330,
+   "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.71s",
+   "version": "32.71",
+   "version_code": 2461,
+   "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.71s/SmartTube_stable_32.71_armeabi-v7a.apk",
+   "sha256": "288e8caaa11417f6b64d2a7f906cead85c0b8a9bb5904753d7cb4f79d117d023",
+   "size": 25517725,
    "abi": "armeabi-v7a",
    "min_sdk": 17,
    "license": "MIT",
    "notes": "开源无广告 YouTube 电视客户端（需能访问 YouTube）。armeabi-v7a 版适合大多数电视",
    "verified": {
-    "date": "2026-11-06",
+    "date": "2026-11-07",
     "method": "auto-update: GitHub latest release; sha256 computed (= asset digest when provided); aapt package/versionCode checked; TV build (LEANBACK_LAUNCHER); signer unchanged"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.70_armeabi-v7a-2cbdd3f5.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.71_armeabi-v7a-288e8caa.apk"
    ],
    "releases_url": "https://github.com/yuliskov/SmartTube/releases",
    "signer_sha256": "109735aa24fe85e2e1623ebb3b1ecc4bf4263f4c6374e4411d646bfa2eda482a",
@@ -567,14 +567,14 @@
     ]
    },
    "previous": {
-    "version": "32.68",
-    "version_code": 2458,
-    "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.68s/SmartTube_stable_32.68_armeabi-v7a.apk",
-    "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.68s",
-    "sha256": "2130b23b17ed5cfd324baec81750a2be22059212b6ee17449f21cae2cb3a60d9",
-    "size": 25135011,
+    "version": "32.70",
+    "version_code": 2460,
+    "apk_url": "https://github.com/yuliskov/SmartTube/releases/download/32.70s/SmartTube_stable_32.70_armeabi-v7a.apk",
+    "source_url": "https://github.com/yuliskov/SmartTube/releases/tag/32.70s",
+    "sha256": "2cbdd3f5a7ecf6942ef5add05e56c18f746580af8716336ef6a7ccbe7521aa14",
+    "size": 25517330,
     "mirrors": [
-     "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.68_armeabi-v7a-2130b23b.apk"
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/SmartTube_stable_32.70_armeabi-v7a-2cbdd3f5.apk"
     ]
    }
   },
