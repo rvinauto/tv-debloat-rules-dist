@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-10T09:54:36Z",
- "source_commit": "5008e2f",
+ "generated": "2026-11-11T01:54:01Z",
+ "source_commit": "ebf67f9",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -644,6 +644,88 @@
     "repo": "webhtv/webhtv",
     "asset": "^leanback-armeabi_v7a\\.apk$",
     "mirror_name": "webhtv-leanback-armeabi_v7a-{tag_noV}-{sha8}.apk",
+    "allowed_sensitive": [
+     "CAMERA",
+     "DUMP",
+     "MANAGE_EXTERNAL_STORAGE",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
+   }
+  },
+  {
+   "id": "moyingshi-leanback-arm64",
+   "name": "默影视（TV 版，64 位）",
+   "package": "com.silent.android.webhtv",
+   "category": "影视壳",
+   "target": "tv",
+   "source_url": "https://github.com/Silent1566/webhtv/releases/tag/v5.6.0-202611081126",
+   "source_repo": "https://github.com/Silent1566/webhtv",
+   "source_commit": "852d842",
+   "version": "5.6.0",
+   "version_code": 560,
+   "apk_url": "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/leanback-arm64_v8a.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/moyingshi-leanback-arm64_v8a-5.6.0-202611081126-57bd369b.apk",
+    "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/leanback-arm64_v8a.apk"
+   ],
+   "sha256": "57bd369bcddbcecdf13a4e78c08f6a73706704c633e4c8fd9d7cf51eeb69c2c2",
+   "size": 172211255,
+   "abi": "arm64-v8a",
+   "min_sdk": 24,
+   "license": "GPL-3.0",
+   "signer_sha256": "081a747aaa8017f3f9ea73c60260c8cf813025606155d682940450f03a9becc7",
+   "notes": "基于鱼佬的 WebHomeTV 二次开发（Silent1566/webhtv，GPL-3.0），leanback 遥控器版。不含任何影视源，源需用户自备并自负合法性。包名为 com.silent.android.webhtv，与列表中的 WebHomeTV（com.fongmi.android.tv）不同，可同时安装。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; aapt package/versionCode/minSdk/ABI; LEANBACK_LAUNCHER checked; v2 signer via apksigner; no HOME category"
+   },
+   "releases_url": "https://github.com/Silent1566/webhtv/releases",
+   "auto_update": {
+    "repo": "Silent1566/webhtv",
+    "asset": "^leanback-arm64_v8a\\.apk$",
+    "mirror_name": "moyingshi-leanback-arm64_v8a-{tag_noV}-{sha8}.apk",
+    "allowed_sensitive": [
+     "CAMERA",
+     "DUMP",
+     "MANAGE_EXTERNAL_STORAGE",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
+   }
+  },
+  {
+   "id": "moyingshi-leanback-armv7",
+   "name": "默影视（TV 版，32 位）",
+   "package": "com.silent.android.webhtv",
+   "category": "影视壳",
+   "target": "tv",
+   "source_url": "https://github.com/Silent1566/webhtv/releases/tag/v5.6.0-202611081126",
+   "source_repo": "https://github.com/Silent1566/webhtv",
+   "source_commit": "852d842",
+   "version": "5.6.0",
+   "version_code": 560,
+   "apk_url": "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/leanback-armeabi_v7a.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/moyingshi-leanback-armeabi_v7a-5.6.0-202611081126-37459e41.apk",
+    "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/leanback-armeabi_v7a.apk"
+   ],
+   "sha256": "37459e415468250f46d802fc0a72f62d8b6cc1eed774b1c92a62730007b5cdbe",
+   "size": 139524131,
+   "abi": "armeabi-v7a",
+   "min_sdk": 24,
+   "license": "GPL-3.0",
+   "signer_sha256": "081a747aaa8017f3f9ea73c60260c8cf813025606155d682940450f03a9becc7",
+   "notes": "基于鱼佬的 WebHomeTV 二次开发（Silent1566/webhtv，GPL-3.0），leanback 遥控器版。不含任何影视源，源需用户自备并自负合法性。包名为 com.silent.android.webhtv，与列表中的 WebHomeTV（com.fongmi.android.tv）不同，可同时安装。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; aapt package/versionCode/minSdk/ABI; LEANBACK_LAUNCHER checked; v2 signer via apksigner; no HOME category"
+   },
+   "releases_url": "https://github.com/Silent1566/webhtv/releases",
+   "auto_update": {
+    "repo": "Silent1566/webhtv",
+    "asset": "^leanback-armeabi_v7a\\.apk$",
+    "mirror_name": "moyingshi-leanback-armeabi_v7a-{tag_noV}-{sha8}.apk",
     "allowed_sensitive": [
      "CAMERA",
      "DUMP",

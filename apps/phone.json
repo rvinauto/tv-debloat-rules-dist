@@ -1,0 +1,89 @@
+{
+ "schema_version": 1,
+ "generated": "2026-11-11T01:54:01Z",
+ "source_commit": "ebf67f9",
+ "apps": [
+  {
+   "id": "moyingshi-mobile-arm64",
+   "name": "默影视（手机版，64 位）",
+   "package": "com.silent.android.webhtv",
+   "category": "影视壳",
+   "target": "phone",
+   "source_url": "https://github.com/Silent1566/webhtv/releases/tag/v5.6.0-202611081126",
+   "source_repo": "https://github.com/Silent1566/webhtv",
+   "source_commit": "852d842",
+   "version": "5.6.0",
+   "version_code": 560,
+   "apk_url": "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/mobile-arm64_v8a.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/moyingshi-mobile-arm64_v8a-5.6.0-202611081126-7ed95789.apk",
+    "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/mobile-arm64_v8a.apk"
+   ],
+   "sha256": "7ed95789b8453e9a0338482a0dc41fd25598710b80d42e192b774de01683afff",
+   "size": 172480024,
+   "abi": "arm64-v8a",
+   "min_sdk": 24,
+   "license": "GPL-3.0",
+   "signer_sha256": "081a747aaa8017f3f9ea73c60260c8cf813025606155d682940450f03a9becc7",
+   "notes": "基于鱼佬的 WebHomeTV 二次开发（Silent1566/webhtv，GPL-3.0），手机版。不含任何影视源，源需用户自备并自负合法性。包名为 com.silent.android.webhtv，与列表中的 WebHomeTV（com.fongmi.android.tv）不同，可同时安装。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; aapt package/versionCode/minSdk/ABI; LEANBACK_LAUNCHER checked; v2 signer via apksigner; no HOME category"
+   },
+   "releases_url": "https://github.com/Silent1566/webhtv/releases",
+   "auto_update": {
+    "repo": "Silent1566/webhtv",
+    "asset": "^mobile-arm64_v8a\\.apk$",
+    "mirror_name": "moyingshi-mobile-arm64_v8a-{tag_noV}-{sha8}.apk",
+    "allowed_sensitive": [
+     "CAMERA",
+     "DUMP",
+     "MANAGE_EXTERNAL_STORAGE",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
+   }
+  },
+  {
+   "id": "moyingshi-mobile-armv7",
+   "name": "默影视（手机版，32 位）",
+   "package": "com.silent.android.webhtv",
+   "category": "影视壳",
+   "target": "phone",
+   "source_url": "https://github.com/Silent1566/webhtv/releases/tag/v5.6.0-202611081126",
+   "source_repo": "https://github.com/Silent1566/webhtv",
+   "source_commit": "852d842",
+   "version": "5.6.0",
+   "version_code": 560,
+   "apk_url": "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/mobile-armeabi_v7a.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/moyingshi-mobile-armeabi_v7a-5.6.0-202611081126-c1881c69.apk",
+    "https://github.com/Silent1566/webhtv/releases/download/v5.6.0-202611081126/mobile-armeabi_v7a.apk"
+   ],
+   "sha256": "c1881c694395f2193cbc671d6aa3e86bb5d006306137d9afe33be05a5f4d8fd4",
+   "size": 139792900,
+   "abi": "armeabi-v7a",
+   "min_sdk": 24,
+   "license": "GPL-3.0",
+   "signer_sha256": "081a747aaa8017f3f9ea73c60260c8cf813025606155d682940450f03a9becc7",
+   "notes": "基于鱼佬的 WebHomeTV 二次开发（Silent1566/webhtv，GPL-3.0），手机版。不含任何影视源，源需用户自备并自负合法性。包名为 com.silent.android.webhtv，与列表中的 WebHomeTV（com.fongmi.android.tv）不同，可同时安装。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "downloaded from GitHub release; sha256 equals GitHub asset digest; aapt package/versionCode/minSdk/ABI; LEANBACK_LAUNCHER checked; v2 signer via apksigner; no HOME category"
+   },
+   "releases_url": "https://github.com/Silent1566/webhtv/releases",
+   "auto_update": {
+    "repo": "Silent1566/webhtv",
+    "asset": "^mobile-armeabi_v7a\\.apk$",
+    "mirror_name": "moyingshi-mobile-armeabi_v7a-{tag_noV}-{sha8}.apk",
+    "allowed_sensitive": [
+     "CAMERA",
+     "DUMP",
+     "MANAGE_EXTERNAL_STORAGE",
+     "RECORD_AUDIO",
+     "SYSTEM_ALERT_WINDOW"
+    ]
+   }
+  }
+ ]
+}
