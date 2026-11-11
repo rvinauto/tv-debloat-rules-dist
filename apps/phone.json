@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-11T01:54:01Z",
- "source_commit": "ebf67f9",
+ "generated": "2026-11-11T04:23:45Z",
+ "source_commit": "881fa06",
  "apps": [
   {
    "id": "moyingshi-mobile-arm64",
@@ -83,6 +83,60 @@
      "RECORD_AUDIO",
      "SYSTEM_ALERT_WINDOW"
     ]
+   }
+  },
+  {
+   "id": "hghub-mobile-arm64",
+   "name": "HGhub（手机版，64 位）",
+   "package": "com.hghub.huangguo",
+   "category": "短剧",
+   "target": "phone",
+   "manual_upload": true,
+   "source_url": "https://github.com/Minireel/HGhub",
+   "source_repo": "https://github.com/Minireel/HGhub",
+   "version": "1.2.1",
+   "version_code": 1002001,
+   "apk_url": "https://orrvtvbox.20090212.xyz/rvbox/apps/hghub-mobile-arm64_v8a-1.2.1-18ee7138.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/hghub-mobile-arm64_v8a-1.2.1-18ee7138.apk"
+   ],
+   "sha256": "18ee71382dbd8d52043a324ec7425decc269378125f1e4841c745aebda7713a5",
+   "size": 9225993,
+   "abi": "arm64-v8a",
+   "min_sdk": 24,
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "signer_sha256": "81280f40d13ff6a502488cc2198a84f89601411020365452ea57a1ac10b0c952",
+   "notes": "HGhub：Minireel/HGhub 的红果短剧第三方客户端（Tauri 2），手机版。作者已停止维护并撤下官方 Release，本 APK 由用户提供、手动上传到 VPS，签名无法与官方核对；不会自动更新。许可证 PolyForm Noncommercial 1.0.0，仅限非商业使用。不含任何内容，播放内容来自上游站点。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "user-supplied APK (no official GitHub release available); sha256 computed; uploaded to VPS and public URL re-downloaded with matching sha256; aapt package/versionCode/minSdk/ABI; no HOME category; v2 signer via apksigner"
+   }
+  },
+  {
+   "id": "hghub-mobile-armv7",
+   "name": "HGhub（手机版，32 位）",
+   "package": "com.hghub.huangguo",
+   "category": "短剧",
+   "target": "phone",
+   "manual_upload": true,
+   "source_url": "https://github.com/Minireel/HGhub",
+   "source_repo": "https://github.com/Minireel/HGhub",
+   "version": "1.2.1",
+   "version_code": 1002001,
+   "apk_url": "https://orrvtvbox.20090212.xyz/rvbox/apps/hghub-mobile-armeabi_v7a-1.2.1-9f3ad2b8.apk",
+   "mirrors": [
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/hghub-mobile-armeabi_v7a-1.2.1-9f3ad2b8.apk"
+   ],
+   "sha256": "9f3ad2b8880176097bdcdc0d4b1ba25376c8aef3bc73342ef39592a1fa59eae4",
+   "size": 6911755,
+   "abi": "armeabi-v7a",
+   "min_sdk": 24,
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "signer_sha256": "81280f40d13ff6a502488cc2198a84f89601411020365452ea57a1ac10b0c952",
+   "notes": "HGhub：Minireel/HGhub 的红果短剧第三方客户端（Tauri 2），手机版。作者已停止维护并撤下官方 Release，本 APK 由用户提供、手动上传到 VPS，签名无法与官方核对；不会自动更新。许可证 PolyForm Noncommercial 1.0.0，仅限非商业使用。不含任何内容，播放内容来自上游站点。",
+   "verified": {
+    "date": "2026-11-11",
+    "method": "user-supplied APK (no official GitHub release available); sha256 computed; uploaded to VPS and public URL re-downloaded with matching sha256; aapt package/versionCode/minSdk/ABI; no HOME category; v2 signer via apksigner"
    }
   }
  ]

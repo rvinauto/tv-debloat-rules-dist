@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-11T01:54:01Z",
- "source_commit": "ebf67f9",
+ "generated": "2026-11-11T04:23:45Z",
+ "source_commit": "881fa06",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
