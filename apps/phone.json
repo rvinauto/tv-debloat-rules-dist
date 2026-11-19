@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-18T10:13:10Z",
- "source_commit": "0b07dc3",
+ "generated": "2026-11-19T10:24:35Z",
+ "source_commit": "1ececf7",
  "apps": [
   {
    "id": "moyingshi-mobile-arm64",
