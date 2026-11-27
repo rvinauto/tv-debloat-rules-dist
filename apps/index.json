@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "generated": "2026-11-26T10:57:13Z",
- "source_commit": "8b1953b",
+ "generated": "2026-11-27T10:55:04Z",
+ "source_commit": "ada0854",
  "apps": [
   {
    "id": "cleanyourtv-launcher",
@@ -54,12 +54,12 @@
    "name": "Aerial 桌面（最新版）",
    "package": "app.orchard.tv",
    "category": "桌面",
-   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v2.20",
-   "version": "2.20",
-   "version_code": 168,
-   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v2.20/aerial-standard.apk",
-   "sha256": "1895bbf36c05fb0c8537699e3493fd578d5ded1a1108d2530c2279184d5692c9",
-   "size": 3246616,
+   "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v2.21",
+   "version": "2.21",
+   "version_code": 170,
+   "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v2.21/aerial-standard.apk",
+   "sha256": "81b69c392e43efa24845e13aad2668d3315a110615a4bb2e51d4a69d177b8dd3",
+   "size": 3247531,
    "abi": "全部",
    "min_sdk": 21,
    "license": "MIT",
@@ -72,7 +72,7 @@
     "repo": "https://github.com/pengchujin/aerial-tv",
     "author": "pengchujin",
     "license": "MIT",
-    "tag": "v2.20",
+    "tag": "v2.21",
     "variant": "standard"
    },
    "sensitive_permissions": [
@@ -83,12 +83,12 @@
     "WRITE_SECURE_SETTINGS"
    ],
    "verified": {
-    "date": "2026-11-26",
+    "date": "2026-11-27",
     "method": "auto-update: GitHub latest release; sha256 computed (= asset digest when provided); aapt package/versionCode checked; target/ABI checked; signer unchanged; HOME present"
    },
    "mirrors": [
-    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v2.20-1895bbf3.apk",
-    "https://github.com/pengchujin/aerial-tv/releases/download/v2.20/aerial-standard.apk"
+    "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v2.21-81b69c39.apk",
+    "https://github.com/pengchujin/aerial-tv/releases/download/v2.21/aerial-standard.apk"
    ],
    "compat_attribution": {
     "source": "https://github.com/pengchujin/aerial-tv/blob/v1.37/README.md#已验证的电视",
@@ -296,15 +296,15 @@
     "PACKAGE_USAGE_STATS"
    ],
    "previous": {
-    "version": "2.19",
-    "version_code": 165,
-    "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v2.19/aerial-standard.apk",
-    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v2.19",
-    "sha256": "9126d2f050e1fa6360b5b002a14b045337a7b9d62dd447f4231149f2d5605959",
-    "size": 3244495,
+    "version": "2.20",
+    "version_code": 168,
+    "apk_url": "https://github.com/pengchujin/aerial-tv/releases/download/v2.20/aerial-standard.apk",
+    "source_url": "https://github.com/pengchujin/aerial-tv/releases/tag/v2.20",
+    "sha256": "1895bbf36c05fb0c8537699e3493fd578d5ded1a1108d2530c2279184d5692c9",
+    "size": 3246616,
     "mirrors": [
-     "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v2.19-9126d2f0.apk",
-     "https://github.com/pengchujin/aerial-tv/releases/download/v2.19/aerial-standard.apk"
+     "https://orrvtvbox.20090212.xyz/rvbox/apps/aerial-tv-standard-v2.20-1895bbf3.apk",
+     "https://github.com/pengchujin/aerial-tv/releases/download/v2.20/aerial-standard.apk"
     ]
    }
   },
